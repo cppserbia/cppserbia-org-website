@@ -1,7 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import EventCalendar from "@/components/event-calendar"
 import EventFallbackNotice from "@/components/event-fallback-notice"
 import { getAllEvents } from "@/lib/meetup-api"
 import { Calendar, ExternalLink } from "lucide-react"
@@ -11,11 +10,7 @@ export default async function EventsPage() {
   const { upcomingEvents, pastEvents } = await getAllEvents()
 
   // Check if we're only showing markdown events (API failed)
-  const showFallbackNotice =
-    upcomingEvents.length > 0 &&
-    upcomingEvents.every((event) => event.source === "markdown") &&
-    pastEvents.length > 0 &&
-    pastEvents.every((event) => event.source === "markdown")
+  const showFallbackNotice = pastEvents.length === 0;
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -32,7 +27,7 @@ export default async function EventsPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
-                Events Calendar
+                Events
               </h1>
               <p className="text-lg text-gray-300 max-w-2xl">
                 Stay up to date with all C++ Serbia community events, meetups, workshops, and conferences.
@@ -119,17 +114,9 @@ export default async function EventsPage() {
                 </div>
               ))
             ) : (
-              <p className="text-gray-400 text-center py-8">No upcoming events at the moment. Check back soon!</p>
+              <p className="text-gray-400 text-center py-8">No upcoming events scheduled yet! Just in case, save the date for the last Wednesday of the month.</p>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* Calendar Section */}
-      <section className="py-12 px-4 bg-[#0a0a15]">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">Events Calendar</h2>
-          <EventCalendar events={upcomingEvents} />
         </div>
       </section>
 

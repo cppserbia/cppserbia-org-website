@@ -2,6 +2,7 @@ import { cache } from "react"
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
+import { Variable } from "lucide-react"
 
 // Add this constant at the top of the file
 const DEFAULT_MEETUP_URL = "https://www.meetup.com/cpp-serbia/"
@@ -53,25 +54,29 @@ export interface FormattedEvent {
 
 // Updated GraphQL query that doesn't use the urlname variable
 const EVENTS_QUERY = `
-query Events {
-  group(id: "cpp-serbia") {
-    events(input: { first: 20 }) {
-      count
+query Events($status: EventStatus = PAST) {
+  group(id: 21118957) {
+    events(status: $status, sort: DESC, first: 6) {
       pageInfo {
-        hasNextPage
         endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
       }
       edges {
+        cursor
         node {
-          id
-          title
-          description
-          dateTime
-          endTime
-          duration
-          eventUrl
+          createdTime
           eventType
+          dateTime
+          description
+          duration
+          endTime
+          eventType
+          eventUrl
+          id
           status
+          title
           venues {
             address
             city
@@ -90,7 +95,7 @@ query Events {
 `
 
 // Function to fetch events from Meetup.com GraphQL API
-export const fetchMeetupEvents = cache(async (): Promise<FormattedEvent[]> => {
+export const fetchMeetupEvents = cache(async (status: string): Promise<FormattedEvent[]> => {
   try {
     // Get API key from environment variable
     const apiKey = process.env.MEETUP_API_KEY
@@ -108,6 +113,9 @@ export const fetchMeetupEvents = cache(async (): Promise<FormattedEvent[]> => {
       },
       body: JSON.stringify({
         query: EVENTS_QUERY,
+        variables: {
+          status: status, // Fetch only upcoming events
+        },
       }),
       next: { revalidate: 3600 }, // Revalidate every hour
     })
@@ -206,95 +214,13 @@ function formatMeetupEvent(event: MeetupEvent): FormattedEvent {
   }
 }
 
-// Function to read events from markdown files
-export async function getMarkdownEvents(): Promise<FormattedEvent[]> {
-  const eventsDirectory = path.join(process.cwd(), "content/events")
-
-  // Check if directory exists
-  if (!fs.existsSync(eventsDirectory)) {
-    console.warn("Events directory not found:", eventsDirectory)
-    return []
-  }
-
-  try {
-    // Get all markdown files
-    const fileNames = fs.readdirSync(eventsDirectory)
-    const markdownEvents = fileNames
-      .filter((fileName) => fileName.endsWith(".md"))
-      .map((fileName) => {
-        // Remove ".md" from file name to get slug
-        const slug = fileName.replace(/\.md$/, "")
-
-        // Read markdown file as string
-        const fullPath = path.join(eventsDirectory, fileName)
-        const fileContents = fs.readFileSync(fullPath, "utf8")
-
-        // Use gray-matter to parse the event metadata section
-        const matterResult = matter(fileContents)
-
-        // Parse the date from the filename (yyyy-mm-dd-slug.md)
-        const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})/)
-        const dateStr = dateMatch ? dateMatch[1] : ""
-
-        // Format the date for display
-        const date = dateStr ? new Date(dateStr) : new Date()
-        const formattedDate = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-
-        const day = date.getDate().toString()
-        const month = date.toLocaleString("en-US", { month: "short" }).toUpperCase()
-        const year = date.getFullYear().toString()
-
-        // Determine if the event is online
-        const isOnline = matterResult.data.location?.toLowerCase().includes("online") || false
-
-        // Combine the data with the slug
-        return {
-          slug,
-          date: dateStr,
-          formattedDate,
-          day,
-          month,
-          year,
-          isOnline,
-          ...matterResult.data,
-          content: matterResult.content,
-          source: "markdown" as const,
-        } as FormattedEvent
-      })
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-
-    return markdownEvents
-  } catch (error) {
-    console.error("Error reading markdown events:", error)
-    return []
-  }
-}
-
 // Function to get all events (upcoming and past) from both sources
 export async function getAllEvents() {
   try {
     // Fetch events from both sources in parallel
-    const [apiEvents, markdownEvents] = await Promise.all([fetchMeetupEvents(), getMarkdownEvents()])
+    const [upcomingEvents, pastEvents] = await Promise.all([fetchMeetupEvents("DRAFT"), fetchMeetupEvents("PAST")])
 
-    console.log(`Fetched ${apiEvents.length} API events and ${markdownEvents.length} markdown events`)
-
-    // Combine events from both sources
-    const allEvents = [...apiEvents, ...markdownEvents]
-
-    const now = new Date()
-
-    // Separate upcoming and past events
-    const upcomingEvents = allEvents
-      .filter((event) => new Date(event.date) >= now)
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-
-    const pastEvents = allEvents
-      .filter((event) => new Date(event.date) < now)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Most recent first
+    console.log(`Fetched ${upcomingEvents.length + pastEvents.length} API events`)
 
     return {
       upcomingEvents,
@@ -303,32 +229,9 @@ export async function getAllEvents() {
   } catch (error) {
     console.error("Error fetching events:", error)
 
-    // Fallback to just markdown events if there's an error
-    try {
-      const markdownEvents = await getMarkdownEvents()
-      const now = new Date()
-
-      const upcomingEvents = markdownEvents
-        .filter((event) => new Date(event.date) >= now)
-        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-
-      const pastEvents = markdownEvents
-        .filter((event) => new Date(event.date) < now)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-      return {
-        upcomingEvents,
-        pastEvents,
-      }
-    } catch (fallbackError) {
-      console.error("Error fetching markdown events:", fallbackError)
-      return { upcomingEvents: [], pastEvents: [] }
+    return {
+      upcomingEvents: [],
+      pastEvents: [],
     }
   }
-}
-
-// Function to get upcoming events with an optional limit
-export async function getUpcomingEvents(limit?: number) {
-  const { upcomingEvents } = await getAllEvents()
-  return limit ? upcomingEvents.slice(0, limit) : upcomingEvents
 }

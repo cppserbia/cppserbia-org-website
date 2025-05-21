@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Calendar, ArrowRight } from "lucide-react"
 import SocialLinks from "@/components/social-links"
-import UpcomingEvents from "@/components/upcoming-events" // Revert to using the original component
+import FeaturedEvents from "@/components/featured-events" // Revert to using the original component
 
 export default async function Home() {
   return (
@@ -91,11 +91,11 @@ export default async function Home() {
       {/* Events Preview Section */}
       <section className="py-20 px-4 bg-[#0a0a15]">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-purple-300">Upcoming Events</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-purple-300">Featured Events</h2>
           <p className="text-xl text-gray-400 mb-12 text-center">Join us at our next meetups and workshops</p>
 
           {/* Use the original UpcomingEvents component */}
-          <UpcomingEvents limit={3} />
+          <FeaturedEvents limit={3} />
 
           <div className="mt-12 text-center">
             <Button

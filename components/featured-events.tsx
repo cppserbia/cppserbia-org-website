@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
 
-interface UpcomingEventsProps {
+interface FeaturedEventsProps {
   limit?: number
 }
 
@@ -23,7 +23,7 @@ interface Event {
   source: "api" | "markdown"
 }
 
-export default function UpcomingEvents({ limit }: UpcomingEventsProps) {
+export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
   const [events, setEvents] = useState<Event[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
@@ -52,7 +52,7 @@ export default function UpcomingEvents({ limit }: UpcomingEventsProps) {
         setError(err instanceof Error ? err : new Error(String(err)))
 
         // Fallback to sample data if API fails
-        setEvents(getSampleEvents(limit))
+        setEvents([])
       } finally {
         setIsLoading(false)
       }
@@ -150,70 +150,4 @@ export default function UpcomingEvents({ limit }: UpcomingEventsProps) {
       )}
     </div>
   )
-}
-
-// Sample events data as fallback
-function getSampleEvents(limit?: number): Event[] {
-  const events = [
-    {
-      slug: "cpp20-features-deep-dive",
-      title: "C++20 Features Deep Dive",
-      date: "2025-06-15",
-      time: "18:00 - 20:00",
-      location: "Belgrade Tech Hub",
-      description:
-        "An in-depth exploration of the new features in C++20 and how to use them effectively in your projects.",
-      registrationLink: "#",
-      formattedDate: "June 15, 2025",
-      day: "15",
-      month: "JUN",
-      year: "2025",
-      source: "markdown" as const,
-    },
-    {
-      slug: "high-performance-systems",
-      title: "Building High-Performance Systems with C++",
-      date: "2025-07-05",
-      time: "17:30 - 19:30",
-      location: "Online",
-      description: "Learn how to design and implement high-performance systems using modern C++ techniques.",
-      registrationLink: "#",
-      formattedDate: "July 5, 2025",
-      day: "5",
-      month: "JUL",
-      year: "2025",
-      source: "markdown" as const,
-    },
-    {
-      slug: "game-development-workshop",
-      title: "C++ for Game Development Workshop",
-      date: "2025-07-22",
-      time: "10:00 - 16:00",
-      location: "Novi Sad Innovation Hub",
-      description:
-        "A full-day workshop on using C++ for game development, covering performance optimization, memory management, and more.",
-      registrationLink: "#",
-      formattedDate: "July 22, 2025",
-      day: "22",
-      month: "JUL",
-      year: "2025",
-      source: "markdown" as const,
-    },
-    {
-      slug: "cpp-machine-learning",
-      title: "C++ and Machine Learning",
-      date: "2025-08-10",
-      time: "18:00 - 20:00",
-      location: "Belgrade Tech Hub",
-      description: "Exploring the intersection of C++ and machine learning, with practical examples and case studies.",
-      registrationLink: "#",
-      formattedDate: "August 10, 2025",
-      day: "10",
-      month: "AUG",
-      year: "2025",
-      source: "markdown" as const,
-    },
-  ]
-
-  return limit ? events.slice(0, limit) : events
 }
