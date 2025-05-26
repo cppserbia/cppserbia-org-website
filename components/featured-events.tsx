@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
+import { Calendar, MapPin, Clock } from "lucide-react"
 
 interface FeaturedEventsProps {
   limit?: number
@@ -20,7 +20,7 @@ interface Event {
   day: string
   month: string
   year: string
-  source: "api" | "markdown"
+  isOnline?: boolean
 }
 
 export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
@@ -33,25 +33,34 @@ export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
       try {
         setIsLoading(true)
         const params = new URLSearchParams()
-        params.append("upcomingOnly", "true")
 
         if (limit) {
           params.append("limit", limit.toString())
         }
 
-        const response = await fetch(`/api/events?${params.toString()}`)
+        const url = `/api/events?${params.toString()}`
+        console.log(`[Client] Fetching events from: ${url}`)
+
+        const startTime = performance.now()
+        const response = await fetch(url)
+        const endTime = performance.now()
+
+        console.log(
+          `[Client] Response received in ${Math.round(endTime - startTime)}ms with status: ${response.status} ${response.statusText}`,
+        )
 
         if (!response.ok) {
-          throw new Error("Failed to fetch events")
+          const errorText = await response.text()
+          console.error(`[Client] Error response: ${errorText}`)
+          throw new Error(`Failed to fetch events: ${response.status} ${response.statusText}`)
         }
 
         const data = await response.json()
+        console.log(`[Client] Events fetched successfully: ${data.events?.length || 0} events`)
         setEvents(data.events || [])
       } catch (err) {
-        console.error("Error fetching events:", err)
+        console.error("[Client] Error fetching events:", err)
         setError(err instanceof Error ? err : new Error(String(err)))
-
-        // Fallback to sample data if API fails
         setEvents([])
       } finally {
         setIsLoading(false)
@@ -69,10 +78,11 @@ export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
     )
   }
 
-  if (error && events.length === 0) {
+  if (error) {
     return (
       <div className="p-4 border border-red-500/30 rounded-lg bg-red-950/20 text-red-300 mb-6">
-        <p>Error loading events. Using sample data instead.</p>
+        <p>Error loading events: {error.message}</p>
+        <p className="text-sm mt-2">Please try again later or contact support if the problem persists.</p>
       </div>
     )
   }
@@ -111,26 +121,13 @@ export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  {event.source === "api" ? (
-                    // For API events, link directly to Meetup.com
-                    <Link
-                      href={event.registrationLink || "https://www.meetup.com/cpp-serbia/"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                    >
-                      View on Meetup <ExternalLink className="h-4 w-4 ml-1" />
-                    </Link>
-                  ) : (
-                    // For markdown events, link to our detail page
-                    <Link
-                      href={`/events/${event.slug}`}
-                      className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                    >
-                      View Details
-                    </Link>
-                  )}
-                  {event.registrationLink && event.source === "api" && (
+                  <Link
+                    href={`/events/${event.slug}`}
+                    className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
+                  >
+                    View Details
+                  </Link>
+                  {event.registrationLink && (
                     <Link
                       href={event.registrationLink}
                       target="_blank"

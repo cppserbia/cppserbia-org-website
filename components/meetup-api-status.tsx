@@ -17,17 +17,29 @@ export default function MeetupApiStatus() {
     setError(null)
 
     try {
+      console.log("[Client] Checking Meetup API configuration status...")
+      const startTime = performance.now()
+
       const response = await fetch("/api/meetup-config")
 
+      const endTime = performance.now()
+      console.log(
+        `[Client] API status response received in ${Math.round(endTime - startTime)}ms with status: ${response.status} ${response.statusText}`,
+      )
+
       if (!response.ok) {
-        throw new Error("Failed to check API configuration")
+        const errorText = await response.text()
+        console.error(`[Client] API status error response: ${errorText}`)
+        throw new Error(`Failed to check API configuration: ${response.status} ${response.statusText}`)
       }
 
       const data = await response.json()
+      console.log("[Client] API configuration status:", data)
       setStatus(data)
     } catch (err) {
-      setError("Failed to check API configuration status")
-      console.error(err)
+      const errorMessage = err instanceof Error ? err.message : String(err)
+      console.error("[Client] Error checking API configuration:", errorMessage)
+      setError(`Failed to check API configuration status: ${errorMessage}`)
     } finally {
       setLoading(false)
     }

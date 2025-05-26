@@ -1,16 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import EventFallbackNotice from "@/components/event-fallback-notice"
-import { getAllEvents } from "@/lib/meetup-api"
-import { Calendar, ExternalLink } from "lucide-react"
+import { getEventsByDate } from "@/lib/events"
+import { Calendar } from "lucide-react"
 
-export default async function EventsPage() {
-  // Server-side initial data fetch
-  const { upcomingEvents, pastEvents } = await getAllEvents()
-
-  // Check if we're only showing markdown events (API failed)
-  const showFallbackNotice = pastEvents.length === 0;
+export default function EventsPage() {
+  // Get events from markdown files
+  const { upcomingEvents, pastEvents } = getEventsByDate()
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -43,8 +39,6 @@ export default async function EventsPage() {
       {/* Events List Section */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
-          {showFallbackNotice && <EventFallbackNotice />}
-
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">Upcoming Events</h2>
           <div className="grid gap-6">
             {upcomingEvents.length > 0 ? (
@@ -79,26 +73,13 @@ export default async function EventsPage() {
                         </div>
                       </div>
                       <div className="flex gap-3">
-                        {event.source === "api" ? (
-                          // For API events, link directly to Meetup.com
-                          <Link
-                            href={event.registrationLink || "https://www.meetup.com/cpp-serbia/"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                          >
-                            View on Meetup <ExternalLink className="h-4 w-4 ml-1" />
-                          </Link>
-                        ) : (
-                          // For markdown events, link to our detail page
-                          <Link
-                            href={`/events/${event.slug}`}
-                            className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                          >
-                            View Details
-                          </Link>
-                        )}
-                        {event.registrationLink && event.source === "api" && (
+                        <Link
+                          href={`/events/${event.slug}`}
+                          className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
+                        >
+                          View Details
+                        </Link>
+                        {event.registrationLink && (
                           <Link
                             href={event.registrationLink}
                             target="_blank"
@@ -114,7 +95,9 @@ export default async function EventsPage() {
                 </div>
               ))
             ) : (
-              <p className="text-gray-400 text-center py-8">No upcoming events scheduled yet! Just in case, save the date for the last Wednesday of the month.</p>
+              <p className="text-gray-400 text-center py-8">
+                No upcoming events scheduled yet! Just in case, save the date for the last Wednesday of the month.
+              </p>
             )}
           </div>
         </div>
@@ -146,25 +129,12 @@ export default async function EventsPage() {
                           {event.formattedDate} • {event.time} • {event.location}
                         </span>
                       </div>
-                      {event.source === "api" ? (
-                        // For API events, link directly to Meetup.com
-                        <Link
-                          href={event.registrationLink || "https://www.meetup.com/cpp-serbia/"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                        >
-                          View on Meetup <ExternalLink className="h-4 w-4 ml-1" />
-                        </Link>
-                      ) : (
-                        // For markdown events, link to our detail page
-                        <Link
-                          href={`/events/${event.slug}`}
-                          className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                        >
-                          View Details
-                        </Link>
-                      )}
+                      <Link
+                        href={`/events/${event.slug}`}
+                        className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
+                      >
+                        View Details
+                      </Link>
                     </div>
                   </div>
                 </div>
