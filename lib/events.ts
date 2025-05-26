@@ -36,9 +36,17 @@ export interface Event {
 interface EventFrontmatter {
   title: string
   date?: string
-  time: string
-  location: string
-  description: string
+  created?: string
+  event_type?: string
+  status?: string
+  duration?: string
+  end_time?: string
+  event_url?: string
+  event_id?: string | number
+  venues?: string[]
+  time?: string
+  location?: string
+  description?: string
   registrationLink?: string
   imageUrl?: string
   isOnline?: boolean
@@ -74,7 +82,22 @@ export function parseEventFile(fileName: string): Event | null {
 
     // Parse the date from the filename (yyyy-mm-dd-name-of-event.md)
     const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})/)
-    const fileDate = dateMatch ? dateMatch[1] : frontmatter.date || new Date().toISOString().split("T")[0]
+    let fileDate = dateMatch ? dateMatch[1] : ""
+
+    // If no date from filename, try to extract from frontmatter.date
+    if (!fileDate && frontmatter.date) {
+      // If date is in ISO format (2024-10-02T18:00:00+02:00), extract just the date part
+      if (frontmatter.date.includes("T")) {
+        fileDate = frontmatter.date.split("T")[0]
+      } else {
+        fileDate = frontmatter.date
+      }
+    }
+
+    // Fallback to current date if no date found
+    if (!fileDate) {
+      fileDate = new Date().toISOString().split("T")[0]
+    }
 
     // Create a date object for formatting
     const eventDate = new Date(fileDate)
@@ -94,19 +117,78 @@ export function parseEventFile(fileName: string): Event | null {
     // Create a slug from the filename without the extension
     const slug = fileName.replace(/\.md$/, "")
 
+    // Extract time from frontmatter.date if it's in ISO format, or use time field
+    let time = "TBD"
+    if (frontmatter.date && frontmatter.date.includes("T")) {
+      try {
+        const eventDateTime = new Date(frontmatter.date)
+        const endDateTime = frontmatter.end_time ? new Date(frontmatter.end_time) : null
+
+        const timeFormat: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit", hour12: true }
+        const startTime = eventDateTime.toLocaleTimeString("en-US", timeFormat)
+
+        if (endDateTime) {
+          const endTime = endDateTime.toLocaleTimeString("en-US", timeFormat)
+          time = `${startTime} - ${endTime}`
+        } else {
+          time = startTime
+        }
+      } catch (error) {
+        console.warn(`Error parsing time from date ${frontmatter.date}:`, error)
+        time = frontmatter.time || "TBD"
+      }
+    } else {
+      time = frontmatter.time || "TBD"
+    }
+
+    // Extract location from venues array or location field
+    let location = "TBD"
+    if (frontmatter.venues && frontmatter.venues.length > 0) {
+      // venues is an array like: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+      const venueString = frontmatter.venues[0]
+      const venueParts = venueString.split(", ")
+      if (venueParts.length >= 2) {
+        // Extract venue name and city
+        location = `${venueParts[0]}, ${venueParts[1]}`
+      } else {
+        location = venueString
+      }
+    } else if (frontmatter.location) {
+      location = frontmatter.location
+    }
+
+    // Determine if event is online based on event_type or location
+    const isOnline = frontmatter.event_type === "ONLINE" ||
+      location.toLowerCase().includes("online") ||
+      frontmatter.isOnline || false
+
+    // Extract description from content (first paragraph after title)
+    let description = frontmatter.description || ""
+    if (!description && content) {
+      // Extract first meaningful paragraph from content
+      const lines = content.split('\n')
+      for (const line of lines) {
+        const trimmed = line.trim()
+        if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('*') && !trimmed.startsWith('-') && trimmed.length > 50) {
+          description = trimmed.substring(0, 200) + (trimmed.length > 200 ? "..." : "")
+          break
+        }
+      }
+    }
+
     return {
       slug,
       title: frontmatter.title,
       date: fileDate,
-      time: frontmatter.time || "TBD",
-      location: frontmatter.location || "TBD",
-      description: frontmatter.description || "",
-      registrationLink: frontmatter.registrationLink,
+      time,
+      location,
+      description,
+      registrationLink: frontmatter.registrationLink || frontmatter.event_url,
       formattedDate,
       day,
       month,
       year,
-      isOnline: frontmatter.isOnline || false,
+      isOnline,
       imageUrl: frontmatter.imageUrl,
       content, // Include the full markdown content
     }
