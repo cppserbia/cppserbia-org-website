@@ -1,0 +1,53 @@
+---
+title: "C++ Serbia does code review"
+date: 2024-04-24T18:00:00+02:00
+created: 2024-04-17T18:15:35-04:00
+event_type: PHYSICAL
+status: PAST
+duration: PT5H30M
+end_time: 2024-04-24T23:30:00+02:00
+event_url: https://www.meetup.com/cpp-serbia/events/300479473/
+event_id: 300479473
+venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+---
+
+# C++ Serbia does code review
+
+Hello, C++ Serbia community! For April's meetup, we have prepared something different. Instead of our usual lectures, we will have collaborative code review sessions on Wednesday.
+
+Participate by bringing your code snippets or projects and letting the community review them or show up ready to give constructive feedback.
+We will have dedicated code reviewers to start the discussion, but everyone is invited to comment and ask the author and other reviewers questions.
+
+You can send your snippets beforehand by messaging the organisers directly through any of the C++ Serbia channels.
+
+**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
+
+Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
+
+Datum i vreme događaja: **24\. april \(sreda\)\, u 18h**
+
+Mesto održavanja: **Beograđanka, Vidikovac, 22. sprat**
+
+Adresa: **Masarikova 5**
+
+Vidimo se!
+
+## Event Details
+
+- **Date & Time:** 2024-04-24T18:00:00+02:00
+- **Duration:** PT5H30M minutes
+- **Type:** PHYSICAL
+- **Status:** PAST
+- **Event URL:** https://www.meetup.com/cpp-serbia/events/300479473/
+
+## Venue Information
+
+
+### Palata "Beograd" ("Beograđanka")
+
+- **Address:** Masarikova 5
+- **City:** Beograd
+- **State:** 
+- **Postal Code:** 11000
+- **Country:** rs
+- **Venue Type:** 

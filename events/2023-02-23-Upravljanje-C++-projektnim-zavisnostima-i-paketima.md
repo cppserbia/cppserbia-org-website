@@ -1,0 +1,57 @@
+---
+title: "Upravljanje C++ projektnim zavisnostima i paketima"
+date: 2023-02-23T18:00:00+01:00
+created: 2023-02-10T08:34:49-05:00
+event_type: PHYSICAL
+status: PAST
+duration: PT3H
+end_time: 2023-02-23T21:00:00+01:00
+event_url: https://www.meetup.com/cpp-serbia/events/291533430/
+event_id: 291533430
+venues: ['ICT Hub Kralja Milana, Beograd, rs']
+---
+
+# Upravljanje C++ projektnim zavisnostima i paketima
+
+Dependency management je jedan od najvećih izazova sa kojim se susreću C++ programeri.
+
+Ukoliko se bavite C++-om, sigurno ste bar jednom na svom razvojnom putu naišli na problem pri kompajliranju ili linkovanju C++ projekata sa nekom od eksternih biblioteka.
+
+To što program radi na vašoj "mašini", ne znači da će raditi na računaru vašeg kolege ili u produkciji, a još manje da će raditi u budućnosti. Zašto je to tako? Da li C++ ekosistemu nedostaju menadžeri paketa ili ih ima i previše?
+
+[Nebojša Koturović](https://www.linkedin.com/in/nebojsa-koturovic/) će dati odgovore na ova i slična pitanja, kao i praktične savete za organizaciju sopstvenih i timskih projekata.
+
+**Tema okupljanja**: Upravljanje C++ projektnim zavisnostima i paketima (Nix menadžer paketa).
+
+Prvi deo predavanja obuvata pregled mogućih pristupa i raspoloživih alata za menadžment zavisnostima. (Manuelni menadžment, sistemski paketi, git submoduli i package manager-i).
+
+U drugom delu, glavni fokus će biti na Nix package manager-u i sticanju praktičnog znanja potrebnog za korišćenje ovog moćnog alata koji ne samo da može olakšati upravljanje paketima i eksternim zavisnostima, već i definisanje reproducibilnih build-ova i razvojnih okruženja.
+
+**Zoom link**: https://cppserbia.com/meet
+
+Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
+Datum i vreme događaja: **23\. februar \(četvrtak\)\, u 18h**
+Mesto održavanja: **ICT Hub**
+Adresa: **Kralja Milana 10**
+
+Vidimo se!
+
+## Event Details
+
+- **Date & Time:** 2023-02-23T18:00:00+01:00
+- **Duration:** PT3H minutes
+- **Type:** PHYSICAL
+- **Status:** PAST
+- **Event URL:** https://www.meetup.com/cpp-serbia/events/291533430/
+
+## Venue Information
+
+
+### ICT Hub Kralja Milana
+
+- **Address:** Kralja Milana 10
+- **City:** Beograd
+- **State:** 
+- **Postal Code:** 11000
+- **Country:** rs
+- **Venue Type:** 
