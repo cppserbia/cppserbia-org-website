@@ -9,6 +9,7 @@ end_time: 2025-01-29T20:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/305754159/
 event_id: 305754159
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+featured: true
 ---
 
 # C++ Serbia does code review
@@ -51,7 +52,7 @@ See you!
 
 - **Address:** Masarikova 5
 - **City:** Beograd
-- **State:** 
+- **State:**
 - **Postal Code:** 11000
 - **Country:** rs
-- **Venue Type:** 
+- **Venue Type:**

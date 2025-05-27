@@ -1,12 +1,19 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { getEventsByDate } from "@/lib/events"
-import { Calendar } from "lucide-react"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { getEventsByDate } from "@/lib/events-server";
+import { Calendar } from "lucide-react";
 
 export default function EventsPage() {
   // Get events from markdown files
-  const { upcomingEvents, pastEvents } = getEventsByDate()
+  const { upcomingEvents, pastEvents } = getEventsByDate();
+
+  // Helper function to check if an event is past
+  const isPastEvent = (eventDate: Date) => {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return eventDate < today;
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -17,7 +24,10 @@ export default function EventsPage() {
           style={{ backgroundImage: "url('/images/wallpaper.png')" }}
         />
         <div className="relative z-10 max-w-5xl mx-auto">
-          <Link href="/" className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6"
+          >
             <ArrowLeft className="mr-2 h-5 w-5" /> Back to Home
           </Link>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -26,11 +36,17 @@ export default function EventsPage() {
                 Events
               </h1>
               <p className="text-lg text-gray-300 max-w-2xl">
-                Stay up to date with all C++ Serbia community events, meetups, workshops, and conferences.
+                Stay up to date with all C++ Serbia community events, meetups,
+                workshops, and conferences.
               </p>
             </div>
             <div className="flex-shrink-0">
-              <Image src="/images/logo.png" alt="C++ Serbia Logo" width={120} height={120} />
+              <Image
+                src="/images/logo.png"
+                alt="C++ Serbia Logo"
+                width={120}
+                height={120}
+              />
             </div>
           </div>
         </div>
@@ -39,7 +55,9 @@ export default function EventsPage() {
       {/* Events List Section */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">Upcoming Events</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">
+            Upcoming Events
+          </h2>
           <div className="grid gap-6">
             {upcomingEvents.length > 0 ? (
               upcomingEvents.map((event) => (
@@ -50,13 +68,19 @@ export default function EventsPage() {
                   <div className="flex flex-col md:flex-row gap-4">
                     <div className="md:w-1/4 flex-shrink-0">
                       <div className="bg-purple-950 p-3 rounded-lg text-center">
-                        <div className="text-sm text-purple-300">{event.month}</div>
+                        <div className="text-sm text-purple-300">
+                          {event.month}
+                        </div>
                         <div className="text-3xl font-bold">{event.day}</div>
-                        <div className="text-sm text-purple-300">{event.year}</div>
+                        <div className="text-sm text-purple-300">
+                          {event.year}
+                        </div>
                       </div>
                     </div>
                     <div className="md:w-3/4">
-                      <h3 className="text-xl font-bold mb-2 text-white">{event.title}</h3>
+                      <h3 className="text-xl font-bold mb-2 text-white">
+                        {event.title}
+                      </h3>
                       <p className="text-gray-300 mb-4">{event.description}</p>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 text-sm text-gray-400">
                         <div className="flex items-center">
@@ -79,7 +103,7 @@ export default function EventsPage() {
                         >
                           View Details
                         </Link>
-                        {event.registrationLink && (
+                        {event.registrationLink && !isPastEvent(event.date) && (
                           <Link
                             href={event.registrationLink}
                             target="_blank"
@@ -96,7 +120,8 @@ export default function EventsPage() {
               ))
             ) : (
               <p className="text-gray-400 text-center py-8">
-                No upcoming events scheduled yet! Just in case, save the date for the last Wednesday of the month.
+                No upcoming events scheduled yet! Just in case, save the date
+                for the last Wednesday of the month.
               </p>
             )}
           </div>
@@ -106,27 +131,42 @@ export default function EventsPage() {
       {/* Past Events Section */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">Past Events</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">
+            Past Events
+          </h2>
 
           <div className="grid gap-6">
             {pastEvents.length > 0 ? (
               pastEvents.map((event) => (
-                <div key={event.slug} className="border border-purple-900 rounded-lg p-6 bg-[#0c0c1d]/80">
+                <div
+                  key={event.slug}
+                  className="border border-purple-900 rounded-lg p-6 bg-[#0c0c1d]/80"
+                >
                   <div className="flex flex-col md:flex-row gap-4">
                     <div className="md:w-1/4 flex-shrink-0">
                       <div className="bg-purple-950 p-3 rounded-lg text-center">
-                        <div className="text-sm text-purple-300">{event.month}</div>
+                        <div className="text-sm text-purple-300">
+                          {event.month}
+                        </div>
                         <div className="text-3xl font-bold">{event.day}</div>
-                        <div className="text-sm text-purple-300">{event.year}</div>
+                        <div className="text-sm text-purple-300">
+                          {event.year}
+                        </div>
                       </div>
                     </div>
                     <div className="md:w-3/4">
-                      <h3 className="text-xl font-bold mb-2 text-white">{event.title}</h3>
+                      <h3 className="text-xl font-bold mb-2 text-white">
+                        {event.title}
+                      </h3>
                       <p className="text-gray-300 mb-4">{event.description}</p>
                       <div className="flex items-center text-sm text-gray-400 mb-4">
                         <Calendar className="h-4 w-4 mr-2" />
                         <span>
-                          {event.formattedDate} • {event.time} • {event.location}
+                          {new Date(event.date).toLocaleString(undefined, {
+                            dateStyle: "medium",
+                            timeStyle: "short",
+                          })}
+                          • {event.location}
                         </span>
                       </div>
                       <Link
@@ -140,11 +180,13 @@ export default function EventsPage() {
                 </div>
               ))
             ) : (
-              <p className="text-gray-400 text-center py-8">No past events to display.</p>
+              <p className="text-gray-400 text-center py-8">
+                No past events to display.
+              </p>
             )}
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

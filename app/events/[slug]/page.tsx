@@ -1,42 +1,61 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react"
-import { getEventBySlug, getAllEvents } from "@/lib/events"
-import { notFound } from "next/navigation"
-import ReactMarkdown from "react-markdown"
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
+import {
+  getEventBySlug,
+  getAllEventsServer,
+  type Event,
+} from "@/lib/events-server";
+import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const event = getEventBySlug(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const event = getEventBySlug(slug);
 
   if (!event) {
     return {
       title: "Event Not Found - C++ Serbia Community",
-    }
+    };
   }
 
   return {
     title: `${event.title} - C++ Serbia Community`,
     description: event.description,
-  }
+  };
 }
 
 // Generate static params for all events
 export function generateStaticParams() {
-  const allEvents = getAllEvents()
+  const allEvents = getAllEventsServer();
 
-  return allEvents.map((event) => ({
+  return allEvents.map((event: Event) => ({
     slug: event.slug,
-  }))
+  }));
 }
 
-export default function EventPage({ params }: { params: { slug: string } }) {
-  const event = getEventBySlug(params.slug)
+export default async function EventPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const event = getEventBySlug(slug);
 
   if (!event) {
-    notFound()
+    notFound();
   }
+
+  // Determine if event is in the past
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const isPastEvent = event.date < today;
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -47,7 +66,10 @@ export default function EventPage({ params }: { params: { slug: string } }) {
           style={{ backgroundImage: "url('/images/wallpaper.png')" }}
         />
         <div className="relative z-10 max-w-5xl mx-auto">
-          <Link href="/events" className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6">
+          <Link
+            href="/events"
+            className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6"
+          >
             <ArrowLeft className="mr-2 h-5 w-5" /> Back to Events
           </Link>
           <div className="flex flex-col md:flex-row items-start justify-between gap-6">
@@ -98,16 +120,116 @@ export default function EventPage({ params }: { params: { slug: string } }) {
             )}
 
             {event.content ? (
-              <div className="prose prose-invert prose-purple max-w-none">
-                <ReactMarkdown>{event.content}</ReactMarkdown>
+              <div className="prose prose-invert prose-purple max-w-none prose-lg prose-headings:text-white prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300">
+                <ReactMarkdown
+                  components={{
+                    h1: ({ children }) => (
+                      <h1 className="text-3xl font-bold mb-4 mt-6 text-white">
+                        {children}
+                      </h1>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="text-2xl font-bold mb-3 mt-5 text-white">
+                        {children}
+                      </h2>
+                    ),
+                    h3: ({ children }) => (
+                      <h3 className="text-xl font-bold mb-3 mt-4 text-white">
+                        {children}
+                      </h3>
+                    ),
+                    h4: ({ children }) => (
+                      <h4 className="text-lg font-bold mb-2 mt-3 text-white">
+                        {children}
+                      </h4>
+                    ),
+                    h5: ({ children }) => (
+                      <h5 className="text-base font-bold mb-2 mt-3 text-white">
+                        {children}
+                      </h5>
+                    ),
+                    h6: ({ children }) => (
+                      <h6 className="text-sm font-bold mb-2 mt-3 text-white">
+                        {children}
+                      </h6>
+                    ),
+                    p: ({ children }) => (
+                      <p className="mb-4 text-gray-300 leading-relaxed">
+                        {children}
+                      </p>
+                    ),
+                    code: ({ children, className }) => {
+                      const isBlock = className?.includes("language-");
+                      if (isBlock) {
+                        return (
+                          <code
+                            className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg border border-gray-700 overflow-x-auto`}
+                          >
+                            {children}
+                          </code>
+                        );
+                      }
+                      return (
+                        <code className="bg-gray-900 text-purple-300 px-1 py-0.5 rounded text-sm">
+                          {children}
+                        </code>
+                      );
+                    },
+                    pre: ({ children }) => (
+                      <pre className="bg-gray-900 border border-gray-700 rounded-lg overflow-x-auto mb-4">
+                        {children}
+                      </pre>
+                    ),
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 border-purple-400 pl-4 italic text-gray-300 my-4">
+                        {children}
+                      </blockquote>
+                    ),
+                    a: ({ children, href }) => (
+                      <a
+                        href={href}
+                        className="text-purple-400 hover:text-purple-300 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {children}
+                      </a>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc list-inside mb-4 text-gray-300 space-y-1">
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="list-decimal list-inside mb-4 text-gray-300 space-y-1">
+                        {children}
+                      </ol>
+                    ),
+                    li: ({ children }) => (
+                      <li className="text-gray-300">{children}</li>
+                    ),
+                    strong: ({ children }) => (
+                      <strong className="font-bold text-white">
+                        {children}
+                      </strong>
+                    ),
+                    em: ({ children }) => (
+                      <em className="italic text-gray-300">{children}</em>
+                    ),
+                  }}
+                >
+                  {event.content}
+                </ReactMarkdown>
               </div>
             ) : (
               <div className="prose prose-invert prose-purple max-w-none">
-                <p>{event.description}</p>
+                <p className="text-gray-300 leading-relaxed">
+                  {event.description}
+                </p>
               </div>
             )}
 
-            {event.registrationLink && (
+            {event.registrationLink && !isPastEvent && (
               <div className="mt-8">
                 <Link
                   href={event.registrationLink}
@@ -123,5 +245,5 @@ export default function EventPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
     </div>
-  )
+  );
 }

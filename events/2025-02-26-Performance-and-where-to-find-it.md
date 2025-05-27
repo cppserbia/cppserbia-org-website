@@ -9,6 +9,7 @@ end_time: 2025-02-26T20:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/306397103/
 event_id: 306397103
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+featured: true
 ---
 
 # Performance and where to find it
@@ -42,7 +43,7 @@ See you!
 
 - **Address:** Masarikova 5
 - **City:** Beograd
-- **State:** 
+- **State:**
 - **Postal Code:** 11000
 - **Country:** rs
-- **Venue Type:** 
+- **Venue Type:**

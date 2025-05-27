@@ -1,5 +1,5 @@
 ---
-title: ""Niko ne očekuje špansku inkviziciju"? :)"
+title: \""Niko ne očekuje špansku inkviziciju"? :)"
 date: 2023-01-27T18:00:00+01:00
 created: 2023-01-14T04:00:49-05:00
 event_type: PHYSICAL
@@ -41,7 +41,7 @@ Vidimo se!
 
 - **Address:** Kralja Milana 10
 - **City:** Beograd
-- **State:** 
+- **State:**
 - **Postal Code:** 11000
 - **Country:** rs
-- **Venue Type:** 
+- **Venue Type:**
