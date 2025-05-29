@@ -37,22 +37,3 @@ To join the community discussions, we are on:
 
 See you!
 
-## Event Details
-
-- **Date & Time:** 2025-01-29T18:00:00+01:00
-- **Duration:** PT2H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/305754159/
-
-## Venue Information
-
-
-### Palata "Beograd" ("Beograđanka")
-
-- **Address:** Masarikova 5
-- **City:** Beograd
-- **State:**
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:**

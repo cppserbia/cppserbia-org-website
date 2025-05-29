@@ -23,22 +23,3 @@ Ukoliko volite C++ ili volite pivo ili jednostavno volite da se družite sa C++ 
 
 Vidimo se u Dockeru! :)
 
-## Event Details
-
-- **Date & Time:** 2023-08-16T18:00:00+02:00
-- **Duration:** PT3H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/295320226/
-
-## Venue Information
-
-
-### Docker Brewery & Beer Garden
-
-- **Address:** Žorža Klemansoa 27b
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 

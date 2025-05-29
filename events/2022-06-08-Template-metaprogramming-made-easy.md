@@ -33,22 +33,3 @@ Adresa: **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", naj
 
 Vidimo se!
 
-## Event Details
-
-- **Date & Time:** 2022-06-08T18:00:00+02:00
-- **Duration:** PT2H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/285986603/
-
-## Venue Information
-
-
-### Ljubostinjska 2
-
-- **Address:** Ljubostinjska 2
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 

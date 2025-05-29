@@ -23,22 +23,3 @@ U uvodnom delu biće par reči o najvećoj C++ konferenciji u Evropi (Meeting C+
 
 Google grupa: http://groups.google.com/forum/#!forum/std-serbia
 
-## Event Details
-
-- **Date & Time:** 2016-12-08T18:00:00+01:00
-- **Duration:** PT0S minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/235960635/
-
-## Venue Information
-
-
-### Startit Centar
-
-- **Address:** Savska 5
-- **City:** Belgrade
-- **State:** 
-- **Postal Code:** 
-- **Country:** RS
-- **Venue Type:** 

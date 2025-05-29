@@ -21,22 +21,3 @@ Tema ovog okupljanja je C++17 standard i nove stvari u jeziku i standardnoj bibl
 
 Google grupa: http://groups.google.com/forum/#!forum/std-serbia
 
-## Event Details
-
-- **Date & Time:** 2017-01-26T19:00:00+01:00
-- **Duration:** PT2H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/237067859/
-
-## Venue Information
-
-
-### Startit Centar
-
-- **Address:** Savska 5
-- **City:** Belgrade
-- **State:** 
-- **Postal Code:** 
-- **Country:** RS
-- **Venue Type:** 

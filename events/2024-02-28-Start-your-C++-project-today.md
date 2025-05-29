@@ -21,22 +21,3 @@ We’ll explore topics like build systems, toolchains, packaging, dependency man
 
 The goal is to clear the path for you, enabling you to sit back, relax, and transform your innovative ideas into modern C++ code.
 
-## Event Details
-
-- **Date & Time:** 2024-02-28T18:00:00+01:00
-- **Duration:** PT5H30M minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/299277052/
-
-## Venue Information
-
-
-### Palata "Beograd" ("Beograđanka")
-
-- **Address:** Masarikova 5
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 

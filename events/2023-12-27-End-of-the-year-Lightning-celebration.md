@@ -33,22 +33,3 @@ Adresa: **Masarikova 5**
 
 Vidimo se!
 
-## Event Details
-
-- **Date & Time:** 2023-12-27T18:00:00+01:00
-- **Duration:** PT6H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/297959668/
-
-## Venue Information
-
-
-### Palata "Beograd" ("Beograđanka")
-
-- **Address:** Masarikova 5
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 

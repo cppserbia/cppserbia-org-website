@@ -32,22 +32,3 @@ Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisalo predu
 
 Vidimo se!
 
-## Event Details
-
-- **Date & Time:** 2022-12-29T18:00:00+01:00
-- **Duration:** PT3H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/290538668/
-
-## Venue Information
-
-
-### ICT Hub Kralja Milana
-
-- **Address:** Kralja Milana 10
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 
