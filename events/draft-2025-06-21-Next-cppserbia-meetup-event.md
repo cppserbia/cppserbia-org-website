@@ -3,7 +3,7 @@ title: "Next C++ Serbia Meetup Event"
 date: 2025-06-21T18:00:00+02:00
 created: 2025-05-14T19:48:33-04:00
 event_type: PHYSICAL
-status: ACTIVE
+status: DRAFT
 duration: PT2H
 end_time: 2025-06-21T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/307829937/

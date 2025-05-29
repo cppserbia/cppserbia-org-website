@@ -22,6 +22,7 @@ export interface Event {
   imageUrl?: string
   content?: string
   featured?: boolean
+  status?: string
 }
 
 interface EventFrontmatter {
@@ -44,6 +45,22 @@ interface EventFrontmatter {
 }
 
 const eventsDirectory = path.join(process.cwd(), "events")
+
+// Helper function to check if we're in development mode
+function isDevelopment(): boolean {
+  return process.env.NODE_ENV === 'development'
+}
+
+// Helper function to filter out draft events in production
+function shouldIncludeEvent(event: Event): boolean {
+  // In development, show all events including drafts
+  if (isDevelopment()) {
+    return true
+  }
+  
+  // In production, exclude draft events
+  return event.status !== 'DRAFT'
+}
 
 function parseEventFile(fileName: string): Event | null {
   try {
@@ -145,6 +162,7 @@ function parseEventFile(fileName: string): Event | null {
       imageUrl: frontmatter.imageUrl,
       content, // Include the full markdown content
       featured,
+      status: frontmatter.status,
     }
   } catch (error) {
     console.error(`Error parsing event file ${fileName}:`, error)
@@ -165,6 +183,7 @@ export function getAllEventsServer(): Event[] {
     const allEvents = markdownFiles
       .map((fileName) => parseEventFile(fileName))
       .filter((event): event is Event => event !== null)
+      .filter(shouldIncludeEvent) // Filter out draft events in production
 
     // Sort events by date (newest first)
     return allEvents.sort((a, b) => {
@@ -307,7 +326,15 @@ export function getEventBySlug(slug: string): Event | null {
       return null
     }
 
-    return parseEventFile(fileName)
+    const event = parseEventFile(fileName)
+    
+    // Check if we should include this event based on environment and status
+    if (event && !shouldIncludeEvent(event)) {
+      console.warn(`Event ${slug} is a draft and not available in production`)
+      return null
+    }
+
+    return event
   } catch (error) {
     console.error(`Error getting event by slug ${slug}:`, error)
     return null
