@@ -1,19 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import { getEventsByDate } from "@/lib/events-server";
-import { Calendar } from "lucide-react";
+import { isPastEvent } from "@/lib/events";
+import { EventCard } from "@/components/event-card";
 
 export default function EventsPage() {
   // Get events from markdown files
   const { upcomingEvents, pastEvents } = getEventsByDate();
-
-  // Helper function to check if an event is past
-  const isPastEvent = (eventDate: Date) => {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return eventDate < today;
-  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -61,62 +55,12 @@ export default function EventsPage() {
           <div className="grid gap-6">
             {upcomingEvents.length > 0 ? (
               upcomingEvents.map((event) => (
-                <div
+                <EventCard
                   key={event.slug}
-                  className="border border-purple-900 rounded-lg p-6 bg-[#0c0c1d]/80 hover:border-purple-700 transition-colors"
-                >
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <div className="md:w-1/4 flex-shrink-0">
-                      <div className="bg-purple-950 p-3 rounded-lg text-center">
-                        <div className="text-sm text-purple-300">
-                          {event.month}
-                        </div>
-                        <div className="text-3xl font-bold">{event.day}</div>
-                        <div className="text-sm text-purple-300">
-                          {event.year}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="md:w-3/4">
-                      <h3 className="text-xl font-bold mb-2 text-white">
-                        {event.title}
-                      </h3>
-                      <p className="text-gray-300 mb-4">{event.description}</p>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 text-sm text-gray-400">
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2 text-purple-400" />
-                          <span>{event.formattedDate}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-purple-400 mr-2">•</span>
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-purple-400 mr-2">•</span>
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-3">
-                        <Link
-                          href={`/events/${event.slug}`}
-                          className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                        >
-                          View Details
-                        </Link>
-                        {event.registrationLink && !isPastEvent(event.date) && (
-                          <Link
-                            href={event.registrationLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 rounded-md"
-                          >
-                            Register
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  event={event}
+                  isUpcoming={true}
+                  isPastEvent={isPastEvent}
+                />
               ))
             ) : (
               <p className="text-gray-400 text-center py-8">
@@ -138,46 +82,12 @@ export default function EventsPage() {
           <div className="grid gap-6">
             {pastEvents.length > 0 ? (
               pastEvents.map((event) => (
-                <div
+                <EventCard
                   key={event.slug}
-                  className="border border-purple-900 rounded-lg p-6 bg-[#0c0c1d]/80"
-                >
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <div className="md:w-1/4 flex-shrink-0">
-                      <div className="bg-purple-950 p-3 rounded-lg text-center">
-                        <div className="text-sm text-purple-300">
-                          {event.month}
-                        </div>
-                        <div className="text-3xl font-bold">{event.day}</div>
-                        <div className="text-sm text-purple-300">
-                          {event.year}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="md:w-3/4">
-                      <h3 className="text-xl font-bold mb-2 text-white">
-                        {event.title}
-                      </h3>
-                      <p className="text-gray-300 mb-4">{event.description}</p>
-                      <div className="flex items-center text-sm text-gray-400 mb-4">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        <span>
-                          {new Date(event.date).toLocaleString(undefined, {
-                            dateStyle: "medium",
-                            timeStyle: "short",
-                          })}
-                          • {event.location}
-                        </span>
-                      </div>
-                      <Link
-                        href={`/events/${event.slug}`}
-                        className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md"
-                      >
-                        View Details
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                  event={event}
+                  isUpcoming={false}
+                  isPastEvent={isPastEvent}
+                />
               ))
             ) : (
               <p className="text-gray-400 text-center py-8">

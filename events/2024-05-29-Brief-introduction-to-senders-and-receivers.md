@@ -19,13 +19,21 @@ Aside from coroutines, Senders/Receivers emerged as a quite promising model for 
 
 In this talk, I'll present Sender/Receiver concepts, various examples from stdexec, NVIDIA's implementation of std::execution proposal and I'll shed some light on how Sender/Receiver model interacts with C++ coroutines.
 
-Speaker: [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/)
+## 📅 Event Details
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
+| | |
+|---|---|
+| 👤 **Speaker** | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
+| 🕕 **Date & Time** | **29th of May (Wednesday), 6pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
-Date and time: **29th of May (Wednesday), 6pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
 

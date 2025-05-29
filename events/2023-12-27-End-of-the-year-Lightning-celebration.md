@@ -21,15 +21,17 @@ We'll also have C++ quiz party for all on-site attendees. :)
 
 Welcome!
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **27\. decembar \(sreda\)\, u 18h**
 
-Mesto održavanja: **Beograđanka, Vidikovac, 22. sprat**
+## 📅 Event Details
 
-Adresa: **Masarikova 5**
+| | |
+|---|---|
+| 🕕 **Date & Time** | **27\. decembar \(sreda\)\, u 18h** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

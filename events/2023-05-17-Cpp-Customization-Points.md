@@ -33,13 +33,25 @@ Understanding how different customization methods work is crucial both for libra
 
 In this talk, [Aleksandar](https://www.linkedin.com/in/smiga287) will cover various customization mechanisms, ranging from well-established language techniques such as virtual functions, class template specialization, and ADL to more complex library based solutions like CPOs and tag_invoke, as well as taking a look at upcoming language proposals!
 
-Predavač/Speaker: [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287)
+Predavač/
 
-**Zoom link**: https://cppserbia.com/meet
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **17\. maj \(sreda\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287) |
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

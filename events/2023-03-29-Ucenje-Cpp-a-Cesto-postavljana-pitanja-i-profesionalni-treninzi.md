@@ -25,12 +25,17 @@ Prezentaciju drži [Slobodan Dmitrović](https://rs.linkedin.com/in/slobodan-dmi
 
 Sponzor ovog meetup-a je kompanija [Nutanix](https://nutanix.com). Hvala na podršci!
 
-**Zoom link**: https://cppserbia.com/meet
-
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **29\. mart \(sreda\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **29\. mart \(sreda\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

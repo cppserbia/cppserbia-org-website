@@ -22,16 +22,22 @@ Zbog načina kako je C++20 definisao korutine, osim za pisanje asinhronog koda, 
 
 [Petar Trifunovic](https://www.linkedin.com/in/petar-trifunovic-4453a48a/) će zajedno sa svojim kolegama prezentovati kratak pregled onoga što je novi standard doneo u samom jeziku i u standardnoj biblioteci, objasniti koje su osnovne gradivne jedinice asinhronih programa koje koriste korutine i sve to u kontekstu jedne asinhrone aplikacije.
 
-**Google Meet link**: https://cppserbia.com/meet
 **Pristup putem telefona**: +381114250145 (PIN: 602 714 419 5866#)
 **Lista telefonskih brojeva**: https://cppserbia.com/meet-numbers
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com/).
-Datum i vreme događaja: **30\. novembar \(sreda\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
 
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisalo preduzeće [Inceptive](https://inceptive.io/). Hvala vam na želji da učestvujete u razvoju lokalne C++ zajednice!
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **30\. novembar \(sreda\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

@@ -19,13 +19,16 @@ I started in middle school (Borland C++/TurboVision), then at Palm on PalmOS/C++
 
 I have founded a company to make autofocusing glasses for presbyopia, a condition that eventually happens to all of us, and in this talk I will explain why we chose Rust as the implementation language. I will also explain how we interface with C++ code and talk about Rust ecosystem and what we learned that is also applicable to C++ projects.
 
-Speaker: [Nebojša Šabović](https://www.linkedin.com/in/nsabovic/)
-
-**Zoom link**: https://cppserbia.com/meet
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **13\. jun \(utorak\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | [Nebojša Šabović](https://www.linkedin.com/in/nsabovic/) |
+| 🕕 **Date & Time** | **13\. jun \(utorak\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
-

@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/images/logo.png" alt="C++ Serbia Logo" width={40} height={40} />
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
+          <span className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
             C++ Serbia
           </span>
         </Link>

@@ -22,17 +22,22 @@ Kako na deklarativan način ograničiti skup podržanih tipova? Počećemo sa ne
 **Važno obaveštenje**:
 Nova lokacija je ICT Hub, Kralja Milana 10
 
-**Google Meet link**: https://cpplang.com/meet
 **Pristup putem telefona:** +381114250145 (PIN: 602 714 419 5866#)
 **Lista telefonskih brojeva:** https://cpplang.com/meet-numbers
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-Datum i vreme događaja: **24\. avgust \(sreda\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
-
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisala kompanija [InterVenture](https://www.linkedin.com/company/interventure-gmbh/). Hvala vam na podršci!
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **24\. avgust \(sreda\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cpplang.com/meet |
 
 Vidimo se!
 

@@ -26,8 +26,6 @@ In this talk, we will cover:
 
 Applying ASIO and coroutines on a tiny IO application
 
-Speaker: [Aleksandar Dakić](https://www.linkedin.com/in/aleksandar-dakic/)
-
 **This event is sponsored by [Zühlke](https://zuehlke.com)**
 
 Zühlke is a global innovation service provider. We empower ideas and create new business models by developing services and products based on new technologies – from initial vision through development, deployment, production, and beyond. Innovation and technology can be a positive force for good in business and society. We empower our clients to envision and create a sustainable future.
@@ -35,11 +33,23 @@ Zühlke is a global innovation service provider. We empower ideas and create new
 We specialise in strategy and business innovation, digital solutions and applications, and device and systems engineering. Our solutions provide unique business value and a reliable foundation for ongoing success.
 Zühlke was founded in Switzerland in 1968 and is owned by its partners. Our 1,900 employees are based in Austria, Bulgaria, Germany, Hong Kong, Portugal, Serbia, Singapore, Switzerland, the United Kingdom, and Vietnam, serving clients from a wide range of industries.
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **5\. jul \(sreda\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | [Aleksandar Dakić](https://www.linkedin.com/in/aleksandar-dakic/) |
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **5\. jul \(sreda\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

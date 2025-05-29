@@ -1,21 +1,49 @@
 ---
-title: "Better understanding technical interviews"
-date: 2025-05-21T18:00:00+02:00
+title: "Next C++ Serbia Meetup Event"
+date: 2025-06-21T18:00:00+02:00
 created: 2025-05-14T19:48:33-04:00
 event_type: PHYSICAL
-status: PAST
+status: ACTIVE
 duration: PT2H
-end_time: 2025-05-21T20:00:00+02:00
+end_time: 2025-06-21T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/307829937/
 event_id: 307829937
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+featured: true
 ---
 
-# Better understanding technical interviews
+# Next C++ Event
 
 Did you ever go to a technical interview where you had to do live coding sessions with all the algorithms that you have (or have not) learned in an Algorithms course, just so that you never use them on the job?
 
-If yes, this lecture/presentation is for you! We will explore the current state of interviews, how the employer can tweak them to get a better match for the position they are hiring, and what information the candidate can get out of that whole process so that they can assess whether that position is for them.
+```cpp
+template<class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type,
+         class Compare>
+ForwardIt lower_bound(ForwardIt first, ForwardIt last, const T& value, Compare comp)
+{
+    ForwardIt it;
+    typename std::iterator_traits<ForwardIt>::difference_type count, step;
+    count = std::distance(first, last);
+
+    while (count > 0)
+    {
+        it = first;
+        step = count / 2;
+        std::advance(it, step);
+
+        if (comp(*it, value))
+        {
+            first = ++it;
+            count -= step + 1;
+        }
+        else
+            count = step;
+    }
+
+    return first;
+}
+```
+
 
 
 ## 📅 Event Details
@@ -29,4 +57,3 @@ If yes, this lecture/presentation is for you! We will explore the current state 
 | 💻 **Online** | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!
-

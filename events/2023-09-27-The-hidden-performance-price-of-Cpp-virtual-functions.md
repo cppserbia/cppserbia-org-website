@@ -18,19 +18,25 @@ But how high is that price? In this talk we are going to dissect virtual functio
 We will investigate how well virtual functions use the CPU's underlying resources and how good is the compiler at optimizing virtual functions.
 We will also present several techniques to help you speed up your program using virtual functions.
 
-Speaker: [Ivica Bogosavljević](https://www.linkedin.com/in/ibogi/)
-
 **Important notice: The meetup location is changed! See the map bellow.**
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
 
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **27\. septembar \(sreda\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Palata Beograda (Beograđanka), 22. sprat**
+| | |
+|---|---|
+| 👤 **Speaker** | [Ivica Bogosavljević](https://www.linkedin.com/in/ibogi/) |
 
-Adresa: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **27\. septembar \(sreda\)\, u 18h** |
+| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

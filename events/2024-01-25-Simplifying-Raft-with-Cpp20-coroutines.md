@@ -19,17 +19,23 @@ It starts with an overview of Raft. Following this, the talk focuses on developi
 
 The final part showcases a Raft Server implementation, demonstrating the effective integration of the network library with C++20 features. Aimed at providing practical and theoretical knowledge, this session is suitable for those interested in modern C++ development and distributed systems.
 
-Speaker: [Alexey Ozeritskiy](https://www.linkedin.com/in/alexey-ozeritskiy/)
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **25\. januar \(četvrtak\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Beograđanka, Vidikovac, 22. sprat**
+| | |
+|---|---|
+| 👤 **Speaker** | [Alexey Ozeritskiy](https://www.linkedin.com/in/alexey-ozeritskiy/) |
 
-Adresa: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **25\. januar \(četvrtak\)\, u 18h** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

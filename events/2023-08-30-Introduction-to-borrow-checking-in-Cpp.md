@@ -21,19 +21,25 @@ Nevertheless, there are ideas how this can be achieved, at least at runtime. Alt
 
 In this talk, we'll introduce basic terminology and present couple of ideas how (partial) borrow checking can be implemented.
 
-Speaker: [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/)
-
 **Important notice: The meetup location is changed! See the map bellow.**
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
 
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **30\. avgust \(sreda\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Palata Beograda (Beograđanka), poslednji sprat**
+| | |
+|---|---|
+| 👤 **Speaker** | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
 
-Adresa: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **30\. avgust \(sreda\)\, u 18h** |
+| 📍 **Location** | **Palata Beograda (Beograđanka), poslednji sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

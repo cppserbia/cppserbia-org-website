@@ -20,15 +20,17 @@ We will have dedicated code reviewers to start the discussion, but everyone is i
 
 You can send your snippets beforehand by messaging the organisers directly through any of the C++ Serbia channels.
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **24\. april \(sreda\)\, u 18h**
 
-Mesto održavanja: **Beograđanka, Vidikovac, 22. sprat**
+## 📅 Event Details
 
-Adresa: **Masarikova 5**
+| | |
+|---|---|
+| 🕕 **Date & Time** | **24\. april \(sreda\)\, u 18h** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

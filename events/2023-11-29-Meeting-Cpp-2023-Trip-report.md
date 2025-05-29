@@ -23,17 +23,16 @@ I'll cover some of the conference talks I attended, and we can also share the ex
 
 Although we'll briefly bring up some of the advanced C++ topics, this won't be a classic tech talk. We'll highlight why on-site meetups and conferences still have value in spite of emerging remote learning/working, etc.
 
-Speaker: [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/)
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **29\. novembar \(sreda\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Palata Beograda (Beograđanka), 22. sprat**
-
-Adresa: **Masarikova 5**
+| | |
+|---|---|
+| 👤 **Speaker** | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
+| 🕕 **Date & Time** | **29\. novembar \(sreda\)\, u 18h** |
+| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

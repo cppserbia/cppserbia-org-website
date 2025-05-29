@@ -35,3 +35,14 @@ export function formatEventDate(dateString: string): { formattedDate: string; da
 
   return { formattedDate, day, month, year }
 }
+
+/**
+ * Checks if an event is in the past
+ * @param eventDate - The event date as a Date object or string
+ * @returns true if the event is before today, false otherwise
+ */
+export function isPastEvent(eventDate: Date | string): boolean {
+  const now = new Date();
+  const dateObj = eventDate instanceof Date ? eventDate : new Date(eventDate);
+  return dateObj < now;
+}

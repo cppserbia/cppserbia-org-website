@@ -17,17 +17,23 @@ In this talk, [Đorđe](https://www.linkedin.com/in/djordje-nedic) will offer a 
 
 The talk should offer something for everyone, from students to experienced developers, as it goes from basics of atomic operations all the way to intricacies of lock-free data structure design choices and hardware/software interaction.
 
-Speaker: [Đorđe Nedić](https://www.linkedin.com/in/djordje-nedic)
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **27\. mart \(sreda\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Beograđanka, Vidikovac, 22. sprat**
+| | |
+|---|---|
+| 👤 **Speaker** | [Đorđe Nedić](https://www.linkedin.com/in/djordje-nedic) |
 
-Adresa: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **27\. mart \(sreda\)\, u 18h** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

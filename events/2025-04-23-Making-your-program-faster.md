@@ -20,11 +20,15 @@ But multithreading is not worth much if the program is not efficient to begin wi
 In the second part, we explain what are vector instructions, and explain the process of autovectorization, when the compiler emits vector instructions to make your loop faster.
 The main focus of this part are vectorization inhibitors: parts of your C++ code that prevent automatic compiler vectorization. We give examples of unvectorized loops, we examine CLANG's vectorization report and we give solutions that will make codes several times faster with minimal modification.
 
-Speaker: **[Ivica Bogosavljević](https://johnnysswlab.com/)**
 
-Date and time: **23rd of April (Wednesday), 6 pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | **[Ivica Bogosavljević](https://johnnysswlab.com/)** |
+| 🕕 **Date & Time** | **23rd of April (Wednesday), 6 pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
 See you!
 

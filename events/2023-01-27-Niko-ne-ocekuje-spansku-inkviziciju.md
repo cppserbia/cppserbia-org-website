@@ -17,12 +17,17 @@ Očekivanja su različita, ali kada je C++ u pitanju, uvek očekujte neočekivan
 
 [Dr Ivan Čukić](https://rs.linkedin.com/in/ivancukic), autor knjige [Functional programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus) govori o vrednostima, greškama i std::expected.
 
-**Zoom link**: https://cppserbia.com/meet
-
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **27. januar (petak), u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **27. januar (petak), u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 
