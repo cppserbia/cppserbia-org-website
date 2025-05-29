@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { EventCard } from "@/components/event-card";
+import { isPastEvent } from "@/lib/events";
 
 interface FeaturedEventsProps {
   limit?: number;
@@ -27,14 +28,6 @@ export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-
-  // Helper function to check if an event is past
-  const isPastEvent = (eventDate: string | Date) => {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const eventDateObj = eventDate instanceof Date ? eventDate : new Date(eventDate);
-    return eventDateObj < today;
-  };
 
   useEffect(() => {
     const loadFeaturedEvents = async () => {

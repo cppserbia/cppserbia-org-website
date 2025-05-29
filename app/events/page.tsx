@@ -2,19 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { getEventsByDate } from "@/lib/events-server";
+import { isPastEvent } from "@/lib/events";
 import { EventCard } from "@/components/event-card";
 
 export default function EventsPage() {
   // Get events from markdown files
   const { upcomingEvents, pastEvents } = getEventsByDate();
-
-  // Helper function to check if an event is past
-  const isPastEvent = (eventDate: Date | string) => {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const dateObj = eventDate instanceof Date ? eventDate : new Date(eventDate);
-    return dateObj < today;
-  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">

@@ -135,12 +135,10 @@ export function EventCard({ event, isUpcoming, isPastEvent }: EventCardProps) {
                     <EventMetadataPast date={event.date} location={event.location} />
                 )}
 
-                const shouldShowRegistration = isUpcoming && isPastEvent ? !isPastEvent(event.date) : isUpcoming;
-
                 <EventActions
                     slug={event.slug}
                     registrationLink={event.registrationLink}
-                    showRegistration={shouldShowRegistration}
+                    showRegistration={isUpcoming}
                 />
             </div>
         </div>

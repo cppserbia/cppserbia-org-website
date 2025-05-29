@@ -7,6 +7,7 @@ import {
   getAllEventsServer,
   type Event,
 } from "@/lib/events-server";
+import { isPastEvent } from "@/lib/events";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -62,9 +63,7 @@ export default async function EventPage({
   }
 
   // Determine if event is in the past
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const isPastEvent = event.date < today;
+  const isEventPast = isPastEvent(event.date);
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
@@ -271,7 +270,7 @@ export default async function EventPage({
               </div>
             )}
 
-            {event.registrationLink && !isPastEvent && (
+            {event.registrationLink && !isEventPast && (
               <div className="mt-8">
                 <Link
                   href={event.registrationLink}
