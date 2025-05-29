@@ -11,6 +11,7 @@ import { isPastEvent } from "@/lib/events";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { CodeBlock } from "@/components/code-block";
 import {
   Table,
   TableBody,
@@ -128,7 +129,7 @@ export default async function EventPage({
             )}
 
             {event.content ? (
-              <div className="prose prose-invert prose-purple max-w-none prose-lg prose-headings:text-white prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-code:font-mono prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:font-mono prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300">
+              <div className="prose prose-invert prose-purple max-w-none prose-lg prose-headings:text-white prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:font-mono prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
@@ -199,27 +200,21 @@ export default async function EventPage({
                         {children}
                       </p>
                     ),
-                    code: ({ children, className }) => {
-                      const isBlock = className?.includes("language-");
-                      if (isBlock) {
-                        return (
-                          <code
-                            className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg border border-gray-700 overflow-x-auto font-mono`}
-                          >
-                            {children}
-                          </code>
-                        );
-                      }
+                    code: ({ children, className, ...props }: any) => {
+                      const inline = !className?.includes("language-");
                       return (
-                        <code className="bg-gray-900 text-purple-300 px-1 py-0.5 rounded text-sm font-mono">
-                          {children}
-                        </code>
+                        <CodeBlock
+                          className={className}
+                          inline={inline}
+                        >
+                          {String(children).replace(/\n$/, '')}
+                        </CodeBlock>
                       );
                     },
                     pre: ({ children }) => (
-                      <pre className="bg-gray-900 border border-gray-700 rounded-lg overflow-x-auto mb-4 font-mono">
+                      <div className="my-4">
                         {children}
-                      </pre>
+                      </div>
                     ),
                     blockquote: ({ children }) => (
                       <blockquote className="border-l-4 border-purple-400 pl-4 italic text-gray-300 my-4">
