@@ -23,13 +23,17 @@ Predavanje neće biti preterano tehničkog karaktera (barem koliko je to moguće
 
 Kako je predviđeno da predavanje traje oko sat vremena, neće biti reči o nekim specifičnim (komplikovanijim, problematičnim) slučajevima, sa idejom da se to ostavi publici da sama istraži. Na kraju krajeva, programiranje je pre svega zabavno, a templejt metaprogramiranje je jedna od najzabavnijih oblasti koje nikako ne treba izbegavati.
 
-Predavač: [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/).
-
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-Datum i vreme događaja: **8\. jun \(sreda\)\, u 18h**
-Mesto održavanja: **Srednja škola "Arhimed"**
-Adresa: **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina")
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/). |
+| 🕕 **Date & Time** | **8\. jun \(sreda\)\, u 18h** |
+| 📍 **Location** | **Srednja škola "Arhimed"** |
+| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
 
 Vidimo se!
 

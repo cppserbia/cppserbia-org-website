@@ -31,9 +31,14 @@ Probaćemo da pokrijemo sledeće:
 
 Ideja je da u publika takođe učestvuje, kako biste svoja iskustva podelili sa ostalim učesnicima. Tema je interesantna C i C++ programerima, a i programerima u Rust-u. Nakon dešavanja još malo ćaskamo i delimo iskustva, iliti "show&tell".
 
-Datum i vreme događaja: **6\. april \(sreda\)\, u 18h**
-Mesto održavanja: **Srednja škola "Arhimed"**
-Adresa: **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina")
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **6\. april \(sreda\)\, u 18h** |
+| 📍 **Location** | **Srednja škola "Arhimed"** |
+| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
 
 Vidimo se!
 

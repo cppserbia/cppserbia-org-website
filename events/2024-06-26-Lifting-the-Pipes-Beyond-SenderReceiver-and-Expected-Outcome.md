@@ -18,13 +18,21 @@ In June, we will have Mirko Arsenijević, a Staff Engineer at Inceptive. In this
 Additionally, we will compare the library with the Sender/Receiver proposal, specifically focusing on the aspect of graph creation (excluding executors and async invocation from the discussion), highlighting the differences in approach between the two models.
 Furthermore, we will compare this library to Expected Outcome pipelines, a programming paradigm where composition chains are created using std::expected. We'll discuss the limitations of each approach, providing some examples to illustrate their applications.
 
-Speaker: [Mirko Arsenijević](https://www.linkedin.com/in/mirko-arsenijevic-5497b2172/)
+## 📅 Event Details
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
+| | |
+|---|---|
+| 👤 **Speaker** | [Mirko Arsenijević](https://www.linkedin.com/in/mirko-arsenijevic-5497b2172/) |
+| 🕕 **Date & Time** | **26th of June (Wednesday), 6pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
-Date and time: **26th of June (Wednesday), 6pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
 

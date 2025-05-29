@@ -19,13 +19,21 @@ Since 2009 and the emergence of Bitcoin, the world has entered a new era where u
 
 In this talk, we will walk through the basics of economy and software development with a strong focus on the technical aspects of the Bitcoin project itself. We will showcase the code samples, dive through essential cryptography fundaments and explore the world of distributed blockchain systems. We will bring closer the use of C++, build systems, testing strategies, wallet creation, and concepts such as UTXO and internal scripting mechanisms inside Bitcoin.
 
-Speaker: [Veljko Tekelerović](https://github.com/vexy)
+## 📅 Event Details
 
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
+| | |
+|---|---|
+| 👤 **Speaker** | [Veljko Tekelerović](https://github.com/vexy) |
+| 🕕 **Date & Time** | **18th of September (Wednesday), 6pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
-Date and time: **18th of September (Wednesday), 6pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
 

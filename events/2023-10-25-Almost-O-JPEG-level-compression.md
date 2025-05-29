@@ -17,17 +17,23 @@ If you ever tried to dive into JPEG specs you certainly struggled. Meet the youn
 
 We'll cover theory and implementation and introduce non-classic compression format and its applications.
 
-Speaker: [Nikita Kashkin](https://www.linkedin.com/in/nikita-kashkin-b2b6b4252/)
-
-**Zoom link**: [https://cppserbia.com/meet](https://cppserbia.com/meet)
-
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-Datum i vreme događaja: **25\. oktobar \(sreda\)\, u 18h**
+## 📅 Event Details
 
-Mesto održavanja: **Palata Beograda (Beograđanka), 22. sprat**
+| | |
+|---|---|
+| 👤 **Speaker** | [Nikita Kashkin](https://www.linkedin.com/in/nikita-kashkin-b2b6b4252/) |
 
-Adresa: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **25\. oktobar \(sreda\)\, u 18h** |
+| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
+| 🏢 **Address** | **Masarikova 5** |
+| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
 

@@ -30,9 +30,14 @@ Diskusiju će voditi [Goran Aranđelović](https://www.linkedin.com/in/goranaran
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-Datum i vreme događaja: **11\. maj \(sreda\)\, u 18h**
-Mesto održavanja: **Srednja škola "Arhimed"**
-Adresa: **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina")
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **11\. maj \(sreda\)\, u 18h** |
+| 📍 **Location** | **Srednja škola "Arhimed"** |
+| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
 
 Vidimo se!
 

@@ -19,13 +19,18 @@ Ovo je dovelo do toga da postoji veliki broj build sistema i package manager-a s
 
 Ovde ćemo kroz primer proći kroz osnove korišćenja **CMake**-a i **vcpkg**-a za pravljenje novog projekta. Cilj nije da se upoznamo sa detaljima ni jednog ni drugog alata, već samo da se demonstrira da postavljanje build system-a i upravljanje bibliotekama ne treba da bude neki bauk već može da bude vrlo jednostavno.
 
-Predavač: [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/)
-
-**Zoom link**: https://cppserbia.com/meet
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **24\. april \(ponedeljak\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/) |
+| 🕕 **Date & Time** | **24\. april \(ponedeljak\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

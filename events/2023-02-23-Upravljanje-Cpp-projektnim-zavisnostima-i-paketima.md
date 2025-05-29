@@ -27,12 +27,17 @@ Prvi deo predavanja obuvata pregled mogućih pristupa i raspoloživih alata za m
 
 U drugom delu, glavni fokus će biti na Nix package manager-u i sticanju praktičnog znanja potrebnog za korišćenje ovog moćnog alata koji ne samo da može olakšati upravljanje paketima i eksternim zavisnostima, već i definisanje reproducibilnih build-ova i razvojnih okruženja.
 
-**Zoom link**: https://cppserbia.com/meet
-
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
-Datum i vreme događaja: **23\. februar \(četvrtak\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **23\. februar \(četvrtak\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

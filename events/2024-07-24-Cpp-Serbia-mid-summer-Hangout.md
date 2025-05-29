@@ -18,9 +18,14 @@ C++ Serbia respects the industry trend of summer vacations, so for July, we are 
 Come visit **Vidikovac** on Wednesday to hang out with other community members over refreshments and join discussions on C++ standards, tools, libraries, best practices and industry news.
 Feel free to ask/give advice on any topic in the industry.
 
-Date and time: **24th of July (Wednesday), 6pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **24th of July (Wednesday), 6pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
 See you!
 

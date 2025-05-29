@@ -21,10 +21,12 @@ We are preparing a picnic for all community members. Everyone is free to join in
 
 For this event, we invite everyone to respond, either here or on any of our social hubs, so that we stock up enough for everyone to have a good time!
 
-Date and time: **30th of August (Friday), 6pm**
-Location: **The event is [in Košutnjak](https://maps.app.goo.gl/35cJbLAZMZwYjbWcA), next to Pionirski Grad and Košutnjak water tower.**
-Address: **Kneza Višeslava (Park Pionirski Grad)**
-
 **Public transport**: [buses 23, 53 and E2](https://maps.app.goo.gl/8gdkFkSmtbPwFpts6)
 **Parking nearby**: [here](https://maps.app.goo.gl/a7Pto5HVDg4GwDhr8)
+## 📅 Event Details
 
+| | |
+|---|---|
+| 🕕 **Date & Time** | **30th of August (Friday), 6pm** |
+| 📍 **Location** | **The event is [in Košutnjak](https://maps.app.goo.gl/35cJbLAZMZwYjbWcA), next to Pionirski Grad and Košutnjak water tower.** |
+| 🏢 **Address** | **Kneza Višeslava (Park Pionirski Grad)** |

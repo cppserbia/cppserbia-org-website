@@ -19,16 +19,22 @@ Poziv za predavače će biti otvoren do sat vremena pred početak meetup-a. Svi 
 goran.arandjelovic@gmail.com
 dusan@djovanovic.me
 
-**Google Meet link**: https://cppserbia.com/meet
 **Pristup putem telefona**: +381114250145 (PIN: 602 714 419 5866#)
 **Lista telefonskih brojeva**: https://cppserbia.com/meet-numbers
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com/).
-Datum i vreme događaja: **29\. decembar \(četvrtak\)\, u 18h**
-Mesto održavanja: **ICT Hub**
-Adresa: **Kralja Milana 10**
 
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisalo preduzeće [Inceptive](https://inceptive.io/). Hvala vam na želji da učestvujete u razvoju lokalne C++ zajednice!
+
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **29\. decembar \(četvrtak\)\, u 18h** |
+| 📍 **Location** | **ICT Hub** |
+| 🏢 **Address** | **Kralja Milana 10** |
+| 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
 

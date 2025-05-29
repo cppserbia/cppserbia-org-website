@@ -17,13 +17,17 @@ The typical embedded software project regularly deals with various measurements 
 
 Nikola will present both the original version of the library, which was developed in 2018 and presented in 2019 and the modern version, which was developed this year (2024), with some interesting improvements in linguistical and technical perspectives.
 
-Speaker: **[Nikola Jelić](https://www.linkedin.com/in/nikola-jeli%C4%87-46b89531b/)**
-
 **[Google Meet Link](https://meet.google.com/obp-fygs-par)**
 
-Date and time: **5th of November (Tuesday), 6pm**
-Location: **Beograđanka, Vidikovac, 22nd floor**
-Address: **Masarikova 5**
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 👤 **Speaker** | **[Nikola Jelić](https://www.linkedin.com/in/nikola-jeli%C4%87-46b89531b/)** |
+| 🕕 **Date & Time** | **5th of November (Tuesday), 6pm** |
+| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address** | **Masarikova 5** |
 
 See you!
 

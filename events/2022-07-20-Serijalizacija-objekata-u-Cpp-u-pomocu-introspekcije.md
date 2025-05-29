@@ -19,7 +19,6 @@ Serijalizacija i deserijalizacija objekata u C++-u je čest zahtev čija realiza
 
 **Važno obaveštenje**: Prvi put ćemo imati hibridni događaj, tj. moći ćete da slušate predavanje putem Google Meet-a.
 
-**Google Meet link**: https://meet.google.com/rby-qqxf-wqu
 **Pristup putem telefona:** +381114250145 (PIN: 602 714 419 5866#)
 **Lista telefonskih brojeva za poziv iz drugih zemalja:** https://tel.meet/rby-qqxf-wqu?hs=5
 
@@ -27,9 +26,15 @@ U slučaju promene linka, dobićete naknadne informacije preko Meetup platforme.
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-Datum i vreme događaja: **20\. jul \(sreda\)\, u 18h**
-Mesto održavanja: **Srednja škola "Arhimed"**
-Adresa: **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina")
+
+## 📅 Event Details
+
+| | |
+|---|---|
+| 🕕 **Date & Time** | **20\. jul \(sreda\)\, u 18h** |
+| 📍 **Location** | **Srednja škola "Arhimed"** |
+| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
+| 💻 **Online** | https://meet.google.com/rby-qqxf-wqu |
 
 Vidimo se!
 
