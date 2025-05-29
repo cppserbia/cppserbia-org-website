@@ -9,6 +9,15 @@ import {
 } from "@/lib/events-server";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 // Generate metadata for the page
 export async function generateMetadata({
@@ -120,11 +129,44 @@ export default async function EventPage({
             )}
 
             {event.content ? (
-              <div className="prose prose-invert prose-purple max-w-none prose-lg prose-headings:text-white prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300">
+              <div className="prose prose-invert prose-purple max-w-none prose-lg prose-headings:text-white prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-code:font-mono prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:font-mono prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300">
                 <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
                   components={{
+                    table: ({ children }) => (
+                      <div className="my-4">
+                        <Table className="w-auto max-w-md border-0 [&_td:first-child]:pr-3 [&_td:first-child]:py-1 [&_td:first-child]:text-sm [&_td:first-child]:text-gray-400 [&_td:first-child]:font-medium [&_td:first-child]:w-auto [&_td:last-child]:py-1 [&_td:last-child]:text-sm [&_td:last-child]:text-gray-300">
+                          {children}
+                        </Table>
+                      </div>
+                    ),
+                    thead: ({ children }) => (
+                      <TableHeader className="hidden">
+                        {children}
+                      </TableHeader>
+                    ),
+                    tbody: ({ children }) => (
+                      <TableBody>
+                        {children}
+                      </TableBody>
+                    ),
+                    tr: ({ children }) => (
+                      <TableRow className="border-0 hover:bg-transparent">
+                        {children}
+                      </TableRow>
+                    ),
+                    th: ({ children }) => (
+                      <TableHead className="hidden">
+                        {children}
+                      </TableHead>
+                    ),
+                    td: ({ children }) => (
+                      <TableCell className="border-0 p-0">
+                        {children}
+                      </TableCell>
+                    ),
                     h1: ({ children }) => (
-                      <h1 className="text-3xl font-bold mb-4 mt-6 text-white">
+                      <h1 className="text-4xl font-bold mb-4 mt-6 text-white">
                         {children}
                       </h1>
                     ),
@@ -163,20 +205,20 @@ export default async function EventPage({
                       if (isBlock) {
                         return (
                           <code
-                            className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg border border-gray-700 overflow-x-auto`}
+                            className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg border border-gray-700 overflow-x-auto font-mono`}
                           >
                             {children}
                           </code>
                         );
                       }
                       return (
-                        <code className="bg-gray-900 text-purple-300 px-1 py-0.5 rounded text-sm">
+                        <code className="bg-gray-900 text-purple-300 px-1 py-0.5 rounded text-sm font-mono">
                           {children}
                         </code>
                       );
                     },
                     pre: ({ children }) => (
-                      <pre className="bg-gray-900 border border-gray-700 rounded-lg overflow-x-auto mb-4">
+                      <pre className="bg-gray-900 border border-gray-700 rounded-lg overflow-x-auto mb-4 font-mono">
                         {children}
                       </pre>
                     ),
