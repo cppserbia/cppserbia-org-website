@@ -9,7 +9,6 @@ end_time: 2025-04-23T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/307420012/
 event_id: 307420012
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-featured: true
 ---
 
 # Making your program faster - multithreading and automatic compiler vectorization
@@ -31,4 +30,3 @@ The main focus of this part are vectorization inhibitors: parts of your C++ code
 | 🏢 **Address** | **Masarikova 5** |
 
 See you!
-

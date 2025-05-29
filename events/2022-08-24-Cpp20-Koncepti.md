@@ -9,6 +9,7 @@ end_time: 2022-08-24T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/287611882/
 event_id: 287611882
 venues: ['ICT Hub Kralja Milana, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=IijPhghH5y0
 ---
 
 # C++20 — Koncepti
@@ -40,4 +41,3 @@ Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisala kompa
 | 💻 **Online** | https://cpplang.com/meet |
 
 Vidimo se!
-

@@ -9,7 +9,6 @@ end_time: 2025-03-26T20:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/306805498/
 event_id: 306805498
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-featured: true
 ---
 
 # C++ and the Art of Self-Modifying Code (Don't Try This at Home!)

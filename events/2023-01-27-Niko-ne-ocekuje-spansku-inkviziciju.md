@@ -9,6 +9,7 @@ end_time: 2023-01-27T21:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/290935577/
 event_id: 290935577
 venues: ['ICT Hub Kralja Milana, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=twPlJbrgkc4
 ---
 
 # "Niko ne očekuje špansku inkviziciju"? :)

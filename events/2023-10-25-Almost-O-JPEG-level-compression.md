@@ -9,6 +9,7 @@ end_time: 2023-10-25T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/296736109/
 event_id: 296736109
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=ffn-oLWQtTE
 ---
 
 # Almost O(n) JPEG level compression

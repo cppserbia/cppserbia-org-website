@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Calendar, MapPin, Clock } from "lucide-react";
+import { YouTubeIcon } from "@/components/icons";
 
 interface Event {
     slug: string;
@@ -13,6 +14,7 @@ interface Event {
     day: string;
     month: string;
     year: string;
+    youtube?: string;
 }
 
 interface EventCardProps {
@@ -87,11 +89,13 @@ export function EventMetadataPast({
 export function EventActions({
     slug,
     registrationLink,
-    showRegistration = true
+    showRegistration = true,
+    youtube
 }: {
     slug: string;
     registrationLink?: string;
     showRegistration?: boolean;
+    youtube?: string;
 }) {
     return (
         <div className="flex gap-3">
@@ -101,6 +105,17 @@ export function EventActions({
             >
                 View Details
             </Link>
+            {youtube && (
+                <Link
+                    href={youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-[#FF0000] hover:bg-[#FF0000]/80 rounded-md transition-colors"
+                    aria-label="Watch on YouTube"
+                >
+                    <YouTubeIcon width={16} height={16} color="white" />
+                </Link>
+            )}
             {registrationLink && showRegistration && (
                 <Link
                     href={registrationLink}
@@ -139,6 +154,7 @@ export function EventCard({ event, isUpcoming, isPastEvent }: EventCardProps) {
                     slug={event.slug}
                     registrationLink={event.registrationLink}
                     showRegistration={isUpcoming}
+                    youtube={event.youtube}
                 />
             </div>
         </div>

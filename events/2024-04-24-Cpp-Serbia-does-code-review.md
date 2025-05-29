@@ -9,6 +9,7 @@ end_time: 2024-04-24T23:30:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/300479473/
 event_id: 300479473
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=rvt8KxMvLdY
 ---
 
 # C++ Serbia does code review

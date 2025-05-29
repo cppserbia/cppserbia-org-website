@@ -9,6 +9,7 @@ end_time: 2023-11-29T21:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/297540747/
 event_id: 297540747
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=SjZvT0wUrTY
 ---
 
 # Meeting C++ 2023 — Trip report

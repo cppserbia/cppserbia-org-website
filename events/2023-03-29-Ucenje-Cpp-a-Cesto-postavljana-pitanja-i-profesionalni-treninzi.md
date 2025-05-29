@@ -9,6 +9,7 @@ end_time: 2023-03-29T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/292193281/
 event_id: 292193281
 venues: ['ICT Hub Kralja Milana, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=e82Q_MZkmYk
 ---
 
 # Učenje C++-a - Često postavljana pitanja i profesionalni treninzi
@@ -38,4 +39,3 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 | 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
-
