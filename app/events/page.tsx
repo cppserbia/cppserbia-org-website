@@ -12,7 +12,7 @@ export default function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
       {/* Header */}
-      <section className="relative w-full py-20 px-4 overflow-hidden">
+      <section className="relative w-full py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: "url('/images/wallpaper.png')" }}
@@ -47,12 +47,12 @@ export default function EventsPage() {
       </section>
 
       {/* Events List Section */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">
             Upcoming Events
           </h2>
-          <div className="grid gap-6">
+          <div className="grid gap-6 overflow-hidden">
             {upcomingEvents.length > 0 ? (
               upcomingEvents.map((event) => (
                 <EventCard
@@ -73,13 +73,13 @@ export default function EventsPage() {
       </section>
 
       {/* Past Events Section */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-purple-300">
             Past Events
           </h2>
 
-          <div className="grid gap-6">
+          <div className="grid gap-6 overflow-hidden">
             {pastEvents.length > 0 ? (
               pastEvents.map((event) => (
                 <EventCard
