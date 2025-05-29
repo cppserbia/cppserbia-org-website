@@ -23,6 +23,7 @@ export interface Event {
   content?: string
   featured?: boolean
   status?: string
+  youtube?: string
 }
 
 interface EventFrontmatter {
@@ -42,6 +43,7 @@ interface EventFrontmatter {
   imageUrl?: string
   isOnline?: boolean
   featured?: boolean
+  youtube?: string
 }
 
 const eventsDirectory = path.join(process.cwd(), "events")
@@ -163,6 +165,7 @@ function parseEventFile(fileName: string): Event | null {
       content, // Include the full markdown content
       featured,
       status: frontmatter.status,
+      youtube: frontmatter.youtube,
     }
   } catch (error) {
     console.error(`Error parsing event file ${fileName}:`, error)

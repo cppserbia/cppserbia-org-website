@@ -9,6 +9,7 @@ end_time: 2024-01-25T23:30:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/298649346/
 event_id: 298649346
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=xztv-zIDLxc
 ---
 
 # Simplifying Raft with C++20 coroutines

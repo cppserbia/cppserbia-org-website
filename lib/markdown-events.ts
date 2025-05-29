@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import type { FormattedEvent } from "./meetup-api"
+import { Event } from "@/lib/events"
 
 // Define the path to the events folder
 const eventsDirectory = path.join(process.cwd(), "events")
@@ -33,6 +33,7 @@ interface EventFrontmatter {
   registrationLink?: string
   imageUrl?: string
   isOnline?: boolean
+  youtube?: string
 }
 
 // Function to get all markdown event files
@@ -54,7 +55,7 @@ export function getMarkdownEventFiles(): string[] {
 }
 
 // Function to parse a markdown event file
-export function parseMarkdownEvent(fileName: string): FormattedEvent | null {
+export function parseMarkdownEvent(fileName: string): Event | null {
   try {
     const filePath = path.join(eventsDirectory, fileName)
     const fileContents = fs.readFileSync(filePath, "utf8")
@@ -173,8 +174,8 @@ export function parseMarkdownEvent(fileName: string): FormattedEvent | null {
       year,
       isOnline,
       imageUrl: frontmatter.imageUrl,
-      source: "markdown",
       content, // Include the full markdown content
+      youtube: frontmatter.youtube,
     }
   } catch (error) {
     console.error(`Error parsing markdown event ${fileName}:`, error)
@@ -183,11 +184,11 @@ export function parseMarkdownEvent(fileName: string): FormattedEvent | null {
 }
 
 // Function to get all markdown events
-export function getAllMarkdownEvents(): FormattedEvent[] {
+export function getAllMarkdownEvents(): Event[] {
   const fileNames = getMarkdownEventFiles()
   const allEvents = fileNames
     .map((fileName) => parseMarkdownEvent(fileName))
-    .filter((event): event is FormattedEvent => event !== null)
+    .filter((event): event is Event => event !== null)
 
   // Sort events by date (newest first)
   return allEvents.sort((a, b) => {
@@ -198,7 +199,7 @@ export function getAllMarkdownEvents(): FormattedEvent[] {
 }
 
 // Function to get a specific markdown event by slug
-export function getMarkdownEventBySlug(slug: string): FormattedEvent | null {
+export function getMarkdownEventBySlug(slug: string): Event | null {
   try {
     const fileName = `${slug}.md`
     const filePath = path.join(eventsDirectory, fileName)
@@ -217,7 +218,7 @@ export function getMarkdownEventBySlug(slug: string): FormattedEvent | null {
 }
 
 // Function to separate events into upcoming and past
-export function getMarkdownEventsByDate(): { upcomingEvents: FormattedEvent[]; pastEvents: FormattedEvent[] } {
+export function getMarkdownEventsByDate(): { upcomingEvents: Event[]; pastEvents: Event[] } {
   const allEvents = getAllMarkdownEvents()
   const now = new Date()
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split("T")[0]

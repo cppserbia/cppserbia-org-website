@@ -9,6 +9,7 @@ end_time: 2023-09-27T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/296230317/
 event_id: 296230317
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=bYBMT-cftBo
 ---
 
 # The hidden performance price of C++ virtual functions

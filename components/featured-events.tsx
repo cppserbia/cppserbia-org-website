@@ -22,6 +22,7 @@ interface Event {
   year: string;
   isOnline?: boolean;
   featured?: boolean;
+  youtube?: string;
 }
 
 export default function FeaturedEvents({ limit }: FeaturedEventsProps) {

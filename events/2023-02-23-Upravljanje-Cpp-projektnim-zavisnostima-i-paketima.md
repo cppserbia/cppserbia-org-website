@@ -9,6 +9,7 @@ end_time: 2023-02-23T21:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/291533430/
 event_id: 291533430
 venues: ['ICT Hub Kralja Milana, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=Y2Aq8pMsLz4&t=850s
 ---
 
 # Upravljanje C++ projektnim zavisnostima i paketima

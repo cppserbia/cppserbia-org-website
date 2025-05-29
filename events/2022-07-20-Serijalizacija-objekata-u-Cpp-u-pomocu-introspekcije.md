@@ -9,6 +9,7 @@ end_time: 2022-07-20T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/287059936/
 event_id: 287059936
 venues: ['Ljubostinjska 2, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=Feu49_CmbDs
 ---
 
 # Serijalizacija objekata u C++-u pomoću introspekcije (refleksije)
@@ -37,4 +38,3 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.co
 | 💻 **Online** | https://meet.google.com/rby-qqxf-wqu |
 
 Vidimo se!
-

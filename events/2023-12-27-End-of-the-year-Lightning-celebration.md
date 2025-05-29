@@ -9,9 +9,11 @@ end_time: 2023-12-28T00:00:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/297959668/
 event_id: 297959668
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=KZYYSruaL5o
+featured: true
 ---
 
-# End of the year — Lightning celebration 
+# End of the year — Lightning celebration
 
 Let's std::accumulate good vibes and enjoy the last event in 2023!
 
@@ -34,4 +36,3 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

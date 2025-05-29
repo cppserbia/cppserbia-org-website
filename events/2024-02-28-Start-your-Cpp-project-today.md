@@ -9,6 +9,7 @@ end_time: 2024-02-28T23:30:00+01:00
 event_url: https://www.meetup.com/cpp-serbia/events/299277052/
 event_id: 299277052
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=kmst4j7CB9M
 ---
 
 # Start your C++ project today
@@ -20,4 +21,3 @@ On this meetup, we’ll discuss the complexities of setting up a new C++ project
 We’ll explore topics like build systems, toolchains, packaging, dependency management, third-party libraries and setting up your developer environment. Additionally, we’ll discuss the must-haves of any modern project, and suggest tools that can significantly improve code quality - even for those who are working on existing projects.
 
 The goal is to clear the path for you, enabling you to sit back, relax, and transform your innovative ideas into modern C++ code.
-

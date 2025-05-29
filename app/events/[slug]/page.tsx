@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
+import { YouTubeIcon } from "@/components/icons";
 import {
   getEventBySlug,
   getAllEventsServer,
@@ -101,8 +102,19 @@ export default async function EventPage({
                 </div>
               </div>
             </div>
-            <div className="flex-shrink-0">
-              <div className="bg-purple-950 p-3 rounded-lg text-center">
+            <div className="flex-shrink-0 flex gap-3">
+              {event.youtube && (
+                <Link
+                  href={event.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#FF0000] hover:bg-[#FF0000]/80 p-3 rounded-lg text-center transition-colors flex items-center justify-center min-w-[70px]"
+                  aria-label="Watch on YouTube"
+                >
+                  <YouTubeIcon width={24} height={24} color="white" />
+                </Link>
+              )}
+              <div className="bg-purple-950 p-3 rounded-lg text-center min-w-[70px]">
                 <div className="text-sm text-purple-300">{event.month}</div>
                 <div className="text-3xl font-bold">{event.day}</div>
                 <div className="text-sm text-purple-300">{event.year}</div>

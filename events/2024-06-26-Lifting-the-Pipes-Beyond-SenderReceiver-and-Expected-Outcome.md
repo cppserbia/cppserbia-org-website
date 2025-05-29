@@ -9,6 +9,8 @@ end_time: 2024-06-26T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/301691637/
 event_id: 301691637
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=B5uNxPe-MVQ
+featured: true
 ---
 
 # Lifting the Pipes - Beyond Sender/Receiver and Expected Outcome

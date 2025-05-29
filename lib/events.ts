@@ -17,6 +17,7 @@ export interface Event {
   imageUrl?: string
   content?: string
   featured?: boolean
+  youtube?: string
 }
 
 // Client-side utility functions that don't require file system access

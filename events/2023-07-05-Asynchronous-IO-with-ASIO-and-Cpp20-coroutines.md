@@ -9,6 +9,7 @@ end_time: 2023-07-05T21:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/294227718/
 event_id: 294227718
 venues: ['ICT Hub Kralja Milana, Beograd, rs']
+youtube: https://www.youtube.com/watch?v=_G_3oOSCRx8
 ---
 
 # Asynchronous IO with ASIO and C++20 coroutines
