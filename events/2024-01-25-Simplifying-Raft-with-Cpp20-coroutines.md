@@ -26,16 +26,9 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 | | |
 |---|---|
 | 👤 **Speaker** | [Alexey Ozeritskiy](https://www.linkedin.com/in/alexey-ozeritskiy/) |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 🕕 **Date & Time** | **25\. januar \(četvrtak\)\, u 18h** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
 | 🏢 **Address** | **Masarikova 5** |
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

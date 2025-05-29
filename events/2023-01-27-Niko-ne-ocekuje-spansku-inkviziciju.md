@@ -1,5 +1,5 @@
 ---
-title: \""Niko ne očekuje špansku inkviziciju"? :)"
+title: "Niko ne očekuje špansku inkviziciju"? :)
 date: 2023-01-27T18:00:00+01:00
 created: 2023-01-14T04:00:49-05:00
 event_type: PHYSICAL
@@ -30,4 +30,3 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 | 💻 **Online** | https://cppserbia.com/meet |
 
 Vidimo se!
-

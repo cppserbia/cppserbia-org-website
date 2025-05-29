@@ -27,13 +27,6 @@ In this talk, I'll present Sender/Receiver concepts, various examples from stdex
 | 🕕 **Date & Time** | **29th of May (Wednesday), 6pm** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
 | 🏢 **Address** | **Masarikova 5** |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
-
