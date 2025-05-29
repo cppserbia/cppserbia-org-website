@@ -23,6 +23,7 @@ For this event, we invite everyone to respond, either here or on any of our soci
 
 **Public transport**: [buses 23, 53 and E2](https://maps.app.goo.gl/8gdkFkSmtbPwFpts6)
 **Parking nearby**: [here](https://maps.app.goo.gl/a7Pto5HVDg4GwDhr8)
+
 ## 📅 Event Details
 
 | | |

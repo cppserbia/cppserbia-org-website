@@ -27,13 +27,6 @@ In this talk, we will walk through the basics of economy and software developmen
 | 🕕 **Date & Time** | **18th of September (Wednesday), 6pm** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
 | 🏢 **Address** | **Masarikova 5** |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
-

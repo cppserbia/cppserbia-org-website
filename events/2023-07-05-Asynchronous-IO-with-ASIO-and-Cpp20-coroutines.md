@@ -40,16 +40,9 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 | | |
 |---|---|
 | 👤 **Speaker** | [Aleksandar Dakić](https://www.linkedin.com/in/aleksandar-dakic/) |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 🕕 **Date & Time** | **5\. jul \(sreda\)\, u 18h** |
 | 📍 **Location** | **ICT Hub** |
 | 🏢 **Address** | **Kralja Milana 10** |
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

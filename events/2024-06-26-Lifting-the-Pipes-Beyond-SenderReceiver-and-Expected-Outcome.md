@@ -26,13 +26,6 @@ Furthermore, we will compare this library to Expected Outcome pipelines, a progr
 | 🕕 **Date & Time** | **26th of June (Wednesday), 6pm** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
 | 🏢 **Address** | **Masarikova 5** |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!
-

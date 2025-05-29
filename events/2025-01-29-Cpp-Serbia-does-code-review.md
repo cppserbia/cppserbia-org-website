@@ -34,13 +34,7 @@ To join the community discussions, we are on:
 |---|---|
 | 🕕 **Date & Time** | **29th of January (Wednesday), 6pm** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+| 🏢 **Address** | **Masarikova 5** |
 
 See you!

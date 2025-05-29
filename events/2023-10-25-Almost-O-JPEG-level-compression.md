@@ -24,16 +24,9 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 | | |
 |---|---|
 | 👤 **Speaker** | [Nikita Kashkin](https://www.linkedin.com/in/nikita-kashkin-b2b6b4252/) |
-
-
-## 📅 Event Details
-
-| | |
-|---|---|
 | 🕕 **Date & Time** | **25\. oktobar \(sreda\)\, u 18h** |
 | 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
 | 🏢 **Address** | **Masarikova 5** |
 | 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

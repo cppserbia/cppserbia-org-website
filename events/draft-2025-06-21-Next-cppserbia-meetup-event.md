@@ -14,7 +14,7 @@ featured: true
 
 # Next C++ Event
 
-Did you ever go to a technical interview where you had to do live coding sessions with all the algorithms that you have (or have not) learned in an Algorithms course, just so that you never use them on the job?
+Did you ever go to a technical interview where you had to do live coding sessions with all the algorithms that you have (or have not) learned in an `some inline code` Algorithms course, just so that you never use them on the job?
 
 ```cpp
 template<class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type,
