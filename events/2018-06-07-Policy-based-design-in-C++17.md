@@ -18,22 +18,3 @@ We'll explore some of the techniques for creating different behavior combination
 
 New C++17 features can leverage many of the implementation strategies.
 
-## Event Details
-
-- **Date & Time:** 2018-06-07T18:30:00+02:00
-- **Duration:** PT1H30M minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/251303329/
-
-## Venue Information
-
-
-### United Cloud
-
-- **Address:** Bulevar Milutina Milankovića 1z, entrance A
-- **City:** Belgrade
-- **State:** 
-- **Postal Code:** meetup1
-- **Country:** rs
-- **Venue Type:** 

@@ -33,22 +33,3 @@ https://goo.gl/4iiKzG
 
 Predavanje će biti održano 1. marta u prostorijama Startit Centra u Beogradu, ulica Savska broj 5, sa početkom u 18 časova.
 
-## Event Details
-
-- **Date & Time:** 2019-03-01T18:00:00+01:00
-- **Duration:** PT2H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/259120701/
-
-## Venue Information
-
-
-### Startit Centar
-
-- **Address:** Savska 5
-- **City:** Belgrade
-- **State:** 
-- **Postal Code:** 
-- **Country:** RS
-- **Venue Type:** 

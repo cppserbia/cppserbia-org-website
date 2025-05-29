@@ -26,22 +26,3 @@ Adresa: **Kralja Milana 10**
 
 Vidimo se!
 
-## Event Details
-
-- **Date & Time:** 2023-01-27T18:00:00+01:00
-- **Duration:** PT3H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/290935577/
-
-## Venue Information
-
-
-### ICT Hub Kralja Milana
-
-- **Address:** Kralja Milana 10
-- **City:** Beograd
-- **State:**
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:**

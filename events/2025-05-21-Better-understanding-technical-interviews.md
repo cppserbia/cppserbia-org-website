@@ -26,22 +26,3 @@ Online: **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**
 
 See you!
 
-## Event Details
-
-- **Date & Time:** 2025-05-21T18:00:00+02:00
-- **Duration:** PT2H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/307829937/
-
-## Venue Information
-
-
-### Palata "Beograd" ("Beograđanka")
-
-- **Address:** Masarikova 5
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 

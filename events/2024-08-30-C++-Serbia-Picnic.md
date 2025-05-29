@@ -28,22 +28,3 @@ Address: **Kneza Višeslava (Park Pionirski Grad)**
 **Public transport**: [buses 23, 53 and E2](https://maps.app.goo.gl/8gdkFkSmtbPwFpts6)
 **Parking nearby**: [here](https://maps.app.goo.gl/a7Pto5HVDg4GwDhr8)
 
-## Event Details
-
-- **Date & Time:** 2024-08-30T18:00:00+02:00
-- **Duration:** PT4H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/302869584/
-
-## Venue Information
-
-
-### Kosutnjak
-
-- **Address:** Banovo brdo - Pionirski grad - Banovo Brdo
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 
-- **Country:** yu
-- **Venue Type:** 

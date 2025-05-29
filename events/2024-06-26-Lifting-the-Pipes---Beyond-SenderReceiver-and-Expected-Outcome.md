@@ -28,22 +28,3 @@ Address: **Masarikova 5**
 
 See you!
 
-## Event Details
-
-- **Date & Time:** 2024-06-26T18:00:00+02:00
-- **Duration:** PT3H minutes
-- **Type:** PHYSICAL
-- **Status:** PAST
-- **Event URL:** https://www.meetup.com/cpp-serbia/events/301691637/
-
-## Venue Information
-
-
-### Palata "Beograd" ("Beograđanka")
-
-- **Address:** Masarikova 5
-- **City:** Beograd
-- **State:** 
-- **Postal Code:** 11000
-- **Country:** rs
-- **Venue Type:** 
