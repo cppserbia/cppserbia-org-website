@@ -48,8 +48,9 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-40 bg-[#0c0c1d]/95 backdrop-blur-md">
-          <nav className="flex flex-col items-center gap-6 p-8">
+        <div className="md:hidden fixed inset-0 top-16 z-40">
+          <div className="absolute inset-0 bg-[#0c0c1d]/95 backdrop-blur-lg backdrop-saturate-150" />
+          <nav className="relative flex flex-col items-center gap-6 p-8 text-white z-10 bg-[#0c0c1d]/90 backdrop-blur-lg backdrop-saturate-150">
             <Link
               href="/"
               className="text-lg font-medium text-white hover:text-purple-300 transition-colors"
