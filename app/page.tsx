@@ -68,7 +68,7 @@ export default async function Home() {
                 with other C++ enthusiasts.
               </p>
               <p className="text-lg text-gray-300">
-                Whether you're looking to improve your skills, find mentorship, or simply connect with like-minded
+                Whether you&apos;re looking to improve your skills, find mentorship, or simply connect with like-minded
                 developers, C++ Serbia is the place for you.
               </p>
             </div>

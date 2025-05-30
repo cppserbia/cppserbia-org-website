@@ -17,7 +17,7 @@ export function CodeBlock({ children, className, inline }: CodeBlockProps) {
 
     // If it's inline code or no language specified, render as inline
     if (inline || !language) {
-        let cleanedChildren = children.trim()
+        const cleanedChildren = children.trim()
         return (
             <code className="bg-gray-900 text-purple-300 px-1 py-0.5 rounded text-sm font-mono">
                 {cleanedChildren}
