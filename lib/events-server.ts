@@ -59,7 +59,7 @@ function shouldIncludeEvent(event: Event): boolean {
   if (isDevelopment()) {
     return true
   }
-  
+
   // In production, exclude draft events
   return event.status !== 'DRAFT'
 }
@@ -94,13 +94,20 @@ function parseEventFile(fileName: string): Event | null {
     // Extract time from frontmatter.date if it's in ISO format, or use time field
     let time = "TBD"
     try {
-        const timeFormat: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit", hour12: true }
-        const startTime = eventDate.toLocaleTimeString("en-US", timeFormat)
-        const endDate = frontmatter.end_time ? frontmatter.end_time : new Date(new Date(eventDate).setHours(eventDate.getHours() + 2));
-        const endTime = endDate.toLocaleTimeString("en-US", timeFormat)
+      const timeFormat: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: false }
+      const startTime = eventDate.toLocaleTimeString("en-US", timeFormat)
+      const endDate = frontmatter.end_time ? frontmatter.end_time : new Date(new Date(eventDate).setHours(eventDate.getHours() + 2));
+      const endTime = endDate.toLocaleTimeString("en-US", timeFormat)
+
+      // Format the time string
+      if (frontmatter.end_time) {
+        time = `${startTime}-${endTime}`
+      } else {
+        time = startTime
+      }
     } catch (error) {
-        console.warn(`Error parsing time from date ${frontmatter.date}:`, error)
-        time = "TBD"
+      console.warn(`Error parsing time from date ${frontmatter.date}:`, error)
+      time = "TBD"
     }
 
 
@@ -330,7 +337,7 @@ export function getEventBySlug(slug: string): Event | null {
     }
 
     const event = parseEventFile(fileName)
-    
+
     // Check if we should include this event based on environment and status
     if (event && !shouldIncludeEvent(event)) {
       console.warn(`Event ${slug} is a draft and not available in production`)
