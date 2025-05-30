@@ -9,6 +9,7 @@ end_time: 2025-05-21T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/307829937/
 event_id: 307829937
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+featured: true
 ---
 
 # Better understanding technical interviews
@@ -29,4 +30,3 @@ If yes, this lecture/presentation is for you! We will explore the current state 
 | 💻 **Online** | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!
-

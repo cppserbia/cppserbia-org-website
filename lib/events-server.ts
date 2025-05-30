@@ -1,7 +1,6 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import { start } from "repl"
 
 // This file contains server-side only functions for reading events
 // These functions should only be used in server components or API routes
@@ -147,13 +146,8 @@ function parseEventFile(fileName: string): Event | null {
     }
 
     // Determine if event is featured
-    // By default, upcoming events and current year events are featured
-    const currentYear = new Date().getFullYear()
-    const eventYear = eventDate.getFullYear()
-    const isUpcoming = eventDate >= new Date()
-    const featured = frontmatter.featured !== undefined
-      ? frontmatter.featured
-      : (isUpcoming || eventYear >= currentYear)
+    // Only use explicit featured flag from frontmatter
+    const featured = frontmatter.featured === true
 
     return {
       slug,
@@ -210,84 +204,44 @@ export function getAllEventsServer(): Event[] {
 export function getFeaturedEventsServer(limit?: number): Event[] {
   const allEvents = getAllEventsServer()
 
-  // First try to get explicitly featured events
+  // Get explicitly featured events only
   const explicitlyFeatured = allEvents.filter((event) => event.featured)
 
-  // If we have explicitly featured events, use them
-  if (explicitlyFeatured.length > 0) {
-    // Sort featured events by date (upcoming first, then past events in reverse chronological order)
-    const now = new Date()
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split("T")[0]
-
-    const upcomingFeatured = explicitlyFeatured.filter((event) => {
-      const eventDateStr = event.date.toISOString().split("T")[0]
-      return eventDateStr >= today
-    })
-    const pastFeatured = explicitlyFeatured.filter((event) => {
-      const eventDateStr = event.date.toISOString().split("T")[0]
-      return eventDateStr < today
-    })
-
-    // Sort upcoming events by date (ascending - earliest first)
-    upcomingFeatured.sort((a, b) => {
-      const aDateStr = a.date.toISOString().split("T")[0]
-      const bDateStr = b.date.toISOString().split("T")[0]
-      return aDateStr.localeCompare(bDateStr)
-    })
-
-    // Sort past events by date (descending - most recent first)
-    pastFeatured.sort((a, b) => {
-      const aDateStr = a.date.toISOString().split("T")[0]
-      const bDateStr = b.date.toISOString().split("T")[0]
-      return bDateStr.localeCompare(aDateStr)
-    })
-
-    // Combine: upcoming events first, then recent past events
-    const sortedFeatured = [...upcomingFeatured, ...pastFeatured]
-
-    if (limit && limit > 0) {
-      return sortedFeatured.slice(0, limit)
-    }
-
-    return sortedFeatured
-  }
-
-  // Fallback: if no explicitly featured events, show upcoming events or recent past events
+  // Sort featured events by date (upcoming first, then past events in reverse chronological order)
   const now = new Date()
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split("T")[0]
 
-  const upcomingEvents = allEvents.filter((event) => {
+  const upcomingFeatured = explicitlyFeatured.filter((event) => {
     const eventDateStr = event.date.toISOString().split("T")[0]
     return eventDateStr >= today
   })
-  const pastEvents = allEvents.filter((event) => {
+  const pastFeatured = explicitlyFeatured.filter((event) => {
     const eventDateStr = event.date.toISOString().split("T")[0]
     return eventDateStr < today
   })
 
   // Sort upcoming events by date (ascending - earliest first)
-  upcomingEvents.sort((a, b) => {
+  upcomingFeatured.sort((a, b) => {
     const aDateStr = a.date.toISOString().split("T")[0]
     const bDateStr = b.date.toISOString().split("T")[0]
     return aDateStr.localeCompare(bDateStr)
   })
 
   // Sort past events by date (descending - most recent first)
-  pastEvents.sort((a, b) => {
+  pastFeatured.sort((a, b) => {
     const aDateStr = a.date.toISOString().split("T")[0]
     const bDateStr = b.date.toISOString().split("T")[0]
     return bDateStr.localeCompare(aDateStr)
   })
 
-  // If we have upcoming events, prioritize them
-  if (upcomingEvents.length > 0) {
-    const eventsToShow = limit && limit > 0 ? upcomingEvents.slice(0, limit) : upcomingEvents
-    return eventsToShow
+  // Combine: upcoming events first, then recent past events
+  const sortedFeatured = [...upcomingFeatured, ...pastFeatured]
+
+  if (limit && limit > 0) {
+    return sortedFeatured.slice(0, limit)
   }
 
-  // Otherwise, show most recent past events
-  const eventsToShow = limit && limit > 0 ? pastEvents.slice(0, limit) : pastEvents
-  return eventsToShow
+  return sortedFeatured
 }
 
 export function getEventsByDate(): { upcomingEvents: Event[]; pastEvents: Event[] } {
