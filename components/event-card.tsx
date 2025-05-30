@@ -130,7 +130,7 @@ export function EventActions({
     );
 }
 
-export function EventCard({ event, isUpcoming, isPastEvent }: EventCardProps) {
+export function EventCard({ event, isUpcoming }: EventCardProps) {
     const cardContent = (
         <div className="flex flex-col md:flex-row gap-4 overflow-hidden">
             <EventDateBadge day={event.day} month={event.month} year={event.year} />

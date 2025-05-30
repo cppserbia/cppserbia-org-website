@@ -212,7 +212,7 @@ export default async function EventPage({
                         {children}
                       </p>
                     ),
-                    code: ({ children, className, ...props }: any) => {
+                    code: ({ children, className }) => {
                       const inline = !className?.includes("language-");
                       return (
                         <CodeBlock
