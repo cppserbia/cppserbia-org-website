@@ -1,6 +1,6 @@
 import { EventCard } from "@/components/event-card";
-import { isPastEvent } from "@/lib/events";
-import { getFeaturedEventsServer } from "@/lib/events-server";
+import { isPastEvent } from "@/lib/temporal";
+import { getFeaturedEvents } from "@/lib/events-server";
 
 interface FeaturedEventsProps {
   limit?: number;
@@ -8,7 +8,7 @@ interface FeaturedEventsProps {
 
 export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
   // Get featured events directly from server-side function
-  const events = getFeaturedEventsServer(limit);
+  const events = getFeaturedEvents(limit);
 
   return (
     <div className="grid gap-6">

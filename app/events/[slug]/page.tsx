@@ -8,7 +8,7 @@ import {
   getAllEventsServer,
   type Event,
 } from "@/lib/events-server";
-import { isPastEvent } from "@/lib/events";
+import { isPastEvent } from "@/lib/temporal";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

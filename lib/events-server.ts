@@ -1,6 +1,8 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
+import { Temporal } from '@js-temporal/polyfill'
+import { dateToPlainDate, dateToZonedDateTime, formatEventDate, formatEventTime, today, sortEventsByDate } from "./temporal"
 
 // This file contains server-side only functions for reading events
 // These functions should only be used in server components or API routes
@@ -8,7 +10,7 @@ import matter from "gray-matter"
 export interface Event {
   slug: string
   title: string
-  date: Date
+  date: Temporal.PlainDate
   time: string
   location: string
   description: string
@@ -23,9 +25,11 @@ export interface Event {
   featured?: boolean
   status?: string
   youtube?: string
+  startDateTime?: Temporal.ZonedDateTime
+  endDateTime?: Temporal.ZonedDateTime
 }
 
-interface EventFrontmatter {
+interface EventHeader {
   title: string
   date: Date
   created?: string
@@ -70,51 +74,42 @@ function parseEventFile(fileName: string): Event | null {
 
     // Parse frontmatter and content
     const { data, content } = matter(fileContents)
-    const frontmatter = data as EventFrontmatter
+    const eventHeader = data as EventHeader
 
-    // Create a date object for formatting
-    const eventDate = frontmatter.date
+    // Create Temporal objects from Date objects
+    const eventDate = eventHeader.date
+    const eventPlainDate = dateToPlainDate(eventDate)
+    const eventStartDateTime = dateToZonedDateTime(eventDate)
 
-    // Extract day, month, year for the calendar display
-    const day = eventDate.getDate().toString()
-    const month = eventDate.toLocaleString("en-US", { month: "short" }).toUpperCase()
-    const year = eventDate.getFullYear().toString()
-
-    // Format the date for display
-    const formattedDate = eventDate.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+    // Extract day, month, year for the calendar display using Temporal
+    const { formattedDate, day, month, year } = formatEventDate(eventPlainDate)
 
     // Create a slug from the filename without the extension
     const slug = fileName.replace(/\.md$/, "")
 
-    // Extract time from frontmatter.date if it's in ISO format, or use time field
+    // Extract time using Temporal
     let time = "TBD"
-    try {
-      const timeFormat: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: false }
-      const startTime = eventDate.toLocaleTimeString("en-US", timeFormat)
-      const endDate = frontmatter.end_time ? frontmatter.end_time : new Date(new Date(eventDate).setHours(eventDate.getHours() + 2));
-      const endTime = endDate.toLocaleTimeString("en-US", timeFormat)
+    let endDateTime: Temporal.ZonedDateTime | undefined
 
-      // Format the time string
-      if (frontmatter.end_time) {
-        time = `${startTime}-${endTime}`
+    try {
+      if (eventHeader.end_time) {
+        endDateTime = dateToZonedDateTime(eventHeader.end_time)
+        time = formatEventTime(eventStartDateTime, endDateTime)
       } else {
-        time = startTime
+        // Default to 2 hours duration if no end time is specified
+        endDateTime = eventStartDateTime.add({ hours: 2 })
+        time = formatEventTime(eventStartDateTime)
       }
     } catch (error) {
-      console.warn(`Error parsing time from date ${frontmatter.date}:`, error)
+      console.warn(`Error parsing time from date ${eventHeader.date}:`, error)
       time = "TBD"
     }
 
-
     // Extract location from venues array or location field
     let location = "TBD"
-    if (frontmatter.venues && frontmatter.venues.length > 0) {
+    if (eventHeader.venues && eventHeader.venues.length > 0) {
       // venues is an array like: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-      const venueString = frontmatter.venues[0]
+      const venueString = eventHeader.venues[0]
       const venueParts = venueString.split(", ")
       if (venueParts.length >= 2) {
         // Extract venue name and city
@@ -122,17 +117,17 @@ function parseEventFile(fileName: string): Event | null {
       } else {
         location = venueString
       }
-    } else if (frontmatter.location) {
-      location = frontmatter.location
+    } else if (eventHeader.location) {
+      location = eventHeader.location
     }
 
     // Determine if event is online based on event_type or location
-    const isOnline = frontmatter.event_type === "ONLINE" ||
+    const isOnline = eventHeader.event_type === "ONLINE" ||
       location.toLowerCase().includes("online") ||
-      frontmatter.isOnline || false
+      eventHeader.isOnline || false
 
     // Extract description from content (first paragraph after title)
-    let description = frontmatter.description || ""
+    let description = eventHeader.description || ""
     if (!description && content) {
       // Extract first meaningful paragraph from content
       const lines = content.split('\n')
@@ -147,26 +142,28 @@ function parseEventFile(fileName: string): Event | null {
 
     // Determine if event is featured
     // Only use explicit featured flag from frontmatter
-    const featured = frontmatter.featured === true
+    const featured = eventHeader.featured === true
 
     return {
       slug,
-      title: frontmatter.title,
-      date: eventDate,
+      title: eventHeader.title,
+      date: eventPlainDate,
       time,
       location,
       description,
-      registrationLink: frontmatter.registrationLink || frontmatter.event_url,
+      registrationLink: eventHeader.registrationLink || eventHeader.event_url,
       formattedDate,
       day,
       month,
       year,
       isOnline,
-      imageUrl: frontmatter.imageUrl,
+      imageUrl: eventHeader.imageUrl,
       content, // Include the full markdown content
       featured,
-      status: frontmatter.status,
-      youtube: frontmatter.youtube,
+      status: eventHeader.status,
+      youtube: eventHeader.youtube,
+      startDateTime: eventStartDateTime,
+      endDateTime,
     }
   } catch (error) {
     console.error(`Error parsing event file ${fileName}:`, error)
@@ -189,92 +186,40 @@ export function getAllEventsServer(): Event[] {
       .filter((event): event is Event => event !== null)
       .filter(shouldIncludeEvent) // Filter out draft events in production
 
-    // Sort events by date (newest first)
-    return allEvents.sort((a, b) => {
-      if (a.date < b.date) return 1
-      if (a.date > b.date) return -1
-      return 0
-    })
+    // Sort events by date (newest first) using Temporal
+    return sortEventsByDate(allEvents, 'desc')
   } catch (error) {
     console.error("Error reading events directory:", error)
     return []
   }
 }
 
-export function getFeaturedEventsServer(limit?: number): Event[] {
+export function getFeaturedEvents(limit?: number): Event[] {
   const allEvents = getAllEventsServer()
 
-  // Get explicitly featured events only
-  const explicitlyFeatured = allEvents.filter((event) => event.featured)
-
-  // Sort featured events by date (upcoming first, then past events in reverse chronological order)
-  const now = new Date()
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split("T")[0]
-
-  const upcomingFeatured = explicitlyFeatured.filter((event) => {
-    const eventDateStr = event.date.toISOString().split("T")[0]
-    return eventDateStr >= today
-  })
-  const pastFeatured = explicitlyFeatured.filter((event) => {
-    const eventDateStr = event.date.toISOString().split("T")[0]
-    return eventDateStr < today
-  })
-
-  // Sort upcoming events by date (ascending - earliest first)
-  upcomingFeatured.sort((a, b) => {
-    const aDateStr = a.date.toISOString().split("T")[0]
-    const bDateStr = b.date.toISOString().split("T")[0]
-    return aDateStr.localeCompare(bDateStr)
-  })
-
-  // Sort past events by date (descending - most recent first)
-  pastFeatured.sort((a, b) => {
-    const aDateStr = a.date.toISOString().split("T")[0]
-    const bDateStr = b.date.toISOString().split("T")[0]
-    return bDateStr.localeCompare(aDateStr)
-  })
-
-  // Combine: upcoming events first, then recent past events
-  const sortedFeatured = [...upcomingFeatured, ...pastFeatured]
-
-  if (limit && limit > 0) {
-    return sortedFeatured.slice(0, limit)
-  }
-
-  return sortedFeatured
+  return allEvents.slice(0, limit || 3)
 }
 
 export function getEventsByDate(): { upcomingEvents: Event[]; pastEvents: Event[] } {
   const allEvents = getAllEventsServer()
-  const now = new Date()
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split("T")[0]
+  const todayPlain = today()
 
   const upcomingEvents = allEvents.filter((event) => {
-    const eventDateStr = event.date.toISOString().split("T")[0]
-    return eventDateStr >= today
+    return Temporal.PlainDate.compare(event.date, todayPlain) >= 0
   })
   const pastEvents = allEvents.filter((event) => {
-    const eventDateStr = event.date.toISOString().split("T")[0]
-    return eventDateStr < today
+    return Temporal.PlainDate.compare(event.date, todayPlain) < 0
   })
 
-  // Sort upcoming events by date (ascending)
-  upcomingEvents.sort((a, b) => {
-    const aDateStr = a.date.toISOString().split("T")[0]
-    const bDateStr = b.date.toISOString().split("T")[0]
-    return aDateStr.localeCompare(bDateStr)
-  })
+  // Sort upcoming events by date (ascending - earliest first)
+  const sortedUpcoming = sortEventsByDate(upcomingEvents, 'asc')
 
-  // Sort past events by date (descending)
-  pastEvents.sort((a, b) => {
-    const aDateStr = a.date.toISOString().split("T")[0]
-    const bDateStr = b.date.toISOString().split("T")[0]
-    return bDateStr.localeCompare(aDateStr)
-  })
+  // Sort past events by date (descending - most recent first)
+  const sortedPast = sortEventsByDate(pastEvents, 'desc')
 
   return {
-    upcomingEvents,
-    pastEvents,
+    upcomingEvents: sortedUpcoming,
+    pastEvents: sortedPast,
   }
 }
 

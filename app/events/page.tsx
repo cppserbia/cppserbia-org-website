@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { getEventsByDate } from "@/lib/events-server";
-import { isPastEvent } from "@/lib/events";
+import { isPastEvent } from "@/lib/temporal";
 import { EventCard } from "@/components/event-card";
 
 export default function EventsPage() {
