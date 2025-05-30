@@ -10,7 +10,6 @@ event_url: https://www.meetup.com/cpp-serbia/events/297959668/
 event_id: 297959668
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
 youtube: https://www.youtube.com/watch?v=KZYYSruaL5o
-featured: true
 ---
 
 # End of the year — Lightning celebration

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { YouTubeIcon } from "@/components/icons";
+import { Temporal } from "@js-temporal/polyfill"
 
 interface Event {
     slug: string;
     title: string;
-    date: Date | string;
+    date: Temporal.PlainDate;
     time: string;
     location: string;
     description: string;
@@ -20,7 +21,7 @@ interface Event {
 interface EventCardProps {
     event: Event;
     isUpcoming: boolean;
-    isPastEvent?: (date: Date | string) => boolean;
+    isPastEvent?: (date: Temporal.PlainDate) => boolean;
 }
 
 export function EventDateBadge({ day, month, year }: { day: string; month: string; year: string }) {
@@ -70,12 +71,11 @@ export function EventMetadataPast({
     date,
     location
 }: {
-    date: Date | string;
+    date: Temporal.PlainDate;
     location: string;
 }) {
-    const formattedDateTime = new Date(date).toLocaleString(undefined, {
+    const formattedDateTime = date.toLocaleString('en-US', {
         dateStyle: "medium",
-        timeStyle: "short",
     });
 
     return (

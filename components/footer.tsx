@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import SocialLinks from "./social-links"
+import { getCurrentYear } from "@/lib/temporal"
 
 export default function Footer() {
   return (
@@ -54,7 +55,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-purple-900/40 mt-12 pt-6 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} C++ Serbia Community. All rights reserved.</p>
+          <p>© {getCurrentYear()} C++ Serbia Community. All rights reserved.</p>
         </div>
       </div>
     </footer>

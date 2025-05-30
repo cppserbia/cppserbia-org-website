@@ -29,4 +29,3 @@ If yes, this lecture/presentation is for you! We will explore the current state 
 | 💻 **Online** | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!
-
