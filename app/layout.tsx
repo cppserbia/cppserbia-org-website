@@ -13,9 +13,23 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "C++ Serbia Community",
-  description: "Join the vibrant community of C++ developers in Serbia",
-  generator: 'v0.dev',
+  metadataBase: new URL('https://cppserbia.org'),
+  title: {
+    default: "C++ Serbia Community",
+    template: "%s - C++ Serbia Community"
+  },
+  description: "Join the vibrant community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow C++ enthusiasts.",
+  generator: 'Next.js',
+  applicationName: 'C++ Serbia Community',
+  keywords: ['C++', 'programming', 'Serbia', 'Belgrade', 'community', 'meetup', 'technology', 'software development'],
+  authors: [{ name: 'C++ Serbia Community' }],
+  creator: 'C++ Serbia Community',
+  publisher: 'C++ Serbia Community',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
       { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -33,7 +47,7 @@ export const metadata: Metadata = {
   manifest: '/favicon/site.webmanifest',
   openGraph: {
     title: "C++ Serbia Community",
-    description: "Join the vibrant community of C++ developers in Serbia",
+    description: "Join the vibrant community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow C++ enthusiasts.",
     url: "https://cppserbia.org",
     siteName: "C++ Serbia",
     images: [
@@ -50,9 +64,33 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "C++ Serbia Community",
-    description: "Join the vibrant community of C++ developers in Serbia",
-    images: ["/images/logo.png"]
-  }
+    description: "Join the vibrant community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow C++ enthusiasts.",
+    images: ["/images/logo.png"],
+    creator: "@cppserbia",
+    site: "@cppserbia"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    types: {
+      'application/rss+xml': [
+        { url: 'https://cppserbia.org/events/feed.xml', title: 'C++ Serbia Events RSS Feed' }
+      ]
+    }
+  },
+  verification: {
+    google: 'google-site-verification-code', // You'll need to add your actual verification code
+  },
+  category: 'technology',
 }
 
 export default function RootLayout({
