@@ -12,7 +12,7 @@ export default function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
       {/* Header */}
-      <section className="relative w-full py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative w-full section-spacing sm:px-6 lg:px-8 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: "url('/images/wallpaper.png')" }}
@@ -20,16 +20,16 @@ export default function EventsPage() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6"
+            className="inline-flex items-center text-gray-hover mb-6"
           >
             <ArrowLeft className="mr-2 h-5 w-5" /> Back to Home
           </Link>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 gradient-brand-text">
                 Events
               </h1>
-              <p className="text-lg text-gray-300 max-w-2xl">
+              <p className="text-lg text-muted max-w-2xl">
                 Stay up to date with all C++ Serbia community events, meetups,
                 workshops, and conferences.
               </p>
