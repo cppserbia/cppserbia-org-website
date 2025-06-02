@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Events - C++ Serbia Community",
   description: "Join C++ Serbia community events! Discover upcoming meetups, workshops, and conferences for C++ developers in Serbia.",
   alternates: {
-    canonical: "/events",
+    canonical: "https://cppserbia.org/events",
   },
 };
 
