@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { YouTubeIcon } from "@/components/icons";
 import { Temporal } from "@js-temporal/polyfill"
+import { YouTubeButton } from "@/components/youtube-button"
 
 interface Event {
     slug: string;
@@ -106,22 +107,14 @@ export function EventActions({
                 View Details
             </Link>
             {youtube && (
-                <Link
-                    href={youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-[#FF0000] hover:bg-[#FF0000]/80 rounded-md transition-colors flex-shrink-0"
-                    aria-label="Watch on YouTube"
-                >
-                    <YouTubeIcon width={16} height={16} color="white" />
-                </Link>
+                <YouTubeButton href={youtube} size="sm" />
             )}
             {registrationLink && showRegistration && (
                 <Link
                     href={registrationLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 rounded-md flex-shrink-0"
+                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white gradient-brand-button rounded-md flex-shrink-0"
                 >
                     Register
                 </Link>
@@ -138,7 +131,7 @@ export function EventCard({ event, isUpcoming }: EventCardProps) {
                 <h3 className="text-xl font-bold mb-2 text-white break-words">
                     {event.title}
                 </h3>
-                <p className="text-gray-300 mb-4 break-words">{event.description}</p>
+                <p className="text-muted mb-4 break-words">{event.description}</p>
 
                 {isUpcoming ? (
                     <EventMetadata
@@ -162,7 +155,7 @@ export function EventCard({ event, isUpcoming }: EventCardProps) {
 
     if (isUpcoming) {
         return (
-            <div className="relative p-[1px] bg-gradient-to-r from-red-500 to-purple-600 rounded-lg hover:from-red-600 hover:to-purple-700 transition-all duration-300 overflow-hidden">
+            <div className="relative p-[1px] gradient-brand-border rounded-lg transition-all duration-300 overflow-hidden">
                 <div className="rounded-lg p-4 sm:p-6 bg-[#0c0c1d]/80 hover:bg-[#0c0c1d]/90 transition-colors overflow-hidden">
                     {cardContent}
                 </div>

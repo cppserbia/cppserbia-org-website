@@ -12,9 +12,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-purple-900/40 bg-[#0c0c1d]/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="link-with-icon">
           <Image src="/images/logo.png" alt="C++ Serbia Logo" width={40} height={40} />
-          <span className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
+          <span className="text-xl font-medium gradient-brand-text">
             C++ Serbia
           </span>
         </Link>
@@ -32,9 +32,9 @@ export default function Navbar() {
           </Link>
           <Button
             size="sm"
-            className="bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white ml-2"
+            className="gradient-brand-button text-white ml-2"
           >
-            <Link href="/events" className="flex items-center gap-1">
+            <Link href="/events" className="nav-link">
               <Calendar className="h-4 w-4" /> Upcoming Events
             </Link>
           </Button>
@@ -73,10 +73,10 @@ export default function Navbar() {
               Join Us
             </Link>
             <Button
-              className="w-full bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white mt-4"
+              className="w-full gradient-brand-button text-white mt-4"
               onClick={() => setIsMenuOpen(false)}
             >
-              <Link href="/events" className="flex items-center justify-center gap-2 w-full">
+              <Link href="/events" className="flex-center gap-2 w-full">
                 <Calendar className="h-5 w-5" /> Upcoming Events
               </Link>
             </Button>

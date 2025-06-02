@@ -9,9 +9,9 @@ export default function Footer() {
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-4">
+            <Link href="/" className="link-with-icon mb-4">
               <Image src="/images/logo.png" alt="C++ Serbia Logo" width={50} height={50} />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400">
+              <span className="text-xl font-bold gradient-brand-text">
                 C++ Serbia
               </span>
             </Link>
