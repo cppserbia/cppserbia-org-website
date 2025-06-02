@@ -3,11 +3,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Calendar, ArrowRight } from "lucide-react"
 import SocialLinks from "@/components/social-links"
-import FeaturedEvents from "@/components/featured-events" // Revert to using the original component
+import FeaturedEvents from "@/components/featured-events"
+import { OrganizationSeo } from "@/components/seo/organization-seo"
 
 export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
+      <OrganizationSeo />
+      
       {/* Hero Section */}
       <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
         <div
