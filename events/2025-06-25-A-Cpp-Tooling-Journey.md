@@ -19,7 +19,7 @@ This talk shares a use case of C++ dependency management and build environment c
 
 | | |
 |---|---|
-| 👤 **Speaker** | **[Aleksandar Nikolić](https://www.linkedin.com/in/aleksandr-timofeev-982719180)** |
+| 👤 **Speaker** | **[Aleksandar Timofeev](https://www.linkedin.com/in/aleksandr-timofeev-982719180)** |
 | 🕕 **Date & Time** | **25th of June (Wednesday), 6 pm** |
 | 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
 | 🏢 **Address** | **Masarikova 5** |
