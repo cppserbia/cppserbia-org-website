@@ -3,7 +3,7 @@ title: "A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation"
 date: 2025-06-25T18:00:00+02:00
 created: 2025-06-16T12:48:33-04:00
 event_type: PHYSICAL
-status: ACTIVE
+status: PAST
 duration: PT2H
 end_time: 2025-06-25T20:00:00+02:00
 event_url: https://www.meetup.com/cpp-serbia/events/308526189/
