@@ -9,6 +9,7 @@ end_time: 2024-10-02T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/303416667/
 event_id: 303416667
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=23BvNd4sd4Y
 ---
 
 # Writing another command line arguments parser
@@ -30,4 +31,3 @@ But, importantly, we will try to answer the main question: why would you even wr
 | 🏢 **Address** | **Masarikova 5** |
 
 See you!
-

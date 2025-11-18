@@ -9,6 +9,7 @@ end_time: 2024-12-17T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/305014834/
 event_id: 305014834
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=QQ_P422Wx9c
 ---
 
 # End of the year — Lightning celebration
