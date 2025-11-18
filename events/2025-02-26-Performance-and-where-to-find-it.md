@@ -9,6 +9,7 @@ end_time: 2025-02-26T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/306397103/
 event_id: 306397103
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=86IQ9YI4Nuw
 ---
 
 # Performance and where to find it

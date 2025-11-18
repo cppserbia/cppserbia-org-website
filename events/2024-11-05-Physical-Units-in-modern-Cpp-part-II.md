@@ -9,6 +9,7 @@ end_time: 2024-11-05T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/304266487/
 event_id: 304266487
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=ImucbIYTnVA
 ---
 
 # Physical Units in modern C++, part II
@@ -30,4 +31,3 @@ Nikola will present both the original version of the library, which was develope
 | 🏢 **Address** | **Masarikova 5** |
 
 See you!
-
