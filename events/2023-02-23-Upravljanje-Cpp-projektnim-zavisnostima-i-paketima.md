@@ -1,11 +1,11 @@
 ---
 title: "Upravljanje C++ projektnim zavisnostima i paketima"
-date: 2023-02-23T18:00:00+01:00
+date: 2023-02-23T18:00:00
 created: 2023-02-10T08:34:49-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-02-23T21:00:00+01:00
+end_time: 2023-02-23T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/291533430/
 event_id: 291533430
 venues: ['ICT Hub Kralja Milana, Beograd, rs']

@@ -1,11 +1,11 @@
 ---
 title: "C++ Serbia Picnic"
-date: 2024-08-30T18:00:00+02:00
+date: 2024-08-30T18:00:00
 created: 2024-08-16T13:14:09-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT4H
-end_time: 2024-08-30T22:00:00+02:00
+end_time: 2024-08-30T22:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/302869584/
 event_id: 302869584
 venues: ['Kosutnjak, Beograd, yu']

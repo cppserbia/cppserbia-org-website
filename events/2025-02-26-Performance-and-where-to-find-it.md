@@ -1,11 +1,11 @@
 ---
 title: "Performance and where to find it"
-date: 2025-02-26T18:00:00+01:00
+date: 2025-02-26T18:00:00
 created: 2025-02-25T08:06:30-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-02-26T20:00:00+01:00
+end_time: 2025-02-26T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/306397103/
 event_id: 306397103
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

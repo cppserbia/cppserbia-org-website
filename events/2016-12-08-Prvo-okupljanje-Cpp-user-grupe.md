@@ -1,11 +1,11 @@
 ---
 title: "Prvo okupljanje C++ user grupe"
-date: 2016-12-08T18:00:00+01:00
+date: 2016-12-08T18:00:00
 created: 2016-12-01T11:28:38-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT0S
-end_time: 2016-12-08T21:00:00+01:00
+end_time: 2016-12-08T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/235960635/
 event_id: 235960635
 venues: ['Startit Centar, Belgrade, RS']

@@ -1,11 +1,11 @@
 ---
 title: "Lifting the Pipes - Beyond Sender/Receiver and Expected Outcome"
-date: 2024-06-26T18:00:00+02:00
+date: 2024-06-26T18:00:00
 created: 2024-06-17T08:19:40-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2024-06-26T21:00:00+02:00
+end_time: 2024-06-26T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/301691637/
 event_id: 301691637
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

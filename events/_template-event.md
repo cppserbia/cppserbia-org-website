@@ -1,6 +1,6 @@
 ---
 title: TEMPLATE EVENT
-date: 2225-06-21T18:00:00+02:00
+date: 2225-06-21T18:00:00
 created:
 event_type: PHYSICAL
 status: DRAFT # Change to UPCOMING

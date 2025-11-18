@@ -1,11 +1,11 @@
 ---
 title: "C++ Serbia mid-summer Hangout"
-date: 2024-07-24T18:00:00+02:00
+date: 2024-07-24T18:00:00
 created: 2024-07-22T07:51:08-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2024-07-24T21:00:00+02:00
+end_time: 2024-07-24T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/302383938/
 event_id: 302383938
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

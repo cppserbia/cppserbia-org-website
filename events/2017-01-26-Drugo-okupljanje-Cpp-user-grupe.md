@@ -1,11 +1,11 @@
 ---
 title: "Drugo okupljanje C++ user grupe"
-date: 2017-01-26T19:00:00+01:00
+date: 2017-01-26T19:00:00
 created: 2017-01-20T06:07:51-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2017-01-26T21:00:00+01:00
+end_time: 2017-01-26T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/237067859/
 event_id: 237067859
 venues: ['Startit Centar, Belgrade, RS']

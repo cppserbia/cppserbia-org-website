@@ -1,11 +1,11 @@
 ---
 title: "C++ Customization Points"
-date: 2023-05-17T18:00:00+02:00
+date: 2023-05-17T18:00:00
 created: 2023-04-29T15:39:07-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-05-17T21:00:00+02:00
+end_time: 2023-05-17T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/293219910/
 event_id: 293219910
 venues: ['ICT Hub Kralja Milana, Beograd, rs']

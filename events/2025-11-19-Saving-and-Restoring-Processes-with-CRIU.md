@@ -1,11 +1,11 @@
 ---
 title: "Saving and Restoring Processes with CRIU: The Challenge of Shadow Stacks on ARM64"
-date: 2025-11-19T18:00:00+02:00
+date: 2025-11-19T18:00:00
 created: 2025-11-05T15:48:33-04:00
 event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
-end_time: 2025-11-19T20:00:00+02:00
+end_time: 2025-11-19T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/311869777/
 event_id: 311510821
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

@@ -1,11 +1,11 @@
 ---
 title: "Template metaprogramming made easy"
-date: 2022-06-08T18:00:00+02:00
+date: 2022-06-08T18:00:00
 created: 2022-05-18T10:26:12-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2022-06-08T20:00:00+02:00
+end_time: 2022-06-08T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/285986603/
 event_id: 285986603
 venues: ['Ljubostinjska 2, Beograd, rs']
