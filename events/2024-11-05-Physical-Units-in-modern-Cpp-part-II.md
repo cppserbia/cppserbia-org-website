@@ -1,11 +1,11 @@
 ---
 title: "Physical Units in modern C++, part II"
-date: 2024-11-05T18:00:00+01:00
+date: 2024-11-05T18:00:00
 created: 2024-10-29T08:23:21-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2024-11-05T20:00:00+01:00
+end_time: 2024-11-05T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/304266487/
 event_id: 304266487
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

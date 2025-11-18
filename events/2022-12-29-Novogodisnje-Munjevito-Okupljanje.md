@@ -1,11 +1,11 @@
 ---
 title: "Novogodišnje Munjevito Okupljanje"
-date: 2022-12-29T18:00:00+01:00
+date: 2022-12-29T18:00:00
 created: 2022-12-26T11:42:16-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2022-12-29T21:00:00+01:00
+end_time: 2022-12-29T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/290538668/
 event_id: 290538668
 venues: ['ICT Hub Kralja Milana, Beograd, rs']

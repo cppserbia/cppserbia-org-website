@@ -1,11 +1,11 @@
 ---
 title: "The hidden performance price of C++ virtual functions"
-date: 2023-09-27T18:00:00+02:00
+date: 2023-09-27T18:00:00
 created: 2023-09-20T11:38:44-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-09-27T21:00:00+02:00
+end_time: 2023-09-27T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/296230317/
 event_id: 296230317
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

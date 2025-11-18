@@ -1,11 +1,11 @@
 ---
 title: "Simplifying Raft with C++20 coroutines"
-date: 2024-01-25T18:00:00+01:00
+date: 2024-01-25T18:00:00
 created: 2024-01-19T04:43:40-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT5H30M
-end_time: 2024-01-25T23:30:00+01:00
+end_time: 2024-01-25T23:30:00
 event_url: https://www.meetup.com/cpp-serbia/events/298649346/
 event_id: 298649346
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

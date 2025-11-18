@@ -1,11 +1,11 @@
 ---
 title: "End of the year — Lightning celebration"
-date: 2024-12-17T18:00:00+01:00
+date: 2024-12-17T18:00:00
 created: 2024-12-10T08:18:00-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2024-12-17T20:00:00+01:00
+end_time: 2024-12-17T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/305014834/
 event_id: 305014834
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

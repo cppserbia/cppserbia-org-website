@@ -1,11 +1,11 @@
 ---
 title: "End of the year — Lightning celebration "
-date: 2023-12-27T18:00:00+01:00
+date: 2023-12-27T18:00:00
 created: 2023-12-15T05:54:33-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT6H
-end_time: 2023-12-28T00:00:00+01:00
+end_time: 2023-12-28T00:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/297959668/
 event_id: 297959668
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

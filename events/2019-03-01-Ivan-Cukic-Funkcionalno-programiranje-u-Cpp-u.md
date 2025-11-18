@@ -1,11 +1,11 @@
 ---
 title: "Ivan Čukić - Funkcionalno programiranje u C++-u"
-date: 2019-03-01T18:00:00+01:00
+date: 2019-03-01T18:00:00
 created: 2019-02-20T07:36:08-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2019-03-01T20:00:00+01:00
+end_time: 2019-03-01T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/259120701/
 event_id: 259120701
 venues: ['Startit Centar, Belgrade, RS']

@@ -13,16 +13,21 @@ export function dateToPlainDate(date: Date): Temporal.PlainDate {
 
 /**
  * Convert a Date object to Temporal.ZonedDateTime
+ * Note: Interprets the date/time components as being in the target timezone
+ * (not UTC, despite how gray-matter may have parsed it)
  */
 export function dateToZonedDateTime(date: Date, timeZone: string = 'Europe/Belgrade'): Temporal.ZonedDateTime {
+  // Extract the date/time components and interpret them as being in the target timezone
+  // This handles the case where gray-matter parses "2025-11-19T18:00:00" as UTC,
+  // but we want to treat those components as Belgrade time
   return Temporal.ZonedDateTime.from({
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-    second: date.getSeconds(),
-    millisecond: date.getMilliseconds(),
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate(),
+    hour: date.getUTCHours(),
+    minute: date.getUTCMinutes(),
+    second: date.getUTCSeconds(),
+    millisecond: date.getUTCMilliseconds(),
     timeZone
   })
 }

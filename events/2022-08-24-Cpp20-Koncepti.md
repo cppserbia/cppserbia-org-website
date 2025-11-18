@@ -1,11 +1,11 @@
 ---
 title: "C++20 — Koncepti"
-date: 2022-08-24T18:00:00+02:00
+date: 2022-08-24T18:00:00
 created: 2022-08-04T06:05:13-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2022-08-24T21:00:00+02:00
+end_time: 2022-08-24T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/287611882/
 event_id: 287611882
 venues: ['ICT Hub Kralja Milana, Beograd, rs']

@@ -1,11 +1,11 @@
 ---
 title: "Niko ne očekuje špansku inkviziciju"? :)
-date: 2023-01-27T18:00:00+01:00
+date: 2023-01-27T18:00:00
 created: 2023-01-14T04:00:49-05:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-01-27T21:00:00+01:00
+end_time: 2023-01-27T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/290935577/
 event_id: 290935577
 venues: ['ICT Hub Kralja Milana, Beograd, rs']

@@ -1,11 +1,11 @@
 ---
 title: "Šta to radi ovaj moj program?"
-date: 2022-04-06T18:00:00+02:00
+date: 2022-04-06T18:00:00
 created: 2022-03-25T16:29:06-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2022-04-06T20:00:00+02:00
+end_time: 2022-04-06T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/284853148/
 event_id: 284853148
 venues: ['Ljubostinjska 2, Beograd, rs']

@@ -1,11 +1,11 @@
 ---
 title: "Better understanding technical interviews"
-date: 2025-05-21T18:00:00+02:00
+date: 2025-05-21T18:00:00
 created: 2025-05-14T19:48:33-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-05-21T20:00:00+02:00
+end_time: 2025-05-21T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/307829937/
 event_id: 307829937
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

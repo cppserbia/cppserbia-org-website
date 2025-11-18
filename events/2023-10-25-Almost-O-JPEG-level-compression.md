@@ -1,11 +1,11 @@
 ---
 title: "Almost O(n) JPEG level compression"
-date: 2023-10-25T18:00:00+02:00
+date: 2023-10-25T18:00:00
 created: 2023-10-15T09:09:59-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-10-25T21:00:00+02:00
+end_time: 2023-10-25T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/296736109/
 event_id: 296736109
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

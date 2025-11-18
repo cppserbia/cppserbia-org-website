@@ -1,11 +1,11 @@
 ---
 title: "World of Bitcoin - open-sourced C++ project"
-date: 2024-09-18T18:00:00+02:00
+date: 2024-09-18T18:00:00
 created: 2024-09-13T12:12:09-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2024-09-18T20:00:00+02:00
+end_time: 2024-09-18T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/303412485/
 event_id: 303412485
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']

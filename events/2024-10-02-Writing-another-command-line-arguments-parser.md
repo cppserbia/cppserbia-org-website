@@ -1,11 +1,11 @@
 ---
 title: "Writing another command line arguments parser"
-date: 2024-10-02T18:00:00+02:00
+date: 2024-10-02T18:00:00
 created: 2024-09-13T16:21:37-04:00
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2024-10-02T20:00:00+02:00
+end_time: 2024-10-02T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/303416667/
 event_id: 303416667
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
