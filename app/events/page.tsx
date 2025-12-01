@@ -22,7 +22,7 @@ export default function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
       <EventsListSeo upcomingEvents={upcomingEvents} pastEvents={pastEvents} />
-      
+
       {/* Header */}
       <section className="relative w-full section-spacing sm:px-6 lg:px-8 overflow-hidden">
         <div
@@ -50,7 +50,7 @@ export default function EventsPage() {
               <Image
                 src="/images/logo.png"
                 alt="C++ Serbia Logo"
-                width={120}
+                width={108}
                 height={120}
               />
             </div>

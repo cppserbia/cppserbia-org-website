@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Calendar, MapPin, Clock } from "lucide-react";
-import { YouTubeIcon } from "@/components/icons";
 import { Temporal } from "@js-temporal/polyfill"
 import { YouTubeButton } from "@/components/youtube-button"
 
