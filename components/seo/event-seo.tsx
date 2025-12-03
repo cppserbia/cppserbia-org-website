@@ -6,43 +6,6 @@ interface EventSeoProps {
 }
 
 // Local utility functions for SEO
-function generateEventKeywords(event: Event): string {
-  const baseKeywords = [
-    'C++',
-    'programming',
-    'Serbia',
-    'Belgrade',
-    'meetup',
-    'technology',
-    'software development',
-    'community'
-  ];
-
-  const eventSpecificKeywords: string[] = [];
-
-  // Extract keywords from title
-  const titleWords = event.title
-    .toLowerCase()
-    .split(/\s+/)
-    .filter(word => word.length > 3)
-    .filter(word => !['the', 'and', 'for', 'with', 'from', 'this', 'that'].includes(word));
-  
-  eventSpecificKeywords.push(...titleWords);
-
-  // Add location-based keywords
-  if (event.location.toLowerCase().includes('online')) {
-    eventSpecificKeywords.push('online event', 'virtual meetup', 'remote learning');
-  } else {
-    eventSpecificKeywords.push('physical event', 'in-person meetup');
-  }
-
-  // Combine and deduplicate
-  const allKeywords = [...baseKeywords, ...eventSpecificKeywords];
-  const uniqueKeywords = Array.from(new Set(allKeywords));
-
-  return uniqueKeywords.join(', ');
-}
-
 function generateEventDescription(event: Event): string {
   if (event.description && event.description.length > 100) {
     return event.description;
@@ -50,15 +13,15 @@ function generateEventDescription(event: Event): string {
 
   const eventType = event.isOnline ? 'online' : 'in-person';
   const baseDescription = `Join C++ Serbia community for "${event.title}" - an ${eventType} event`;
-  
+
   let enhancedDescription = baseDescription;
-  
+
   if (event.location !== 'TBD') {
     enhancedDescription += ` taking place ${event.isOnline ? 'online' : `at ${event.location}`}`;
   }
-  
+
   enhancedDescription += `. Connect with fellow C++ developers, learn about modern C++ techniques, and expand your programming knowledge.`;
-  
+
   if (event.registrationLink) {
     enhancedDescription += ` Register now to secure your spot!`;
   }
@@ -69,15 +32,14 @@ function generateEventDescription(event: Event): string {
 export function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: EventSeoProps) {
   const eventUrl = `${baseUrl}/events/${event.slug}`;
   const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
-  
-  // Generate enhanced description and keywords
+
+  // Generate enhanced description
   const description = generateEventDescription(event);
-  const keywords = generateEventKeywords(event);
-  
+
   // Convert Temporal dates to ISO strings for JSON-LD
   const startDate = event.startDateTime?.toString() || event.date.toString();
   const endDate = event.endDateTime?.toString() || event.date.toString();
-  
+
   // Determine event status
   const eventStatus = event.status === 'PAST' ? 'EventCancelled' : 'EventScheduled';
   const eventAttendanceMode = event.isOnline ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';

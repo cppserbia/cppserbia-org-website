@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
 import { YouTubeButton } from "@/components/youtube-button";
+import { AddToCalendarButton } from "@/components/add-to-calendar-button";
 import { EventSeo } from "@/components/seo/event-seo";
 import {
   getEventBySlug,
@@ -41,7 +42,7 @@ export async function generateMetadata({
   const baseUrl = 'https://cppserbia.org';
   const eventUrl = `${baseUrl}/events/${event.slug}`;
   const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
-  
+
   return {
     title: `${event.title} - C++ Serbia Community`,
     description: event.description,
@@ -101,7 +102,7 @@ export default async function EventPage({
   return (
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
       <EventSeo event={event} />
-      
+
       {/* Header */}
       <section className="relative w-full section-spacing overflow-hidden">
         <div
@@ -135,12 +136,15 @@ export default async function EventPage({
                 </div>
               </div>
             </div>
-            <div className="flex-shrink-0 flex gap-3">
+            <div className="flex-shrink-0 flex flex-col gap-3 items-end">
               {event.youtube && <YouTubeButton href={event.youtube} />}
-              <div className="bg-purple-950 p-3 rounded-lg text-center min-w-[70px]">
-                <div className="text-sm text-purple-300">{event.month}</div>
-                <div className="text-3xl font-bold">{event.day}</div>
-                <div className="text-sm text-purple-300">{event.year}</div>
+              <div className="flex flex-col gap-3 items-center">
+                <div className="bg-purple-950 p-3 rounded-lg text-center min-w-[70px]">
+                  <div className="text-sm text-purple-300">{event.month}</div>
+                  <div className="text-3xl font-bold">{event.day}</div>
+                  <div className="text-sm text-purple-300">{event.year}</div>
+                </div>
+                <AddToCalendarButton slug={event.slug} />
               </div>
             </div>
           </div>
