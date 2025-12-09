@@ -1,11 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Calendar, ArrowRight, Rss } from "lucide-react"
+import { Calendar, ArrowRight } from "lucide-react"
 import SocialLinks from "@/components/social-links"
 import FeaturedEvents from "@/components/featured-events"
 import { OrganizationSeo } from "@/components/seo/organization-seo"
 import { ICalFeedButton } from "@/components/ical-feed-button"
+import { RSSFeedButton } from "@/components/rss-feed-button"
 
 export default async function Home() {
   return (
@@ -112,16 +113,7 @@ export default async function Home() {
             </Button>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-orange-500 text-orange-400 hover:bg-orange-950 hover:text-orange-300"
-                asChild
-              >
-                <a href="/feed.xml" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  RSS Feed <Rss className="h-4 w-4" />
-                </a>
-              </Button>
+              <RSSFeedButton />
               <ICalFeedButton />
             </div>
           </div>

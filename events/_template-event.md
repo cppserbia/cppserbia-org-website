@@ -1,11 +1,11 @@
 ---
 title: TEMPLATE EVENT
-date: 2026-01-21T18:00:00
+date: 2025-01-21T18:00:00
 created: 2025-12-01T18:00:00
 event_type: PHYSICAL
-status: DRAFT # Change to UPCOMING
+status: PAST # Change to UPCOMING
 duration: PT2H
-end_time: 2026-01-21T20:00:00
+end_time: 2025-01-21T20:00:00
 event_url: <Meetup.com Event URL>
 event_id: <Meetup.com Event ID>
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
