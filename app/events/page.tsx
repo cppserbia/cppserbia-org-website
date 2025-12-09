@@ -6,6 +6,8 @@ import { getEventsByDate } from "@/lib/events-server";
 import { isPastEvent } from "@/lib/temporal";
 import { EventCard } from "@/components/event-card";
 import { EventsListSeo } from "@/components/seo/events-list-seo";
+import { ICalFeedButton } from "@/components/ical-feed-button";
+import { RSSFeedButton } from "@/components/rss-feed-button";
 
 export const metadata: Metadata = {
   title: "Events - C++ Serbia Community",
@@ -80,6 +82,16 @@ export default function EventsPage() {
                 for the last Wednesday of the month.
               </p>
             )}
+          </div>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-4">
+            <span className="text-sm text-gray-400 text-center">
+              Subscribe to our feeds to get updates on our future events
+            </span>
+            <div className="flex gap-2">
+              <RSSFeedButton />
+              <ICalFeedButton />
+            </div>
           </div>
         </div>
       </section>
