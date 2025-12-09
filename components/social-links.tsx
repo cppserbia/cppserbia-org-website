@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Linkedin, MessageSquare, Youtube, Twitch, Send, Users } from "lucide-react"
+import { Linkedin, MessageSquare, Youtube, Twitch, Send, Users, Github } from "lucide-react"
 
 interface SocialLinksProps {
   size?: "sm" | "md" | "lg"
@@ -29,6 +29,24 @@ export default function SocialLinks({ size = "md" }: SocialLinksProps) {
 
   const socialLinks: SocialLinkData[] = [
     {
+      href: "https://github.com/cppserbia",
+      icon: <Github size={iconSize[size]} />,
+      label: "GitHub",
+      color: "#9ca3af"
+    },
+    {
+      href: "https://www.youtube.com/@cppserbia",
+      icon: <Youtube size={iconSize[size]} />,
+      label: "YouTube",
+      color: "#FF0000"
+    },
+    {
+      href: "https://www.twitch.tv/cppserbia",
+      icon: <Twitch size={iconSize[size]} />,
+      label: "Twitch",
+      color: "#9146FF"
+    },
+    {
       href: "https://www.linkedin.com/company/101931236/",
       icon: <Linkedin size={iconSize[size]} />,
       label: "LinkedIn",
@@ -39,18 +57,6 @@ export default function SocialLinks({ size = "md" }: SocialLinksProps) {
       icon: <MessageSquare size={iconSize[size]} />,
       label: "Discord",
       color: "#5865F2"
-    },
-    {
-      href: "https://www.twitch.tv/cppserbia",
-      icon: <Twitch size={iconSize[size]} />,
-      label: "Twitch",
-      color: "#9146FF"
-    },
-    {
-      href: "https://www.youtube.com/@cppserbia",
-      icon: <Youtube size={iconSize[size]} />,
-      label: "YouTube",
-      color: "#FF0000"
     },
     {
       href: "https://t.me/+l7NS0GrslBMwNzI0",
