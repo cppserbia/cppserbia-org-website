@@ -116,7 +116,8 @@
            prose-code:before:content-none prose-code:after:content-none
            prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:font-mono
            prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300
-           prose-a:text-purple-400 prose-a:hover:text-purple-300;
+           prose-a:text-purple-400 prose-a:hover:text-purple-300
+           prose-li:my-1;
   }
 
   /* Common link and button patterns */

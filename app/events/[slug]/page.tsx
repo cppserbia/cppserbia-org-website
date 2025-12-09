@@ -271,17 +271,17 @@ export default async function EventPage({
                       </a>
                     ),
                     ul: ({ children }) => (
-                      <ul className="list-disc list-inside mb-4 text-muted space-y-1">
+                      <ul className="list-disc list-inside mb-4 text-muted">
                         {children}
                       </ul>
                     ),
                     ol: ({ children }) => (
-                      <ol className="list-decimal list-inside mb-4 text-muted space-y-1">
+                      <ol className="list-decimal list-inside mb-4 text-muted">
                         {children}
                       </ol>
                     ),
                     li: ({ children }) => (
-                      <li className="text-muted">{children}</li>
+                      <li>{children}</li>
                     ),
                     strong: ({ children }) => (
                       <strong className="font-bold text-white">
