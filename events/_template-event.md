@@ -3,12 +3,13 @@ title: TEMPLATE EVENT
 date: 2025-01-21T18:00:00
 created: 2025-12-01T18:00:00
 event_type: PHYSICAL
-status: PAST # Change to UPCOMING
+status: DRAFT # Change to UPCOMING
 duration: PT2H
 end_time: 2025-01-21T20:00:00
 event_url: <Meetup.com Event URL>
 event_id: <Meetup.com Event ID>
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+# imageUrl:  # https://images.cppserbia.org/events/{slug}.jpg
 # youtube:   # Add after event
 ---
 
