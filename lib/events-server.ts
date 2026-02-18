@@ -179,7 +179,9 @@ export function getAllEventsServer(): Event[] {
     }
 
     const fileNames = fs.readdirSync(eventsDirectory)
-    const markdownFiles = fileNames.filter((fileName) => fileName.endsWith(".md"))
+    const markdownFiles = fileNames.filter(
+      (fileName) => fileName.endsWith(".md") && !fileName.startsWith("_")
+    )
 
     const allEvents = markdownFiles
       .map((fileName) => parseEventFile(fileName))
