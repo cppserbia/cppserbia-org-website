@@ -9,6 +9,7 @@ end_time: 2025-05-21T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/307829937/
 event_id: 307829937
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=XDgSY_vg1v4
 ---
 
 # Better understanding technical interviews

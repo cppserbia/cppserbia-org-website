@@ -9,6 +9,7 @@ end_time: 2025-10-15T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/311510821/
 event_id: 311510821
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=BHw6NCSsEd0
 ---
 
 # Baby, don't test me, no more

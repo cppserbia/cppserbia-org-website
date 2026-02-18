@@ -9,6 +9,7 @@ end_time: 2025-11-19T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/311869777/
 event_id: 311510821
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=sY20Il7_MYQ
 ---
 
 # Saving and Restoring Processes with CRIU: The Challenge of Shadow Stacks on ARM64
