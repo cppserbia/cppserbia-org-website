@@ -9,6 +9,7 @@ end_time: 2026-01-28T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/312635627/
 event_id: 312635627
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=9iJ63VhQo5g
 ---
 
 # What's going on with Contracts?

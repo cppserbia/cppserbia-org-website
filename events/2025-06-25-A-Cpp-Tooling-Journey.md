@@ -9,6 +9,7 @@ end_time: 2025-06-25T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/308526189/
 event_id: 308526189
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+youtube: https://www.youtube.com/watch?v=i2rGsdo-zJg
 ---
 
 # A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation
