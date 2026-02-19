@@ -2,7 +2,7 @@
 const nextConfig = {
   transpilePackages: ['react-markdown'],
   images: {
-    domains: ['secure.meetupstatic.com'],
+    domains: ['secure.meetupstatic.com', 'images.cppserbia.org'],
     unoptimized: true,
   },
   eslint: {
