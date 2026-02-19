@@ -19,9 +19,15 @@ yarn-error.log*
 # env files
 .env*
 
+# private keys
+*.pem
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# images (hosted on R2, not in git)
+/images/events/

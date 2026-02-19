@@ -1,15 +1,18 @@
 ---
-title: "Meeting C++ 2023 — Trip report"
-date: 2023-11-29T18:00:00
-created: 2023-11-23T10:06:21-05:00
+title: Meeting C++ 2023 — Trip report
+date: 2023-11-29T18:00:00.000Z
+created: 2023-11-23T15:06:21.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-11-29T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/297540747/
+end_time: 2023-11-29T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/297540747/'
 event_id: 297540747
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=SjZvT0wUrTY
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=SjZvT0wUrTY'
+imageUrl: >-
+  https://images.cppserbia.org/events/2023-11-29-Meeting-Cpp-2023-Trip-report.jpg
 ---
 
 # Meeting C++ 2023 — Trip report

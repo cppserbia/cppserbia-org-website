@@ -1,15 +1,17 @@
 ---
-title: "Baby, don't test me, no more"
-date: 2025-10-15T18:00:00
-created: 2025-10-13T19:48:33-04:00
+title: 'Baby, don''t test me, no more'
+date: 2025-10-15T18:00:00.000Z
+created: 2025-10-13T23:48:33.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-10-15T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/311510821/
+end_time: 2025-10-15T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/311510821/'
 event_id: 311510821
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=BHw6NCSsEd0
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=BHw6NCSsEd0'
+imageUrl: 'https://images.cppserbia.org/events/2025-10-15-Baby-dont-test-me-no-more.jpg'
 ---
 
 # Baby, don't test me, no more

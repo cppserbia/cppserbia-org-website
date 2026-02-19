@@ -1,15 +1,18 @@
 ---
-title: "Novogodišnje Munjevito Okupljanje"
-date: 2022-12-29T18:00:00
-created: 2022-12-26T11:42:16-05:00
+title: Novogodišnje Munjevito Okupljanje
+date: 2022-12-29T18:00:00.000Z
+created: 2022-12-26T16:42:16.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2022-12-29T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/290538668/
+end_time: 2022-12-29T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/290538668/'
 event_id: 290538668
-venues: ['ICT Hub Kralja Milana, Beograd, rs']
-youtube: https://www.youtube.com/watch?v=FldZhhpaaX8
+venues:
+  - 'ICT Hub Kralja Milana, Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=FldZhhpaaX8'
+imageUrl: >-
+  https://images.cppserbia.org/events/2022-12-29-Novogodisnje-Munjevito-Okupljanje.jpg
 ---
 
 # Novogodišnje Munjevito Okupljanje

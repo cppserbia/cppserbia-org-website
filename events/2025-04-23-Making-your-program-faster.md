@@ -1,15 +1,19 @@
 ---
-title: "Making your program faster - multithreading and automatic compiler vectorization"
-date: 2025-04-23T18:00:00
-created: 2025-04-22T10:00:19-04:00
+title: >-
+  Making your program faster - multithreading and automatic compiler
+  vectorization
+date: 2025-04-23T18:00:00.000Z
+created: 2025-04-22T14:00:19.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-04-23T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/307420012/
+end_time: 2025-04-23T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/307420012/'
 event_id: 307420012
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=PbRjbXBr29o
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=PbRjbXBr29o'
+imageUrl: 'https://images.cppserbia.org/events/2025-04-23-Making-your-program-faster.jpg'
 ---
 
 # Making your program faster - multithreading and automatic compiler vectorization

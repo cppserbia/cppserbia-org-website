@@ -1,15 +1,18 @@
 ---
-title: "Brief introduction to senders and receivers (P2300)"
-date: 2024-05-29T18:00:00
-created: 2024-05-24T04:35:34-04:00
+title: Brief introduction to senders and receivers (P2300)
+date: 2024-05-29T18:00:00.000Z
+created: 2024-05-24T08:35:34.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT5H30M
-end_time: 2024-05-29T23:30:00
-event_url: https://www.meetup.com/cpp-serbia/events/301214926/
+end_time: 2024-05-29T23:30:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/301214926/'
 event_id: 301214926
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=R-IxA5V9UC4
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=R-IxA5V9UC4'
+imageUrl: >-
+  https://images.cppserbia.org/events/2024-05-29-Brief-introduction-to-senders-and-receivers.jpg
 ---
 
 # Brief introduction to senders and receivers (P2300)

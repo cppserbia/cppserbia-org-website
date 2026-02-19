@@ -1,15 +1,18 @@
 ---
-title: "Introduction to borrow checking in C++"
-date: 2023-08-30T18:00:00
-created: 2023-08-21T08:04:57-04:00
+title: Introduction to borrow checking in C++
+date: 2023-08-30T18:00:00.000Z
+created: 2023-08-21T12:04:57.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-08-30T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/295585380/
+end_time: 2023-08-30T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/295585380/'
 event_id: 295585380
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=a1nOshA3hoQ
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=a1nOshA3hoQ'
+imageUrl: >-
+  https://images.cppserbia.org/events/2023-08-30-Introduction-to-borrow-checking-in-Cpp.jpg
 ---
 
 # Introduction to borrow checking in C++

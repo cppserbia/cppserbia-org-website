@@ -1,15 +1,18 @@
 ---
-title: "Asynchronous IO with ASIO and C++20 coroutines"
-date: 2023-07-05T18:00:00
-created: 2023-06-16T11:18:09-04:00
+title: Asynchronous IO with ASIO and C++20 coroutines
+date: 2023-07-05T18:00:00.000Z
+created: 2023-06-16T15:18:09.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-07-05T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/294227718/
+end_time: 2023-07-05T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/294227718/'
 event_id: 294227718
-venues: ['ICT Hub Kralja Milana, Beograd, rs']
-youtube: https://www.youtube.com/watch?v=_G_3oOSCRx8
+venues:
+  - 'ICT Hub Kralja Milana, Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=_G_3oOSCRx8'
+imageUrl: >-
+  https://images.cppserbia.org/events/2023-07-05-Asynchronous-IO-with-ASIO-and-Cpp20-coroutines.jpg
 ---
 
 # Asynchronous IO with ASIO and C++20 coroutines

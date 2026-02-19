@@ -1,15 +1,17 @@
 ---
-title: "C++20 - Korutine"
-date: 2022-11-30T18:00:00
-created: 2022-11-16T09:31:31-05:00
+title: C++20 - Korutine
+date: 2022-11-30T18:00:00.000Z
+created: 2022-11-16T14:31:31.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2022-11-30T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/289789025/
+end_time: 2022-11-30T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/289789025/'
 event_id: 289789025
-venues: ['ICT Hub Kralja Milana, Beograd, rs']
-youtube: https://www.youtube.com/watch?v=82a6m3XWZ4s
+venues:
+  - 'ICT Hub Kralja Milana, Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=82a6m3XWZ4s'
+imageUrl: 'https://images.cppserbia.org/events/2022-11-30-Cpp20-Korutine.jpg'
 ---
 
 # C++20 - Korutine

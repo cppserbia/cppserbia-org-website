@@ -1,14 +1,16 @@
 ---
-title: "C++ Serbia does code review"
-date: 2025-01-29T18:00:00
-created: 2025-01-22T10:16:27-05:00
+title: C++ Serbia does code review
+date: 2025-01-29T18:00:00.000Z
+created: 2025-01-22T15:16:27.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-01-29T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/305754159/
+end_time: 2025-01-29T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/305754159/'
 event_id: 305754159
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+imageUrl: 'https://images.cppserbia.org/events/2025-01-29-Cpp-Serbia-does-code-review.jpg'
 ---
 
 # C++ Serbia does code review

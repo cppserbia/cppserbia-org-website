@@ -1,15 +1,17 @@
 ---
-title: "A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation"
-date: 2025-06-25T18:00:00
-created: 2025-06-16T12:48:33-04:00
+title: 'A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation'
+date: 2025-06-25T18:00:00.000Z
+created: 2025-06-16T16:48:33.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-06-25T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/308526189/
+end_time: 2025-06-25T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/308526189/'
 event_id: 308526189
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=i2rGsdo-zJg
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=i2rGsdo-zJg'
+imageUrl: 'https://images.cppserbia.org/events/2025-06-25-A-Cpp-Tooling-Journey.jpg'
 ---
 
 # A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation
