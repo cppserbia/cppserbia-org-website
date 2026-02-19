@@ -2,8 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Rss } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export function RSSFeedButton() {
+    const t = useTranslations('feeds')
+
     return (
         <Button
             variant="outline"
@@ -17,7 +20,7 @@ export function RSSFeedButton() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
             >
-                RSS Feed <Rss className="h-4 w-4" />
+                {t('rssFeed')} <Rss className="h-4 w-4" />
             </a>
         </Button>
     )

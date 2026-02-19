@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export function ICalFeedButton() {
     const [isClient, setIsClient] = useState(false)
     const [isLocalhost, setIsLocalhost] = useState(false)
+    const t = useTranslations('feeds')
 
     useEffect(() => {
         setIsClient(true)
@@ -18,14 +20,11 @@ export function ICalFeedButton() {
 
     const getHref = () => {
         if (isClient && typeof window !== "undefined") {
-            // For localhost, use regular http download since webcal doesn't work
             if (isLocalhost) {
                 return "/feed.ics"
             }
-            // For production, use webcal for subscription
             return `webcal://${window.location.host}/feed.ics`
         }
-        // Fallback for server-side rendering
         return "/feed.ics"
     }
 
@@ -43,7 +42,7 @@ export function ICalFeedButton() {
                 rel={isLocalhost ? "noopener noreferrer" : undefined}
                 className="flex items-center gap-2"
             >
-                iCal Feed <Calendar className="h-4 w-4" />
+                {t('icalFeed')} <Calendar className="h-4 w-4" />
             </a>
         </Button>
     )

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { YouTubeIcon } from "./icons"
+import { getTranslations } from "next-intl/server"
 
 interface YouTubeButtonProps {
   href: string
@@ -8,12 +9,14 @@ interface YouTubeButtonProps {
   className?: string
 }
 
-export function YouTubeButton({
+export async function YouTubeButton({
   href,
   size = "md",
   variant = "icon",
   className = ""
 }: YouTubeButtonProps) {
+  const t = await getTranslations('eventDetail')
+
   const sizeClasses = {
     sm: variant === "icon" ? "p-2" : "px-3 py-2 text-sm",
     md: variant === "icon" ? "p-3" : "px-4 py-2 text-sm",
@@ -35,7 +38,7 @@ export function YouTubeButton({
       aria-label="Watch on YouTube"
     >
       <YouTubeIcon width={iconSizes[size]} height={iconSizes[size]} color="white" />
-      {variant === "text" && "Watch"}
+      {variant === "text" && t('watch')}
     </Link>
   )
 }

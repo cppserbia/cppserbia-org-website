@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { getEventBySlug } from "@/lib/events-server";
 import fs from "fs";
 import path from "path";
+import { getTranslations } from "next-intl/server";
 
 export const alt = "C++ Serbia Community Event";
 export const size = { width: 1200, height: 630 };
@@ -10,9 +11,10 @@ export const contentType = "image/png";
 export default async function OgImage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'og' });
   const event = getEventBySlug(slug);
 
   if (!event) {
@@ -30,14 +32,14 @@ export default async function OgImage({
             fontSize: 48,
           }}
         >
-          Event Not Found
+          {t('eventNotFound')}
         </div>
       ),
       { ...size }
     );
   }
 
-  // Load Rubik Bold font
+  // Load Rubik Bold font (includes Cyrillic subset)
   const rubikBold = await fetch(
     "https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4iFWkU1Z4Y.ttf"
   ).then((res) => res.arrayBuffer());
@@ -47,12 +49,10 @@ export default async function OgImage({
   const logoBuffer = fs.readFileSync(logoPath);
   const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
-  // Format date for display
   const dateStr = event.formattedDate;
   const timeStr = event.time;
   const locationStr = event.location;
 
-  // Truncate title if too long
   const title =
     event.title.length > 80
       ? event.title.substring(0, 77) + "..."
@@ -71,7 +71,6 @@ export default async function OgImage({
           overflow: "hidden",
         }}
       >
-        {/* Dimmed background image when available */}
         {event.imageUrl && (
           <img
             src={event.imageUrl}
@@ -88,7 +87,6 @@ export default async function OgImage({
           />
         )}
 
-        {/* Content overlay */}
         <div
           style={{
             display: "flex",
@@ -100,7 +98,6 @@ export default async function OgImage({
             justifyContent: "space-between",
           }}
         >
-          {/* Top: Logo + community name */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <img
               src={logoBase64}
@@ -118,11 +115,10 @@ export default async function OgImage({
                 fontWeight: 700,
               }}
             >
-              C++ Serbia Community
+              {t('communityName')}
             </span>
           </div>
 
-          {/* Center: Event title with gradient */}
           <div
             style={{
               display: "flex",
@@ -150,7 +146,6 @@ export default async function OgImage({
               {title}
             </div>
 
-            {/* Metadata row */}
             <div
               style={{
                 display: "flex",
@@ -162,14 +157,13 @@ export default async function OgImage({
               }}
             >
               <span>{dateStr}</span>
-              <span style={{ color: "#7c3aed" }}>•</span>
+              <span style={{ color: "#7c3aed" }}>&bull;</span>
               <span>{timeStr}</span>
-              <span style={{ color: "#7c3aed" }}>•</span>
+              <span style={{ color: "#7c3aed" }}>&bull;</span>
               <span>{locationStr}</span>
             </div>
           </div>
 
-          {/* Bottom: Gradient accent line */}
           <div
             style={{
               width: "100%",

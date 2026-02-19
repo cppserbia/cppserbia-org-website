@@ -1,8 +1,13 @@
+import { getTranslations, getLocale } from "next-intl/server";
+
 interface OrganizationSeoProps {
   baseUrl?: string;
 }
 
-export function OrganizationSeo({ baseUrl = 'https://cppserbia.org' }: OrganizationSeoProps) {
+export async function OrganizationSeo({ baseUrl = 'https://cppserbia.org' }: OrganizationSeoProps) {
+  const t = await getTranslations('seo');
+  const locale = await getLocale();
+
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -30,7 +35,8 @@ export function OrganizationSeo({ baseUrl = 'https://cppserbia.org' }: Organizat
       "addressLocality": "Belgrade",
       "addressCountry": "Serbia"
     },
-    "description": "C++ Serbia is a vibrant community of C++ developers in Serbia, organizing meetups, workshops, and conferences to promote knowledge sharing and networking among C++ enthusiasts."
+    "description": t('organizationDescription'),
+    "inLanguage": locale === 'sr' ? 'sr' : 'en',
   };
 
   return (

@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "title": "C++ Serbia Community",
+    "titleTemplate": "%s - C++ Serbia Community",
+    "description": "Join the vibrant community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow C++ enthusiasts.",
+    "applicationName": "C++ Serbia Community",
+    "ogTitle": "C++ Serbia Community",
+    "ogDescription": "Join the vibrant community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow C++ enthusiasts."
+  },
+  "nav": {
+    "brand": "C++ Serbia",
+    "home": "Home",
+    "events": "Events",
+    "joinUs": "Join Us",
+    "upcomingEvents": "Upcoming Events"
+  },
+  "hero": {
+    "title": "C++ Serbia Community",
+    "subtitle": "Join our vibrant community of C++ developers in Serbia. Share knowledge, participate in events, and grow your skills with fellow enthusiasts.",
+    "upcomingEvents": "Upcoming Events",
+    "joinCommunity": "Join Our Community"
+  },
+  "about": {
+    "title": "About Our Community",
+    "paragraph1": "C++ Serbia is a community dedicated to promoting C++ programming language and best practices. We bring together developers of all skill levels, from beginners to experts.",
+    "paragraph2": "Our mission is to create a supportive environment where members can learn, share knowledge, and network with other C++ enthusiasts.",
+    "paragraph3": "Whether you're looking to improve your skills, find mentorship, or simply connect with like-minded developers, C++ Serbia is the place for you."
+  },
+  "featuredEvents": {
+    "title": "Featured Events",
+    "subtitle": "Join us at our next meetups and workshops",
+    "viewAll": "View All Events",
+    "empty": "No featured events at the moment. Check back soon!"
+  },
+  "joinSection": {
+    "title": "Join Our Community",
+    "subtitle": "Connect with us on these platforms",
+    "whyJoin": "Why Join C++ Serbia?",
+    "learnTitle": "Learn & Grow",
+    "learnDescription": "Access workshops, talks, and resources to enhance your C++ skills",
+    "networkTitle": "Network",
+    "networkDescription": "Connect with other developers, mentors, and potential employers",
+    "contributeTitle": "Contribute",
+    "contributeDescription": "Share your knowledge and help build a stronger C++ community"
+  },
+  "eventsPage": {
+    "title": "Events - C++ Serbia Community",
+    "description": "Join C++ Serbia community events! Discover upcoming meetups, workshops, and conferences for C++ developers in Serbia.",
+    "backToHome": "Back to Home",
+    "heading": "Events",
+    "subtitle": "Stay up to date with all C++ Serbia community events, meetups, workshops, and conferences.",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "emptyUpcoming": "No upcoming events scheduled yet! Just in case, save the date for the last Wednesday of the month.",
+    "emptyPast": "No past events to display.",
+    "subscribeFeed": "Subscribe to our feeds to get updates on our future events"
+  },
+  "eventDetail": {
+    "notFoundTitle": "Event Not Found - C++ Serbia Community",
+    "backToEvents": "Back to Events",
+    "pastEvent": "Past Event",
+    "upcomingEvent": "Upcoming Event",
+    "register": "Register",
+    "registerForEvent": "Register for Event",
+    "calendar": "Calendar",
+    "addToCalendar": "Add to Calendar",
+    "viewDetails": "View Details",
+    "watch": "Watch"
+  },
+  "feeds": {
+    "icalFeed": "iCal Feed",
+    "rssFeed": "RSS Feed"
+  },
+  "footer": {
+    "brand": "C++ Serbia",
+    "description": "A community of C++ developers in Serbia dedicated to sharing knowledge and promoting best practices.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "events": "Events",
+    "joinCommunity": "Join Community",
+    "contact": "Contact",
+    "contactQuestion": "Have questions or want to get involved?",
+    "emailUs": "Email us at:",
+    "copyright": "© {year} C++ Serbia Community. All rights reserved."
+  },
+  "loading": {
+    "loading": "Loading...",
+    "loadingEvents": "Loading events..."
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "description": "We couldn't load the page. Please try again later or check your connection.",
+    "eventsDescription": "We couldn't load the events from Meetup.com. Please try again later or check your connection.",
+    "tryAgain": "Try again"
+  },
+  "seo": {
+    "organizationDescription": "C++ Serbia is a vibrant community of C++ developers in Serbia, organizing meetups, workshops, and conferences to promote knowledge sharing and networking among C++ enthusiasts."
+  },
+  "og": {
+    "communityName": "C++ Serbia Community",
+    "eventNotFound": "Event Not Found"
+  }
+}

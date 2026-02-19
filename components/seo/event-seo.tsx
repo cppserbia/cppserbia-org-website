@@ -1,11 +1,11 @@
 import type { Event } from '@/lib/events-server';
+import { getLocale } from "next-intl/server";
 
 interface EventSeoProps {
   event: Event;
   baseUrl?: string;
 }
 
-// Local utility functions for SEO
 function generateEventDescription(event: Event): string {
   if (event.description && event.description.length > 100) {
     return event.description;
@@ -29,22 +29,19 @@ function generateEventDescription(event: Event): string {
   return enhancedDescription;
 }
 
-export function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: EventSeoProps) {
-  const eventUrl = `${baseUrl}/events/${event.slug}`;
+export async function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: EventSeoProps) {
+  const locale = await getLocale();
+  const eventUrl = `${baseUrl}/${locale}/events/${event.slug}`;
   const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
 
-  // Generate enhanced description
   const description = generateEventDescription(event);
 
-  // Convert Temporal dates to ISO strings for JSON-LD
   const startDate = event.startDateTime?.toString() || event.date.toString();
   const endDate = event.endDateTime?.toString() || event.date.toString();
 
-  // Determine event status
   const eventStatus = event.status === 'PAST' ? 'EventCancelled' : 'EventScheduled';
   const eventAttendanceMode = event.isOnline ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';
 
-  // Create structured data for the event
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -66,6 +63,7 @@ export function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: EventSeoP
     },
     "eventStatus": `https://schema.org/${eventStatus}`,
     "eventAttendanceMode": `https://schema.org/${eventAttendanceMode}`,
+    "inLanguage": locale === 'sr' ? 'sr' : 'en',
     ...(event.registrationLink && {
       "offers": {
         "@type": "Offer",

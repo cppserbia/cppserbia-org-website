@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
 import { YouTubeButton } from "@/components/youtube-button";
@@ -22,24 +21,26 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 
-// Generate metadata for the page
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'eventDetail' });
   const event = getEventBySlug(slug);
 
   if (!event) {
     return {
-      title: "Event Not Found - C++ Serbia Community",
+      title: t('notFoundTitle'),
     };
   }
 
   const baseUrl = 'https://cppserbia.org';
-  const eventUrl = `${baseUrl}/events/${event.slug}`;
+  const eventUrl = `${baseUrl}/${locale}/events/${event.slug}`;
   const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
 
   return {
@@ -48,6 +49,10 @@ export async function generateMetadata({
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: eventUrl,
+      languages: {
+        en: `${baseUrl}/en/events/${event.slug}`,
+        sr: `${baseUrl}/sr/events/${event.slug}`,
+      },
     },
     openGraph: {
       title: `${event.title} - C++ Serbia Community`,
@@ -62,6 +67,7 @@ export async function generateMetadata({
           alt: event.title,
         },
       ],
+      locale: locale === 'sr' ? 'sr_RS' : 'en_US',
       siteName: 'C++ Serbia Community',
     },
     twitter: {
@@ -74,7 +80,6 @@ export async function generateMetadata({
   };
 }
 
-// Generate static params for all events
 export function generateStaticParams() {
   const allEvents = getAllEventsServer();
 
@@ -86,16 +91,16 @@ export function generateStaticParams() {
 export default async function EventPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug } = await params;
+  const t = await getTranslations('eventDetail');
   const event = getEventBySlug(slug);
 
   if (!event) {
     notFound();
   }
 
-  // Determine if event is in the past
   const isEventPast = isPastEvent(event.date);
 
   return (
@@ -104,7 +109,6 @@ export default async function EventPage({
 
       {/* Cinematic Hero Section */}
       <section className="relative w-full h-[60vh] min-h-[420px] max-h-[600px] overflow-hidden">
-        {/* Background: event image or wallpaper fallback */}
         {event.imageUrl ? (
           <>
             <Image
@@ -114,7 +118,6 @@ export default async function EventPage({
               className="object-cover"
               priority
             />
-            {/* Color wash: purple for upcoming, desaturated for past */}
             <div className={`absolute inset-0 ${isEventPast ? "bg-gray-900/30" : "bg-purple-950/20"}`} />
           </>
         ) : (
@@ -123,7 +126,6 @@ export default async function EventPage({
               className="absolute inset-0 bg-cover bg-center opacity-20"
               style={{ backgroundImage: "url('/images/wallpaper.png')" }}
             />
-            {/* Typographic date texture for no-image events */}
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
               <span className="text-[12rem] md:text-[16rem] font-bold text-white/[0.04] leading-none whitespace-nowrap">
                 {event.month} {event.day}
@@ -132,36 +134,31 @@ export default async function EventPage({
           </>
         )}
 
-        {/* Gradient overlays for text legibility */}
         <div className="absolute inset-0 hero-gradient-bottom" />
         <div className="absolute inset-0 hero-gradient-top" />
 
-        {/* Hero content */}
         <div className="relative z-10 h-full flex flex-col justify-end px-4 pb-10">
           <div className="max-w-5xl mx-auto w-full">
             <Link
               href="/events"
               className="inline-flex items-center text-gray-300 hover:text-white transition-colors mb-6 text-sm"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Events
+              <ArrowLeft className="mr-2 h-4 w-4" /> {t('backToEvents')}
             </Link>
 
-            {/* Status badge */}
             {isEventPast ? (
-              <div className="status-past mb-4">Past Event</div>
+              <div className="status-past mb-4">{t('pastEvent')}</div>
             ) : (
               <div className="status-upcoming mb-4">
                 <span className="pulse-dot" />
-                Upcoming Event
+                {t('upcomingEvent')}
               </div>
             )}
 
-            {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-4xl mb-6">
               {event.title}
             </h1>
 
-            {/* Metadata chips */}
             <div className="flex flex-wrap gap-3">
               <span className="chip-glass">
                 <Calendar className="h-4 w-4 text-purple-300" />
@@ -183,28 +180,26 @@ export default async function EventPage({
       {/* Sticky Action Bar */}
       <div className="sticky top-16 z-30 bg-[#0c0c1d]/95 backdrop-blur-md border-b border-purple-900/30">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          {/* Condensed date/time */}
           <div className="text-sm text-gray-400 hidden sm:flex items-center gap-3">
             <span>{event.formattedDate}</span>
-            <span className="text-gray-600">·</span>
+            <span className="text-gray-600">&middot;</span>
             <span>{event.time}</span>
           </div>
 
-          {/* Action buttons */}
           <div className="flex items-center gap-3 ml-auto">
             {event.youtube && (
               <YouTubeButton href={event.youtube} variant="text" size="sm" />
             )}
             {event.registrationLink && !isEventPast && (
-              <Link
+              <a
                 href={event.registrationLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white gradient-brand-button rounded-md"
               >
                 <ExternalLink className="h-4 w-4" />
-                Register
-              </Link>
+                {t('register')}
+              </a>
             )}
             <a
               href={`/events/${event.slug}/calendar.ics`}
@@ -212,19 +207,17 @@ export default async function EventPage({
               className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-purple-300 border border-purple-500/50 hover:bg-purple-950/50 rounded-md transition-colors"
             >
               <Calendar className="h-4 w-4" />
-              Calendar
+              {t('calendar')}
             </a>
           </div>
         </div>
       </div>
 
-      {/* Gradient divider */}
       <div className="divider-gradient" />
 
       {/* Two-Column Content */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
-          {/* Left column: prose content */}
           <div className="flex-1 min-w-0">
             {event.content ? (
               <div className="prose-custom">
@@ -367,10 +360,8 @@ export default async function EventPage({
           {/* Right sidebar */}
           <aside className="lg:w-72 flex-shrink-0">
             <div className="lg:sticky lg:top-36 flex flex-col gap-6">
-              {/* Gradient divider (mobile only, above sidebar) */}
               <div className="divider-gradient-subtle lg:hidden" />
 
-              {/* Date card */}
               <div className={`rounded-lg p-5 text-center ${isEventPast ? "border border-gray-800 bg-gray-900/30" : "border border-purple-900/60 bg-purple-950/30"}`}>
                 <div className={`text-sm font-medium ${isEventPast ? "text-gray-400" : "text-purple-300"}`}>
                   {event.month}
@@ -386,18 +377,17 @@ export default async function EventPage({
                 <div className="text-sm text-gray-400 mt-1">{event.location}</div>
               </div>
 
-              {/* Sidebar action buttons */}
               <div className="flex flex-col gap-3">
                 {event.registrationLink && !isEventPast && (
-                  <Link
+                  <a
                     href={event.registrationLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white gradient-brand-button rounded-md w-full"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    Register for Event
-                  </Link>
+                    {t('registerForEvent')}
+                  </a>
                 )}
                 {event.youtube && (
                   <YouTubeButton
@@ -412,7 +402,7 @@ export default async function EventPage({
                   className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 text-sm font-medium text-purple-300 border border-purple-500/50 hover:bg-purple-950/50 rounded-md transition-colors w-full"
                 >
                   <Calendar className="h-4 w-4" />
-                  Add to Calendar
+                  {t('addToCalendar')}
                 </a>
               </div>
             </div>

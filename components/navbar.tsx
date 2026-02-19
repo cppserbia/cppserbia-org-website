@@ -1,13 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Calendar } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { ScriptToggle } from "@/components/script-toggle"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const t = useTranslations('nav')
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-purple-900/40 bg-[#0c0c1d]/80 backdrop-blur-md">
@@ -15,27 +19,31 @@ export default function Navbar() {
         <Link href="/" className="link-with-icon">
           <Image src="/images/logo.png" alt="C++ Serbia Logo" width={40} height={40} />
           <span className="text-xl font-medium gradient-brand-text">
-            C++ Serbia
+            {t('brand')}
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm font-medium text-white hover:text-purple-300 transition-colors">
-            Home
+            {t('home')}
           </Link>
           <Link href="/events" className="text-sm font-medium text-white hover:text-purple-300 transition-colors">
-            Events
+            {t('events')}
           </Link>
           <Link href="/#join" className="text-sm font-medium text-white hover:text-purple-300 transition-colors">
-            Join Us
+            {t('joinUs')}
           </Link>
+          <div className="flex items-center gap-2 ml-2">
+            <LanguageSwitcher />
+            <ScriptToggle />
+          </div>
           <Button
             size="sm"
             className="gradient-brand-button text-white ml-2"
           >
             <Link href="/events" className="nav-link">
-              <Calendar className="h-4 w-4" /> Upcoming Events
+              <Calendar className="h-4 w-4" /> {t('upcomingEvents')}
             </Link>
           </Button>
         </nav>
@@ -56,28 +64,32 @@ export default function Navbar() {
               className="text-lg font-medium text-white hover:text-purple-300 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Home
+              {t('home')}
             </Link>
             <Link
               href="/events"
               className="text-lg font-medium text-white hover:text-purple-300 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Events
+              {t('events')}
             </Link>
             <Link
               href="/#join"
               className="text-lg font-medium text-white hover:text-purple-300 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Join Us
+              {t('joinUs')}
             </Link>
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher />
+              <ScriptToggle />
+            </div>
             <Button
               className="w-full gradient-brand-button text-white mt-4"
               onClick={() => setIsMenuOpen(false)}
             >
               <Link href="/events" className="flex-center gap-2 w-full">
-                <Calendar className="h-5 w-5" /> Upcoming Events
+                <Calendar className="h-5 w-5" /> {t('upcomingEvents')}
               </Link>
             </Button>
           </nav>
