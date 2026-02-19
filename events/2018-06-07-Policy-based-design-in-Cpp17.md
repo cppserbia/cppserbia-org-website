@@ -1,14 +1,17 @@
 ---
-title: "Policy-based design in C++17"
-date: 2018-06-07T18:30:00
-created: 2018-06-01T10:54:07-04:00
+title: Policy-based design in C++17
+date: 2018-06-07T18:30:00.000Z
+created: 2018-06-01T14:54:07.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT1H30M
-end_time: 2018-06-07T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/251303329/
+end_time: 2018-06-07T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/251303329/'
 event_id: 251303329
-venues: ['United Cloud, Belgrade, rs']
+venues:
+  - 'United Cloud, Belgrade, rs'
+imageUrl: >-
+  https://images.cppserbia.org/events/2018-06-07-Policy-based-design-in-Cpp17.jpg
 ---
 
 # Policy-based design in C++17

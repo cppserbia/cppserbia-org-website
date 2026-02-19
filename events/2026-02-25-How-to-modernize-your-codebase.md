@@ -1,14 +1,17 @@
 ---
-title: "How to modernize your codebase?"
-date: 2026-02-25T18:00:00
-created: 2026-02-18T12:00:00
+title: How to modernize your codebase?
+date: 2026-02-25T18:00:00.000Z
+created: 2026-02-18T12:00:00.000Z
 event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
-end_time: 2026-02-25T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/313413133/
+end_time: 2026-02-25T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/313413133/'
 event_id: 313413133
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+imageUrl: >-
+  https://images.cppserbia.org/events/2026-02-25-How-to-modernize-your-codebase.jpg
 ---
 
 # How to modernize your codebase?

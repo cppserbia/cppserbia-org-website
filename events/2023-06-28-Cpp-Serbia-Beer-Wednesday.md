@@ -1,14 +1,16 @@
 ---
-title: "C++ Serbia Beer Wednesday"
-date: 2023-06-28T18:00:00
-created: 2023-06-20T16:17:05-04:00
+title: C++ Serbia Beer Wednesday
+date: 2023-06-28T18:00:00.000Z
+created: 2023-06-20T20:17:05.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-06-28T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/294311612/
+end_time: 2023-06-28T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/294311612/'
 event_id: 294311612
-venues: ['Docker Brewery & Beer Garden, Beograd, rs']
+venues:
+  - 'Docker Brewery & Beer Garden, Beograd, rs'
+imageUrl: 'https://images.cppserbia.org/events/2023-06-28-Cpp-Serbia-Beer-Wednesday.jpg'
 ---
 
 # C++ Serbia Beer Wednesday

@@ -1,15 +1,18 @@
 ---
-title: "Atomic operations and lock-free data structures in C++"
-date: 2024-03-27T18:00:00
-created: 2024-03-20T15:44:17-04:00
+title: Atomic operations and lock-free data structures in C++
+date: 2024-03-27T18:00:00.000Z
+created: 2024-03-20T19:44:17.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT5H30M
-end_time: 2024-03-27T23:30:00
-event_url: https://www.meetup.com/cpp-serbia/events/299915235/
+end_time: 2024-03-27T23:30:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/299915235/'
 event_id: 299915235
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=8IxneSIda0E
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=8IxneSIda0E'
+imageUrl: >-
+  https://images.cppserbia.org/events/2024-03-27-Atomic-operations-and-lock-free-data-structures-in-Cpp.jpg
 ---
 
 # Atomic operations and lock-free data structures in C++

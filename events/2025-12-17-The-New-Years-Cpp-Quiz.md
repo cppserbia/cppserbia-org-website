@@ -1,14 +1,16 @@
 ---
-title: "The New Year's C++ Quiz"
-date: 2025-12-17T18:00:00
-created: 2025-12-09T11:48:33-04:00
+title: The New Year's C++ Quiz
+date: 2025-12-17T18:00:00.000Z
+created: 2025-12-09T15:48:33.000Z
 event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
-end_time: 2025-12-17T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/312364687
+end_time: 2025-12-17T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/312364687'
 event_id: 312364687
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+imageUrl: 'https://images.cppserbia.org/events/2025-12-17-The-New-Years-Cpp-Quiz.jpg'
 ---
 
 # The New Year's C++ Quiz

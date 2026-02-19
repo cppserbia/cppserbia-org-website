@@ -1,15 +1,18 @@
 ---
-title: "C++ and the Art of Self-Modifying Code (Don't Try This at Home!)"
-date: 2025-03-26T18:00:00
-created: 2025-03-19T08:02:25-04:00
+title: C++ and the Art of Self-Modifying Code (Don't Try This at Home!)
+date: 2025-03-26T18:00:00.000Z
+created: 2025-03-19T12:02:25.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2025-03-26T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/306805498/
+end_time: 2025-03-26T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/306805498/'
 event_id: 306805498
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=cweTfX9Leo4
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=cweTfX9Leo4'
+imageUrl: >-
+  https://images.cppserbia.org/events/2025-03-26-Cpp-and-the-Art-of-Self-Modifying-Code.jpg
 ---
 
 # C++ and the Art of Self-Modifying Code (Don't Try This at Home!)

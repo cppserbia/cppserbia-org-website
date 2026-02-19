@@ -1,15 +1,18 @@
 ---
-title: "What's going on with Contracts?"
-date: 2026-01-28T18:00:00
-created: 2025-12-30T10:48:33-04:00
+title: What's going on with Contracts?
+date: 2026-01-28T18:00:00.000Z
+created: 2025-12-30T14:48:33.000Z
 event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
-end_time: 2026-01-28T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/312635627/
+end_time: 2026-01-28T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/312635627/'
 event_id: 312635627
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=9iJ63VhQo5g
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=9iJ63VhQo5g'
+imageUrl: >-
+  https://images.cppserbia.org/events/2026-01-28-what-is-going-on-with-contracts.jpg
 ---
 
 # What's going on with Contracts?

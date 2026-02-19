@@ -1,15 +1,18 @@
 ---
-title: "C++ and Rust — When to choose which?"
-date: 2023-06-13T18:00:00
-created: 2023-05-29T10:56:05-04:00
+title: C++ and Rust — When to choose which?
+date: 2023-06-13T18:00:00.000Z
+created: 2023-05-29T14:56:05.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-06-13T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/293841868/
+end_time: 2023-06-13T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/293841868/'
 event_id: 293841868
-venues: ['ICT Hub Kralja Milana, Beograd, rs']
-youtube: https://www.youtube.com/watch?v=T1H4mDUCmNs
+venues:
+  - 'ICT Hub Kralja Milana, Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=T1H4mDUCmNs'
+imageUrl: >-
+  https://images.cppserbia.org/events/2023-06-13-Cpp-and-Rust-When-to-choose-which.jpg
 ---
 
 # C++ and Rust — When to choose which?

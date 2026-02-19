@@ -1,15 +1,18 @@
 ---
-title: "World of Bitcoin - open-sourced C++ project"
-date: 2024-09-18T18:00:00
-created: 2024-09-13T12:12:09-04:00
+title: World of Bitcoin - open-sourced C++ project
+date: 2024-09-18T18:00:00.000Z
+created: 2024-09-13T16:12:09.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
-end_time: 2024-09-18T20:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/303412485/
+end_time: 2024-09-18T20:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/303412485/'
 event_id: 303412485
-venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
-youtube: https://www.youtube.com/watch?v=JP9DbXXyTO0
+venues:
+  - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=JP9DbXXyTO0'
+imageUrl: >-
+  https://images.cppserbia.org/events/2024-09-18-World-of-Bitcoin-open-sourced-Cpp-project.jpg
 ---
 
 # World of Bitcoin - open-sourced C++ project

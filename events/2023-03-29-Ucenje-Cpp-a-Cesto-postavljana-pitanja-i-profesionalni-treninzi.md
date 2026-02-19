@@ -1,15 +1,18 @@
 ---
-title: "Učenje C++-a - Često postavljana pitanja i profesionalni treninzi"
-date: 2023-03-29T18:00:00
-created: 2023-03-12T13:14:52-04:00
+title: Učenje C++-a - Često postavljana pitanja i profesionalni treninzi
+date: 2023-03-29T18:00:00.000Z
+created: 2023-03-12T17:14:52.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
-end_time: 2023-03-29T21:00:00
-event_url: https://www.meetup.com/cpp-serbia/events/292193281/
+end_time: 2023-03-29T21:00:00.000Z
+event_url: 'https://www.meetup.com/cpp-serbia/events/292193281/'
 event_id: 292193281
-venues: ['ICT Hub Kralja Milana, Beograd, rs']
-youtube: https://www.youtube.com/watch?v=e82Q_MZkmYk
+venues:
+  - 'ICT Hub Kralja Milana, Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=e82Q_MZkmYk'
+imageUrl: >-
+  https://images.cppserbia.org/events/2023-03-29-Ucenje-Cpp-a-Cesto-postavljana-pitanja-i-profesionalni-treninzi.jpg
 ---
 
 # Učenje C++-a - Često postavljana pitanja i profesionalni treninzi
