@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
 import { YouTubeButton } from "@/components/youtube-button";
-import { AddToCalendarButton } from "@/components/add-to-calendar-button";
 import { EventSeo } from "@/components/seo/event-seo";
 import {
   getEventBySlug,
@@ -103,70 +102,130 @@ export default async function EventPage({
     <div className="flex flex-col min-h-screen bg-[#0c0c1d] text-white">
       <EventSeo event={event} />
 
-      {/* Header */}
-      <section className="relative w-full section-spacing overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url('/images/wallpaper.png')" }}
-        />
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <Link
-            href="/events"
-            className="inline-flex items-center text-gray-hover mb-6"
-          >
-            <ArrowLeft className="mr-2 h-5 w-5" /> Back to Events
-          </Link>
-          <div className="flex flex-col md:flex-row items-start justify-between gap-6">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 gradient-brand-text">
-                {event.title}
-              </h1>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 text-sm text-gray-400">
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2 text-brand-purple" />
-                  <span>{event.formattedDate}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2 text-brand-purple" />
-                  <span>{event.time}</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="h-4 w-4 mr-2 text-brand-purple" />
-                  <span>{event.location}</span>
-                </div>
-              </div>
+      {/* Cinematic Hero Section */}
+      <section className="relative w-full h-[60vh] min-h-[420px] max-h-[600px] overflow-hidden">
+        {/* Background: event image or wallpaper fallback */}
+        {event.imageUrl ? (
+          <>
+            <Image
+              src={event.imageUrl}
+              alt=""
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Color wash: purple for upcoming, desaturated for past */}
+            <div className={`absolute inset-0 ${isEventPast ? "bg-gray-900/30" : "bg-purple-950/20"}`} />
+          </>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ backgroundImage: "url('/images/wallpaper.png')" }}
+            />
+            {/* Typographic date texture for no-image events */}
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
+              <span className="text-[12rem] md:text-[16rem] font-bold text-white/[0.04] leading-none whitespace-nowrap">
+                {event.month} {event.day}
+              </span>
             </div>
-            <div className="flex-shrink-0 flex flex-col gap-3 items-end">
-              {event.youtube && <YouTubeButton href={event.youtube} />}
-              <div className="flex flex-col gap-3 items-center">
-                <div className="bg-purple-950 p-3 rounded-lg text-center min-w-[70px]">
-                  <div className="text-sm text-purple-300">{event.month}</div>
-                  <div className="text-3xl font-bold">{event.day}</div>
-                  <div className="text-sm text-purple-300">{event.year}</div>
-                </div>
-                <AddToCalendarButton slug={event.slug} />
+          </>
+        )}
+
+        {/* Gradient overlays for text legibility */}
+        <div className="absolute inset-0 hero-gradient-bottom" />
+        <div className="absolute inset-0 hero-gradient-top" />
+
+        {/* Hero content */}
+        <div className="relative z-10 h-full flex flex-col justify-end px-4 pb-10">
+          <div className="max-w-5xl mx-auto w-full">
+            <Link
+              href="/events"
+              className="inline-flex items-center text-gray-300 hover:text-white transition-colors mb-6 text-sm"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Events
+            </Link>
+
+            {/* Status badge */}
+            {isEventPast ? (
+              <div className="status-past mb-4">Past Event</div>
+            ) : (
+              <div className="status-upcoming mb-4">
+                <span className="pulse-dot" />
+                Upcoming Event
               </div>
+            )}
+
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-4xl mb-6">
+              {event.title}
+            </h1>
+
+            {/* Metadata chips */}
+            <div className="flex flex-wrap gap-3">
+              <span className="chip-glass">
+                <Calendar className="h-4 w-4 text-purple-300" />
+                {event.formattedDate}
+              </span>
+              <span className="chip-glass">
+                <Clock className="h-4 w-4 text-purple-300" />
+                {event.time}
+              </span>
+              <span className="chip-glass">
+                <MapPin className="h-4 w-4 text-purple-300" />
+                {event.location}
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Event Content */}
-      <section className="py-12 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="border border-purple-900 rounded-lg p-8 bg-[#0c0c1d]/80">
-            {event.imageUrl && (
-              <div className="mb-8">
-                <Image
-                  src={event.imageUrl || "/placeholder.svg"}
-                  alt={event.title}
-                  width={1200}
-                  height={600}
-                  className="rounded-lg w-full object-cover"
-                />
-              </div>
-            )}
+      {/* Sticky Action Bar */}
+      <div className="sticky top-16 z-30 bg-[#0c0c1d]/95 backdrop-blur-md border-b border-purple-900/30">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          {/* Condensed date/time */}
+          <div className="text-sm text-gray-400 hidden sm:flex items-center gap-3">
+            <span>{event.formattedDate}</span>
+            <span className="text-gray-600">·</span>
+            <span>{event.time}</span>
+          </div>
 
+          {/* Action buttons */}
+          <div className="flex items-center gap-3 ml-auto">
+            {event.youtube && (
+              <YouTubeButton href={event.youtube} variant="text" size="sm" />
+            )}
+            {event.registrationLink && !isEventPast && (
+              <Link
+                href={event.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white gradient-brand-button rounded-md"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Register
+              </Link>
+            )}
+            <a
+              href={`/events/${event.slug}/calendar.ics`}
+              download
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-purple-300 border border-purple-500/50 hover:bg-purple-950/50 rounded-md transition-colors"
+            >
+              <Calendar className="h-4 w-4" />
+              Calendar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Gradient divider */}
+      <div className="divider-gradient" />
+
+      {/* Two-Column Content */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
+          {/* Left column: prose content */}
+          <div className="flex-1 min-w-0">
             {event.content ? (
               <div className="prose-custom">
                 <ReactMarkdown
@@ -303,20 +362,61 @@ export default async function EventPage({
                 </p>
               </div>
             )}
-
-            {event.registrationLink && !isEventPast && (
-              <div className="mt-8">
-                <Link
-                  href={event.registrationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-6 py-3 text-sm font-medium text-white gradient-brand-button rounded-md"
-                >
-                  Register for this Event
-                </Link>
-              </div>
-            )}
           </div>
+
+          {/* Right sidebar */}
+          <aside className="lg:w-72 flex-shrink-0">
+            <div className="lg:sticky lg:top-36 flex flex-col gap-6">
+              {/* Gradient divider (mobile only, above sidebar) */}
+              <div className="divider-gradient-subtle lg:hidden" />
+
+              {/* Date card */}
+              <div className={`rounded-lg p-5 text-center ${isEventPast ? "border border-gray-800 bg-gray-900/30" : "border border-purple-900/60 bg-purple-950/30"}`}>
+                <div className={`text-sm font-medium ${isEventPast ? "text-gray-400" : "text-purple-300"}`}>
+                  {event.month}
+                </div>
+                <div className="text-5xl font-bold my-1 text-white">
+                  {event.day}
+                </div>
+                <div className={`text-sm ${isEventPast ? "text-gray-400" : "text-purple-300"}`}>
+                  {event.year}
+                </div>
+                <div className="divider-gradient-subtle my-3" />
+                <div className="text-sm text-gray-300">{event.time}</div>
+                <div className="text-sm text-gray-400 mt-1">{event.location}</div>
+              </div>
+
+              {/* Sidebar action buttons */}
+              <div className="flex flex-col gap-3">
+                {event.registrationLink && !isEventPast && (
+                  <Link
+                    href={event.registrationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white gradient-brand-button rounded-md w-full"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Register for Event
+                  </Link>
+                )}
+                {event.youtube && (
+                  <YouTubeButton
+                    href={event.youtube}
+                    variant="text"
+                    className="w-full justify-center"
+                  />
+                )}
+                <a
+                  href={`/events/${event.slug}/calendar.ics`}
+                  download
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 text-sm font-medium text-purple-300 border border-purple-500/50 hover:bg-purple-950/50 rounded-md transition-colors w-full"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Add to Calendar
+                </a>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
     </div>

@@ -129,6 +129,43 @@
     @apply flex items-center gap-1;
   }
 
+  /* Event detail hero overlays */
+  .hero-gradient-bottom {
+    @apply bg-gradient-to-t from-[#0c0c1d] via-[#0c0c1d]/80 to-transparent;
+  }
+
+  .hero-gradient-top {
+    @apply bg-gradient-to-b from-[#0c0c1d]/60 via-transparent to-transparent;
+  }
+
+  /* Frosted glass chip for metadata */
+  .chip-glass {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-md text-sm text-gray-200;
+  }
+
+  /* Gradient dividers */
+  .divider-gradient {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-purple-500 to-transparent;
+  }
+
+  .divider-gradient-subtle {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-purple-500/50 to-transparent;
+  }
+
+  /* Status badges */
+  .status-upcoming {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .status-past {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-500/20 text-gray-400 text-xs font-semibold uppercase tracking-wider;
+  }
+
+  /* Animated pulse dot for upcoming events */
+  .pulse-dot {
+    @apply w-2 h-2 rounded-full bg-green-400 animate-pulse;
+  }
+
   @keyframes pulse {
     0%,
     100% {
