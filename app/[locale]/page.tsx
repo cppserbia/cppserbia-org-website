@@ -6,6 +6,7 @@ import FeaturedEvents from "@/components/featured-events"
 import { OrganizationSeo } from "@/components/seo/organization-seo"
 import { ICalFeedButton } from "@/components/ical-feed-button"
 import { RSSFeedButton } from "@/components/rss-feed-button"
+import { ScrollLogo } from "@/components/scroll-logo"
 import { Link } from "@/i18n/navigation"
 import { getTranslations } from "next-intl/server"
 
@@ -23,22 +24,14 @@ export default async function Home() {
           style={{ backgroundImage: "url('/images/wallpaper.png')" }}
         />
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <div className="flex justify-center mb-8">
-            <Image
-              src="/images/logo.png"
-              alt="C++ Serbia Logo"
-              width={162}
-              height={180}
-              className="animate-pulse-slow"
-            />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-brand-text">
+          <ScrollLogo src="/images/logo.png" alt="C++ Serbia Logo" width={162} height={180} />
+          <h1 className="relative z-10 text-4xl md:text-6xl font-bold mb-6 gradient-brand-text">
             {t('hero.title')}
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-muted">
+          <p className="relative z-10 text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-muted">
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="relative z-10 flex flex-wrap justify-center gap-4">
             <Button
               size="lg"
               className="gradient-brand-button text-white"
