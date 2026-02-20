@@ -1,13 +1,14 @@
 import { EventCard } from "@/components/event-card";
 import { isPastEvent } from "@/lib/temporal";
 import { getFeaturedEvents } from "@/lib/events-server";
+import { getTranslations } from "next-intl/server";
 
 interface FeaturedEventsProps {
   limit?: number;
 }
 
-export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
-  // Get featured events directly from server-side function
+export default async function FeaturedEvents({ limit }: FeaturedEventsProps) {
+  const t = await getTranslations('featuredEvents');
   const events = getFeaturedEvents(limit);
 
   return (
@@ -26,7 +27,7 @@ export default function FeaturedEvents({ limit }: FeaturedEventsProps) {
         })
       ) : (
         <p className="text-gray-400 text-center py-8">
-          No featured events at the moment. Check back soon!
+          {t('empty')}
         </p>
       )}
     </div>

@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { Temporal } from "@js-temporal/polyfill"
 import { YouTubeButton } from "@/components/youtube-button"
+import { Link } from "@/i18n/navigation"
+import { getTranslations } from "next-intl/server"
 
 interface Event {
     slug: string;
@@ -54,12 +55,12 @@ export function EventMetadata({
                 <span>{formattedDate}</span>
             </div>
             <div className="flex items-center">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-purple-400 mr-2">&bull;</span>
                 <Clock className="h-4 w-4 mr-2 text-purple-400" />
                 <span>{time}</span>
             </div>
             <div className="flex items-center">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-purple-400 mr-2">&bull;</span>
                 <MapPin className="h-4 w-4 mr-2 text-purple-400" />
                 <span>{location}</span>
             </div>
@@ -69,24 +70,26 @@ export function EventMetadata({
 
 export function EventMetadataPast({
     date,
-    location
+    location,
+    dateLocale = 'en-US',
 }: {
     date: Temporal.PlainDate;
     location: string;
+    dateLocale?: string;
 }) {
-    const formattedDateTime = date.toLocaleString('en-US', {
+    const formattedDateTime = date.toLocaleString(dateLocale, {
         dateStyle: "medium",
     });
 
     return (
         <div className="flex items-center text-sm text-gray-400 mb-4">
             <Calendar className="h-4 w-4 mr-2" />
-            <span>{formattedDateTime} • {location}</span>
+            <span>{formattedDateTime} &bull; {location}</span>
         </div>
     );
 }
 
-export function EventActions({
+export async function EventActions({
     slug,
     registrationLink,
     showRegistration = true,
@@ -97,26 +100,28 @@ export function EventActions({
     showRegistration?: boolean;
     youtube?: string;
 }) {
+    const t = await getTranslations('eventDetail');
+
     return (
         <div className="flex flex-wrap gap-3 overflow-hidden">
             <Link
                 href={`/events/${slug}`}
                 className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-purple-900 hover:bg-purple-800 rounded-md flex-shrink-0"
             >
-                View Details
+                {t('viewDetails')}
             </Link>
             {youtube && (
                 <YouTubeButton href={youtube} size="sm" />
             )}
             {registrationLink && showRegistration && (
-                <Link
+                <a
                     href={registrationLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white gradient-brand-button rounded-md flex-shrink-0"
                 >
-                    Register
-                </Link>
+                    {t('register')}
+                </a>
             )}
         </div>
     );
