@@ -26,6 +26,6 @@ describe('RSS Feed', () => {
         expect(text).toContain('<rss version="2.0"')
         expect(text).toContain('<title>C++ Serbia Events</title>')
         expect(text).toContain('Test Event')
-        expect(text).toContain('<link>https://cppserbia.org/events/test-event</link>')
+        expect(text).toContain('<link>https://cppserbia.org/en/events/test-event</link>')
     })
 })

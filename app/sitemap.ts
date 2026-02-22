@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: locale === 'en' ? 1 : 0.9,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${baseUrl}/${l}`])
+            [...locales.map((l) => [l, `${baseUrl}/${l}`]), ['x-default', `${baseUrl}/en`]]
           ),
         },
       },
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: locale === 'en' ? 0.9 : 0.8,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${baseUrl}/${l}/events`])
+            [...locales.map((l) => [l, `${baseUrl}/${l}/events`]), ['x-default', `${baseUrl}/en/events`]]
           ),
         },
       },
@@ -54,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${baseUrl}/${l}/events/${event.slug}`])
+            [...locales.map((l) => [l, `${baseUrl}/${l}/events/${event.slug}`]), ['x-default', `${baseUrl}/en/events/${event.slug}`]]
           ),
         },
       }));

@@ -39,7 +39,7 @@ export async function generateMetadata({
     description: t('description'),
     generator: 'Next.js',
     applicationName: t('applicationName'),
-    keywords: ['C++', 'programming', 'Serbia', 'Belgrade', 'community', 'meetup', 'technology', 'software development'],
+    keywords: t('keywords').split(', '),
     authors: [{ name: 'C++ Serbia Community' }],
     creator: 'C++ Serbia Community',
     publisher: 'C++ Serbia Community',
@@ -105,9 +105,6 @@ export async function generateMetadata({
           { url: 'https://cppserbia.org/events/feed.xml', title: 'C++ Serbia Events RSS Feed' }
         ]
       }
-    },
-    verification: {
-      google: 'google-site-verification-code',
     },
     category: 'technology',
   }
