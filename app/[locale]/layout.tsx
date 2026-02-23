@@ -70,10 +70,10 @@ export async function generateMetadata({
       siteName: "C++ Serbia",
       images: [
         {
-          url: "/images/logo.png",
+          url: "/images/cpp-serbia-preview.png",
           width: 1200,
           height: 630,
-          alt: "C++ Serbia Community Logo"
+          alt: "C++ Serbia - C++ Community in Serbia"
         }
       ],
       locale: locale === 'sr' ? 'sr_RS' : 'en_US',
@@ -83,7 +83,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t('ogTitle'),
       description: t('ogDescription'),
-      images: ["/images/logo.png"],
+      images: ["/images/cpp-serbia-preview.png"],
       creator: "@cppserbia",
       site: "@cppserbia"
     },
