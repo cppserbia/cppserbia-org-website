@@ -11,8 +11,8 @@ export async function GET() {
     id: siteUrl,
     link: siteUrl,
     language: 'en',
-    image: `${siteUrl}/images/logo.png`, // Assuming there is a logo
-    favicon: `${siteUrl}/favicon.ico`,
+    image: `${siteUrl}/images/logo.png`,
+    favicon: `${siteUrl}/favicon/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, C++ Serbia`,
     updated: new Date(), // Optional, default = today
     generator: 'Feed for Node.js',
@@ -43,8 +43,8 @@ export async function GET() {
 
     feed.addItem({
       title: event.title,
-      id: `${siteUrl}/events/${event.slug}`,
-      link: `${siteUrl}/events/${event.slug}`,
+      id: `${siteUrl}/en/events/${event.slug}`,
+      link: `${siteUrl}/en/events/${event.slug}`,
       description: event.description,
       content: event.content,
       author: [
@@ -62,6 +62,7 @@ export async function GET() {
   return new Response(feed.rss2(), {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
     },
   });
 }

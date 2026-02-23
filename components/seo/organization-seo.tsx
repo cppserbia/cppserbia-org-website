@@ -11,18 +11,13 @@ export async function OrganizationSeo({ baseUrl = 'https://cppserbia.org' }: Org
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": baseUrl,
+    "@id": `${baseUrl}/#organization`,
     "name": "C++ Serbia Community",
     "alternateName": "C++ Serbia",
     "url": baseUrl,
     "logo": {
       "@type": "ImageObject",
       "url": `${baseUrl}/images/logo.png`
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "Community",
-      "url": `${baseUrl}/events`
     },
     "sameAs": [
       "https://www.meetup.com/cpp-serbia/",

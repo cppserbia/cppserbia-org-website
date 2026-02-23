@@ -31,6 +31,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, locale } = await params;
   const t = await getTranslations({ locale, namespace: 'eventDetail' });
+  const mt = await getTranslations({ locale, namespace: 'metadata' });
   const event = getEventBySlug(slug);
 
   if (!event) {
@@ -41,10 +42,11 @@ export async function generateMetadata({
 
   const baseUrl = 'https://cppserbia.org';
   const eventUrl = `${baseUrl}/${locale}/events/${event.slug}`;
-  const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
+  const imageUrl = event.imageUrl || `${baseUrl}/images/cpp-serbia-preview.png`;
+  const titleWithSuffix = `${event.title} - ${mt('communitySuffix')}`;
 
   return {
-    title: `${event.title} - C++ Serbia Community`,
+    title: titleWithSuffix,
     description: event.description,
     metadataBase: new URL(baseUrl),
     alternates: {
@@ -55,7 +57,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: `${event.title} - C++ Serbia Community`,
+      title: titleWithSuffix,
       description: event.description,
       url: eventUrl,
       type: 'article',
@@ -68,15 +70,17 @@ export async function generateMetadata({
         },
       ],
       locale: locale === 'sr' ? 'sr_RS' : 'en_US',
-      siteName: 'C++ Serbia Community',
+      siteName: 'C++ Serbia',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${event.title} - C++ Serbia Community`,
+      title: titleWithSuffix,
       description: event.description,
       images: [imageUrl],
+      creator: "@cppserbia",
+      site: "@cppserbia",
     },
-    keywords: 'C++, programming, Serbia, Belgrade, meetup, technology, software development, community',
+    keywords: ['C++', 'programming', 'Serbia', 'Belgrade', 'meetup', 'technology', 'software development', 'community'],
   };
 }
 

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/private/', '/admin/'],
+      disallow: ['/private/', '/admin/', '/events/feed.xml', '/feed.xml', '/feed.ics'],
     },
     sitemap: 'https://cppserbia.org/sitemap.xml',
   };

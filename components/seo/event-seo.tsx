@@ -1,45 +1,49 @@
 import type { Event } from '@/lib/events-server';
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 interface EventSeoProps {
   event: Event;
   baseUrl?: string;
 }
 
-function generateEventDescription(event: Event): string {
+function generateEventDescription(event: Event, t: Awaited<ReturnType<typeof getTranslations>>): string {
   if (event.description && event.description.length > 100) {
     return event.description;
   }
 
-  const eventType = event.isOnline ? 'online' : 'in-person';
-  const baseDescription = `Join C++ Serbia community for "${event.title}" - an ${eventType} event`;
-
-  let enhancedDescription = baseDescription;
+  const eventType = event.isOnline ? t('eventTypeOnline') : t('eventTypeInPerson');
+  let desc = t('eventDescriptionJoin', { title: event.title, eventType });
 
   if (event.location !== 'TBD') {
-    enhancedDescription += ` taking place ${event.isOnline ? 'online' : `at ${event.location}`}`;
+    desc += event.isOnline
+      ? t('eventDescriptionOnline')
+      : t('eventDescriptionAtVenue', { venue: event.location });
   }
 
-  enhancedDescription += `. Connect with fellow C++ developers, learn about modern C++ techniques, and expand your programming knowledge.`;
+  desc += t('eventDescriptionConnect');
 
   if (event.registrationLink) {
-    enhancedDescription += ` Register now to secure your spot!`;
+    desc += t('eventDescriptionRegister');
   }
 
-  return enhancedDescription;
+  return desc;
 }
 
 export async function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: EventSeoProps) {
   const locale = await getLocale();
+  const t = await getTranslations('seo');
   const eventUrl = `${baseUrl}/${locale}/events/${event.slug}`;
-  const imageUrl = event.imageUrl || `${baseUrl}/images/logo.png`;
+  const imageUrl = event.imageUrl || `${baseUrl}/images/cpp-serbia-preview.png`;
 
-  const description = generateEventDescription(event);
+  const description = generateEventDescription(event, t);
 
-  const startDate = event.startDateTime?.toString() || event.date.toString();
-  const endDate = event.endDateTime?.toString() || event.date.toString();
+  const startDate = event.startDateTime
+    ? event.startDateTime.toString({ timeZoneName: 'never' })
+    : event.date.toString();
+  const endDate = event.endDateTime
+    ? event.endDateTime.toString({ timeZoneName: 'never' })
+    : event.date.toString();
 
-  const eventStatus = event.status === 'PAST' ? 'EventCancelled' : 'EventScheduled';
   const eventAttendanceMode = event.isOnline ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';
 
   const structuredData = {
@@ -61,7 +65,7 @@ export async function EventSeo({ event, baseUrl = 'https://cppserbia.org' }: Eve
       "name": "C++ Serbia Community",
       "url": baseUrl
     },
-    "eventStatus": `https://schema.org/${eventStatus}`,
+    "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": `https://schema.org/${eventAttendanceMode}`,
     "inLanguage": locale === 'sr' ? 'sr' : 'en',
     ...(event.registrationLink && {

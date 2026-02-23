@@ -5,7 +5,10 @@
     "description": "Join the growing community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow developers.",
     "applicationName": "C++ Serbia",
     "ogTitle": "C++ Serbia",
-    "ogDescription": "Join the growing community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow developers."
+    "ogDescription": "Join the growing community of C++ developers in Serbia. Discover events, meetups, workshops, and connect with fellow developers.",
+    "ogImageAlt": "C++ Serbia - C++ Community in Serbia",
+    "keywords": "C++, programming, Serbia, Belgrade, community, meetup, technology, software development",
+    "communitySuffix": "C++ Serbia Community"
   },
   "nav": {
     "brand": "C++ Serbia",
@@ -94,7 +97,19 @@
     "tryAgain": "Try again"
   },
   "seo": {
-    "organizationDescription": "C++ Serbia is a vibrant community of C++ developers in Serbia, organizing meetups, workshops, and conferences to promote knowledge sharing and networking among C++ enthusiasts."
+    "organizationDescription": "C++ Serbia is a vibrant community of C++ developers in Serbia, organizing meetups, workshops, and conferences to promote knowledge sharing and networking among C++ enthusiasts.",
+    "breadcrumbHome": "Home",
+    "breadcrumbEvents": "Events",
+    "eventsCollectionName": "C++ Serbia Community Events",
+    "eventsCollectionDescUpcoming": "Join C++ Serbia community events! {count} upcoming events including {firstEvent}. View all {total} C++ meetups, workshops, and conferences in Serbia.",
+    "eventsCollectionDescGeneral": "Explore {total} C++ Serbia community events. Join our vibrant community of C++ developers in Serbia through meetups, workshops, and conferences.",
+    "eventDescriptionJoin": "Join C++ Serbia community for \"{title}\" — an {eventType} event",
+    "eventDescriptionAtVenue": " taking place at {venue}",
+    "eventDescriptionOnline": " taking place online",
+    "eventDescriptionConnect": ". Connect with fellow C++ developers, learn about modern C++ techniques, and expand your programming knowledge.",
+    "eventDescriptionRegister": " Register now to secure your spot!",
+    "eventTypeOnline": "online",
+    "eventTypeInPerson": "in-person"
   },
   "og": {
     "communityName": "C++ Serbia",
