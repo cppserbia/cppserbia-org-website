@@ -12,7 +12,7 @@ const HEX_NATIVE_WIDTH = 850
 const HEX_FILL = 0.85
 
 // Vertical nudge in native wallpaper pixels (scaled by bgScale at runtime)
-const OFFSET = 22
+const OFFSET = 32
 
 interface ScrollLogoProps {
   src: string
@@ -54,10 +54,10 @@ export function ScrollLogo({ src, alt, width, height, targetOffset = OFFSET }: S
       return
     }
 
-    // How far the section top has scrolled past the viewport top
-    const scrolled = -sectionRect.top
-    // Complete the transition over 25% of the hero height
-    const linear = Math.min(1, Math.max(0, scrolled / (sectionRect.height * 0.25)))
+    // How far the page has scrolled from the top (triggers from the very first pixel)
+    const scrolled = window.scrollY
+    // Complete the transition over 50% of the hero height
+    const linear = Math.min(1, Math.max(0, scrolled / (sectionRect.height * 0.5)))
     // Ease-out curve: starts fast, decelerates into resting position
     const progress = 1 - Math.pow(1 - linear, 3)
     // Rendered hex width at this viewport
