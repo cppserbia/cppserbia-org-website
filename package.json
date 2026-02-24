@@ -81,6 +81,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.3",
+    "citty": "^0.2.1",
     "eslint": "^9.27.0",
     "eslint-config-next": "15.3.3",
     "jsdom": "^25.0.1",

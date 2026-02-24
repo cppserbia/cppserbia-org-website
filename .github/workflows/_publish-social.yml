@@ -1,0 +1,149 @@
+name: Reusable Publish Social
+
+on:
+  workflow_call:
+    inputs:
+      start_marker:
+        description: 'HTML comment start marker for social text in PR body'
+        type: string
+        required: true
+      end_marker:
+        description: 'HTML comment end marker for social text in PR body'
+        type: string
+        required: true
+      payload_start_marker:
+        description: 'HTML comment start marker for metadata JSON in PR body'
+        type: string
+        required: true
+      payload_end_marker:
+        description: 'HTML comment end marker for metadata JSON in PR body'
+        type: string
+        required: true
+      pr_number:
+        description: 'PR number (for workflow_dispatch)'
+        type: number
+        required: false
+        default: 0
+      dry_run:
+        description: 'Log payload without sending to Make.com'
+        type: boolean
+        required: false
+        default: false
+      pr_body:
+        description: 'PR body from pull_request event (pass empty string for workflow_dispatch)'
+        type: string
+        required: false
+        default: ''
+      is_dispatch:
+        description: 'Whether this is a workflow_dispatch trigger'
+        type: boolean
+        required: false
+        default: false
+    secrets:
+      MAKE_WEBHOOK_URL:
+        required: true
+      MAKE_API_KEY:
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    env:
+      DRY_RUN: ${{ inputs.dry_run }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Get PR body
+        id: pr-body
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BODY_EVENT: ${{ inputs.pr_body }}
+        run: |
+          if [ "${{ inputs.is_dispatch }}" = "true" ]; then
+            gh pr view ${{ inputs.pr_number }} --repo "$GITHUB_REPOSITORY" --json body -q .body > /tmp/pr-body.txt
+          else
+            printf '%s' "$PR_BODY_EVENT" > /tmp/pr-body.txt
+          fi
+
+      - name: Extract social text from PR description
+        id: extract
+        run: |
+          SOCIAL_TEXT=$(sed -n '/${{ inputs.start_marker }}/,/${{ inputs.end_marker }}/p' /tmp/pr-body.txt | sed '1d;$d')
+
+          if [ -z "$SOCIAL_TEXT" ]; then
+            echo "No social text found between markers."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "found=true" >> "$GITHUB_OUTPUT"
+          echo "$SOCIAL_TEXT" > /tmp/social-block.txt
+
+      - name: Extract metadata from PR description
+        if: steps.extract.outputs.found == 'true'
+        id: metadata
+        run: |
+          METADATA=$(sed -n '/${{ inputs.payload_start_marker }}/,/${{ inputs.payload_end_marker }}/p' /tmp/pr-body.txt | sed '1d;$d')
+
+          if [ -z "$METADATA" ]; then
+            echo "::error::No metadata JSON found between payload markers."
+            exit 1
+          fi
+
+          echo "$METADATA" > /tmp/metadata.json
+          echo "Metadata:"
+          cat /tmp/metadata.json
+
+      - name: Build payload and post to Make.com
+        if: steps.extract.outputs.found == 'true'
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
+        run: |
+          set -euo pipefail
+
+          PAYLOAD=$(cat /tmp/social-block.txt | npx tsx scripts/social/merge-payload.ts /tmp/metadata.json)
+
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "::notice::DRY RUN — payload that would be sent to Make.com:"
+            echo "$PAYLOAD" | jq .
+            exit 0
+          fi
+
+          echo "Sending payload to Make.com..."
+          echo "$PAYLOAD" | jq .
+
+          HTTP_STATUS=$(curl -s -o /tmp/webhook-response.txt -w "%{http_code}" \
+            -X POST -H "Content-Type: application/json" \
+            -H "x-make-apikey: $MAKE_API_KEY" \
+            -d "$PAYLOAD" "$MAKE_WEBHOOK_URL")
+
+          echo "Response status: $HTTP_STATUS"
+          cat /tmp/webhook-response.txt
+
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "Webhook request failed with status $HTTP_STATUS"
+            exit 1
+          fi
+          echo "Posts dispatched successfully!"

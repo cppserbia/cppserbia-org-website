@@ -1,0 +1,206 @@
+name: Reusable Generate Social Draft
+
+on:
+  workflow_call:
+    inputs:
+      type_flag:
+        description: '"recording" or "announcement"'
+        type: string
+        required: true
+      start_marker:
+        description: 'HTML comment start marker for PR body injection'
+        type: string
+        required: true
+      end_marker:
+        description: 'HTML comment end marker for PR body injection'
+        type: string
+        required: true
+      section_title:
+        description: 'Heading for the injected PR body section'
+        type: string
+        required: true
+      no_file_message:
+        description: 'Comment body when no matching event files are found'
+        type: string
+        required: true
+      find_script:
+        description: 'Shell script that sets found=true/false and file=<path> in GITHUB_OUTPUT'
+        type: string
+        required: true
+      payload_start_marker:
+        description: 'HTML comment start marker for metadata payload in PR body'
+        type: string
+        required: true
+      payload_end_marker:
+        description: 'HTML comment end marker for metadata payload in PR body'
+        type: string
+        required: true
+    secrets:
+      GEMINI_API_KEY:
+        required: true
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  generate-draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add eyes reaction to trigger comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout PR head
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr checkout ${{ github.event.issue.number }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Find event file
+        id: find-events
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ${{ inputs.find_script }}
+
+      - name: Generate draft
+        if: steps.find-events.outputs.found == 'true'
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          FILE="${{ steps.find-events.outputs.file }}"
+          echo "Generating ${{ inputs.type_flag }} draft for: $FILE"
+          DRAFT=$(npx tsx scripts/generate-social-draft.ts --type ${{ inputs.type_flag }} "$FILE")
+          echo "$DRAFT" > /tmp/draft-output.txt
+          echo "generated=true" >> "$GITHUB_OUTPUT"
+
+      - name: Generate metadata
+        if: steps.generate.outputs.generated == 'true'
+        run: |
+          set -euo pipefail
+          FILE="${{ steps.find-events.outputs.file }}"
+          npx tsx scripts/generate-social-draft.ts --metadata --type ${{ inputs.type_flag }} "$FILE" > /tmp/metadata.json
+          echo "Metadata:"
+          cat /tmp/metadata.json
+
+      - name: Update PR description
+        if: steps.generate.outputs.generated == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const socialText = fs.readFileSync('/tmp/draft-output.txt', 'utf8');
+            const metadataJson = fs.readFileSync('/tmp/metadata.json', 'utf8').trim();
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number
+            });
+
+            const currentBody = pr.body || '';
+
+            const startMarker = '${{ inputs.start_marker }}';
+            const endMarker = '${{ inputs.end_marker }}';
+            const sectionTitle = '${{ inputs.section_title }}';
+            const payloadStartMarker = '${{ inputs.payload_start_marker }}';
+            const payloadEndMarker = '${{ inputs.payload_end_marker }}';
+
+            const socialSection = `## ${sectionTitle}\n${startMarker}\n${socialText}\n${endMarker}`;
+            const payloadSection = `${payloadStartMarker}\n${metadataJson}\n${payloadEndMarker}`;
+
+            function replaceOrAppendBlock(body, start, end, heading, block) {
+              if (body.includes(start) && body.includes(end)) {
+                const escapedStart = start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const escapedEnd = end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const pattern = heading
+                  ? `## ${heading}\\n${escapedStart}[\\s\\S]*?${escapedEnd}`
+                  : `${escapedStart}[\\s\\S]*?${escapedEnd}`;
+                return body.replace(new RegExp(pattern), block);
+              }
+              return body + '\n\n' + block;
+            }
+
+            let newBody = replaceOrAppendBlock(currentBody, startMarker, endMarker, sectionTitle, socialSection);
+            newBody = replaceOrAppendBlock(newBody, payloadStartMarker, payloadEndMarker, null, payloadSection);
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number,
+              body: newBody
+            });
+
+            console.log('PR description updated with draft and metadata.');
+
+      - name: Add rocket reaction on success
+        if: steps.generate.outputs.generated == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            });
+
+      - name: Comment if no event files found
+        if: steps.find-events.outputs.found != 'true'
+        uses: actions/github-script@v7
+        env:
+          NO_FILE_MSG: ${{ inputs.no_file_message }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: process.env.NO_FILE_MSG
+            });
+
+      - name: React with error on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'confused'
+            });
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              body: '❌ Failed to generate draft. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.'
+            });
