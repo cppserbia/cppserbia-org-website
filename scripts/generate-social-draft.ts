@@ -28,17 +28,9 @@ function printDryRun(
   console.error("─".repeat(60));
 }
 
-async function readStdin(): Promise<string> {
-  const chunks: Buffer[] = [];
-  for await (const chunk of process.stdin) {
-    chunks.push(chunk);
-  }
-  return Buffer.concat(chunks).toString("utf8");
-}
-
 async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean) {
   const config = modes[mode];
-  const { frontmatter, content } = readEventFile(eventFile);
+  const { frontmatter, content, slug } = readEventFile(eventFile);
 
   config.validate(frontmatter, eventFile);
 
@@ -71,24 +63,11 @@ async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean) {
 
   console.error(`Generating ${mode} draft via Gemini...`);
   const draft = await generateSocialDraft(apiKey, prompt);
-  console.log(draft);
-}
-
-function runMetadata(eventFile: string, mode: Mode) {
-  const config = modes[mode];
-  const { frontmatter, slug } = readEventFile(eventFile);
-
-  const metadata = config.buildMetadata(frontmatter, slug);
-  console.log(JSON.stringify(metadata));
-}
-
-async function runBuildPayload(eventFile: string, mode: Mode) {
-  const config = modes[mode];
-  const { frontmatter, slug } = readEventFile(eventFile);
-
-  const socialText = await readStdin();
-  const { en, sr } = parseSocialText(socialText);
-
+  const { en, sr } = parseSocialText(draft);
+  if (!en || !sr) {
+    console.error("Raw Gemini output:\n" + draft);
+    throw new Error("Failed to parse bilingual social text from Gemini response.");
+  }
   const payload = config.buildPayload(frontmatter, slug, en, sr);
   console.log(JSON.stringify(payload, null, 2));
 }
@@ -100,16 +79,6 @@ const main = defineCommand({
   },
   args: {
     type: { type: "string", required: true, description: "Mode: recording or announcement" },
-    "build-payload": {
-      type: "boolean",
-      default: false,
-      description: "Read social text from stdin and output JSON payload",
-    },
-    metadata: {
-      type: "boolean",
-      default: false,
-      description: "Output event metadata JSON (no Gemini call, no stdin)",
-    },
     "dry-run": {
       type: "boolean",
       default: false,
@@ -127,17 +96,7 @@ const main = defineCommand({
       throw new Error(`Invalid --type value: ${args.type}. Use "recording" or "announcement".`);
     }
 
-    if (args["build-payload"] && args.metadata) {
-      throw new Error("Cannot use --build-payload and --metadata together.");
-    }
-
-    if (args.metadata) {
-      runMetadata(args.eventFile, mode);
-    } else if (args["build-payload"]) {
-      await runBuildPayload(args.eventFile, mode);
-    } else {
-      await runGenerate(args.eventFile, mode, args["dry-run"]);
-    }
+    await runGenerate(args.eventFile, mode, args["dry-run"]);
   },
 });
 

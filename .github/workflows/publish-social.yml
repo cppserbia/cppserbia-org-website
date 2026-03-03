@@ -31,14 +31,9 @@ jobs:
        contains(github.event.pull_request.body, '<!-- SOCIAL_MEDIA_START -->'))
     uses: ./.github/workflows/_publish-social.yml
     with:
-      start_marker: '<!-- SOCIAL_MEDIA_START -->'
-      end_marker: '<!-- SOCIAL_MEDIA_END -->'
-      payload_start_marker: '<!-- SOCIAL_MEDIA_PAYLOAD_START -->'
-      payload_end_marker: '<!-- SOCIAL_MEDIA_PAYLOAD_END -->'
-      pr_number: ${{ inputs.pr_number || 0 }}
+      type: recording
+      pr_number: ${{ github.event.pull_request.number || inputs.pr_number }}
       dry_run: ${{ inputs.dry_run || false }}
-      pr_body: ${{ github.event.pull_request.body || '' }}
-      is_dispatch: ${{ github.event_name == 'workflow_dispatch' }}
     secrets:
       MAKE_WEBHOOK_URL: ${{ secrets.MAKE_NEW_YT_WEBHOOK_URL }}
       MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
@@ -50,14 +45,9 @@ jobs:
        contains(github.event.pull_request.body, '<!-- EVENT_ANNOUNCEMENT_START -->'))
     uses: ./.github/workflows/_publish-social.yml
     with:
-      start_marker: '<!-- EVENT_ANNOUNCEMENT_START -->'
-      end_marker: '<!-- EVENT_ANNOUNCEMENT_END -->'
-      payload_start_marker: '<!-- EVENT_ANNOUNCEMENT_PAYLOAD_START -->'
-      payload_end_marker: '<!-- EVENT_ANNOUNCEMENT_PAYLOAD_END -->'
-      pr_number: ${{ inputs.pr_number || 0 }}
+      type: announcement
+      pr_number: ${{ github.event.pull_request.number || inputs.pr_number }}
       dry_run: ${{ inputs.dry_run || false }}
-      pr_body: ${{ github.event.pull_request.body || '' }}
-      is_dispatch: ${{ github.event_name == 'workflow_dispatch' }}
     secrets:
       MAKE_WEBHOOK_URL: ${{ secrets.MAKE_ANNOUNCEMENT_WEBHOOK_URL }}
       MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}

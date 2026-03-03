@@ -20,40 +20,6 @@ jobs:
     uses: ./.github/workflows/_generate-social-draft.yml
     with:
       type_flag: recording
-      start_marker: '<!-- SOCIAL_MEDIA_START -->'
-      end_marker: '<!-- SOCIAL_MEDIA_END -->'
-      section_title: 'Social Media Posts'
-      no_file_message: '⚠️ No changed event files with a `youtube` field found in this PR. The `/social:new-yt` command requires at least one modified event file with a `youtube:` frontmatter field.'
-      payload_start_marker: '<!-- SOCIAL_MEDIA_PAYLOAD_START -->'
-      payload_end_marker: '<!-- SOCIAL_MEDIA_PAYLOAD_END -->'
-      find_script: |
-        set -euo pipefail
-
-        EVENT_FILE=$(gh pr diff ${{ github.event.issue.number }} --name-only \
-          | grep '^events/.*\.md$' | grep -v '^events/_' || true)
-
-        if [ -z "$EVENT_FILE" ]; then
-          echo "No event files changed in this PR."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-
-        FILE_COUNT=$(echo "$EVENT_FILE" | wc -l | tr -d ' ')
-        if [ "$FILE_COUNT" -ne 1 ]; then
-          echo "::error::Expected exactly 1 event file, found $FILE_COUNT. Each PR should contain a single event."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-
-        # Require youtube field
-        if [ -f "$EVENT_FILE" ] && grep -q '^youtube:' "$EVENT_FILE"; then
-          echo "Found event file: $EVENT_FILE"
-          echo "found=true" >> "$GITHUB_OUTPUT"
-          echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
-        else
-          echo "No changed event files have a youtube field."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-        fi
     secrets:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
@@ -67,53 +33,5 @@ jobs:
     uses: ./.github/workflows/_generate-social-draft.yml
     with:
       type_flag: announcement
-      start_marker: '<!-- EVENT_ANNOUNCEMENT_START -->'
-      end_marker: '<!-- EVENT_ANNOUNCEMENT_END -->'
-      section_title: 'Event Announcement Posts'
-      no_file_message: '⚠️ No new event files found in this PR. The `/social:announcement` command requires at least one newly added event file (not a modification) with a non-DRAFT status.'
-      payload_start_marker: '<!-- EVENT_ANNOUNCEMENT_PAYLOAD_START -->'
-      payload_end_marker: '<!-- EVENT_ANNOUNCEMENT_PAYLOAD_END -->'
-      find_script: |
-        set -euo pipefail
-
-        # Get the base branch SHA for comparison
-        BASE_SHA=$(gh pr view ${{ github.event.issue.number }} --json baseRefOid -q .baseRefOid)
-
-        # Get list of changed .md files in events/
-        CHANGED_FILES=$(gh pr diff ${{ github.event.issue.number }} --name-only | grep '^events/.*\.md$' | grep -v '^events/_' || true)
-
-        if [ -z "$CHANGED_FILES" ]; then
-          echo "No event files changed in this PR."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-
-        # Filter to single NEW file (not modification of existing file)
-        EVENT_FILE=""
-        NEW_COUNT=0
-        for file in $CHANGED_FILES; do
-          if [ -f "$file" ] && ! git cat-file -e "$BASE_SHA:$file" 2>/dev/null; then
-            if ! grep -q '^status:.*DRAFT' "$file"; then
-              EVENT_FILE="$file"
-              NEW_COUNT=$((NEW_COUNT + 1))
-            fi
-          fi
-        done
-
-        if [ "$NEW_COUNT" -gt 1 ]; then
-          echo "::error::Expected exactly 1 new event file, found $NEW_COUNT. Each PR should contain a single event."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-
-        if [ -z "$EVENT_FILE" ]; then
-          echo "No new non-DRAFT event files found in this PR."
-          echo "found=false" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-
-        echo "Found new event file: $EVENT_FILE"
-        echo "found=true" >> "$GITHUB_OUTPUT"
-        echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
     secrets:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
