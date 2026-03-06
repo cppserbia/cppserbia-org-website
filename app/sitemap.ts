@@ -2,38 +2,38 @@ import { MetadataRoute } from 'next';
 import { getAllEventsServer } from '@/lib/events-server';
 import { locales } from '@/i18n/config';
 
+function hreflangAlternates(path: string, baseUrl: string) {
+  return {
+    languages: Object.fromEntries(
+      [...locales.map((l) => [l, `${baseUrl}/${l}${path}`]), ['x-default', `${baseUrl}/en${path}`]]
+    ),
+  };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://cppserbia.org';
 
   try {
     const allEvents = getAllEventsServer();
 
-    const staticPages: MetadataRoute.Sitemap = locales.flatMap((locale) => [
+    const staticPages: MetadataRoute.Sitemap = [
       {
-        url: `${baseUrl}/${locale}`,
+        url: `${baseUrl}/en`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
-        priority: locale === 'en' ? 1 : 0.9,
-        alternates: {
-          languages: Object.fromEntries(
-            [...locales.map((l) => [l, `${baseUrl}/${l}`]), ['x-default', `${baseUrl}/en`]]
-          ),
-        },
+        priority: 1,
+        alternates: hreflangAlternates('', baseUrl),
       },
       {
-        url: `${baseUrl}/${locale}/events`,
+        url: `${baseUrl}/en/events`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
-        priority: locale === 'en' ? 0.9 : 0.8,
-        alternates: {
-          languages: Object.fromEntries(
-            [...locales.map((l) => [l, `${baseUrl}/${l}/events`]), ['x-default', `${baseUrl}/en/events`]]
-          ),
-        },
+        priority: 0.9,
+        alternates: hreflangAlternates('/events', baseUrl),
       },
-    ]);
+    ];
 
-    const eventPages: MetadataRoute.Sitemap = allEvents.flatMap((event) => {
+    const eventPages: MetadataRoute.Sitemap = allEvents.map((event) => {
       let lastModified: Date;
       try {
         if (event.startDateTime) {
@@ -47,35 +47,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified = new Date();
       }
 
-      return locales.map((locale) => ({
-        url: `${baseUrl}/${locale}/events/${event.slug}`,
+      return {
+        url: `${baseUrl}/en/events/${event.slug}`,
         lastModified,
         changeFrequency: 'monthly' as const,
         priority: 0.8,
-        alternates: {
-          languages: Object.fromEntries(
-            [...locales.map((l) => [l, `${baseUrl}/${l}/events/${event.slug}`]), ['x-default', `${baseUrl}/en/events/${event.slug}`]]
-          ),
-        },
-      }));
+        alternates: hreflangAlternates(`/events/${event.slug}`, baseUrl),
+      };
     });
 
     return [...staticPages, ...eventPages];
   } catch (error) {
     console.error('Error generating sitemap:', error);
-    return locales.flatMap((locale) => [
+    return [
       {
-        url: `${baseUrl}/${locale}`,
+        url: `${baseUrl}/en`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 1,
       },
       {
-        url: `${baseUrl}/${locale}/events`,
+        url: `${baseUrl}/en/events`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 0.9,
       },
-    ]);
+    ];
   }
 }

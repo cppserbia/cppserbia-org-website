@@ -54,6 +54,7 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en/events/${event.slug}`,
         sr: `${baseUrl}/sr/events/${event.slug}`,
+        'x-default': `${baseUrl}/en/events/${event.slug}`,
       },
     },
     openGraph: {
