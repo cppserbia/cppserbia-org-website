@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Calendar, ArrowRight } from "lucide-react"
@@ -9,6 +10,26 @@ import { RSSFeedButton } from "@/components/rss-feed-button"
 import { ScrollLogo } from "@/components/scroll-logo"
 import { Link } from "@/i18n/navigation"
 import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const baseUrl = 'https://cppserbia.org';
+
+  return {
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+      languages: {
+        en: `${baseUrl}/en`,
+        sr: `${baseUrl}/sr`,
+        'x-default': `${baseUrl}/en`,
+      },
+    },
+  };
+}
 
 export default async function Home() {
   const t = await getTranslations()

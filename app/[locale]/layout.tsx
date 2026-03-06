@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import { routing } from "@/i18n/routing"
+import { defaultLocale } from "@/i18n/config"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
@@ -29,6 +30,7 @@ export async function generateMetadata({
   for (const loc of routing.locales) {
     alternateLanguages[loc] = `${baseUrl}/${loc}`
   }
+  alternateLanguages['x-default'] = `${baseUrl}/${defaultLocale}`
 
   return {
     metadataBase: new URL(baseUrl),
@@ -99,6 +101,7 @@ export async function generateMetadata({
       },
     },
     alternates: {
+      canonical: `${baseUrl}/${locale}`,
       languages: alternateLanguages,
       types: {
         'application/rss+xml': [
