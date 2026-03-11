@@ -2,6 +2,9 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -80,7 +83,7 @@
     "@github/copilot-sdk": "^0.1.32",
     "@testing-library/react": "^16.0.1",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.3",
