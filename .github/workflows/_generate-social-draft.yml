@@ -10,6 +10,8 @@ on:
     secrets:
       GEMINI_API_KEY:
         required: false
+      GITHUB_COPILOT_TOKEN:
+        required: false
 
 permissions:
   pull-requests: write
@@ -148,7 +150,7 @@ jobs:
         id: generate
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_COPILOT_TOKEN || github.token }}
         run: |
           set -euo pipefail
           FILE="${{ steps.find-events.outputs.file }}"
