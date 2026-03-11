@@ -22,6 +22,7 @@ jobs:
       type_flag: recording
     secrets:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GH_COPILOT_TOKEN: ${{ secrets.GH_COPILOT_TOKEN }}
 
   announcement:
     if: |
@@ -35,3 +36,4 @@ jobs:
       type_flag: announcement
     secrets:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GH_COPILOT_TOKEN: ${{ secrets.GH_COPILOT_TOKEN }}
