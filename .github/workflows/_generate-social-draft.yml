@@ -1,0 +1,246 @@
+name: Reusable Generate Social Draft
+
+on:
+  workflow_call:
+    inputs:
+      type_flag:
+        description: '"recording" or "announcement"'
+        type: string
+        required: true
+    secrets:
+      GEMINI_API_KEY:
+        required: true
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  generate-draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add eyes reaction to trigger comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout PR head
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr checkout ${{ github.event.issue.number }}
+
+      - name: Derive markers from type
+        id: markers
+        run: |
+          if [ "${{ inputs.type_flag }}" = "recording" ]; then
+            echo "start=<!-- SOCIAL_MEDIA_START -->" >> "$GITHUB_OUTPUT"
+            echo "end=<!-- SOCIAL_MEDIA_END -->" >> "$GITHUB_OUTPUT"
+            echo "title=Social Media Posts" >> "$GITHUB_OUTPUT"
+          else
+            echo "start=<!-- EVENT_ANNOUNCEMENT_START -->" >> "$GITHUB_OUTPUT"
+            echo "end=<!-- EVENT_ANNOUNCEMENT_END -->" >> "$GITHUB_OUTPUT"
+            echo "title=Event Announcement Posts" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Find event file
+        id: find-events
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=${{ github.event.issue.number }}
+
+          if [ "${{ inputs.type_flag }}" = "recording" ]; then
+            EVENT_FILE=$(gh pr diff "$PR_NUMBER" --name-only \
+              | grep '^events/.*\.md$' | grep -v '^events/_' || true)
+
+            if [ -z "$EVENT_FILE" ]; then
+              echo "No event files changed in this PR."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            FILE_COUNT=$(echo "$EVENT_FILE" | wc -l | tr -d ' ')
+            if [ "$FILE_COUNT" -ne 1 ]; then
+              echo "::error::Expected exactly 1 event file, found $FILE_COUNT. Each PR should contain a single event."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            # Require youtube field
+            if [ -f "$EVENT_FILE" ] && grep -q '^youtube:' "$EVENT_FILE"; then
+              echo "Found event file: $EVENT_FILE"
+              echo "found=true" >> "$GITHUB_OUTPUT"
+              echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
+            else
+              echo "No changed event files have a youtube field."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            # announcement: find newly added non-DRAFT event files
+            BASE_SHA=$(gh pr view "$PR_NUMBER" --json baseRefOid -q .baseRefOid)
+
+            CHANGED_FILES=$(gh pr diff "$PR_NUMBER" --name-only | grep '^events/.*\.md$' | grep -v '^events/_' || true)
+
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "No event files changed in this PR."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            EVENT_FILE=""
+            NEW_COUNT=0
+            for file in $CHANGED_FILES; do
+              if [ -f "$file" ] && ! git cat-file -e "$BASE_SHA:$file" 2>/dev/null; then
+                if ! grep -q '^status:.*DRAFT' "$file"; then
+                  EVENT_FILE="$file"
+                  NEW_COUNT=$((NEW_COUNT + 1))
+                fi
+              fi
+            done
+
+            if [ "$NEW_COUNT" -gt 1 ]; then
+              echo "::error::Expected exactly 1 new event file, found $NEW_COUNT. Each PR should contain a single event."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            if [ -z "$EVENT_FILE" ]; then
+              echo "No new non-DRAFT event files found in this PR."
+              echo "found=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "Found new event file: $EVENT_FILE"
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate draft
+        if: steps.find-events.outputs.found == 'true'
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          FILE="${{ steps.find-events.outputs.file }}"
+          echo "Generating ${{ inputs.type_flag }} draft for: $FILE"
+          npx tsx scripts/generate-social-draft.ts --type ${{ inputs.type_flag }} "$FILE" > /tmp/payload.json
+          echo "Payload:"
+          cat /tmp/payload.json
+          echo "generated=true" >> "$GITHUB_OUTPUT"
+
+      - name: Update PR description
+        if: steps.generate.outputs.generated == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const payloadJson = fs.readFileSync('/tmp/payload.json', 'utf8').trim();
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number
+            });
+
+            const currentBody = pr.body || '';
+
+            const startMarker = '${{ steps.markers.outputs.start }}';
+            const endMarker = '${{ steps.markers.outputs.end }}';
+            const sectionTitle = '${{ steps.markers.outputs.title }}';
+
+            const section = `## ${sectionTitle}\n\nEdit \`social_text_en\` and \`social_text_sr\` below, then merge to publish.\n\n${startMarker}\n\`\`\`json\n${payloadJson}\n\`\`\`\n${endMarker}`;
+
+            let newBody;
+            if (currentBody.includes(startMarker) && currentBody.includes(endMarker)) {
+              const escapedStart = startMarker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const escapedEnd = endMarker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              newBody = currentBody.replace(
+                new RegExp(`## ${sectionTitle}[\\s\\S]*?${escapedStart}[\\s\\S]*?${escapedEnd}`),
+                section
+              );
+            } else {
+              newBody = currentBody + '\n\n' + section;
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number,
+              body: newBody
+            });
+
+            console.log('PR description updated with payload.');
+
+      - name: Add rocket reaction on success
+        if: steps.generate.outputs.generated == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            });
+
+      - name: Comment if no event files found
+        if: steps.find-events.outputs.found != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const messages = {
+              recording: '⚠️ No changed event files with a `youtube` field found in this PR. The `/social:new-yt` command requires at least one modified event file with a `youtube:` frontmatter field.',
+              announcement: '⚠️ No new event files found in this PR. The `/social:announcement` command requires at least one newly added event file (not a modification) with a non-DRAFT status.'
+            };
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: messages['${{ inputs.type_flag }}']
+            });
+
+      - name: React with error on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'confused'
+            });
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              body: '❌ Failed to generate draft. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.'
+            });

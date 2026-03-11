@@ -1,0 +1,37 @@
+name: Social Media Draft
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  new-yt:
+    if: |
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/social:new-yt') &&
+      (github.event.comment.author_association == 'OWNER' ||
+       github.event.comment.author_association == 'MEMBER' ||
+       github.event.comment.author_association == 'COLLABORATOR')
+    uses: ./.github/workflows/_generate-social-draft.yml
+    with:
+      type_flag: recording
+    secrets:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+  announcement:
+    if: |
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/social:announcement') &&
+      (github.event.comment.author_association == 'OWNER' ||
+       github.event.comment.author_association == 'MEMBER' ||
+       github.event.comment.author_association == 'COLLABORATOR')
+    uses: ./.github/workflows/_generate-social-draft.yml
+    with:
+      type_flag: announcement
+    secrets:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

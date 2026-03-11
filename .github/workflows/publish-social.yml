@@ -1,0 +1,53 @@
+name: Publish Social Media
+
+on:
+  pull_request:
+    types: [closed]
+    paths:
+      - 'events/*.md'
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Which publish job to run'
+        required: true
+        type: choice
+        options:
+          - new-yt
+          - announcement
+      pr_number:
+        description: 'PR number to extract social text from'
+        required: true
+        type: number
+      dry_run:
+        description: 'Log payload without sending to Make.com'
+        type: boolean
+        default: true
+
+jobs:
+  new-yt:
+    if: |
+      (github.event_name == 'workflow_dispatch' && inputs.type == 'new-yt') ||
+      (github.event.pull_request.merged == true &&
+       contains(github.event.pull_request.body, '<!-- SOCIAL_MEDIA_START -->'))
+    uses: ./.github/workflows/_publish-social.yml
+    with:
+      type: recording
+      pr_number: ${{ github.event.pull_request.number || inputs.pr_number }}
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets:
+      MAKE_WEBHOOK_URL: ${{ secrets.MAKE_NEW_YT_WEBHOOK_URL }}
+      MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
+
+  announcement:
+    if: |
+      (github.event_name == 'workflow_dispatch' && inputs.type == 'announcement') ||
+      (github.event.pull_request.merged == true &&
+       contains(github.event.pull_request.body, '<!-- EVENT_ANNOUNCEMENT_START -->'))
+    uses: ./.github/workflows/_publish-social.yml
+    with:
+      type: announcement
+      pr_number: ${{ github.event.pull_request.number || inputs.pr_number }}
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets:
+      MAKE_WEBHOOK_URL: ${{ secrets.MAKE_ANNOUNCEMENT_WEBHOOK_URL }}
+      MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
