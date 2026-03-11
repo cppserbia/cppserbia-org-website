@@ -1,53 +1,46 @@
 import { generateSocialDraft as geminiGenerate } from "./gemini";
 import { generateSocialDraft as githubGenerate } from "./github-models";
-import { LlmApiError } from "./llm-error";
+import { err } from "./types";
+import type { Result, LlmError } from "./types";
 
 export type Provider = "gemini" | "github" | "auto";
 
 export async function generateWithFallback(
   provider: Provider,
   prompt: string
-): Promise<string> {
+): Promise<Result<string, LlmError>> {
   const geminiKey = process.env.GEMINI_API_KEY;
   const githubToken = process.env.GITHUB_TOKEN;
 
   if (provider === "gemini") {
-    if (!geminiKey) throw new Error("Missing GEMINI_API_KEY environment variable.");
+    if (!geminiKey) {
+      return err({ kind: "client", message: "Missing GEMINI_API_KEY environment variable.", status: 0 });
+    }
     return geminiGenerate(geminiKey, prompt);
   }
 
   if (provider === "github") {
-    if (!githubToken) throw new Error("Missing GITHUB_TOKEN environment variable.");
     return githubGenerate(githubToken, prompt);
   }
 
   // Auto mode: try available providers with fallback
-  if (!geminiKey && !githubToken) {
-    throw new Error(
-      "No LLM provider available. Set GEMINI_API_KEY or GITHUB_TOKEN environment variable."
-    );
-  }
-
-  // If only one provider is available, use it directly
   if (!geminiKey) {
     console.error("GEMINI_API_KEY not set, using GitHub Models directly.");
-    return githubGenerate(githubToken!, prompt);
-  }
-  if (!githubToken) {
-    return geminiGenerate(geminiKey, prompt);
+    return githubGenerate(githubToken, prompt);
   }
 
-  // Both available: try Gemini first, fall back to GitHub on 5xx
-  try {
-    return await geminiGenerate(geminiKey, prompt);
-  } catch (error) {
-    const isTimeout = error instanceof DOMException && error.name === "TimeoutError";
-    const isServerError = error instanceof LlmApiError && error.status >= 500;
-    if (isTimeout || isServerError) {
-      const reason = isTimeout ? "timed out" : `returned ${(error as LlmApiError).status}`;
-      console.error(`Gemini ${reason}, falling back to GitHub Models...`);
-      return githubGenerate(githubToken, prompt);
-    }
-    throw error;
+  // Try Gemini first, fall back to GitHub on timeout or server errors
+  const geminiResult = await geminiGenerate(geminiKey, prompt);
+  if (geminiResult.ok) {
+    return geminiResult;
   }
+
+  const { kind } = geminiResult.error;
+  if (kind === "timeout" || kind === "server") {
+    const reason = kind === "timeout" ? "timed out" : `returned ${(geminiResult.error as { status: number }).status}`;
+    console.error(`Gemini ${reason}, falling back to GitHub Models...`);
+    return githubGenerate(githubToken, prompt);
+  }
+
+  return geminiResult;
 }

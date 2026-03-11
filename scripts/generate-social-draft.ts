@@ -31,9 +31,19 @@ function printDryRun(
 
 async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean, provider: Provider) {
   const config = modes[mode];
-  const { frontmatter, content, slug } = readEventFile(eventFile);
 
-  config.validate(frontmatter, eventFile);
+  const eventResult = readEventFile(eventFile);
+  if (!eventResult.ok) {
+    console.error(eventResult.error);
+    process.exit(1);
+  }
+  const { frontmatter, content, slug } = eventResult.value;
+
+  const validationError = config.validate(frontmatter, eventFile);
+  if (validationError) {
+    console.error(validationError);
+    process.exit(1);
+  }
 
   console.error(`Processing (${mode}): ${frontmatter.title}`);
   config.logExtra(frontmatter);
@@ -58,11 +68,16 @@ async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean, provi
   }
 
   console.error(`Generating ${mode} draft via LLM (provider: ${provider})...`);
-  const draft = await generateWithFallback(provider, prompt);
-  const { en, sr } = parseSocialText(draft);
+  const draftResult = await generateWithFallback(provider, prompt);
+  if (!draftResult.ok) {
+    console.error(`LLM error (${draftResult.error.kind}): ${draftResult.error.message}`);
+    process.exit(1);
+  }
+  const { en, sr } = parseSocialText(draftResult.value);
   if (!en || !sr) {
-    console.error("Raw LLM output:\n" + draft);
-    throw new Error("Failed to parse bilingual social text from LLM response.");
+    console.error("Raw LLM output:\n" + draftResult.value);
+    console.error("Failed to parse bilingual social text from LLM response.");
+    process.exit(1);
   }
   const payload = config.buildPayload(frontmatter, slug, en, sr);
   console.log(JSON.stringify(payload, null, 2));
@@ -99,7 +114,9 @@ const main = defineCommand({
 
     const provider = args.provider as Provider;
     if (provider !== "auto" && provider !== "gemini" && provider !== "github") {
-      throw new Error(`Invalid --provider value: ${args.provider}. Use "auto", "gemini", or "github".`);
+      throw new Error(
+        `Invalid --provider value: ${args.provider}. Use "auto", "gemini", or "github".`
+      );
     }
 
     await runGenerate(args.eventFile, mode, args["dry-run"], provider);
