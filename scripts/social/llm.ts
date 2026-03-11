@@ -41,10 +41,11 @@ export async function generateWithFallback(
   try {
     return await geminiGenerate(geminiKey, prompt);
   } catch (error) {
-    if (error instanceof LlmApiError && error.status >= 500) {
-      console.error(
-        `Gemini returned ${error.status}, falling back to GitHub Models...`
-      );
+    const isTimeout = error instanceof DOMException && error.name === "TimeoutError";
+    const isServerError = error instanceof LlmApiError && error.status >= 500;
+    if (isTimeout || isServerError) {
+      const reason = isTimeout ? "timed out" : `returned ${(error as LlmApiError).status}`;
+      console.error(`Gemini ${reason}, falling back to GitHub Models...`);
       return githubGenerate(githubToken, prompt);
     }
     throw error;
