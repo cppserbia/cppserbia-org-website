@@ -4,7 +4,8 @@ import { defineCommand, runMain } from "citty";
 import { loadEnvFile } from "./load-env";
 import { readEventFile } from "./social/read-event";
 import { extractSpeakerName, parseSocialText } from "./social/extract";
-import { generateSocialDraft } from "./social/gemini";
+import { generateWithFallback } from "./social/llm";
+import type { Provider } from "./social/llm";
 import { modes } from "./social/modes";
 import type { Mode } from "./social/types";
 
@@ -22,13 +23,13 @@ function printDryRun(
   }
   console.error(`  Speaker:     ${speakerName || "(not found)"}`);
   console.error(`  Description: ${description || "(none)"}`);
-  console.error("\nPrompt that would be sent to Gemini:");
+  console.error("\nPrompt that would be sent to LLM:");
   console.error("─".repeat(60));
   console.error(prompt);
   console.error("─".repeat(60));
 }
 
-async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean) {
+async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean, provider: Provider) {
   const config = modes[mode];
   const { frontmatter, content, slug } = readEventFile(eventFile);
 
@@ -56,17 +57,12 @@ async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean) {
     return;
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error("Missing GEMINI_API_KEY environment variable.");
-  }
-
-  console.error(`Generating ${mode} draft via Gemini...`);
-  const draft = await generateSocialDraft(apiKey, prompt);
+  console.error(`Generating ${mode} draft via LLM (provider: ${provider})...`);
+  const draft = await generateWithFallback(provider, prompt);
   const { en, sr } = parseSocialText(draft);
   if (!en || !sr) {
-    console.error("Raw Gemini output:\n" + draft);
-    throw new Error("Failed to parse bilingual social text from Gemini response.");
+    console.error("Raw LLM output:\n" + draft);
+    throw new Error("Failed to parse bilingual social text from LLM response.");
   }
   const payload = config.buildPayload(frontmatter, slug, en, sr);
   console.log(JSON.stringify(payload, null, 2));
@@ -79,10 +75,15 @@ const main = defineCommand({
   },
   args: {
     type: { type: "string", required: true, description: "Mode: recording or announcement" },
+    provider: {
+      type: "string",
+      default: "auto",
+      description: "LLM provider: auto, gemini, or github",
+    },
     "dry-run": {
       type: "boolean",
       default: false,
-      description: "Show extracted metadata and prompt without calling Gemini API",
+      description: "Show extracted metadata and prompt without calling LLM API",
     },
     eventFile: {
       type: "positional",
@@ -96,7 +97,12 @@ const main = defineCommand({
       throw new Error(`Invalid --type value: ${args.type}. Use "recording" or "announcement".`);
     }
 
-    await runGenerate(args.eventFile, mode, args["dry-run"]);
+    const provider = args.provider as Provider;
+    if (provider !== "auto" && provider !== "gemini" && provider !== "github") {
+      throw new Error(`Invalid --provider value: ${args.provider}. Use "auto", "gemini", or "github".`);
+    }
+
+    await runGenerate(args.eventFile, mode, args["dry-run"], provider);
   },
 });
 
@@ -105,5 +111,5 @@ const isDirectRun =
 
 if (isDirectRun) {
   loadEnvFile();
-  runMain(main);
+  runMain(main).then(() => process.exit(0));
 }
