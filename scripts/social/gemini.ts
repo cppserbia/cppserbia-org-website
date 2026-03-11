@@ -1,3 +1,5 @@
+import { LlmApiError } from "./llm-error";
+
 const GEMINI_MODEL = "gemini-3-flash-preview";
 const GEMINI_API_URL =
   `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
@@ -17,7 +19,10 @@ export async function generateSocialDraft(apiKey: string, prompt: string): Promi
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Gemini API error: ${response.status} ${response.statusText}\n${text}`);
+    throw new LlmApiError(
+      `Gemini API error: ${response.status} ${response.statusText}\n${text}`,
+      response.status
+    );
   }
 
   const data = await response.json();
