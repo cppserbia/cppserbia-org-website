@@ -11,9 +11,7 @@ import {
 export const modes: Record<Mode, ModeConfig> = {
   recording: {
     validate(frontmatter, eventFile) {
-      if (!frontmatter.youtube) {
-        throw new Error(`No youtube field found in frontmatter of ${eventFile}`);
-      }
+      return frontmatter.youtube ? null : `No youtube field found in frontmatter of ${eventFile}`;
     },
     logExtra(frontmatter) {
       console.error(`YouTube: ${frontmatter.youtube}`);
@@ -28,11 +26,9 @@ export const modes: Record<Mode, ModeConfig> = {
   },
   announcement: {
     validate(frontmatter, eventFile) {
-      if (frontmatter.status === "DRAFT") {
-        throw new Error(
-          `Event is in DRAFT status — cannot generate announcement for ${eventFile}`
-        );
-      }
+      return frontmatter.status === "DRAFT"
+        ? `Event is in DRAFT status — cannot generate announcement for ${eventFile}`
+        : null;
     },
     logExtra() {},
     extractDescription: extractFullDescription,

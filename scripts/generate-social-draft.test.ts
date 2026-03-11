@@ -242,15 +242,23 @@ Some description paragraph.
 });
 
 describe("readEventFile", () => {
-  it("throws when file does not exist", () => {
-    expect(() => readEventFile("/tmp/nonexistent-event-file-xyz.md")).toThrow("File not found");
+  it("returns error when file does not exist", () => {
+    const result = readEventFile("/tmp/nonexistent-event-file-xyz.md");
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.error).toContain("File not found");
+    }
   });
 
-  it("throws when required frontmatter fields are missing", () => {
+  it("returns error when required frontmatter fields are missing", () => {
     const tmpFile = path.join(os.tmpdir(), "test-missing-fields.md");
     fs.writeFileSync(tmpFile, "---\nstatus: ACTIVE\n---\nSome content");
     try {
-      expect(() => readEventFile(tmpFile)).toThrow("missing required frontmatter fields");
+      const result = readEventFile(tmpFile);
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error).toContain("missing required frontmatter fields");
+      }
     } finally {
       fs.unlinkSync(tmpFile);
     }
@@ -264,9 +272,12 @@ describe("readEventFile", () => {
     );
     try {
       const result = readEventFile(tmpFile);
-      expect(result.frontmatter.title).toBe("Test Event");
-      expect(result.slug).toBe("2025-01-01-Test-Event");
-      expect(result.content).toContain("Some content.");
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        expect(result.value.frontmatter.title).toBe("Test Event");
+        expect(result.value.slug).toBe("2025-01-01-Test-Event");
+        expect(result.value.content).toContain("Some content.");
+      }
     } finally {
       fs.unlinkSync(tmpFile);
     }

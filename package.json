@@ -2,6 +2,7 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -75,6 +76,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@github/copilot": "^1.0.3",
+    "@github/copilot-sdk": "^0.1.32",
     "@testing-library/react": "^16.0.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22",
