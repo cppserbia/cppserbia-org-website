@@ -49,7 +49,7 @@ export default function SocialLinks({ size = "md" }: SocialLinksProps) {
       color: "#FF0000"
     },
     {
-      href: "https://www.linkedin.com/company/101931236/",
+      href: "https://www.linkedin.com/company/cppserbia/",
       icon: <Linkedin size={iconSize[size]} />,
       label: "LinkedIn",
       color: "#0077B5"

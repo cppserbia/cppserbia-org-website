@@ -28,7 +28,7 @@ To join the community discussions, we are on:
 
 * [Discord](https://discord.gg/VDUn8YtHw8)
 * [Telegram](https://t.me/+l7NS0GrslBMwNzI0)
-* [LinkedIn](https://www.linkedin.com/company/101931236/)
+* [LinkedIn](https://www.linkedin.com/company/cppserbia/)
 
 ## 📅 Event Details
 
