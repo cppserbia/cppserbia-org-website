@@ -10,8 +10,7 @@ event_url: 'https://www.meetup.com/cpp-serbia/events/313858896/'
 event_id: 313858896
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-imageUrl: >-
-  'https://images.cppserbia.org/events/2026-03-25-Cpp-Serbia-Assembly.jpg'
+imageUrl: 'https://images.cppserbia.org/events/2026-03-25-Cpp-Serbia-Assembly.jpg'
 ---
 
 # C++ Serbia Assembly
