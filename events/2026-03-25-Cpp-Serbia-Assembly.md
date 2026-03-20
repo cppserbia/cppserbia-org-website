@@ -34,7 +34,7 @@ Everyone is welcome. You do not need to be a C++ expert, a regular attendee, or 
 
 ## Stay Connected
 
-* **Discord** — [discord.gg/Uf6XaeYJar](https://discord.gg/Uf6XaeYJar)
+* **Discord** — [discord.gg/VDUn8YtHw8](https://discord.gg/VDUn8YtHw8)
 * **Telegram** — [t.me/cppserbia](https://t.me/cppserbia)
 * **LinkedIn** — [linkedin.com/company/cpp-serbia](https://www.linkedin.com/company/cpp-serbia)
 * **Email** — [info@cppserbia.org](mailto:info@cppserbia.org)
