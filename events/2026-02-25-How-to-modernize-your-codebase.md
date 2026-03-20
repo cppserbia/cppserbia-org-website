@@ -10,6 +10,7 @@ event_url: 'https://www.meetup.com/cpp-serbia/events/313413133/'
 event_id: 313413133
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: 'https://www.youtube.com/watch?v=iULlWUyXzw0'
 imageUrl: >-
   https://images.cppserbia.org/events/2026-02-25-How-to-modernize-your-codebase.jpg
 ---
