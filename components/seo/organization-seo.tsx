@@ -23,7 +23,7 @@ export async function OrganizationSeo({ baseUrl = 'https://cppserbia.org' }: Org
       "https://www.meetup.com/cpp-serbia/",
       "https://github.com/cppserbia",
       "https://twitter.com/cppserbia",
-      "https://www.linkedin.com/company/101931236/"
+      "https://www.linkedin.com/company/cppserbia/"
     ],
     "address": {
       "@type": "PostalAddress",
