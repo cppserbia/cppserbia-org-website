@@ -8,7 +8,7 @@ duration: PT0S
 end_time: 2016-12-08T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/235960635/
 event_id: 235960635
-venues: ['Startit Centar, Belgrade, RS']
+venues: ["Startit Centar, Belgrade, RS"]
 ---
 
 # Prvo okupljanje C++ user grupe
@@ -22,4 +22,3 @@ Diskusiju će voditi Goran Aranđelović, softver developer u Endavi.
 U uvodnom delu biće par reči o najvećoj C++ konferenciji u Evropi (Meeting C++) koja je održana od 18. do 20. novembra u Berlinu. Nakon toga, diskutovaće se o "C++ Core Guidelines" projektu, koji predstavlja skup preporuka kako jednostavnije koristiti C++ u svakodnevnom radu, kao i o pratećim dokumentima C++14 i C++17 standarda.
 
 Google grupa: http://groups.google.com/forum/#!forum/std-serbia
-

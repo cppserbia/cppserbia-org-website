@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-10-25T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/296736109/'
+event_url: "https://www.meetup.com/cpp-serbia/events/296736109/"
 event_id: 296736109
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=ffn-oLWQtTE'
+youtube: "https://www.youtube.com/watch?v=ffn-oLWQtTE"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-10-25-Almost-O-JPEG-level-compression.jpg
 ---
@@ -25,12 +25,12 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Nikita Kashkin](https://www.linkedin.com/in/nikita-kashkin-b2b6b4252/) |
-| 🕕 **Date & Time** | **25\. oktobar \(sreda\)\, u 18h** |
-| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+|                    |                                                                         |
+| ------------------ | ----------------------------------------------------------------------- |
+| 👤 **Speaker**     | [Nikita Kashkin](https://www.linkedin.com/in/nikita-kashkin-b2b6b4252/) |
+| 🕕 **Date & Time** | **25\. oktobar \(sreda\)\, u 18h**                                      |
+| 📍 **Location**    | **Palata Beograda (Beograđanka), 22. sprat**                            |
+| 🏢 **Address**     | **Masarikova 5**                                                        |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)                |
 
 Vidimo se!

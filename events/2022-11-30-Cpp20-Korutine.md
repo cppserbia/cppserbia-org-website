@@ -6,17 +6,17 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2022-11-30T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/289789025/'
+event_url: "https://www.meetup.com/cpp-serbia/events/289789025/"
 event_id: 289789025
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=82a6m3XWZ4s'
-imageUrl: 'https://images.cppserbia.org/events/2022-11-30-Cpp20-Korutine.jpg'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=82a6m3XWZ4s"
+imageUrl: "https://images.cppserbia.org/events/2022-11-30-Cpp20-Korutine.jpg"
 ---
 
 # C++20 - Korutine
 
-Pojam korutina ([coroutines](https://en.wikipedia.org/wiki/Coroutine)) se u račnuarstvu pominje još 60-ih godina kao generalizacija podrutina ([subroutines](https://en.wikipedia.org/wiki/Function_(computer_programming))), tj. funkcija, koje imaju stanje i čije izvršavanje može da se prekine i nastavi kasnije. Od tada do danas su aktuelna tema - Donald Knuth ih obrađuje u svojoj knjizi “The Art of Computer Programming, Vol. 1 Fundamental Algorithms”, standardni su deo jezika Python i Kotlin a postoje i mnoga bibliotečka rešenja u većini programskih jezika.
+Pojam korutina ([coroutines](https://en.wikipedia.org/wiki/Coroutine)) se u račnuarstvu pominje još 60-ih godina kao generalizacija podrutina ([subroutines](<https://en.wikipedia.org/wiki/Function_(computer_programming)>)), tj. funkcija, koje imaju stanje i čije izvršavanje može da se prekine i nastavi kasnije. Od tada do danas su aktuelna tema - Donald Knuth ih obrađuje u svojoj knjizi “The Art of Computer Programming, Vol. 1 Fundamental Algorithms”, standardni su deo jezika Python i Kotlin a postoje i mnoga bibliotečka rešenja u većini programskih jezika.
 
 C++20 standard uvodi [korutine](https://en.cppreference.com/w/cpp/language/coroutines) kao sastavni deo jezika uvođenjem novih ključnih reči za rad sa korutinama (co_await, co_yield, co_return) i novim mehanizmom za kontrolu toka programa.
 
@@ -32,14 +32,13 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisalo preduzeće [Inceptive](https://inceptive.io/). Hvala vam na želji da učestvujete u razvoju lokalne C++ zajednice!
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
+|                    |                                     |
+| ------------------ | ----------------------------------- |
 | 🕕 **Date & Time** | **30\. novembar \(sreda\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+| 📍 **Location**    | **ICT Hub**                         |
+| 🏢 **Address**     | **Kralja Milana 10**                |
+| 💻 **Online**      | https://cppserbia.com/meet          |
 
 Vidimo se!

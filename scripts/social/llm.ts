@@ -1,7 +1,7 @@
 import { generateSocialDraft as geminiGenerate } from "./gemini";
 import { generateSocialDraft as githubGenerate } from "./github-models";
+import type { LlmError, Result } from "./types";
 import { err } from "./types";
-import type { Result, LlmError } from "./types";
 
 export type Provider = "gemini" | "github" | "auto";
 
@@ -14,7 +14,11 @@ export async function generateWithFallback(
 
   if (provider === "gemini") {
     if (!geminiKey) {
-      return err({ kind: "client", message: "Missing GEMINI_API_KEY environment variable.", status: 0 });
+      return err({
+        kind: "client",
+        message: "Missing GEMINI_API_KEY environment variable.",
+        status: 0,
+      });
     }
     return geminiGenerate(geminiKey, prompt);
   }
@@ -37,7 +41,10 @@ export async function generateWithFallback(
 
   const { kind } = geminiResult.error;
   if (kind === "timeout" || kind === "server") {
-    const reason = kind === "timeout" ? "timed out" : `returned ${(geminiResult.error as { status: number }).status}`;
+    const reason =
+      kind === "timeout"
+        ? "timed out"
+        : `returned ${(geminiResult.error as { status: number }).status}`;
     console.error(`Gemini ${reason}, falling back to GitHub Models...`);
     return githubGenerate(githubToken, prompt);
   }

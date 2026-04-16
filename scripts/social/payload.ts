@@ -1,12 +1,9 @@
-import type { EventFrontmatter } from "./types";
 import { extractYouTubeVideoId } from "./extract";
+import type { EventFrontmatter } from "./types";
 
 const SITE_URL = "https://cppserbia.org";
 
-export function buildAnnouncementMetadata(
-  frontmatter: EventFrontmatter,
-  slug: string
-) {
+export function buildAnnouncementMetadata(frontmatter: EventFrontmatter, slug: string) {
   const eventDate =
     frontmatter.date instanceof Date
       ? frontmatter.date.toISOString().slice(0, 19)
@@ -38,10 +35,7 @@ export function buildAnnouncementPayload(
   };
 }
 
-export function buildRecordingMetadata(
-  frontmatter: EventFrontmatter,
-  slug: string
-) {
+export function buildRecordingMetadata(frontmatter: EventFrontmatter, slug: string) {
   const youtubeUrl = frontmatter.youtube || "";
   const videoId = extractYouTubeVideoId(youtubeUrl);
 

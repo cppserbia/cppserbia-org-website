@@ -1,27 +1,28 @@
-import { Feed } from 'feed';
-import { getAllEventsServer } from '@/lib/events-server';
+import { Feed } from "feed";
+
+import { getAllEventsServer } from "@/lib/events-server";
 
 export async function GET() {
   const allEvents = getAllEventsServer();
-  const siteUrl = 'https://cppserbia.org';
+  const siteUrl = "https://cppserbia.org";
 
   const feed = new Feed({
-    title: 'C++ Serbia Events',
-    description: 'Upcoming and past events from the C++ Serbia user group',
+    title: "C++ Serbia Events",
+    description: "Upcoming and past events from the C++ Serbia user group",
     id: siteUrl,
     link: siteUrl,
-    language: 'en',
+    language: "en",
     image: `${siteUrl}/images/logo.png`,
     favicon: `${siteUrl}/favicon/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, C++ Serbia`,
     updated: new Date(), // Optional, default = today
-    generator: 'Feed for Node.js',
+    generator: "Feed for Node.js",
     feedLinks: {
       rss2: `${siteUrl}/feed.xml`,
     },
     author: {
-      name: 'C++ Serbia',
-      email: 'info@cppserbia.org',
+      name: "C++ Serbia",
+      email: "info@cppserbia.org",
       link: siteUrl,
     },
   });
@@ -49,20 +50,24 @@ export async function GET() {
       content: event.content,
       author: [
         {
-          name: 'C++ Serbia',
-          email: 'info@cppserbia.org',
+          name: "C++ Serbia",
+          email: "info@cppserbia.org",
           link: siteUrl,
         },
       ],
       date: date,
-      image: event.imageUrl ? (event.imageUrl.startsWith('http') ? event.imageUrl : `${siteUrl}${event.imageUrl}`) : undefined,
+      image: event.imageUrl
+        ? event.imageUrl.startsWith("http")
+          ? event.imageUrl
+          : `${siteUrl}${event.imageUrl}`
+        : undefined,
     });
   });
 
   return new Response(feed.rss2(), {
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, s-maxage=86400, stale-while-revalidate",
     },
   });
 }

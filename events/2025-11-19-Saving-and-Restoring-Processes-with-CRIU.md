@@ -8,11 +8,11 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2025-11-19T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/311869777/'
+event_url: "https://www.meetup.com/cpp-serbia/events/311869777/"
 event_id: 311869777
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=sY20Il7_MYQ'
+youtube: "https://www.youtube.com/watch?v=sY20Il7_MYQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-11-19-Saving-and-Restoring-Processes-with-CRIU.jpg
 ---
@@ -30,12 +30,12 @@ He's always been fascinated by operating system internals, especially the Linux 
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | **[Igor Svilenkov Božić](https://www.linkedin.com/in/svilenkov/)** |
-| 🕕 **Date & Time** | **19th of November (Wednesday), 6 pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
+|                    |                                                                    |
+| ------------------ | ------------------------------------------------------------------ |
+| 👤 **Speaker**     | **[Igor Svilenkov Božić](https://www.linkedin.com/in/svilenkov/)** |
+| 🕕 **Date & Time** | **19th of November (Wednesday), 6 pm**                             |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                             |
+| 🏢 **Address**     | **Masarikova 5**                                                   |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**           |
 
 See you!

@@ -4,22 +4,22 @@ on:
   pull_request:
     types: [closed]
     paths:
-      - 'events/*.md'
+      - "events/*.md"
   workflow_dispatch:
     inputs:
       type:
-        description: 'Which publish job to run'
+        description: "Which publish job to run"
         required: true
         type: choice
         options:
           - new-yt
           - announcement
       pr_number:
-        description: 'PR number to extract social text from'
+        description: "PR number to extract social text from"
         required: true
         type: number
       dry_run:
-        description: 'Log payload without sending to Make.com'
+        description: "Log payload without sending to Make.com"
         type: boolean
         default: true
 

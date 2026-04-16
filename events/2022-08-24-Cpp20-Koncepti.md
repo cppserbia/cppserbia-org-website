@@ -6,12 +6,12 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2022-08-24T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/287611882/'
+event_url: "https://www.meetup.com/cpp-serbia/events/287611882/"
 event_id: 287611882
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=IijPhghH5y0'
-imageUrl: 'https://images.cppserbia.org/events/2022-08-24-Cpp20-Koncepti.jpg'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=IijPhghH5y0"
+imageUrl: "https://images.cppserbia.org/events/2022-08-24-Cpp20-Koncepti.jpg"
 ---
 
 # C++20 — Koncepti
@@ -32,14 +32,13 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.co
 
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisala kompanija [InterVenture](https://www.linkedin.com/company/interventure-gmbh/). Hvala vam na podršci!
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
+|                    |                                   |
+| ------------------ | --------------------------------- |
 | 🕕 **Date & Time** | **24\. avgust \(sreda\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cpplang.com/meet |
+| 📍 **Location**    | **ICT Hub**                       |
+| 🏢 **Address**     | **Kralja Milana 10**              |
+| 💻 **Online**      | https://cpplang.com/meet          |
 
 Vidimo se!

@@ -1,9 +1,8 @@
-import { ok, err } from "./types";
-import type { Result, LlmError } from "./types";
+import type { LlmError, Result } from "./types";
+import { err, ok } from "./types";
 
 const GEMINI_MODEL = "gemini-3-flash-preview";
-const GEMINI_API_URL =
-  `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 export async function generateSocialDraft(
   apiKey: string,

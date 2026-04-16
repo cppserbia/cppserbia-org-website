@@ -4,11 +4,11 @@ End-to-end guide for setting up event image hosting on Cloudflare R2 and populat
 
 ## Prerequisites
 
-| Tool | Install |
-|------|---------|
-| [Terraform](https://developer.hashicorp.com/terraform/install) | `brew install terraform` |
-| [rclone](https://rclone.org/install/) | `brew install rclone` |
-| [tsx](https://github.com/privatenumber/tsx) | Already in devDependencies (`pnpm install`) |
+| Tool                                                           | Install                                     |
+| -------------------------------------------------------------- | ------------------------------------------- |
+| [Terraform](https://developer.hashicorp.com/terraform/install) | `brew install terraform`                    |
+| [rclone](https://rclone.org/install/)                          | `brew install rclone`                       |
+| [tsx](https://github.com/privatenumber/tsx)                    | Already in devDependencies (`pnpm install`) |
 
 You'll also need:
 
@@ -27,7 +27,7 @@ Go to the [Cloudflare dashboard](https://dash.cloudflare.com/):
 
 - **Account ID** — visible in the right sidebar on any zone's Overview page
 - **Zone ID** — visible on the `cppserbia.org` Overview page
-- **API Token** — create one at *My Profile → API Tokens → Create Token*
+- **API Token** — create one at _My Profile → API Tokens → Create Token_
   - Permissions needed: `Account / R2 / Edit` + `Zone / DNS / Edit`
 
 ### 1.2 Create a tfvars file
@@ -52,6 +52,7 @@ terraform apply    # Type "yes" to confirm
 ```
 
 This creates:
+
 - An R2 bucket named `cppserbia-images` (Eastern Europe region)
 - A custom domain binding for `images.cppserbia.org` with public access enabled
 
@@ -109,6 +110,7 @@ npx tsx scripts/download-meetup-images.ts
 ```
 
 The script will:
+
 - Read all event `.md` files in `/events/`
 - For each event with an `event_id` in its frontmatter, query the Meetup GraphQL API for its banner image
 - Download images to `images/events/{slug}.jpg`
@@ -139,15 +141,15 @@ Run the interactive config:
 rclone config
 ```
 
-| Prompt | Value |
-|--------|-------|
-| `n/s/q>` | `n` (new remote) |
-| `name>` | `r2` |
-| `Storage>` | `s3` (Amazon S3 Compliant) |
-| `provider>` | `Cloudflare` |
-| `access_key_id>` | *(from Cloudflare R2 dashboard → Manage API Tokens → Create API Token → R2 Token)* |
-| `secret_access_key>` | *(same page)* |
-| `endpoint>` | `https://<account_id>.r2.cloudflarestorage.com` |
+| Prompt               | Value                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| `n/s/q>`             | `n` (new remote)                                                                   |
+| `name>`              | `r2`                                                                               |
+| `Storage>`           | `s3` (Amazon S3 Compliant)                                                         |
+| `provider>`          | `Cloudflare`                                                                       |
+| `access_key_id>`     | _(from Cloudflare R2 dashboard → Manage API Tokens → Create API Token → R2 Token)_ |
+| `secret_access_key>` | _(same page)_                                                                      |
+| `endpoint>`          | `https://<account_id>.r2.cloudflarestorage.com`                                    |
 
 Accept defaults for everything else. Verify it works:
 
@@ -182,6 +184,7 @@ npx tsx scripts/update-event-images.ts
 ```
 
 The script will:
+
 - Scan `images/events/` for downloaded images
 - For each image, find the matching event `.md` file by slug
 - Add `imageUrl: https://images.cppserbia.org/events/{slug}.jpg` to the frontmatter

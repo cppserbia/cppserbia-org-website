@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT2H
 end_time: 2024-09-18T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/303412485/'
+event_url: "https://www.meetup.com/cpp-serbia/events/303412485/"
 event_id: 303412485
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=JP9DbXXyTO0'
+youtube: "https://www.youtube.com/watch?v=JP9DbXXyTO0"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-09-18-World-of-Bitcoin-open-sourced-Cpp-project.jpg
 ---
@@ -25,12 +25,12 @@ In this talk, we will walk through the basics of economy and software developmen
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Veljko Tekelerović](https://github.com/vexy) |
-| 🕕 **Date & Time** | **18th of September (Wednesday), 6pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 👤 **Speaker**     | [Veljko Tekelerović](https://github.com/vexy)            |
+| 🕕 **Date & Time** | **18th of September (Wednesday), 6pm**                   |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!

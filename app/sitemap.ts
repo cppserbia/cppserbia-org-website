@@ -1,17 +1,19 @@
-import { MetadataRoute } from 'next';
-import { getAllEventsServer } from '@/lib/events-server';
-import { locales } from '@/i18n/config';
+import { MetadataRoute } from "next";
+
+import { locales } from "@/i18n/config";
+import { getAllEventsServer } from "@/lib/events-server";
 
 function hreflangAlternates(path: string, baseUrl: string) {
   return {
-    languages: Object.fromEntries(
-      [...locales.map((l) => [l, `${baseUrl}/${l}${path}`]), ['x-default', `${baseUrl}/en${path}`]]
-    ),
+    languages: Object.fromEntries([
+      ...locales.map((l) => [l, `${baseUrl}/${l}${path}`]),
+      ["x-default", `${baseUrl}/en${path}`],
+    ]),
   };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://cppserbia.org';
+  const baseUrl = "https://cppserbia.org";
 
   try {
     const allEvents = getAllEventsServer();
@@ -20,16 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       {
         url: `${baseUrl}/en`,
         lastModified: new Date(),
-        changeFrequency: 'daily' as const,
+        changeFrequency: "daily" as const,
         priority: 1,
-        alternates: hreflangAlternates('', baseUrl),
+        alternates: hreflangAlternates("", baseUrl),
       },
       {
         url: `${baseUrl}/en/events`,
         lastModified: new Date(),
-        changeFrequency: 'daily' as const,
+        changeFrequency: "daily" as const,
         priority: 0.9,
-        alternates: hreflangAlternates('/events', baseUrl),
+        alternates: hreflangAlternates("/events", baseUrl),
       },
     ];
 
@@ -50,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return {
         url: `${baseUrl}/en/events/${event.slug}`,
         lastModified,
-        changeFrequency: 'monthly' as const,
+        changeFrequency: "monthly" as const,
         priority: 0.8,
         alternates: hreflangAlternates(`/events/${event.slug}`, baseUrl),
       };
@@ -58,18 +60,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [...staticPages, ...eventPages];
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    console.error("Error generating sitemap:", error);
     return [
       {
         url: `${baseUrl}/en`,
         lastModified: new Date(),
-        changeFrequency: 'daily' as const,
+        changeFrequency: "daily" as const,
         priority: 1,
       },
       {
         url: `${baseUrl}/en/events`,
         lastModified: new Date(),
-        changeFrequency: 'daily' as const,
+        changeFrequency: "daily" as const,
         priority: 0.9,
       },
     ];

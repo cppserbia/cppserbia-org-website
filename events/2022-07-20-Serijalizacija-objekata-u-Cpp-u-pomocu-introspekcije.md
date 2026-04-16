@@ -8,7 +8,7 @@ duration: PT2H
 end_time: 2022-07-20T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/287059936/
 event_id: 287059936
-venues: ['Ljubostinjska 2, Beograd, rs']
+venues: ["Ljubostinjska 2, Beograd, rs"]
 youtube: https://www.youtube.com/watch?v=Feu49_CmbDs
 ---
 
@@ -27,14 +27,13 @@ U slučaju promene linka, dobićete naknadne informacije preko Meetup platforme.
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **20\. jul \(sreda\)\, u 18h** |
-| 📍 **Location** | **Srednja škola "Arhimed"** |
-| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
-| 💻 **Online** | https://meet.google.com/rby-qqxf-wqu |
+|                    |                                                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 🕕 **Date & Time** | **20\. jul \(sreda\)\, u 18h**                                                                                                     |
+| 📍 **Location**    | **Srednja škola "Arhimed"**                                                                                                        |
+| 🏢 **Address**     | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
+| 💻 **Online**      | https://meet.google.com/rby-qqxf-wqu                                                                                               |
 
 Vidimo se!

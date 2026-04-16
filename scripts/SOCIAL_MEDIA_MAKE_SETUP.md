@@ -29,13 +29,13 @@ Derived values built inside Make.com:
 
 ## Platform Distribution
 
-| Platform  | Language          | Format                              |
-|-----------|-------------------|-------------------------------------|
-| LinkedIn  | EN + SR combined  | Text post with link                 |
-| Facebook  | EN + SR combined  | Page post with link + image         |
-| Telegram  | EN + SR combined  | Message with link preview           |
-| Discord   | EN + SR combined  | Webhook embed with image + link     |
-| Instagram | Separate EN + SR  | Two stories, each with banner image |
+| Platform  | Language         | Format                              |
+| --------- | ---------------- | ----------------------------------- |
+| LinkedIn  | EN + SR combined | Text post with link                 |
+| Facebook  | EN + SR combined | Page post with link + image         |
+| Telegram  | EN + SR combined | Message with link preview           |
+| Discord   | EN + SR combined | Webhook embed with image + link     |
+| Instagram | Separate EN + SR | Two stories, each with banner image |
 
 ---
 
@@ -85,7 +85,7 @@ curl -X POST \
 2. Add these variables:
 
 | Variable name      | Value                                                                                     |
-|--------------------|-------------------------------------------------------------------------------------------|
+| ------------------ | ----------------------------------------------------------------------------------------- |
 | `event_url`        | `https://cppserbia.org/events/` + `{{1.event_slug}}`                                      |
 | `combined_post`    | `{{1.social_text_en}}` + (newline newline `---` newline newline) + `{{1.social_text_sr}}` |
 | `post_en_with_url` | `{{1.social_text_en}}` + (two newlines) + `▶️ ` + `{{1.youtube_url}}`                     |
@@ -153,18 +153,21 @@ Using a Discord webhook (simpler than a bot):
 ```json
 {
   "content": "{{2.combined_post}}",
-  "embeds": [{
-    "title": "{{1.event_title}}",
-    "url": "{{1.youtube_url}}",
-    "image": { "url": "{{1.image_url}}" },
-    "color": 2271995
-  }]
+  "embeds": [
+    {
+      "title": "{{1.event_title}}",
+      "url": "{{1.youtube_url}}",
+      "image": { "url": "{{1.image_url}}" },
+      "color": 2271995
+    }
+  ]
 }
 ```
 
 > `2271995` = `#22A8EB` (blue accent — change to your brand color)
 
 **Alternative (Discord Bot module):**
+
 - **Channel ID**: Your announcements channel ID
 - **Message content**: `{{2.combined_post}}`
 - Add an embed with the title, URL, and image fields as above
@@ -278,6 +281,7 @@ The `publish-social.yml` workflow (`announcement` job) POSTs this JSON when a PR
 ```
 
 Key differences from the recording payload:
+
 - Has `"type": "announcement"` field
 - No `youtube_url` or `youtube_thumbnail_url`
 - Includes `event_date`, `event_type`, `venue`, and `registration_url`
@@ -293,12 +297,12 @@ Key differences from the recording payload:
 
 After the webhook module, add a **Set multiple variables** module:
 
-| Variable name       | Value                                                                                       |
-|---------------------|---------------------------------------------------------------------------------------------|
-| `event_url`         | `https://cppserbia.org/events/` + `{{1.event_slug}}`                                        |
-| `combined_teaser`   | `{{1.social_text_en}}` + (newline newline `---` newline newline) + `{{1.social_text_sr}}`   |
-| `logistics_block`   | `📅 ` + formatted date from `{{1.event_date}}` + newline + `📍 ` + `{{1.venue}}` + newline + `🎟️ ` + `{{1.registration_url}}` |
-| `full_post`         | `{{combined_teaser}}` + (two newlines) + `{{logistics_block}}`                              |
+| Variable name     | Value                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `event_url`       | `https://cppserbia.org/events/` + `{{1.event_slug}}`                                                                          |
+| `combined_teaser` | `{{1.social_text_en}}` + (newline newline `---` newline newline) + `{{1.social_text_sr}}`                                     |
+| `logistics_block` | `📅 ` + formatted date from `{{1.event_date}}` + newline + `📍 ` + `{{1.venue}}` + newline + `🎟️ ` + `{{1.registration_url}}` |
+| `full_post`       | `{{combined_teaser}}` + (two newlines) + `{{logistics_block}}`                                                                |
 
 > **Note:** Make.com appends the logistics block (date, venue, RSVP link) after the AI-generated teaser text. The AI only writes the hook — logistics come from the structured payload.
 

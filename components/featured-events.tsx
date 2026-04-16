@@ -1,14 +1,15 @@
-import { EventCard } from "@/components/event-card";
-import { isPastEvent } from "@/lib/temporal";
-import { getFeaturedEvents } from "@/lib/events-server";
 import { getTranslations } from "next-intl/server";
+
+import { EventCard } from "@/components/event-card";
+import { getFeaturedEvents } from "@/lib/events-server";
+import { isPastEvent } from "@/lib/temporal";
 
 interface FeaturedEventsProps {
   limit?: number;
 }
 
 export default async function FeaturedEvents({ limit }: FeaturedEventsProps) {
-  const t = await getTranslations('featuredEvents');
+  const t = await getTranslations("featuredEvents");
   const events = getFeaturedEvents(limit);
 
   return (
@@ -26,9 +27,7 @@ export default async function FeaturedEvents({ limit }: FeaturedEventsProps) {
           );
         })
       ) : (
-        <p className="text-gray-400 text-center py-8">
-          {t('empty')}
-        </p>
+        <p className="py-8 text-center text-gray-400">{t("empty")}</p>
       )}
     </div>
   );

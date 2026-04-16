@@ -8,7 +8,7 @@ duration: PT3H
 end_time: 2022-05-11T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/285290933/
 event_id: 285290933
-venues: ['Ljubostinjska 2, Beograd, rs']
+venues: ["Ljubostinjska 2, Beograd, rs"]
 ---
 
 # C++ decenija: Pregled razvoja od C++11 do C++20
@@ -19,10 +19,10 @@ C++ je u poslednjih desetak godina ušao u stabilniji, trogodišnji ritam standa
 
 Agenda:
 
-* Presek stanja: Koje verzije Standarda koristite u svakodnevnom radu?
-* Kratak pregled liste novih mogućnosti jezika i standardne biblioteke (od C++11 do C++20)
-* Izdvojićemo zajedno par najzanimljivijih tema za razgovor iz gore pomenute liste
-* Šta nas sprečava na poslu da koristimo novije verzije kompajlera?
+- Presek stanja: Koje verzije Standarda koristite u svakodnevnom radu?
+- Kratak pregled liste novih mogućnosti jezika i standardne biblioteke (od C++11 do C++20)
+- Izdvojićemo zajedno par najzanimljivijih tema za razgovor iz gore pomenute liste
+- Šta nas sprečava na poslu da koristimo novije verzije kompajlera?
 
 Nakon toga nastavljamo sa druženjem, pitanjima i odgovorima (ili AMA - ask me anything sesijom).
 
@@ -30,14 +30,12 @@ Diskusiju će voditi [Goran Aranđelović](https://www.linkedin.com/in/goranaran
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.com).
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **11\. maj \(sreda\)\, u 18h** |
-| 📍 **Location** | **Srednja škola "Arhimed"** |
-| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
+|                    |                                                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 🕕 **Date & Time** | **11\. maj \(sreda\)\, u 18h**                                                                                                     |
+| 📍 **Location**    | **Srednja škola "Arhimed"**                                                                                                        |
+| 🏢 **Address**     | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
 
 Vidimo se!
-

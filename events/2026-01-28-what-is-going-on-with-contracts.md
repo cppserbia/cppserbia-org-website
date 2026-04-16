@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2026-01-28T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/312635627/'
+event_url: "https://www.meetup.com/cpp-serbia/events/312635627/"
 event_id: 312635627
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=9iJ63VhQo5g'
+youtube: "https://www.youtube.com/watch?v=9iJ63VhQo5g"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-01-28-what-is-going-on-with-contracts.jpg
 ---
@@ -25,12 +25,12 @@ Aleksandr Timofeev is a C++ developer with over a decade of experience, speciali
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | **[Aleksandr Timofeev](https://www.linkedin.com/in/aleksandr-timofeev-982719180/)** |
-| 🕕 **Date & Time** | **28th of January (Wednesday), 6 pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
+|                    |                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| 👤 **Speaker**     | **[Aleksandr Timofeev](https://www.linkedin.com/in/aleksandr-timofeev-982719180/)** |
+| 🕕 **Date & Time** | **28th of January (Wednesday), 6 pm**                                               |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                              |
+| 🏢 **Address**     | **Masarikova 5**                                                                    |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                            |
 
 See you!

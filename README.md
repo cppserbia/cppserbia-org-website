@@ -19,17 +19,20 @@ This is the official website for the C++ Serbia community, built with Next.js, T
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/cppserbia/cppserbia-org-website
 cd cppserbia-org-website
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 pnpm dev
 ```

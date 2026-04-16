@@ -6,12 +6,12 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-05-17T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/293219910/'
+event_url: "https://www.meetup.com/cpp-serbia/events/293219910/"
 event_id: 293219910
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=tkpu9JLDj3c'
-imageUrl: 'https://images.cppserbia.org/events/2023-05-17-Cpp-Customization-Points.jpg'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=tkpu9JLDj3c"
+imageUrl: "https://images.cppserbia.org/events/2023-05-17-Cpp-Customization-Points.jpg"
 ---
 
 # C++ Customization Points
@@ -42,12 +42,12 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287) |
-| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+|                    |                                                           |
+| ------------------ | --------------------------------------------------------- |
+| 👤 **Speaker**     | [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287) |
+| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h**                            |
+| 📍 **Location**    | **ICT Hub**                                               |
+| 🏢 **Address**     | **Kralja Milana 10**                                      |
+| 💻 **Online**      | https://cppserbia.com/meet                                |
 
 Vidimo se!

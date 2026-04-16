@@ -33,27 +33,28 @@ Use the actual event date and a URL-friendly title (e.g., `2025-09-18-Modern-CMa
 
 All required fields:
 
-| Field | Description | Example |
-|---|---|---|
-| `title` | Event title | `"Modern CMake Best Practices"` |
-| `date` | Start date/time (local) | `2025-09-18T18:00:00` |
-| `created` | When you created this file | `2025-09-01T10:00:00` |
-| `event_type` | `PHYSICAL`, `ONLINE`, or `HYBRID` | `PHYSICAL` |
-| `status` | `ACTIVE`, `PAST`, or `DRAFT` | `ACTIVE` |
-| `duration` | ISO 8601 duration | `PT2H` |
-| `end_time` | End date/time (local) | `2025-09-18T20:00:00` |
-| `event_url` | Meetup.com event link | `https://www.meetup.com/cpp-serbia/events/123456789/` |
-| `event_id` | Meetup.com event ID | `123456789` |
-| `venues` | Venue list | `['Palata "Beograd" ("Beograđanka"), Beograd, rs']` |
+| Field        | Description                       | Example                                               |
+| ------------ | --------------------------------- | ----------------------------------------------------- |
+| `title`      | Event title                       | `"Modern CMake Best Practices"`                       |
+| `date`       | Start date/time (local)           | `2025-09-18T18:00:00`                                 |
+| `created`    | When you created this file        | `2025-09-01T10:00:00`                                 |
+| `event_type` | `PHYSICAL`, `ONLINE`, or `HYBRID` | `PHYSICAL`                                            |
+| `status`     | `ACTIVE`, `PAST`, or `DRAFT`      | `ACTIVE`                                              |
+| `duration`   | ISO 8601 duration                 | `PT2H`                                                |
+| `end_time`   | End date/time (local)             | `2025-09-18T20:00:00`                                 |
+| `event_url`  | Meetup.com event link             | `https://www.meetup.com/cpp-serbia/events/123456789/` |
+| `event_id`   | Meetup.com event ID               | `123456789`                                           |
+| `venues`     | Venue list                        | `['Palata "Beograd" ("Beograđanka"), Beograd, rs']`   |
 
 Optional fields:
 
-| Field | Description |
-|---|---|
+| Field      | Description                                                               |
+| ---------- | ------------------------------------------------------------------------- |
 | `imageUrl` | Banner image URL (e.g., `https://images.cppserbia.org/events/{slug}.jpg`) |
-| `youtube` | YouTube recording link (add after the event) |
+| `youtube`  | YouTube recording link (add after the event)                              |
 
 **Status values:**
+
 - **`ACTIVE`** — Visible on the site. Use for upcoming events.
 - **`PAST`** — Visible on the site. Use after the event has happened.
 - **`DRAFT`** — Only visible locally when running `pnpm dev`. Use while preparing the event page.
@@ -117,6 +118,7 @@ Once your PR is open, a team member can comment `/social:announcement` on the PR
 The repo has automated bilingual (English + Serbian) social media post generation powered by two parallel flows:
 
 **Announcement flow** (upcoming events):
+
 1. A PR adds a new event file
 2. Team member comments `/social:announcement` on the PR
 3. Gemini AI generates bilingual social media posts
@@ -124,6 +126,7 @@ The repo has automated bilingual (English + Serbian) social media post generatio
 5. Merging the PR triggers a webhook to Make.com, which distributes to LinkedIn, Facebook, Telegram, Discord, and Instagram
 
 **Recording flow** (past event recordings):
+
 1. A PR adds a `youtube:` field to an event file
 2. Team member comments `/social:new-yt` on the PR
 3. Same flow: AI draft in PR description, human edits, merge publishes
