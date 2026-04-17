@@ -9,7 +9,13 @@
 #
 # Proper nouns (venues, cities, org names)
 Beograd
+Centar
+Kosutnjak
+Kralja
+Ljubostinjska
+Milana
 Palata
+Startit
 #
 # Common Serbian words (diacritic-less Latin; the config's diacritic
 # regex catches anything with č/ć/ž/š/đ so those don't need to be here)
@@ -26,3 +32,4 @@ snimku
 srpski
 Srpski
 uranjanje
+Vidimo

@@ -4,6 +4,7 @@
 # in source (proper nouns, acronyms).
 apikey
 citty
+hackathon
 cmdk
 cppserbia
 highres
@@ -11,6 +12,7 @@ ical
 metaprogramming
 opengraph
 Schniz
+urlname
 vaul
 VCALENDAR
 VEVENT

@@ -62,59 +62,15 @@ Files will be publicly accessible at `https://images.cppserbia.org/events/{slug}
 
 ## Step 2 — Download Images from Meetup.com
 
-### 2.1 Create a Meetup OAuth app
+**Meetup API setup** (OAuth app, signing key, env vars) lives in [`meetup/README.md`](./meetup/README.md). Complete that once, then come back here.
 
-1. Go to [Meetup OAuth App Creation](https://www.meetup.com/api/oauth/create/)
-2. Fill in the app details (name, redirect URI — any valid URL is fine for JWT Bearer flow)
-3. After creating, note the **Consumer Key** (this is your `MEETUP_CLIENT_KEY`)
-
-### 2.2 Generate an RSA signing key
-
-In your OAuth app settings on Meetup:
-
-1. Go to the **JWT Signing Keys** section
-2. Click **Generate Key** — Meetup will create an RSA key pair
-3. Download the **private key** PEM file and save it (e.g., `meetup-private-key.pem`)
-4. Note the **Key ID** shown in the dashboard (this is your `MEETUP_SIGNING_KEY_ID`)
-
-> Keep the private key file safe and never commit it to version control. It is gitignored by default (`*.pem`).
-
-### 2.3 Find your Meetup member ID
-
-Your member ID is visible in your Meetup profile URL or via the API. This is the `MEETUP_MEMBER_ID` value.
-
-### 2.4 Set environment variables
-
-Create a `.env` file in the project root (it is gitignored):
-
-```bash
-MEETUP_CLIENT_KEY=your-consumer-key
-MEETUP_MEMBER_ID=your-member-id
-MEETUP_PRIVATE_KEY_PATH=./meetup-private-key.pem
-MEETUP_SIGNING_KEY_ID=your-key-id
-```
-
-Or export them in your shell:
-
-```bash
-export MEETUP_CLIENT_KEY="your-consumer-key"
-export MEETUP_MEMBER_ID="your-member-id"
-export MEETUP_PRIVATE_KEY_PATH="./meetup-private-key.pem"
-export MEETUP_SIGNING_KEY_ID="your-key-id"
-```
-
-### 2.5 Run the download script
+Run the downloader:
 
 ```bash
 npx tsx scripts/download-meetup-images.ts
 ```
 
-The script will:
-
-- Read all event `.md` files in `/events/`
-- For each event with an `event_id` in its frontmatter, query the Meetup GraphQL API for its banner image
-- Download images to `images/events/{slug}.jpg`
-- Skip events that already have a local image
+The script reads every event `.md` in `/events/`, queries the Meetup GraphQL API for each event with an `event_id`, downloads missing banners to `images/events/{slug}.jpg`, and skips events that already have a local image.
 
 Output looks like:
 
@@ -222,3 +178,9 @@ When adding a new event, you have two options:
 
 1. **If the event is on Meetup** — re-run the download script, then sync and update
 2. **Manual** — place the image in `images/events/{slug}.jpg`, run upload + update, or just set `imageUrl` directly in the frontmatter
+
+---
+
+## Creating Meetup Draft Events
+
+Separate tool: `scripts/create-meetup-event.ts` creates Meetup.com **Draft** events from event markdown files. It shares the OAuth client with the image downloader but needs an additional scope and environment variable. See [`meetup/README.md`](./meetup/README.md) for setup, usage, and the CI workflow (`meetup-event` PR label).
