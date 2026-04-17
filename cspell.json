@@ -11,8 +11,24 @@
     "companies",
     "softwareTerms",
     "misc",
+    "cpp",
+    "fullstack",
+    "terraform",
+    "git",
+    "markdown",
+    "shell",
+    "scientific-terms-us",
     "project-terms",
     "serbian-terms"
+  ],
+  "import": [
+    "@cspell/dict-cpp/cspell-ext.json",
+    "@cspell/dict-fullstack/cspell-ext.json",
+    "@cspell/dict-terraform/cspell-ext.json",
+    "@cspell/dict-git/cspell-ext.json",
+    "@cspell/dict-markdown/cspell-ext.json",
+    "@cspell/dict-shell/cspell-ext.json",
+    "@cspell/dict-scientific-terms-us/cspell-ext.json"
   ],
   "dictionaryDefinitions": [
     {
