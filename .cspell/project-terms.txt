@@ -3,6 +3,9 @@
 # Keep entries lowercase unless the cased form is the one that appears
 # in source (proper nouns, acronyms).
 apikey
+fnm
+Schniz
+winget
 citty
 cmdk
 cppserbia
