@@ -13,11 +13,20 @@ pnpm lint:fix      # ESLint with --fix
 pnpm format        # Prettier --write across the repo
 pnpm format:check  # Prettier --check (used in CI)
 pnpm typecheck     # tsc --noEmit (used in CI; build still has ignoreBuildErrors)
+pnpm spell         # cspell across ts/tsx/md/json/yml (used in CI)
 pnpm test          # Run tests once (vitest --run)
 pnpm test:watch    # Run tests in watch mode
 ```
 
 A husky pre-commit hook runs `lint-staged` (prettier + `eslint --fix` on staged files). It's installed automatically by `pnpm install` via the `prepare` script.
+
+### Spell checker (cspell)
+
+`cspell.json` is the single source of truth — no inline `// cspell:ignore` directives are used. Serbian content is handled by config:
+
+- Serbian Latin tokens with diacritics (`čćžšđ`) and all Cyrillic tokens are ignored via `ignoreRegExpList` patterns.
+- Serbian-heavy files are listed in `ignorePaths`: `events/*.md`, `lib/transliterate.test.ts`, `scripts/social/prompts.ts`, `scripts/generate-social-draft.test.ts`.
+- Residual words (diacritic-less Serbian like `Beograd`, `okupljanje`; plus project tech terms like `cppserbia`, `frontmatter`, `tfstate`) live in two custom dictionaries at `.cspell/project-terms.txt` and `.cspell/serbian-terms.txt`. Add new project/proper-noun entries there, not to source files.
 
 ## Architecture
 
@@ -85,7 +94,7 @@ pnpm exec vitest run app/feed.ics/route.test.ts
 
 ## Deployment
 
-Hosted on Vercel (auto-deploys from `main`). CI via GitHub Actions (`.github/workflows/ci.yml`): runs `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, and `pnpm test` on pushes/PRs to `main`. CI does **not** run `pnpm build` — Vercel does that, and `next.config.mjs` keeps `ignoreBuildErrors`/`ignoreDuringBuilds` so deploys aren't blocked on minor issues. CI is the gate.
+Hosted on Vercel (auto-deploys from `main`). CI via GitHub Actions (`.github/workflows/ci.yml`): runs `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm spell`, and `pnpm test` on pushes/PRs to `main`. CI does **not** run `pnpm build` — Vercel does that, and `next.config.mjs` keeps `ignoreBuildErrors`/`ignoreDuringBuilds` so deploys aren't blocked on minor issues. CI is the gate.
 
 ## Scripts & Infrastructure
 

@@ -1,0 +1,22 @@
+# Project-specific technical terms used across the codebase.
+# One word per line. Comments begin with '#'.
+# Keep entries lowercase unless the cased form is the one that appears
+# in source (proper nouns, acronyms).
+apikey
+citty
+cmdk
+cppserbia
+Embla
+frontmatter
+highres
+ical
+maxage
+metaprogramming
+opengraph
+tfstate
+tfvars
+vaul
+VCALENDAR
+VEVENT
+webcal
+youtu
