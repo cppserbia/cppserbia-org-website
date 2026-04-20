@@ -26,15 +26,13 @@ If you want to share something, send a message to one of the organisers here on 
 - **[LinkedIn](https://www.linkedin.com/company/cppserbia/)**
 - **[Email](mailto:dusan@djovanovic.me)**
 
-\*\*To follow the meetup
+**To follow the meetup, join our community**
 
-Join our community
-
-|                    |                                                        |
-| ------------------ | ------------------------------------------------------ |
-| 🕕 **Date & Time** | **17th of December (Tuesday), 6pm**                    |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                 |
-| 🏢 **Address**     | **Masarikova 5**                                       |
-| 💻 **Online**      | [Zoom Link](https://us06web.zoom.us/j/83494012023)\*\* |
+|                    |                                                    |
+| ------------------ | -------------------------------------------------- |
+| 🕕 **Date & Time** | **17th of December (Tuesday), 6pm**                |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**             |
+| 🏢 **Address**     | **Masarikova 5**                                   |
+| 💻 **Online**      | [Zoom Link](https://us06web.zoom.us/j/83494012023) |
 
 See you!

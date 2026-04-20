@@ -1,5 +1,5 @@
 ---
-title: Github Copilot Dev Days | Belgrade
+title: GitHub Copilot Dev Days | Belgrade
 date: 2026-04-02T18:00:00.000Z
 created: 2026-03-11T12:00:00.000Z
 event_type: PHYSICAL
@@ -25,7 +25,7 @@ Whether you are new to GitHub Copilot or already using it, this event will help 
 - 18:00 – Check-in & Networking
 - 18:15 – Welcome & Opening
 - 18:20 – GitHub Copilot in Practice
-- 18:50 – Hands-on: Dev with Github Copilot
+- 18:50 – Hands-on: Dev with GitHub Copilot
 - 19:30 – Closing & Drinks
 
 ## 📜 Code of Conduct
