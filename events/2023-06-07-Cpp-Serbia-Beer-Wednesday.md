@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-06-07T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/293932842/'
+event_url: "https://www.meetup.com/cpp-serbia/events/293932842/"
 event_id: 293932842
 venues:
-  - 'Docker Brewery & Beer Garden, Beograd, rs'
-imageUrl: 'https://images.cppserbia.org/events/2023-06-07-Cpp-Serbia-Beer-Wednesday.jpg'
+  - "Docker Brewery & Beer Garden, Beograd, rs"
+imageUrl: "https://images.cppserbia.org/events/2023-06-07-Cpp-Serbia-Beer-Wednesday.jpg"
 ---
 
 # C++ Serbia Beer Wednesday
@@ -26,4 +26,3 @@ Beer Wednesday je nastao kao ideja nakon jednog od meetup-a, kada smo shvatili d
 Ukoliko volite C++ ili volite pivo ili jednostavno volite da se družite sa C++ programerima (?!), dobrodošli ste!
 
 Vidimo se u Dockeru! :)
-

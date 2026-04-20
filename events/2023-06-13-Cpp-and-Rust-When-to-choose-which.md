@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-06-13T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/293841868/'
+event_url: "https://www.meetup.com/cpp-serbia/events/293841868/"
 event_id: 293841868
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=T1H4mDUCmNs'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=T1H4mDUCmNs"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-06-13-Cpp-and-Rust-When-to-choose-which.jpg
 ---
@@ -27,12 +27,12 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Nebojša Šabović](https://www.linkedin.com/in/nsabovic/) |
-| 🕕 **Date & Time** | **13\. jun \(utorak\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 👤 **Speaker**     | [Nebojša Šabović](https://www.linkedin.com/in/nsabovic/) |
+| 🕕 **Date & Time** | **13\. jun \(utorak\)\, u 18h**                          |
+| 📍 **Location**    | **ICT Hub**                                              |
+| 🏢 **Address**     | **Kralja Milana 10**                                     |
+| 💻 **Online**      | https://cppserbia.com/meet                               |
 
 Vidimo se!

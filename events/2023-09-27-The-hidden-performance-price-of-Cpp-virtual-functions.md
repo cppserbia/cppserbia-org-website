@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-09-27T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/296230317/'
+event_url: "https://www.meetup.com/cpp-serbia/events/296230317/"
 event_id: 296230317
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=bYBMT-cftBo'
+youtube: "https://www.youtube.com/watch?v=bYBMT-cftBo"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-09-27-The-hidden-performance-price-of-Cpp-virtual-functions.jpg
 ---
@@ -28,12 +28,12 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Ivica Bogosavljević](https://www.linkedin.com/in/ibogi/) |
-| 🕕 **Date & Time** | **27\. septembar \(sreda\)\, u 18h** |
-| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+|                    |                                                           |
+| ------------------ | --------------------------------------------------------- |
+| 👤 **Speaker**     | [Ivica Bogosavljević](https://www.linkedin.com/in/ibogi/) |
+| 🕕 **Date & Time** | **27\. septembar \(sreda\)\, u 18h**                      |
+| 📍 **Location**    | **Palata Beograda (Beograđanka), 22. sprat**              |
+| 🏢 **Address**     | **Masarikova 5**                                          |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)  |
 
 Vidimo se!

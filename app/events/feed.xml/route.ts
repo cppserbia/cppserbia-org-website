@@ -1,9 +1,10 @@
-import { getAllEventsServer } from '@/lib/events-server';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+
+import { getAllEventsServer } from "@/lib/events-server";
 
 export async function GET() {
   const events = getAllEventsServer();
-  const baseUrl = 'https://cppserbia.org';
+  const baseUrl = "https://cppserbia.org";
 
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -30,14 +31,14 @@ export async function GET() {
       <category>Technology</category>
     </item>`
       )
-      .join('')}
+      .join("")}
   </channel>
 </rss>`;
 
   return new NextResponse(rssXml, {
     headers: {
-      'Content-Type': 'application/xml',
-      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, s-maxage=86400, stale-while-revalidate",
     },
   });
 }

@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-02-23T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/291533430/'
+event_url: "https://www.meetup.com/cpp-serbia/events/291533430/"
 event_id: 291533430
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=Y2Aq8pMsLz4&t=850s'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=Y2Aq8pMsLz4&t=850s"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-02-23-Upravljanje-Cpp-projektnim-zavisnostima-i-paketima.jpg
 ---
@@ -33,15 +33,13 @@ U drugom delu, glavni fokus će biti na Nix package manager-u i sticanju prakti�
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
+|                    |                                       |
+| ------------------ | ------------------------------------- |
 | 🕕 **Date & Time** | **23\. februar \(četvrtak\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+| 📍 **Location**    | **ICT Hub**                           |
+| 🏢 **Address**     | **Kralja Milana 10**                  |
+| 💻 **Online**      | https://cppserbia.com/meet            |
 
 Vidimo se!
-

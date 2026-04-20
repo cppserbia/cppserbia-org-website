@@ -4,6 +4,30 @@ Thanks for your interest in contributing! This guide covers the most common task
 
 ## Quick Start
 
+### Prerequisites
+
+- **Node.js 24** (pinned in `.nvmrc` and `package.json` `engines`). We recommend [`fnm`](https://github.com/Schniz/fnm) for version management — it's cross-platform and picks up `.nvmrc` automatically:
+
+  ```bash
+  # Install fnm
+  brew install fnm              # macOS
+  winget install Schniz.fnm     # Windows
+  # Linux: curl -fsSL https://fnm.vercel.app/install | bash
+
+  # One-time shell setup (adapt for your shell)
+  echo 'eval "$(fnm env --use-on-cd --shell zsh)"' >> ~/.zshrc
+  source ~/.zshrc
+
+  # Install Node 24 (one-time, per machine)
+  fnm install 24
+  ```
+
+  After this, `cd`-ing into the repo auto-switches to Node 24.
+
+- **pnpm** — install via `npm i -g pnpm` or `corepack enable`.
+
+### Clone and run
+
 ```bash
 git clone https://github.com/cppserbia/cppserbia-org-website
 cd cppserbia-org-website
@@ -11,7 +35,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the site. See the [README](README.md) for prerequisites and available scripts.
+Open [http://localhost:3000](http://localhost:3000) to see the site. See the [README](README.md) for the full list of available scripts.
 
 ## Adding a New Event
 
@@ -33,27 +57,28 @@ Use the actual event date and a URL-friendly title (e.g., `2025-09-18-Modern-CMa
 
 All required fields:
 
-| Field | Description | Example |
-|---|---|---|
-| `title` | Event title | `"Modern CMake Best Practices"` |
-| `date` | Start date/time (local) | `2025-09-18T18:00:00` |
-| `created` | When you created this file | `2025-09-01T10:00:00` |
-| `event_type` | `PHYSICAL`, `ONLINE`, or `HYBRID` | `PHYSICAL` |
-| `status` | `ACTIVE`, `PAST`, or `DRAFT` | `ACTIVE` |
-| `duration` | ISO 8601 duration | `PT2H` |
-| `end_time` | End date/time (local) | `2025-09-18T20:00:00` |
-| `event_url` | Meetup.com event link | `https://www.meetup.com/cpp-serbia/events/123456789/` |
-| `event_id` | Meetup.com event ID | `123456789` |
-| `venues` | Venue list | `['Palata "Beograd" ("Beograđanka"), Beograd, rs']` |
+| Field        | Description                       | Example                                               |
+| ------------ | --------------------------------- | ----------------------------------------------------- |
+| `title`      | Event title                       | `"Modern CMake Best Practices"`                       |
+| `date`       | Start date/time (local)           | `2025-09-18T18:00:00`                                 |
+| `created`    | When you created this file        | `2025-09-01T10:00:00`                                 |
+| `event_type` | `PHYSICAL`, `ONLINE`, or `HYBRID` | `PHYSICAL`                                            |
+| `status`     | `ACTIVE`, `PAST`, or `DRAFT`      | `ACTIVE`                                              |
+| `duration`   | ISO 8601 duration                 | `PT2H`                                                |
+| `end_time`   | End date/time (local)             | `2025-09-18T20:00:00`                                 |
+| `event_url`  | Meetup.com event link             | `https://www.meetup.com/cpp-serbia/events/123456789/` |
+| `event_id`   | Meetup.com event ID               | `123456789`                                           |
+| `venues`     | Venue list                        | `['Palata "Beograd" ("Beograđanka"), Beograd, rs']`   |
 
 Optional fields:
 
-| Field | Description |
-|---|---|
+| Field      | Description                                                               |
+| ---------- | ------------------------------------------------------------------------- |
 | `imageUrl` | Banner image URL (e.g., `https://images.cppserbia.org/events/{slug}.jpg`) |
-| `youtube` | YouTube recording link (add after the event) |
+| `youtube`  | YouTube recording link (add after the event)                              |
 
 **Status values:**
+
 - **`ACTIVE`** — Visible on the site. Use for upcoming events.
 - **`PAST`** — Visible on the site. Use after the event has happened.
 - **`DRAFT`** — Only visible locally when running `pnpm dev`. Use while preparing the event page.
@@ -90,7 +115,7 @@ See [`events/_template-event.md`](events/_template-event.md) for a complete exam
 
 ### 5. Open a pull request
 
-Push your branch and open a PR targeting `main`. CI will run lint and tests automatically.
+Push your branch and open a PR targeting `main`. CI runs lint, formatting, type check, spell check, and tests automatically.
 
 ### 6. (Optional) Generate social media announcement
 
@@ -117,6 +142,7 @@ Once your PR is open, a team member can comment `/social:announcement` on the PR
 The repo has automated bilingual (English + Serbian) social media post generation powered by two parallel flows:
 
 **Announcement flow** (upcoming events):
+
 1. A PR adds a new event file
 2. Team member comments `/social:announcement` on the PR
 3. Gemini AI generates bilingual social media posts
@@ -124,6 +150,7 @@ The repo has automated bilingual (English + Serbian) social media post generatio
 5. Merging the PR triggers a webhook to Make.com, which distributes to LinkedIn, Facebook, Telegram, Discord, and Instagram
 
 **Recording flow** (past event recordings):
+
 1. A PR adds a `youtube:` field to an event file
 2. Team member comments `/social:new-yt` on the PR
 3. Same flow: AI draft in PR description, human edits, merge publishes
@@ -140,13 +167,36 @@ The full image pipeline (downloading from Meetup, syncing to R2) is documented i
 
 ## Development
 
-- **Lint:** `pnpm lint` — must pass. The build ignores lint errors, but CI does not.
-- **Test:** `pnpm test` — runs Vitest. Tests are colocated with route handlers.
-- **CI:** GitHub Actions runs lint + test on PRs to `main`.
-- **Deploy:** Vercel auto-deploys from `main`. There is no manual deploy step.
+### Quality gates
+
+Five checks run in CI on every PR to `main`. Run them locally with:
+
+| Command             | What it does                                                         |
+| ------------------- | -------------------------------------------------------------------- |
+| `pnpm lint`         | ESLint (+ unused-imports + import sorting). `pnpm lint:fix` to fix.  |
+| `pnpm format:check` | Prettier check. `pnpm format` to write.                              |
+| `pnpm typecheck`    | `tsc --noEmit`. Build has `ignoreBuildErrors`, so CI is the TS gate. |
+| `pnpm spell`        | cspell across source + docs. See [Spell checking](#spell-checking).  |
+| `pnpm test`         | Vitest. Tests are colocated with route handlers.                     |
+
+A **husky pre-commit hook** runs `lint-staged` (Prettier + `eslint --fix` on staged files), installed automatically by `pnpm install`.
 
 Run a single test file:
 
 ```bash
 pnpm exec vitest run app/feed.ics/route.test.ts
 ```
+
+### Spell checking
+
+`cspell.json` is the single source of truth — **do not** add inline `// cspell:ignore` comments. If `pnpm spell` flags a legitimate word:
+
+- **Project/tech terms** (library names, acronyms) → add to `.cspell/project-terms.txt`
+- **Serbian words** (proper nouns, common words) → add to `.cspell/serbian-terms.txt`
+- **Real typo** → fix it in the source
+
+Serbian content is already handled by config: `events/*.md` and a few Serbian-heavy test/prompt files are in `ignorePaths`; Cyrillic and Latin-with-diacritics (`čćžšđ`) tokens are stripped by regex. Diacritic-less Serbian in bilingual files is the only thing that ends up in the dictionary.
+
+### Deploy
+
+Vercel auto-deploys from `main`. There is no manual deploy step. The build has `ignoreBuildErrors`/`ignoreDuringBuilds` on, so a single minor issue won't block a deploy — but CI will block the merge.

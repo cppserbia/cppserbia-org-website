@@ -1,12 +1,12 @@
 ---
-title: Github Copilot Dev Days | Belgrade
+title: GitHub Copilot Dev Days | Belgrade
 date: 2026-04-02T18:00:00.000Z
 created: 2026-03-11T12:00:00.000Z
 event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2026-04-02T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/313725176/'
+event_url: "https://www.meetup.com/cpp-serbia/events/313725176/"
 event_id: 313725176
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
@@ -22,11 +22,11 @@ Whether you are new to GitHub Copilot or already using it, this event will help 
 
 ## 📅 Agenda
 
-* 18:00 – Check-in & Networking
-* 18:15 – Welcome & Opening
-* 18:20 – GitHub Copilot in Practice
-* 18:50 – Hands-on: Dev with Github Copilot
-* 19:30 – Closing & Drinks
+- 18:00 – Check-in & Networking
+- 18:15 – Welcome & Opening
+- 18:20 – GitHub Copilot in Practice
+- 18:50 – Hands-on: Dev with GitHub Copilot
+- 19:30 – Closing & Drinks
 
 ## 📜 Code of Conduct
 

@@ -6,10 +6,10 @@ event_type: PHYSICAL
 status: PAST
 duration: PT2H
 end_time: 2019-03-01T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/259120701/'
+event_url: "https://www.meetup.com/cpp-serbia/events/259120701/"
 event_id: 259120701
 venues:
-  - 'Startit Centar, Belgrade, RS'
+  - "Startit Centar, Belgrade, RS"
 imageUrl: >-
   https://images.cppserbia.org/events/2019-03-01-Ivan-Cukic-Funkcionalno-programiranje-u-Cpp-u.jpg
 ---
@@ -35,4 +35,3 @@ Prisustvovanje meetupu je besplatno, ali je zbog očekivanog interesovanja pože
 https://goo.gl/4iiKzG
 
 Predavanje će biti održano 1. marta u prostorijama Startit Centra u Beogradu, ulica Savska broj 5, sa početkom u 18 časova.
-

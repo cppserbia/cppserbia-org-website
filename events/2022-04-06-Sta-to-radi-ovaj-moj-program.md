@@ -8,7 +8,7 @@ duration: PT2H
 end_time: 2022-04-06T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/284853148/
 event_id: 284853148
-venues: ['Ljubostinjska 2, Beograd, rs']
+venues: ["Ljubostinjska 2, Beograd, rs"]
 ---
 
 # Šta to radi ovaj moj program?
@@ -22,23 +22,21 @@ Posle pauze duge više od dve godine, C++ grupa kreće opet sa predavanjima. Prv
 
 Probaćemo da pokrijemo sledeće:
 
-* Profajliranje - gde moj program provodi najviše vremena?
-* Callgraphs - kako funkcije pozivaju jedna drugu?
-* perf - hardverska efikasnost
-* strace - kako moj program komunicira sa operativnim sistemom?
-* ltrace - kako moj program komunicira sa drugim bibliotekama?
-* Debagovanje problema sa memorijom - gde curi memorija, gde se memorija prepisuje?
+- Profajliranje - gde moj program provodi najviše vremena?
+- Callgraphs - kako funkcije pozivaju jedna drugu?
+- perf - hardverska efikasnost
+- strace - kako moj program komunicira sa operativnim sistemom?
+- ltrace - kako moj program komunicira sa drugim bibliotekama?
+- Debagovanje problema sa memorijom - gde curi memorija, gde se memorija prepisuje?
 
 Ideja je da u publika takođe učestvuje, kako biste svoja iskustva podelili sa ostalim učesnicima. Tema je interesantna C i C++ programerima, a i programerima u Rust-u. Nakon dešavanja još malo ćaskamo i delimo iskustva, iliti "show&tell".
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **6\. april \(sreda\)\, u 18h** |
-| 📍 **Location** | **Srednja škola "Arhimed"** |
-| 🏢 **Address** | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
+|                    |                                                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 🕕 **Date & Time** | **6\. april \(sreda\)\, u 18h**                                                                                                    |
+| 📍 **Location**    | **Srednja škola "Arhimed"**                                                                                                        |
+| 🏢 **Address**     | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |
 
 Vidimo se!
-

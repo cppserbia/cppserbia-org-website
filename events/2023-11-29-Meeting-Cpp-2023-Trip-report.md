@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-11-29T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/297540747/'
+event_url: "https://www.meetup.com/cpp-serbia/events/297540747/"
 event_id: 297540747
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=SjZvT0wUrTY'
+youtube: "https://www.youtube.com/watch?v=SjZvT0wUrTY"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-11-29-Meeting-Cpp-2023-Trip-report.jpg
 ---
@@ -31,12 +31,12 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
-| 🕕 **Date & Time** | **29\. novembar \(sreda\)\, u 18h** |
-| 📍 **Location** | **Palata Beograda (Beograđanka), 22. sprat** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+|                    |                                                                     |
+| ------------------ | ------------------------------------------------------------------- |
+| 👤 **Speaker**     | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
+| 🕕 **Date & Time** | **29\. novembar \(sreda\)\, u 18h**                                 |
+| 📍 **Location**    | **Palata Beograda (Beograđanka), 22. sprat**                        |
+| 🏢 **Address**     | **Masarikova 5**                                                    |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)            |
 
 Vidimo se!

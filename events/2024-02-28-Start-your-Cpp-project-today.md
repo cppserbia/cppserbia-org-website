@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT5H30M
 end_time: 2024-02-28T23:30:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/299277052/'
+event_url: "https://www.meetup.com/cpp-serbia/events/299277052/"
 event_id: 299277052
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=kmst4j7CB9M'
+youtube: "https://www.youtube.com/watch?v=kmst4j7CB9M"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-02-28-Start-your-Cpp-project-today.jpg
 ---

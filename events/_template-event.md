@@ -49,12 +49,12 @@ ForwardIt lower_bound(ForwardIt first, ForwardIt last, const T& value, Compare c
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Speaker Name](https://www.linkedin.com/in/speaker-linkedin) |
-| 🕕 **Date & Time** |  |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://twitch.tv/cppserbia](https://twitch.tv/cppserbia) |
+|                    |                                                              |
+| ------------------ | ------------------------------------------------------------ |
+| 👤 **Speaker**     | [Speaker Name](https://www.linkedin.com/in/speaker-linkedin) |
+| 🕕 **Date & Time** |                                                              |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                       |
+| 🏢 **Address**     | **Masarikova 5**                                             |
+| 💻 **Online**      | [https://twitch.tv/cppserbia](https://twitch.tv/cppserbia)   |
 
 Vidimo se!

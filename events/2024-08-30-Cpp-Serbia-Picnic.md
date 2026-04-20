@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT4H
 end_time: 2024-08-30T22:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/302869584/'
+event_url: "https://www.meetup.com/cpp-serbia/events/302869584/"
 event_id: 302869584
 venues:
-  - 'Kosutnjak, Beograd, yu'
-imageUrl: 'https://images.cppserbia.org/events/2024-08-30-Cpp-Serbia-Picnic.jpg'
+  - "Kosutnjak, Beograd, yu"
+imageUrl: "https://images.cppserbia.org/events/2024-08-30-Cpp-Serbia-Picnic.jpg"
 ---
 
 # C++ Serbia Picnic
@@ -28,8 +28,8 @@ For this event, we invite everyone to respond, either here or on any of our soci
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **30th of August (Friday), 6pm** |
-| 📍 **Location** | **The event is [in Košutnjak](https://maps.app.goo.gl/35cJbLAZMZwYjbWcA), next to Pionirski Grad and Košutnjak water tower.** |
-| 🏢 **Address** | **Kneza Višeslava (Park Pionirski Grad)** |
+|                    |                                                                                                                               |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| 🕕 **Date & Time** | **30th of August (Friday), 6pm**                                                                                              |
+| 📍 **Location**    | **The event is [in Košutnjak](https://maps.app.goo.gl/35cJbLAZMZwYjbWcA), next to Pionirski Grad and Košutnjak water tower.** |
+| 🏢 **Address**     | **Kneza Višeslava (Park Pionirski Grad)**                                                                                     |

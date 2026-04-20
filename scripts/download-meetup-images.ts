@@ -1,7 +1,8 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import jwt from "jsonwebtoken";
+import path from "path";
+
 import type { EventFrontmatter } from "./types";
 
 const MEETUP_GQL_URL = "https://api.meetup.com/gql-ext";
@@ -144,7 +145,12 @@ async function main() {
   MEETUP_PRIVATE_KEY_PATH = process.env.MEETUP_PRIVATE_KEY_PATH;
   MEETUP_SIGNING_KEY_ID = process.env.MEETUP_SIGNING_KEY_ID;
 
-  if (!MEETUP_CLIENT_KEY || !MEETUP_MEMBER_ID || !MEETUP_PRIVATE_KEY_PATH || !MEETUP_SIGNING_KEY_ID) {
+  if (
+    !MEETUP_CLIENT_KEY ||
+    !MEETUP_MEMBER_ID ||
+    !MEETUP_PRIVATE_KEY_PATH ||
+    !MEETUP_SIGNING_KEY_ID
+  ) {
     console.error("Missing required environment variables.");
     console.error(
       "Set MEETUP_CLIENT_KEY, MEETUP_MEMBER_ID, MEETUP_PRIVATE_KEY_PATH, and MEETUP_SIGNING_KEY_ID."

@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2026-02-25T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/313413133/'
+event_url: "https://www.meetup.com/cpp-serbia/events/313413133/"
 event_id: 313413133
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=iULlWUyXzw0'
+youtube: "https://www.youtube.com/watch?v=iULlWUyXzw0"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-02-25-How-to-modernize-your-codebase.jpg
 ---
@@ -29,20 +29,20 @@ This isn't just a theoretical discussion. Our panellists represent the most dema
 
 ## What We Will Cover
 
-* **Strategies for incremental adoption of modern standards.**
-* **Tooling and CI/CD improvements to automate modernisation.**
-* **Overcoming cultural and technical resistance in your team.**
-* **Live Q&A: Bring your specific blockers to the experts.**
+- **Strategies for incremental adoption of modern standards.**
+- **Tooling and CI/CD improvements to automate modernisation.**
+- **Overcoming cultural and technical resistance in your team.**
+- **Live Q&A: Bring your specific blockers to the experts.**
 
 The list of panellists will be announced soon!
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **25th of February (Wednesday), 6 pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | **[C++ Serbia YouTube](https://www.youtube.com/@cppserbia)** |
+|                    |                                                              |
+| ------------------ | ------------------------------------------------------------ |
+| 🕕 **Date & Time** | **25th of February (Wednesday), 6 pm**                       |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                       |
+| 🏢 **Address**     | **Masarikova 5**                                             |
+| 💻 **Online**      | **[C++ Serbia YouTube](https://www.youtube.com/@cppserbia)** |
 
 See you!

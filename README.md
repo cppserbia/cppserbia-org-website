@@ -13,23 +13,26 @@ This is the official website for the C++ Serbia community, built with Next.js, T
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm (recommended) or npm
+- Node.js 24 (see [CONTRIBUTING.md](CONTRIBUTING.md#prerequisites) for `fnm` setup)
+- pnpm
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/cppserbia/cppserbia-org-website
 cd cppserbia-org-website
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 pnpm dev
 ```
@@ -38,10 +41,16 @@ pnpm dev
 
 ## Available Scripts
 
-- `pnpm dev` - Runs the development server
-- `pnpm build` - Builds the application for production
-- `pnpm start` - Starts the production server
-- `pnpm lint` - Runs ESLint for code linting
+- `pnpm dev` — Runs the development server
+- `pnpm build` — Builds the application for production
+- `pnpm start` — Starts the production server
+- `pnpm lint` / `pnpm lint:fix` — ESLint (+ import sort, unused-imports)
+- `pnpm format` / `pnpm format:check` — Prettier
+- `pnpm typecheck` — `tsc --noEmit`
+- `pnpm spell` — cspell (see [Spell checking](CONTRIBUTING.md#spell-checking))
+- `pnpm test` / `pnpm test:watch` — Vitest
+
+A husky pre-commit hook runs `lint-staged` (Prettier + `eslint --fix` on staged files) automatically.
 
 ## Project Structure
 

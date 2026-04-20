@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT2H
 end_time: 2024-12-17T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/305014834/'
+event_url: "https://www.meetup.com/cpp-serbia/events/305014834/"
 event_id: 305014834
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=QQ_P422Wx9c'
+youtube: "https://www.youtube.com/watch?v=QQ_P422Wx9c"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-12-17-End-of-the-year-Lightning-celebration.jpg
 ---
@@ -21,20 +21,18 @@ As tradition dictates, we are celebrating the end of 2024. with lightning talks.
 
 If you want to share something, send a message to one of the organisers here on any of our online community spots:
 
-* **[Discord](https://discord.gg/VDUn8YtHw8)**
-* **[Telegram](https://t.me/+l7NS0GrslBMwNzI0)**
-* **[LinkedIn](https://www.linkedin.com/company/cppserbia/)**
-* **[Email](mailto:dusan@djovanovic.me)**
+- **[Discord](https://discord.gg/VDUn8YtHw8)**
+- **[Telegram](https://t.me/+l7NS0GrslBMwNzI0)**
+- **[LinkedIn](https://www.linkedin.com/company/cppserbia/)**
+- **[Email](mailto:dusan@djovanovic.me)**
 
-**To follow the meetup
+**To follow the meetup, join our community**
 
-Join our community
-
-| | |
-|---|---|
-| 🕕 **Date & Time** | **17th of December (Tuesday), 6pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [Zoom Link](https://us06web.zoom.us/j/83494012023)** |
+|                    |                                                    |
+| ------------------ | -------------------------------------------------- |
+| 🕕 **Date & Time** | **17th of December (Tuesday), 6pm**                |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**             |
+| 🏢 **Address**     | **Masarikova 5**                                   |
+| 💻 **Online**      | [Zoom Link](https://us06web.zoom.us/j/83494012023) |
 
 See you!

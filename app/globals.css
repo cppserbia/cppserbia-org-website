@@ -13,7 +13,7 @@
 
   /* Brand gradient utilities */
   .gradient-brand-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-purple-400 to-blue-400;
+    @apply bg-gradient-to-r from-red-500 via-purple-400 to-blue-400 bg-clip-text text-transparent;
   }
 
   .gradient-brand-button {
@@ -25,7 +25,7 @@
   }
 
   .gradient-brand-glow {
-    @apply bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-20 blur-xl animate-pulse-slow;
+    @apply animate-pulse-slow bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-20 blur-xl;
   }
 
   /* Common layout utilities */
@@ -63,7 +63,7 @@
   }
 
   .text-gray-hover {
-    @apply text-gray-400 hover:text-purple-300 transition-colors;
+    @apply text-gray-400 transition-colors hover:text-purple-300;
   }
 
   /* Common background utilities */
@@ -72,12 +72,12 @@
   }
 
   .bg-card-dark-hover {
-    @apply bg-purple-950/50 hover:bg-purple-900/50 transition-colors;
+    @apply bg-purple-950/50 transition-colors hover:bg-purple-900/50;
   }
 
   /* Page section utilities */
   .section-spacing {
-    @apply py-20 px-4;
+    @apply px-4 py-20;
   }
 
   .section-bg-alt {
@@ -90,11 +90,11 @@
 
   /* Typography utilities */
   .heading-section {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-purple-300;
+    @apply mb-6 text-3xl font-bold text-purple-300 md:text-4xl;
   }
 
   .heading-page {
-    @apply text-3xl md:text-5xl font-bold mb-4;
+    @apply mb-4 text-3xl font-bold md:text-5xl;
   }
 
   .text-muted {
@@ -107,17 +107,7 @@
 
   /* Prose styling for markdown content */
   .prose-custom {
-    @apply prose prose-invert prose-purple max-w-none prose-lg
-           prose-headings:text-white prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg
-           prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6
-           prose-p:text-gray-300 prose-p:leading-relaxed
-           prose-strong:text-white
-           prose-code:text-purple-300 prose-code:bg-gray-900 prose-code:px-1 prose-code:rounded prose-code:font-mono
-           prose-code:before:content-none prose-code:after:content-none
-           prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:font-mono
-           prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300
-           prose-a:text-purple-400 prose-a:hover:text-purple-300
-           prose-li:my-1;
+    @apply prose prose-lg prose-purple prose-invert max-w-none prose-headings:mb-4 prose-headings:mt-6 prose-headings:font-bold prose-headings:text-white prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-purple-400 prose-a:hover:text-purple-300 prose-blockquote:border-l-purple-400 prose-blockquote:text-gray-300 prose-strong:text-white prose-code:rounded prose-code:bg-gray-900 prose-code:px-1 prose-code:font-mono prose-code:text-purple-300 prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:border-gray-700 prose-pre:bg-gray-900 prose-pre:font-mono prose-li:my-1;
   }
 
   /* Common link and button patterns */
@@ -140,7 +130,7 @@
 
   /* Frosted glass chip for metadata */
   .chip-glass {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-md text-sm text-gray-200;
+    @apply inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-1.5 text-sm text-gray-200 backdrop-blur-sm;
   }
 
   /* Gradient dividers */
@@ -154,16 +144,16 @@
 
   /* Status badges */
   .status-upcoming {
-    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider;
+    @apply inline-flex items-center gap-2 rounded-full bg-purple-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300;
   }
 
   .status-past {
-    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-500/20 text-gray-400 text-xs font-semibold uppercase tracking-wider;
+    @apply inline-flex items-center gap-2 rounded-full bg-gray-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gray-400;
   }
 
   /* Animated pulse dot for upcoming events */
   .pulse-dot {
-    @apply w-2 h-2 rounded-full bg-green-400 animate-pulse;
+    @apply h-2 w-2 animate-pulse rounded-full bg-green-400;
   }
 
   @keyframes pulse {

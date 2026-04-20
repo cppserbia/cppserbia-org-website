@@ -6,12 +6,12 @@ event_type: PHYSICAL
 status: PAST
 duration: PT5H30M
 end_time: 2024-04-24T23:30:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/300479473/'
+event_url: "https://www.meetup.com/cpp-serbia/events/300479473/"
 event_id: 300479473
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=rvt8KxMvLdY'
-imageUrl: 'https://images.cppserbia.org/events/2024-04-24-Cpp-Serbia-does-code-review.jpg'
+youtube: "https://www.youtube.com/watch?v=rvt8KxMvLdY"
+imageUrl: "https://images.cppserbia.org/events/2024-04-24-Cpp-Serbia-does-code-review.jpg"
 ---
 
 # C++ Serbia does code review
@@ -25,15 +25,13 @@ You can send your snippets beforehand by messaging the organisers directly throu
 
 Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovde](https://cppserbia.com).
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **24\. april \(sreda\)\, u 18h** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22. sprat** |
-| 🏢 **Address** | **Masarikova 5** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **24\. april \(sreda\)\, u 18h**                         |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22. sprat**                    |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!
-

@@ -1,17 +1,17 @@
 ---
-title: 'vcpkg i CMake: Početak'
+title: "vcpkg i CMake: Početak"
 date: 2023-04-24T18:00:00.000Z
 created: 2023-04-14T11:30:04.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2023-04-24T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/292892230/'
+event_url: "https://www.meetup.com/cpp-serbia/events/292892230/"
 event_id: 292892230
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=DlRmzJqCoB4'
-imageUrl: 'https://images.cppserbia.org/events/2023-04-24-vcpkg-i-CMake-Pocetak.jpg'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=DlRmzJqCoB4"
+imageUrl: "https://images.cppserbia.org/events/2023-04-24-vcpkg-i-CMake-Pocetak.jpg"
 ---
 
 # vcpkg i CMake: Početak
@@ -24,16 +24,14 @@ Ovde ćemo kroz primer proći kroz osnove korišćenja **CMake**-a i **vcpkg**-a
 
 Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.com).
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/) |
-| 🕕 **Date & Time** | **24\. april \(ponedeljak\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+|                    |                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------ |
+| 👤 **Speaker**     | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/) |
+| 🕕 **Date & Time** | **24\. april \(ponedeljak\)\, u 18h**                                                      |
+| 📍 **Location**    | **ICT Hub**                                                                                |
+| 🏢 **Address**     | **Kralja Milana 10**                                                                       |
+| 💻 **Online**      | https://cppserbia.com/meet                                                                 |
 
 Vidimo se!
-

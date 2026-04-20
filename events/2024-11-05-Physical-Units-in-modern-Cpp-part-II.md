@@ -1,16 +1,16 @@
 ---
-title: 'Physical Units in modern C++, part II'
+title: "Physical Units in modern C++, part II"
 date: 2024-11-05T18:00:00.000Z
 created: 2024-10-29T12:23:21.000Z
 event_type: PHYSICAL
 status: PAST
 duration: PT2H
 end_time: 2024-11-05T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/304266487/'
+event_url: "https://www.meetup.com/cpp-serbia/events/304266487/"
 event_id: 304266487
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=ImucbIYTnVA'
+youtube: "https://www.youtube.com/watch?v=ImucbIYTnVA"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-11-05-Physical-Units-in-modern-Cpp-part-II.jpg
 ---
@@ -23,14 +23,13 @@ Nikola will present both the original version of the library, which was develope
 
 **[Google Meet Link](https://meet.google.com/obp-fygs-par)**
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 👤 **Speaker** | **[Nikola Jelić](https://www.linkedin.com/in/nikola-jeli%C4%87-46b89531b/)** |
-| 🕕 **Date & Time** | **5th of November (Tuesday), 6pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 🏢 **Address** | **Masarikova 5** |
+|                    |                                                                              |
+| ------------------ | ---------------------------------------------------------------------------- |
+| 👤 **Speaker**     | **[Nikola Jelić](https://www.linkedin.com/in/nikola-jeli%C4%87-46b89531b/)** |
+| 🕕 **Date & Time** | **5th of November (Tuesday), 6pm**                                           |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                       |
+| 🏢 **Address**     | **Masarikova 5**                                                             |
 
 See you!

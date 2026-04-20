@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT2H
 end_time: 2025-01-29T20:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/305754159/'
+event_url: "https://www.meetup.com/cpp-serbia/events/305754159/"
 event_id: 305754159
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
-imageUrl: 'https://images.cppserbia.org/events/2025-01-29-Cpp-Serbia-does-code-review.jpg'
+imageUrl: "https://images.cppserbia.org/events/2025-01-29-Cpp-Serbia-does-code-review.jpg"
 ---
 
 # C++ Serbia does code review
@@ -26,17 +26,17 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 To join the community discussions, we are on:
 
-* [Discord](https://discord.gg/VDUn8YtHw8)
-* [Telegram](https://t.me/+l7NS0GrslBMwNzI0)
-* [LinkedIn](https://www.linkedin.com/company/cppserbia/)
+- [Discord](https://discord.gg/VDUn8YtHw8)
+- [Telegram](https://t.me/+l7NS0GrslBMwNzI0)
+- [LinkedIn](https://www.linkedin.com/company/cppserbia/)
 
 ## 📅 Event Details
 
-| | |
-|---|---|
-| 🕕 **Date & Time** | **29th of January (Wednesday), 6pm** |
-| 📍 **Location** | **Beograđanka, Vidikovac, 22nd floor** |
-| 💻 **Online** | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
-| 🏢 **Address** | **Masarikova 5** |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **29th of January (Wednesday), 6pm**                     |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
+| 🏢 **Address**     | **Masarikova 5**                                         |
 
 See you!

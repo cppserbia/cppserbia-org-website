@@ -1,7 +1,7 @@
-import { defaultSerbianScript, type SerbianScript } from '@/i18n/config';
+import { defaultSerbianScript, type SerbianScript } from "@/i18n/config";
 
 export function getSerbianScriptClient(): SerbianScript {
-  if (typeof document === 'undefined') return defaultSerbianScript;
+  if (typeof document === "undefined") return defaultSerbianScript;
   const match = document.cookie.match(/(?:^|;\s*)sr-script=(\w+)/);
   return (match?.[1] as SerbianScript) || defaultSerbianScript;
 }

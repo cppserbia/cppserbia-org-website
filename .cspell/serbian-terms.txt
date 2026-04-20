@@ -1,0 +1,28 @@
+# Serbian words and proper nouns that leak into non-ignored files.
+# One word per line. Comments begin with '#'.
+#
+# Ignored-by-config files already cover the bulk of Serbian content
+# (events/*.md, lib/transliterate.test.ts, scripts/social/prompts.ts,
+# scripts/generate-social-draft.test.ts). This dictionary covers the
+# residual Serbian tokens that show up in bilingual code, docs, tests,
+# and i18n strings.
+#
+# Proper nouns (venues, cities, org names)
+Beograd
+Palata
+#
+# Common Serbian words (diacritic-less Latin; the config's diacritic
+# regex catches anything with č/ć/ž/š/đ so those don't need to be here)
+duboko
+grupe
+koda
+modernizaciju
+okupljanje
+poslednji
+Prebaci
+Propustili
+Prvo
+snimku
+srpski
+Srpski
+uranjanje

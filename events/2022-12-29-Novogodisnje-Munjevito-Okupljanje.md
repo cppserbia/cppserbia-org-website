@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: PAST
 duration: PT3H
 end_time: 2022-12-29T21:00:00.000Z
-event_url: 'https://www.meetup.com/cpp-serbia/events/290538668/'
+event_url: "https://www.meetup.com/cpp-serbia/events/290538668/"
 event_id: 290538668
 venues:
-  - 'ICT Hub Kralja Milana, Beograd, rs'
-youtube: 'https://www.youtube.com/watch?v=FldZhhpaaX8'
+  - "ICT Hub Kralja Milana, Beograd, rs"
+youtube: "https://www.youtube.com/watch?v=FldZhhpaaX8"
 imageUrl: >-
   https://images.cppserbia.org/events/2022-12-29-Novogodisnje-Munjevito-Okupljanje.jpg
 ---
@@ -30,14 +30,13 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 Sa velikim zadovoljstvom vas obaveštavam da je ovaj događaj sponzorisalo preduzeće [Inceptive](https://inceptive.io/). Hvala vam na želji da učestvujete u razvoju lokalne C++ zajednice!
 
-
 ## 📅 Event Details
 
-| | |
-|---|---|
+|                    |                                        |
+| ------------------ | -------------------------------------- |
 | 🕕 **Date & Time** | **29\. decembar \(četvrtak\)\, u 18h** |
-| 📍 **Location** | **ICT Hub** |
-| 🏢 **Address** | **Kralja Milana 10** |
-| 💻 **Online** | https://cppserbia.com/meet |
+| 📍 **Location**    | **ICT Hub**                            |
+| 🏢 **Address**     | **Kralja Milana 10**                   |
+| 💻 **Online**      | https://cppserbia.com/meet             |
 
 Vidimo se!

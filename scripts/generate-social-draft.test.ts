@@ -1,17 +1,23 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
 import fs from "fs";
-import path from "path";
 import os from "os";
+import path from "path";
+import { describe, expect, it } from "vitest";
+
 import {
-  parseSocialText,
-  extractYouTubeVideoId,
-  extractSpeakerName,
   extractDescription,
   extractFullDescription,
+  extractSpeakerName,
+  extractYouTubeVideoId,
+  parseSocialText,
 } from "./social/extract";
+import {
+  buildAnnouncementMetadata,
+  buildAnnouncementPayload,
+  buildRecordingMetadata,
+  buildRecordingPayload,
+} from "./social/payload";
 import { readEventFile } from "./social/read-event";
-import { buildRecordingPayload, buildAnnouncementPayload, buildRecordingMetadata, buildAnnouncementMetadata } from "./social/payload";
 
 describe("parseSocialText", () => {
   it("extracts EN and SR from standard bold format", () => {
@@ -293,12 +299,19 @@ describe("buildRecordingPayload", () => {
       imageUrl: "https://images.cppserbia.org/test.jpg",
     };
 
-    const payload = buildRecordingPayload(frontmatter, "2025-06-15-Test-Talk", "Hello EN", "Zdravo SR");
+    const payload = buildRecordingPayload(
+      frontmatter,
+      "2025-06-15-Test-Talk",
+      "Hello EN",
+      "Zdravo SR"
+    );
 
     expect(payload.social_text_en).toBe("Hello EN");
     expect(payload.social_text_sr).toBe("Zdravo SR");
     expect(payload.youtube_url).toBe("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-    expect(payload.youtube_thumbnail_url).toBe("https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg");
+    expect(payload.youtube_thumbnail_url).toBe(
+      "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+    );
     expect(payload.event_title).toBe("Test Talk");
     expect(payload.event_slug).toBe("2025-06-15-Test-Talk");
     expect(payload.image_url).toBe("https://images.cppserbia.org/test.jpg");
@@ -328,7 +341,12 @@ describe("buildAnnouncementPayload", () => {
       imageUrl: "https://images.cppserbia.org/upcoming.jpg",
     };
 
-    const payload = buildAnnouncementPayload(frontmatter, "2025-07-20-Upcoming-Talk", "Join us!", "Pridružite se!");
+    const payload = buildAnnouncementPayload(
+      frontmatter,
+      "2025-07-20-Upcoming-Talk",
+      "Join us!",
+      "Pridružite se!"
+    );
 
     expect(payload.type).toBe("announcement");
     expect(payload.social_text_en).toBe("Join us!");
@@ -379,7 +397,9 @@ describe("buildRecordingMetadata", () => {
     const metadata = buildRecordingMetadata(frontmatter, "2025-06-15-Test-Talk");
 
     expect(metadata.youtube_url).toBe("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-    expect(metadata.youtube_thumbnail_url).toBe("https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg");
+    expect(metadata.youtube_thumbnail_url).toBe(
+      "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+    );
     expect(metadata.event_title).toBe("Test Talk");
     expect(metadata.event_slug).toBe("2025-06-15-Test-Talk");
     expect(metadata.image_url).toBe("https://images.cppserbia.org/test.jpg");

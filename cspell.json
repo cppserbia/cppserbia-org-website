@@ -1,0 +1,76 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": [
+    "en_US",
+    "typescript",
+    "node",
+    "html",
+    "css",
+    "npm",
+    "companies",
+    "softwareTerms",
+    "misc",
+    "cpp",
+    "fullstack",
+    "terraform",
+    "git",
+    "markdown",
+    "shell",
+    "scientific-terms-us",
+    "project-terms",
+    "serbian-terms"
+  ],
+  "import": [
+    "@cspell/dict-cpp/cspell-ext.json",
+    "@cspell/dict-fullstack/cspell-ext.json",
+    "@cspell/dict-terraform/cspell-ext.json",
+    "@cspell/dict-git/cspell-ext.json",
+    "@cspell/dict-markdown/cspell-ext.json",
+    "@cspell/dict-shell/cspell-ext.json",
+    "@cspell/dict-scientific-terms-us/cspell-ext.json"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-terms",
+      "path": "./.cspell/project-terms.txt",
+      "addWords": true
+    },
+    {
+      "name": "serbian-terms",
+      "path": "./.cspell/serbian-terms.txt",
+      "addWords": true
+    }
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "public/**",
+    "pnpm-lock.yaml",
+    "package-lock.json",
+    ".husky/_/**",
+    "events/*.md",
+    "infra/.terraform/**",
+    "infra/*.tfstate*",
+    ".playwright-mcp/**",
+    "lib/transliterate.test.ts",
+    "scripts/social/prompts.ts",
+    "scripts/generate-social-draft.test.ts"
+  ],
+  "ignoreRegExpList": [
+    "CyrillicTokens",
+    "SerbianLatinDiacriticTokens",
+    "Urls",
+    "Email",
+    "HexValues",
+    "Base64"
+  ],
+  "patterns": [
+    { "name": "CyrillicTokens", "pattern": "/\\S*[\\u0400-\\u04FF]+\\S*/g" },
+    {
+      "name": "SerbianLatinDiacriticTokens",
+      "pattern": "/\\S*[\\u010D\\u0107\\u017E\\u0161\\u0111\\u010C\\u0106\\u017D\\u0160\\u0110]\\S*/g"
+    }
+  ]
+}

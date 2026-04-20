@@ -1,6 +1,7 @@
-import { CopilotClient, approveAll } from "@github/copilot-sdk";
-import { ok, err } from "./types";
-import type { Result, LlmError } from "./types";
+import { approveAll, CopilotClient } from "@github/copilot-sdk";
+
+import type { LlmError, Result } from "./types";
+import { err, ok } from "./types";
 
 const MODEL = "gpt-4.1";
 const TIMEOUT_MS = 120_000;
@@ -9,9 +10,7 @@ export async function generateSocialDraft(
   token: string | undefined,
   prompt: string
 ): Promise<Result<string, LlmError>> {
-  const client = new CopilotClient(
-    token ? { githubToken: token } : { useLoggedInUser: true }
-  );
+  const client = new CopilotClient(token ? { githubToken: token } : { useLoggedInUser: true });
 
   try {
     await client.start();
@@ -57,7 +56,8 @@ export async function generateSocialDraft(
       return err({ kind: "timeout", message: "GitHub Copilot SDK timed out" });
     }
 
-    const status = (error as any)?.status ?? (error as any)?.statusCode ?? 500;
+    const errObj = error as { status?: unknown; statusCode?: unknown };
+    const status = errObj?.status ?? errObj?.statusCode ?? 500;
     return err({
       kind: "server",
       message: `GitHub Copilot SDK error: ${(error as Error).message}`,

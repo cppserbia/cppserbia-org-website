@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+pnpm-lock.yaml
+.playwright-mcp
+infra/.terraform
+infra/*.tfstate*
+public

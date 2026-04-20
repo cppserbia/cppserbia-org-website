@@ -8,11 +8,11 @@ on:
         type: string
         required: true
       pr_number:
-        description: 'PR number to extract payload from'
+        description: "PR number to extract payload from"
         type: number
         required: true
       dry_run:
-        description: 'Log payload without sending to Make.com'
+        description: "Log payload without sending to Make.com"
         type: boolean
         required: false
         default: false
@@ -53,8 +53,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
