@@ -6,11 +6,11 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT3H
 end_time: 2026-04-29T21:00:00.000Z
-event_url: <Meetup.com Event URL>
-event_id: <Meetup.com Event ID>
+event_url: https://www.meetup.com/cpp-serbia/events/314504530
+event_id: 314504530
 venues:
   - "Docker Brewery & Beer Garden, Beograd, rs"
-# imageUrl:  # https://images.cppserbia.org/events/2026-04-29-Cpp-Serbia-Beer-Wednesday.jpg
+imageUrl: https://images.cppserbia.org/events/2026-04-29-cpp-beer-wed.png
 ---
 
 # C++ Serbia Beer Wednesday
@@ -32,12 +32,6 @@ Topic of the evening: **How many beers cause undefined behavior?**
 
 If you love C++, or you love beer, or you simply love hanging out with C++ developers (?!), you are welcome!
 
-## 📜 Code of Conduct
-
-We are committed to providing a welcoming and inclusive environment for all participants. Please review the event Code of Conduct before attending.
-
-👉 [Event Code of Conduct](https://github.com/github/GitHub-Copilot-Dev-Days/blob/main/EVENT_CODE_OF_CONDUCT.md)
-
 ## Stay Connected
 
 - **Discord** — [discord.gg/VDUn8YtHw8](https://discord.gg/VDUn8YtHw8)
@@ -52,6 +46,5 @@ We are committed to providing a welcoming and inclusive environment for all part
 | 🕕 **Date & Time** | **29th of April (Wednesday), 6 pm** |
 | 📍 **Location**    | **Docker Brewery & Beer Garden**    |
 | 🏢 **Address**     | **Žorža Klemansoa 27b, Beograd**    |
-
 
 See you at Docker!
