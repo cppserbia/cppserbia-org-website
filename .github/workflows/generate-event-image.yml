@@ -1,0 +1,150 @@
+name: Generate Event Image
+
+on:
+  pull_request:
+    paths:
+      - "events/**.md"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    if: |
+      github.event.pull_request.author_association == 'OWNER' ||
+      github.event.pull_request.author_association == 'MEMBER' ||
+      github.event.pull_request.author_association == 'COLLABORATOR'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Inkscape
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends inkscape
+          inkscape --version
+
+      - name: Find event file
+        id: find-event
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          EVENT_FILE=$(gh pr diff "$PR_NUMBER" --name-only \
+            | grep '^events/.*\.md$' | grep -v '^events/_' || true)
+
+          if [ -z "$EVENT_FILE" ]; then
+            echo "No event files changed in this PR (only template or non-event paths)."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          FILE_COUNT=$(echo "$EVENT_FILE" | wc -l | tr -d ' ')
+          if [ "$FILE_COUNT" -ne 1 ]; then
+            echo "::error::Expected exactly 1 event file, found $FILE_COUNT. Each PR should contain a single event."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          echo "Found event file: $EVENT_FILE"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+          echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Generate banners
+        if: steps.find-event.outputs.found == 'true'
+        run: npx tsx scripts/generate-event-banner.ts "${{ steps.find-event.outputs.file }}"
+
+      - name: Upload banners to R2 + patch frontmatter
+        if: steps.find-event.outputs.found == 'true'
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npx tsx scripts/upload-event-banners.ts "${{ steps.find-event.outputs.file }}"
+
+      - name: Commit imageUrl back to PR
+        id: commit
+        if: steps.find-event.outputs.found == 'true'
+        env:
+          FILE: ${{ steps.find-event.outputs.file }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- "$FILE"; then
+            echo "No frontmatter changes (imageUrl already up to date). Skipping commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "cppserbia-bot"
+          git config user.email "bot@cppserbia.org"
+          git add "$FILE"
+          git commit -m "chore(banner): generate and upload event banners"
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Comment on PR with previews
+        if: steps.commit.outputs.committed == 'true'
+        uses: actions/github-script@v7
+        env:
+          FILE: ${{ steps.find-event.outputs.file }}
+        with:
+          script: |
+            const path = require('path');
+            const slug = path.basename(process.env.FILE, '.md');
+            const base = 'https://images.cppserbia.org/events';
+            const horizontal = `${base}/${slug}.jpg`;
+            const v34 = `${base}/${slug}-3-4.jpg`;
+            const v916 = `${base}/${slug}-9-16.jpg`;
+
+            const body = [
+              '🖼️ Event banners generated and uploaded:',
+              '',
+              `- Horizontal (1920×1080): ${horizontal}`,
+              `- Vertical 3:4 (1440×1920): ${v34}`,
+              `- Vertical 9:16 (1080×1920): ${v916}`,
+              '',
+              `<img src="${horizontal}" width="640" alt="horizontal preview"/>`,
+              '',
+              'Re-push edits to the event file to regenerate.',
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
+
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: `❌ Failed to generate event banners. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
+            });

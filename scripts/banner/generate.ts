@@ -1,0 +1,194 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import sharp from "sharp";
+
+import { exportPng, queryWidth } from "./inkscape";
+import { hasElement, loadSvg, setFontSize, setText, type SvgTemplate } from "./svg-template";
+import { fitFontSize } from "./text-fit";
+
+export type BannerFormat = "horizontal" | "vertical_3_4" | "vertical_9_16";
+
+export interface BannerInput {
+  /** Full speaker name. Split into first/last on the last whitespace for vertical templates. */
+  speaker: string;
+  /** Pre-formatted date text shown in the date field. */
+  dateText: string;
+  /** Title broken into lines. Up to 3 (horizontal) or 5 (vertical). Excess is truncated. */
+  titleLines: string[];
+}
+
+export interface FormatSpec {
+  templateFile: string;
+  width: number;
+  height: number;
+  maxTitleLines: number;
+}
+
+const TEMPLATES_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "templates");
+
+export const FORMAT_SPECS: Record<BannerFormat, FormatSpec> = {
+  horizontal: {
+    templateFile: "talk_banner_horizontal.svg",
+    width: 1920,
+    height: 1080,
+    maxTitleLines: 3,
+  },
+  vertical_3_4: {
+    templateFile: "talk_banner_vertical_3_4.svg",
+    width: 1440,
+    height: 1920,
+    maxTitleLines: 5,
+  },
+  vertical_9_16: {
+    templateFile: "talk_banner_vertical_9_16.svg",
+    width: 1080,
+    height: 1920,
+    maxTitleLines: 5,
+  },
+};
+
+/**
+ * Resolve relative `xlink:href` paths in the SVG to absolute paths under
+ * `baseDir`, so the work-copy SVG can live in a different directory while
+ * still finding `avatar.png` and the shared raster asset(s).
+ */
+function rewriteHrefsToAbsolute(svgText: string, baseDir: string): string {
+  return svgText.replace(/xlink:href="([^"]+)"/g, (match, href: string) => {
+    if (
+      href.startsWith("#") ||
+      href.startsWith("data:") ||
+      href.startsWith("/") ||
+      /^[a-z]+:/i.test(href)
+    ) {
+      return match;
+    }
+    return `xlink:href="${path.resolve(baseDir, href)}"`;
+  });
+}
+
+/**
+ * Split a speaker name into first / last name on the last whitespace boundary.
+ * `"Ivan Čukić"` → `["Ivan", "Čukić"]`. Single-word names: `["Madonna", ""]`.
+ */
+export function splitSpeakerName(speaker: string): { firstName: string; surname: string } {
+  const trimmed = speaker.trim();
+  const lastSpace = trimmed.lastIndexOf(" ");
+  if (lastSpace === -1) return { firstName: trimmed, surname: "" };
+  return {
+    firstName: trimmed.slice(0, lastSpace).trim(),
+    surname: trimmed.slice(lastSpace + 1).trim(),
+  };
+}
+
+async function fitFieldFontSize(
+  template: SvgTemplate,
+  workSvgPath: string,
+  fieldId: string,
+  hintWidth: number
+): Promise<number> {
+  return fitFontSize(async (sizePx) => {
+    setFontSize(template, fieldId, sizePx);
+    await fs.writeFile(workSvgPath, template.serialize());
+    return queryWidth(workSvgPath, fieldId);
+  }, hintWidth);
+}
+
+export interface GenerateOptions {
+  outDir: string;
+  format: BannerFormat;
+  input: BannerInput;
+  /** File-name stem for outputs, e.g. "2026-04-29-Cpp-Serbia-Founding-Celebration". */
+  outBaseName: string;
+  /** Defaults to 85. */
+  jpegQuality?: number;
+  /** Keep the intermediate SVG + PNG files instead of cleaning them up. Default false. */
+  keepIntermediates?: boolean;
+}
+
+export interface GenerateResult {
+  jpgPath: string;
+  pngPath: string;
+}
+
+export async function generateBanner(opts: GenerateOptions): Promise<GenerateResult> {
+  const spec = FORMAT_SPECS[opts.format];
+  const templatePath = path.join(TEMPLATES_DIR, spec.templateFile);
+
+  let svgText = await fs.readFile(templatePath, "utf8");
+  svgText = rewriteHrefsToAbsolute(svgText, TEMPLATES_DIR);
+
+  const template = loadSvg(svgText);
+
+  setText(template, "text_field_date", opts.input.dateText);
+
+  const useSingleAuthorField = hasElement(template, "text_field_author");
+  let surname = "";
+  if (useSingleAuthorField) {
+    setText(template, "text_field_author", opts.input.speaker);
+  } else {
+    const split = splitSpeakerName(opts.input.speaker);
+    surname = split.surname;
+    setText(template, "text_field_author_1", split.firstName);
+    setText(template, "text_field_author_2", split.surname);
+  }
+
+  const titleLines = opts.input.titleLines.slice(0, spec.maxTitleLines);
+  for (let i = 1; i <= spec.maxTitleLines; i++) {
+    setText(template, `text_field_${i}`, titleLines[i - 1] ?? "");
+  }
+
+  await fs.mkdir(opts.outDir, { recursive: true });
+  // Work-copy SVG keeps the format suffix to avoid collisions when generating
+  // multiple formats with the same output base name.
+  const workSvgPath = path.join(opts.outDir, `${opts.outBaseName}-${opts.format}.work.svg`);
+  await fs.writeFile(workSvgPath, template.serialize());
+
+  if (useSingleAuthorField) {
+    const hintW = await queryWidth(workSvgPath, "text_field_author_hint");
+    const sizeStar = await fitFieldFontSize(template, workSvgPath, "text_field_author", hintW);
+    setFontSize(template, "text_field_author", sizeStar);
+  } else {
+    const sizes: number[] = [];
+    const hint1 = await queryWidth(workSvgPath, "text_field_author_1_hint");
+    sizes.push(await fitFieldFontSize(template, workSvgPath, "text_field_author_1", hint1));
+    if (surname !== "") {
+      const hint2 = await queryWidth(workSvgPath, "text_field_author_2_hint");
+      sizes.push(await fitFieldFontSize(template, workSvgPath, "text_field_author_2", hint2));
+    }
+    const minSize = Math.min(...sizes);
+    setFontSize(template, "text_field_author_1", minSize);
+    if (surname !== "") setFontSize(template, "text_field_author_2", minSize);
+  }
+
+  if (titleLines.length > 0) {
+    const sizes: number[] = [];
+    for (let i = 1; i <= titleLines.length; i++) {
+      const fieldId = `text_field_${i}`;
+      const hintW = await queryWidth(workSvgPath, `${fieldId}_hint`);
+      sizes.push(await fitFieldFontSize(template, workSvgPath, fieldId, hintW));
+    }
+    const minSize = Math.min(...sizes);
+    for (let i = 1; i <= titleLines.length; i++) {
+      setFontSize(template, `text_field_${i}`, minSize);
+    }
+  }
+
+  await fs.writeFile(workSvgPath, template.serialize());
+
+  const pngPath = path.join(opts.outDir, `${opts.outBaseName}.png`);
+  await exportPng(workSvgPath, "talk_announcement_background", pngPath, spec.width, spec.height);
+
+  const jpgPath = path.join(opts.outDir, `${opts.outBaseName}.jpg`);
+  await sharp(pngPath)
+    .jpeg({ quality: opts.jpegQuality ?? 85, progressive: true, mozjpeg: true })
+    .toFile(jpgPath);
+
+  if (!opts.keepIntermediates) {
+    await fs.rm(workSvgPath, { force: true });
+    await fs.rm(pngPath, { force: true });
+  }
+
+  return { jpgPath, pngPath };
+}

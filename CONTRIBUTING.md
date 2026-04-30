@@ -147,7 +147,8 @@ A compact walkthrough of the sections above. Skim, then jump back up for detail 
 - [ ] Copy the template: `cp events/_template-event.md events/YYYY-MM-DD-<Slug>.md`
 - [ ] Fill in frontmatter. Use `status: DRAFT` while authoring.
 - [ ] Confirm the venue string in `venues:` matches an entry in [`scripts/meetup/venues.ts`](scripts/meetup/venues.ts). If it doesn't, add it — see [`scripts/meetup/README.md`](scripts/meetup/README.md#finding-a-venue-id).
-- [ ] Leave `event_url` and `event_id` as the template placeholders (the automation fills them in).
+- [ ] Leave `event_url` and `event_id` as the template placeholders (the Meetup automation fills them in). Leave `imageUrl` unset (the banner automation fills it in).
+- [ ] (Social events without a single speaker) optionally add `banner_author:` to frontmatter — appears as the top line on the generated banner. Example: `banner_author: "@ Docker Brewery"`.
 - [ ] Write the body — see [Writing the description](#writing-the-description) below.
 - [ ] `pnpm dev` → open `/events/<slug>` locally and verify the page renders.
 
@@ -155,7 +156,8 @@ A compact walkthrough of the sections above. Skim, then jump back up for detail 
 
 - [ ] Push the branch and open a PR targeting `main`.
 - [ ] CI passes (`lint`, `format:check`, `typecheck`, `spell`, `test`).
-- [ ] Apply the `meetup-event` label → bot creates the Meetup draft and commits `event_url` + `event_id` back to your branch.
+- [ ] Banner workflow auto-runs → bot generates 3 banners, uploads to R2, commits `imageUrl` back. Preview links land in a PR comment; eyeball the horizontal one.
+- [ ] Apply the `meetup-event` label → bot creates the Meetup draft (with the just-uploaded banner attached as featured photo) and commits `event_url` + `event_id` back to your branch.
 - [ ] Open the Meetup draft link from the bot comment and spot-check title, date, venue, description.
 - [ ] (Optional) Comment `/social:announcement` → AI draft lands in the PR description for review.
 - [ ] Flip `status: DRAFT` → `status: ACTIVE` in the event file (this is what makes it visible on the production site).

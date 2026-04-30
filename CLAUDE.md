@@ -119,6 +119,19 @@ Automates creating a Meetup.com **Draft** event when a new event PR is labeled `
 
 **Prerequisite:** the Meetup OAuth client must have the `event_management` scope; `createEvent` 403s otherwise. Image-read clients don't have it by default. Full setup docs, env vars, and troubleshooting are in [`scripts/meetup/README.md`](scripts/meetup/README.md).
 
+### Event banner generation
+
+Automatically generates the three banner formats (horizontal `1920×1080`, vertical 3:4 `1440×1920`, vertical 9:16 `1080×1920`) for any PR that touches `events/**.md`, uploads them to R2, and patches `imageUrl` into the event frontmatter. Pairs with the Meetup workflow: by the time you label `meetup-event`, `imageUrl` is already populated, so the Meetup draft gets a featured photo.
+
+- `.github/workflows/generate-event-image.yml` — `pull_request` trigger with `paths: ["events/**.md"]`, author-association gated.
+- `scripts/generate-event-banner.ts` — entry CLI; reads frontmatter + body, formats date, splits title, calls the orchestrator three times.
+- `scripts/upload-event-banners.ts` — uploads the three JPGs to R2 via `@aws-sdk/client-s3` and patches `imageUrl`.
+- `scripts/banner/` — port of the Python+shell pipeline. `templates/` holds the three SVG templates with shared raster assets (extracted once from `cppserbia-org/branding/event_banners/talk_banner.7z`); `text-fit.ts` does binary-search font fitting; `inkscape.ts` wraps the Inkscape CLI; `generate.ts` orchestrates.
+
+**Prerequisites:** Inkscape installed on the runner (CI does `apt-get install inkscape`); R2 secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`. Full setup, troubleshooting, template-refresh procedure: [`scripts/banner/README.md`](scripts/banner/README.md).
+
+**Speaker for the banner**: defaults to `extractSpeakerName(body)` from the Event Details table, falling back to `"C++ Serbia"`. Override with `banner_author:` in frontmatter for community/social events that don't have a single speaker (e.g. `banner_author: "@ Docker Brewery"`).
+
 ### Social media pipeline
 
 Automated bilingual (English + Serbian) social media post generation. Two caller workflows (`social-media-draft.yml` and `publish-social.yml`) each contain two jobs and delegate to two reusable workflows (`_generate-social-draft.yml` and `_publish-social.yml`). Both flows share the same script (`scripts/generate-social-draft.ts`) with a required `--type` flag. See `CONTRIBUTING.md` for the human-facing workflow.

@@ -184,3 +184,15 @@ When adding a new event, you have two options:
 ## Creating Meetup Draft Events
 
 Separate tool: `scripts/create-meetup-event.ts` creates Meetup.com **Draft** events from event markdown files. It shares the OAuth client with the image downloader but needs an additional scope and environment variable. See [`meetup/README.md`](./meetup/README.md) for setup, usage, and the CI workflow (`meetup-event` PR label).
+
+---
+
+## Generating Event Banners
+
+For new events authored in this repo, the **banner pipeline** generates three banner formats (horizontal + 3:4 + 9:16) directly from the event markdown frontmatter, uploads them to R2, and patches `imageUrl` into the event file. This replaces the manual download-from-Meetup path for new events.
+
+- `scripts/generate-event-banner.ts` — port of `cppserbia-org/branding/event_banners/` to TypeScript. Calls Inkscape under the hood for SVG → PNG export and text-width measurement.
+- `scripts/upload-event-banners.ts` — uploads the three JPGs to R2 via `@aws-sdk/client-s3`, patches `imageUrl`.
+- `.github/workflows/generate-event-image.yml` — runs both on every PR push that touches `events/**.md`.
+
+Local Inkscape: `brew install inkscape` (macOS) or `apt-get install inkscape` (Linux). Full setup, env vars, and template-refresh procedure: [`banner/README.md`](./banner/README.md).

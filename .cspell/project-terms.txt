@@ -9,7 +9,10 @@ cmdk
 cppserbia
 highres
 ical
+inkscape
+linkedom
 metaprogramming
+mozjpeg
 opengraph
 Schniz
 urlname
