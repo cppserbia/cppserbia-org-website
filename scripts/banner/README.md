@@ -6,13 +6,15 @@ The pipeline is invoked automatically by [`.github/workflows/generate-event-imag
 
 ## What's here
 
-| File              | Purpose                                                                                |
-| ----------------- | -------------------------------------------------------------------------------------- |
-| `text-fit.ts`     | Pure binary-search font-size fitter (no Inkscape dependency at the unit-test level)    |
-| `svg-template.ts` | linkedom-based XML mutation: `setText`, `setFontSize`, `clearText`                     |
-| `inkscape.ts`     | Subprocess wrapper around the `inkscape` CLI: `queryWidth`, `exportPng`, `isAvailable` |
-| `generate.ts`     | Orchestrator: load template → mutate text → fit fonts → export PNG → JPEG-compress     |
-| `templates/`      | Pre-extracted SVG templates + shared raster assets (see "Refreshing templates" below)  |
+| File                      | Purpose                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------- |
+| `text-fit.ts`             | Pure binary-search font-size fitter (no Inkscape dependency at the unit-test level)               |
+| `svg-template.ts`         | linkedom-based XML mutation: `setText`, `setFontSize`, `clearText`                                |
+| `inkscape.ts`             | Subprocess wrapper around the `inkscape` CLI: `queryWidth`, `exportPng`, `isAvailable`            |
+| `template-cache.ts`       | On-demand downloader: fetches templates from R2 into `.template-cache/`, sha256-verified          |
+| `templates.manifest.json` | Committed manifest: lists template filenames, sha256s, and the public R2 base URL                 |
+| `generate.ts`             | Orchestrator: ensure cache → load template → mutate text → fit fonts → export PNG → JPEG-compress |
+| `upload-templates.ts`     | One-shot pusher: uploads a local `templates/` dir to R2 and regenerates the manifest              |
 
 Top-level consumers in `scripts/`:
 
@@ -93,19 +95,43 @@ The frontmatter `title` is a single string. The CLI greedy-packs words into line
 
 ---
 
-## Refreshing templates
+## Where the templates live
 
-The committed templates were extracted from `cppserbia-org/branding/event_banners/talk_banner.7z`. To refresh:
+Templates are **not** committed to this repo. They live in R2 under `banner-templates/v1/`, served at:
+
+```
+https://images.cppserbia.org/banner-templates/v1/
+  ├── talk_banner_horizontal.svg
+  ├── talk_banner_vertical_3_4.svg
+  ├── talk_banner_vertical_9_16.svg
+  ├── avatar.png
+  └── asset-<sha>.png        (the shared design background)
+```
+
+The committed `templates.manifest.json` lists every expected file with its sha256 and the public base URL. At runtime, `generate.ts` calls `ensureTemplatesCache()`, which:
+
+1. Reads the manifest.
+2. For each entry, checks `scripts/banner/.template-cache/<name>` against the expected hash.
+3. Downloads anything missing or mismatched from `${publicBaseUrl}<name>`.
+
+The cache dir is gitignored and persists across local runs. CI caches it via `actions/cache` keyed on the manifest hash, so the ~17 MB only re-downloads when the manifest actually changes.
+
+The R2 bucket is publicly readable, so the runtime download needs no credentials. Only the **upload** path needs R2 keys.
+
+## Refreshing templates (designer / admin path)
+
+When the design changes, the source-of-truth is `cppserbia-org/branding/event_banners/talk_banner.7z`. A backup of that archive is also kept in R2 at `banner-templates/source/talk_banner.7z`.
 
 ```bash
-# 1. Extract the archive somewhere outside the repo:
+# 1. Extract the archive somewhere outside this repo:
 mkdir -p /tmp/banner-extract && cd /tmp/banner-extract
-7zz x ../path/to/talk_banner.7z
+7zz x /path/to/talk_banner.7z
 
 # 2. The raw SVGs are ~165 MB each because Inkscape embeds the same large
-# raster asset 7 times per file as base64. The repo can't carry that, so
-# the import step externalizes the embedded data URIs into shared files
-# and rewrites the SVG hrefs to relative paths:
+# raster asset 7 times per file as base64. Externalize those into a shared
+# file and rewrite the hrefs to relative paths:
+mkdir -p <repo>/scripts/banner/templates
+cd <repo>
 node -e '
 const fs = require("fs"), path = require("path"), crypto = require("crypto");
 const SRC = "/tmp/banner-extract";
@@ -128,15 +154,19 @@ for (const f of ["talk_banner_horizontal.svg", "talk_banner_vertical_3_4.svg", "
 }
 '
 
-# 3. Copy the avatar (the original pipeline uses it as a fixed placeholder):
+# 3. Copy the avatar (placeholder used by all formats):
 cp /path/to/branding/event_banners/avatar.png scripts/banner/templates/avatar.png
 
-# 4. Inspect: total committed size should be ~17–18 MB. If it grew, the
-# upstream archive added new embedded assets; check what's new with
-# `xlink:href` greps and decide whether to keep them.
+# 4. Push everything to R2 (uploads templates AND backs up the source archive):
+npx tsx scripts/banner/upload-templates.ts \
+  --source-archive /path/to/branding/event_banners/talk_banner.7z
+
+# 5. Commit the regenerated templates.manifest.json. That's the only change
+# that lands in git. The bucket now serves the new templates; the next CI
+# run will see the new manifest hash, miss the cache, and download.
 ```
 
-After refresh, run the test suite (`pnpm test scripts/banner`) and a local generation against a real event to spot-check that text fields, hints, and the `talk_announcement_background` export-id still exist on the new SVGs.
+The `--source-archive` flag is optional; skip it if you've already pushed the matching `.7z` once. Bump `BANNER_TEMPLATE_PREFIX` (default `banner-templates/v1/`) to deploy a new design without invalidating cached old generations.
 
 ---
 

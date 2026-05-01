@@ -45,6 +45,12 @@ jobs:
           sudo apt-get install -y --no-install-recommends inkscape
           inkscape --version
 
+      - name: Cache banner templates
+        uses: actions/cache@v4
+        with:
+          path: scripts/banner/.template-cache
+          key: banner-templates-${{ hashFiles('scripts/banner/templates.manifest.json') }}
+
       - name: Find event file
         id: find-event
         env:

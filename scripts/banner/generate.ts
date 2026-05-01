@@ -1,11 +1,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 import sharp from "sharp";
 
 import { exportPng, queryWidth } from "./inkscape";
 import { hasElement, loadSvg, setFontSize, setText, type SvgTemplate } from "./svg-template";
+import { ensureTemplatesCache } from "./template-cache";
 import { fitFontSize } from "./text-fit";
 
 export type BannerFormat = "horizontal" | "vertical_3_4" | "vertical_9_16";
@@ -25,8 +25,6 @@ export interface FormatSpec {
   height: number;
   maxTitleLines: number;
 }
-
-const TEMPLATES_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "templates");
 
 export const FORMAT_SPECS: Record<BannerFormat, FormatSpec> = {
   horizontal: {
@@ -114,10 +112,11 @@ export interface GenerateResult {
 
 export async function generateBanner(opts: GenerateOptions): Promise<GenerateResult> {
   const spec = FORMAT_SPECS[opts.format];
-  const templatePath = path.join(TEMPLATES_DIR, spec.templateFile);
+  const templatesDir = await ensureTemplatesCache();
+  const templatePath = path.join(templatesDir, spec.templateFile);
 
   let svgText = await fs.readFile(templatePath, "utf8");
-  svgText = rewriteHrefsToAbsolute(svgText, TEMPLATES_DIR);
+  svgText = rewriteHrefsToAbsolute(svgText, templatesDir);
 
   const template = loadSvg(svgText);
 
