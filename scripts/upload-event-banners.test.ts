@@ -43,4 +43,39 @@ describe("planVariants", () => {
     expect(variants[0].key).toBe("banners/2026/slug.jpg");
     expect(variants[0].publicUrl).toBe("https://images.cppserbia.org/banners/2026/slug.jpg");
   });
+
+  it("normalizes a keyPrefix that is missing the trailing slash", () => {
+    const variants = planVariants("slug", "/tmp", {
+      publicBase: "https://images.cppserbia.org",
+      keyPrefix: "events",
+    });
+    expect(variants[0].key).toBe("events/slug.jpg");
+    expect(variants[0].publicUrl).toBe("https://images.cppserbia.org/events/slug.jpg");
+  });
+
+  it("strips a leading slash from keyPrefix", () => {
+    const variants = planVariants("slug", "/tmp", {
+      publicBase: "https://images.cppserbia.org",
+      keyPrefix: "/events/",
+    });
+    expect(variants[0].key).toBe("events/slug.jpg");
+    expect(variants[0].publicUrl).toBe("https://images.cppserbia.org/events/slug.jpg");
+  });
+
+  it("strips trailing slashes from publicBase", () => {
+    const variants = planVariants("slug", "/tmp", {
+      publicBase: "https://images.cppserbia.org///",
+      keyPrefix: "events/",
+    });
+    expect(variants[0].publicUrl).toBe("https://images.cppserbia.org/events/slug.jpg");
+  });
+
+  it("handles an empty keyPrefix (bucket root)", () => {
+    const variants = planVariants("slug", "/tmp", {
+      publicBase: "https://images.cppserbia.org",
+      keyPrefix: "",
+    });
+    expect(variants[0].key).toBe("slug.jpg");
+    expect(variants[0].publicUrl).toBe("https://images.cppserbia.org/slug.jpg");
+  });
 });

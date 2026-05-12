@@ -11,10 +11,12 @@ permissions:
 
 jobs:
   generate:
+    # Fork PRs cannot use GITHUB_TOKEN to push back; gate to same-repo PRs.
     if: |
-      github.event.pull_request.author_association == 'OWNER' ||
-      github.event.pull_request.author_association == 'MEMBER' ||
-      github.event.pull_request.author_association == 'COLLABORATOR'
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.event.pull_request.author_association == 'OWNER' ||
+       github.event.pull_request.author_association == 'MEMBER' ||
+       github.event.pull_request.author_association == 'COLLABORATOR')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
@@ -25,33 +27,52 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Skip if HEAD is the banner-bot commit
+        id: bot-check
+        run: |
+          set -euo pipefail
+          MSG=$(git log -1 --format='%s')
+          AUTHOR=$(git log -1 --format='%an')
+          if [ "$AUTHOR" = "cppserbia-bot" ] || [[ "$MSG" == chore\(banner\):* ]]; then
+            echo "HEAD commit was made by the banner bot; nothing to regenerate."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install pnpm
+        if: steps.bot-check.outputs.skip != 'true'
         uses: pnpm/action-setup@v4
         with:
           version: 9
 
       - name: Setup Node.js
+        if: steps.bot-check.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: "pnpm"
 
       - name: Install dependencies
+        if: steps.bot-check.outputs.skip != 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Install Inkscape
+        if: steps.bot-check.outputs.skip != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends inkscape
           inkscape --version
 
       - name: Cache banner templates
+        if: steps.bot-check.outputs.skip != 'true'
         uses: actions/cache@v4
         with:
           path: scripts/banner/.template-cache
           key: banner-templates-${{ hashFiles('scripts/banner/templates.manifest.json') }}
 
       - name: Find event file
+        if: steps.bot-check.outputs.skip != 'true'
         id: find-event
         env:
           GH_TOKEN: ${{ github.token }}
@@ -80,11 +101,11 @@ jobs:
           echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
 
       - name: Generate banners
-        if: steps.find-event.outputs.found == 'true'
+        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
         run: npx tsx scripts/generate-event-banner.ts "${{ steps.find-event.outputs.file }}"
 
       - name: Upload banners to R2 + patch frontmatter
-        if: steps.find-event.outputs.found == 'true'
+        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -93,7 +114,7 @@ jobs:
 
       - name: Commit imageUrl back to PR
         id: commit
-        if: steps.find-event.outputs.found == 'true'
+        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
         env:
           FILE: ${{ steps.find-event.outputs.file }}
         run: |

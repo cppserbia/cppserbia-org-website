@@ -19,14 +19,20 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const MANIFEST_PATH = path.join(SCRIPT_DIR, "templates.manifest.json");
 const DEFAULT_CACHE_DIR = path.join(SCRIPT_DIR, ".template-cache");
 
-let manifestCache: Manifest | null = null;
+// Cache by resolved absolute path so callers can mix the default manifest
+// (used by `generateBanner` at runtime) with a test-only override without
+// the second call silently receiving the first one's parsed content.
+const manifestCache = new Map<string, Manifest>();
 
 export async function loadManifest(manifestPath = MANIFEST_PATH): Promise<Manifest> {
-  if (!manifestCache) {
-    const raw = await fs.readFile(manifestPath, "utf8");
-    manifestCache = JSON.parse(raw) as Manifest;
+  const key = path.resolve(manifestPath);
+  let cached = manifestCache.get(key);
+  if (!cached) {
+    const raw = await fs.readFile(key, "utf8");
+    cached = JSON.parse(raw) as Manifest;
+    manifestCache.set(key, cached);
   }
-  return manifestCache;
+  return cached;
 }
 
 async function sha256(filePath: string): Promise<string> {

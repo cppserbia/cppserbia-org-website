@@ -80,14 +80,47 @@ export function splitSpeakerName(speaker: string): { firstName: string; surname:
   };
 }
 
+// Asserts the mutation succeeded. If a template's element id ever changes
+// (or a future template doesn't carry it), this surfaces a clear error
+// pointing at the exact missing id and template file, instead of producing
+// a silently-mis-rendered banner.
+function requireSetText(
+  template: SvgTemplate,
+  templateFile: string,
+  id: string,
+  value: string
+): void {
+  if (!setText(template, id, value)) {
+    throw new Error(
+      `Template "${templateFile}" is missing required element id="${id}" (setText). ` +
+        `Templates may be out of sync with the manifest in scripts/banner/templates.manifest.json.`
+    );
+  }
+}
+
+function requireSetFontSize(
+  template: SvgTemplate,
+  templateFile: string,
+  id: string,
+  sizePx: number
+): void {
+  if (!setFontSize(template, id, sizePx)) {
+    throw new Error(
+      `Template "${templateFile}" is missing required element id="${id}" (setFontSize). ` +
+        `Templates may be out of sync with the manifest in scripts/banner/templates.manifest.json.`
+    );
+  }
+}
+
 async function fitFieldFontSize(
   template: SvgTemplate,
+  templateFile: string,
   workSvgPath: string,
   fieldId: string,
   hintWidth: number
 ): Promise<number> {
   return fitFontSize(async (sizePx) => {
-    setFontSize(template, fieldId, sizePx);
+    requireSetFontSize(template, templateFile, fieldId, sizePx);
     await fs.writeFile(workSvgPath, template.serialize());
     return queryWidth(workSvgPath, fieldId);
   }, hintWidth);
@@ -112,30 +145,31 @@ export interface GenerateResult {
 
 export async function generateBanner(opts: GenerateOptions): Promise<GenerateResult> {
   const spec = FORMAT_SPECS[opts.format];
+  const templateFile = spec.templateFile;
   const templatesDir = await ensureTemplatesCache();
-  const templatePath = path.join(templatesDir, spec.templateFile);
+  const templatePath = path.join(templatesDir, templateFile);
 
   let svgText = await fs.readFile(templatePath, "utf8");
   svgText = rewriteHrefsToAbsolute(svgText, templatesDir);
 
   const template = loadSvg(svgText);
 
-  setText(template, "text_field_date", opts.input.dateText);
+  requireSetText(template, templateFile, "text_field_date", opts.input.dateText);
 
   const useSingleAuthorField = hasElement(template, "text_field_author");
   let surname = "";
   if (useSingleAuthorField) {
-    setText(template, "text_field_author", opts.input.speaker);
+    requireSetText(template, templateFile, "text_field_author", opts.input.speaker);
   } else {
     const split = splitSpeakerName(opts.input.speaker);
     surname = split.surname;
-    setText(template, "text_field_author_1", split.firstName);
-    setText(template, "text_field_author_2", split.surname);
+    requireSetText(template, templateFile, "text_field_author_1", split.firstName);
+    requireSetText(template, templateFile, "text_field_author_2", split.surname);
   }
 
   const titleLines = opts.input.titleLines.slice(0, spec.maxTitleLines);
   for (let i = 1; i <= spec.maxTitleLines; i++) {
-    setText(template, `text_field_${i}`, titleLines[i - 1] ?? "");
+    requireSetText(template, templateFile, `text_field_${i}`, titleLines[i - 1] ?? "");
   }
 
   await fs.mkdir(opts.outDir, { recursive: true });
@@ -146,19 +180,31 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
 
   if (useSingleAuthorField) {
     const hintW = await queryWidth(workSvgPath, "text_field_author_hint");
-    const sizeStar = await fitFieldFontSize(template, workSvgPath, "text_field_author", hintW);
-    setFontSize(template, "text_field_author", sizeStar);
+    const sizeStar = await fitFieldFontSize(
+      template,
+      templateFile,
+      workSvgPath,
+      "text_field_author",
+      hintW
+    );
+    requireSetFontSize(template, templateFile, "text_field_author", sizeStar);
   } else {
     const sizes: number[] = [];
     const hint1 = await queryWidth(workSvgPath, "text_field_author_1_hint");
-    sizes.push(await fitFieldFontSize(template, workSvgPath, "text_field_author_1", hint1));
+    sizes.push(
+      await fitFieldFontSize(template, templateFile, workSvgPath, "text_field_author_1", hint1)
+    );
     if (surname !== "") {
       const hint2 = await queryWidth(workSvgPath, "text_field_author_2_hint");
-      sizes.push(await fitFieldFontSize(template, workSvgPath, "text_field_author_2", hint2));
+      sizes.push(
+        await fitFieldFontSize(template, templateFile, workSvgPath, "text_field_author_2", hint2)
+      );
     }
     const minSize = Math.min(...sizes);
-    setFontSize(template, "text_field_author_1", minSize);
-    if (surname !== "") setFontSize(template, "text_field_author_2", minSize);
+    requireSetFontSize(template, templateFile, "text_field_author_1", minSize);
+    if (surname !== "") {
+      requireSetFontSize(template, templateFile, "text_field_author_2", minSize);
+    }
   }
 
   if (titleLines.length > 0) {
@@ -166,11 +212,11 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
     for (let i = 1; i <= titleLines.length; i++) {
       const fieldId = `text_field_${i}`;
       const hintW = await queryWidth(workSvgPath, `${fieldId}_hint`);
-      sizes.push(await fitFieldFontSize(template, workSvgPath, fieldId, hintW));
+      sizes.push(await fitFieldFontSize(template, templateFile, workSvgPath, fieldId, hintW));
     }
     const minSize = Math.min(...sizes);
     for (let i = 1; i <= titleLines.length; i++) {
-      setFontSize(template, `text_field_${i}`, minSize);
+      requireSetFontSize(template, templateFile, `text_field_${i}`, minSize);
     }
   }
 

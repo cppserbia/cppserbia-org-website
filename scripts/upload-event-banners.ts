@@ -62,18 +62,34 @@ interface BannerVariant {
   publicUrl: string;
 }
 
+// Strip leading slashes; ensure exactly one trailing slash when non-empty.
+// S3-style keys must not start with `/`, and URL joins assume the prefix
+// already carries the separator.
+function normalizeKeyPrefix(prefix: string): string {
+  const stripped = prefix.replace(/^\/+/, "").replace(/\/+$/, "");
+  return stripped === "" ? "" : `${stripped}/`;
+}
+
+// Drop trailing slashes on the public base so concatenation with the prefix
+// (which always supplies its own separator) never produces a double slash.
+function normalizePublicBase(base: string): string {
+  return base.replace(/\/+$/, "");
+}
+
 export function planVariants(
   slug: string,
   imagesDir: string,
   env: { publicBase: string; keyPrefix: string }
 ): BannerVariant[] {
+  const publicBase = normalizePublicBase(env.publicBase);
+  const keyPrefix = normalizeKeyPrefix(env.keyPrefix);
   const suffixes = ["", "-3-4", "-9-16"];
   return suffixes.map((suffix) => {
     const file = `${slug}${suffix}.jpg`;
     return {
       jpgPath: path.join(imagesDir, file),
-      key: env.keyPrefix + file,
-      publicUrl: `${env.publicBase}/${env.keyPrefix}${file}`,
+      key: `${keyPrefix}${file}`,
+      publicUrl: keyPrefix === "" ? `${publicBase}/${file}` : `${publicBase}/${keyPrefix}${file}`,
     };
   });
 }

@@ -10,8 +10,10 @@ permissions:
 
 jobs:
   create-draft:
+    # Fork PRs cannot use GITHUB_TOKEN to push back; gate to same-repo PRs.
     if: |
       github.event.label.name == 'meetup-event' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
       (github.event.pull_request.author_association == 'OWNER' ||
        github.event.pull_request.author_association == 'MEMBER' ||
        github.event.pull_request.author_association == 'COLLABORATOR')
