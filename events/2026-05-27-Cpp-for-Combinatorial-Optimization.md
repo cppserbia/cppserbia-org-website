@@ -12,6 +12,8 @@ venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 imageUrl: >-
   https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg
+speaker_avatar: >-
+  https://images.cppserbia.org/speaker-avatars/2026-05-27-Cpp-for-Combinatorial-Optimization.png
 ---
 
 # C++ for Combinatorial Optimization: From Exact Solvers to Metaheuristics
