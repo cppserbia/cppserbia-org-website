@@ -6,10 +6,12 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2026-05-27T20:00:00.000Z
-event_url:
-event_id:
+event_url: null
+event_id: null
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+imageUrl: >-
+  https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg
 ---
 
 # C++ for Combinatorial Optimization: From Exact Solvers to Metaheuristics
