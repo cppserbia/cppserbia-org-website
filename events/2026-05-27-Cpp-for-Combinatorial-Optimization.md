@@ -36,6 +36,6 @@ Luka Matijević is a researcher at the Mathematical Institute of the Serbian Aca
 | 🕕 **Date & Time** | **27th of May (Wednesday), 6 pm**                                 |
 | 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                            |
 | 🏢 **Address**     | **Masarikova 5**                                                  |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**          |
+| 💻 **Online**      | **[C++ Serbia YouTube](https://www.youtube.com/@cppserbia)**      |
 
 See you!
