@@ -185,7 +185,7 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
   // override the SVG's `avatar.png` href to point at the local copy.
   let avatarOverridePath: string | undefined;
   if (opts.input.speakerAvatarUrl) {
-    avatarOverridePath = path.join(opts.outDir, `${opts.outBaseName}-${opts.format}-avatar.png`);
+    avatarOverridePath = path.resolve(opts.outDir, `${opts.outBaseName}-${opts.format}-avatar.png`);
     await downloadAvatarToFile(opts.input.speakerAvatarUrl, avatarOverridePath);
   }
 
