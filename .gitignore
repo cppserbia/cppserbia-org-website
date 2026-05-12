@@ -31,3 +31,9 @@ next-env.d.ts
 
 # images (hosted on R2, not in git)
 /images/events/
+
+# banner templates: held in R2, fetched on demand into the cache dir; the
+# `templates/` dir is the local staging area for uploads (see
+# scripts/banner/README.md).
+scripts/banner/templates/
+scripts/banner/.template-cache/

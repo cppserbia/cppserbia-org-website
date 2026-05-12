@@ -94,6 +94,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1040.0",
     "@cspell/dict-cpp": "^7.0.2",
     "@cspell/dict-fullstack": "^3.2.9",
     "@cspell/dict-git": "^3.1.0",
@@ -119,10 +120,12 @@
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
     "jsonwebtoken": "^9.0.3",
+    "linkedom": "^0.18.12",
     "lint-staged": "^16.4.0",
     "postcss": "^8",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",
     "typescript": "^5",

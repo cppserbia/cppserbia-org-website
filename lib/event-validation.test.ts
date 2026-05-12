@@ -11,16 +11,22 @@ const eventFiles = fs
   .readdirSync(EVENTS_DIR)
   .filter((f) => f.endsWith(".md") && f !== "_template-event.md");
 
+// Template placeholders like "<Meetup.com Event URL>" mean "not yet populated";
+// the meetup-event automation fills real values in on PR label trigger.
+const isPlaceholder = (v: string) => /^<.*>$/.test(v);
+
 describe("Event frontmatter validation", () => {
   describe("URL fields must not contain literal quote characters", () => {
     const cases = eventFiles.flatMap((file) => {
       const raw = fs.readFileSync(path.join(EVENTS_DIR, file), "utf-8");
       const { data } = matter(raw);
-      return URL_FIELDS.filter((field) => data[field]).map((field) => ({
-        file,
-        field,
-        value: String(data[field]),
-      }));
+      return URL_FIELDS.filter((field) => data[field] && !isPlaceholder(String(data[field]))).map(
+        (field) => ({
+          file,
+          field,
+          value: String(data[field]),
+        })
+      );
     });
 
     it.each(cases)("$file — $field has no literal quotes", ({ file, field, value }) => {
@@ -35,11 +41,13 @@ describe("Event frontmatter validation", () => {
     const cases = eventFiles.flatMap((file) => {
       const raw = fs.readFileSync(path.join(EVENTS_DIR, file), "utf-8");
       const { data } = matter(raw);
-      return URL_FIELDS.filter((field) => data[field]).map((field) => ({
-        file,
-        field,
-        value: String(data[field]),
-      }));
+      return URL_FIELDS.filter((field) => data[field] && !isPlaceholder(String(data[field]))).map(
+        (field) => ({
+          file,
+          field,
+          value: String(data[field]),
+        })
+      );
     });
 
     it.each(cases)("$file — $field starts with http(s)://", ({ file, field, value }) => {

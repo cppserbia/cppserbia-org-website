@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "publicBaseUrl": "https://images.cppserbia.org/banner-templates/v1/",
+  "files": [
+    {
+      "name": "asset-68245945cee7.png",
+      "sha256": "68245945cee70b48df5952d3f1b2dd3e307cb214e798adf148c6ffcb7f268fc6",
+      "bytes": 17882065
+    },
+    {
+      "name": "avatar.png",
+      "sha256": "07cea26cab324ea1c50c6fd489e02095d4262cd12214a18e6f1905593f2ccb2f",
+      "bytes": 625660
+    },
+    {
+      "name": "talk_banner_horizontal.svg",
+      "sha256": "a8a89a8d6abce11c6559d046558fcb1f388936ddecc742af8d4af85ec184b35a",
+      "bytes": 242098
+    },
+    {
+      "name": "talk_banner_vertical_3_4.svg",
+      "sha256": "bfc28193e0dc1142d73beb4a287301e93f850cb5a31e0a186e34ec70f225cc0a",
+      "bytes": 94079
+    },
+    {
+      "name": "talk_banner_vertical_9_16.svg",
+      "sha256": "c0bc22cbf24d5f5b1a2c4462c8e6f5456132c7c8e2980bb792b47c685556dc1a",
+      "bytes": 74715
+    }
+  ]
+}

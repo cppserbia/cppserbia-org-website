@@ -4,13 +4,19 @@
 # in source (proper nouns, acronyms).
 apikey
 citty
+hackathon
+headshot
 cmdk
 cppserbia
 highres
 ical
+inkscape
+linkedom
 metaprogramming
+mozjpeg
 opengraph
 Schniz
+urlname
 vaul
 VCALENDAR
 VEVENT

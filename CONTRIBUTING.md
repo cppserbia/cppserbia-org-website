@@ -43,6 +43,8 @@ Open [http://localhost:3000](http://localhost:3000) to see the site. See the [RE
 
 You'll need the Meetup event URL and event ID for the frontmatter.
 
+> **Tip:** you can skip this step and let the automation do it — see [Creating the Meetup.com draft automatically](#creating-the-meetupcom-draft-automatically) below. Leave `event_url` / `event_id` as the template placeholders and label the PR `meetup-event`.
+
 ### 2. Create the event file
 
 Copy the template and rename it:
@@ -120,6 +122,117 @@ Push your branch and open a PR targeting `main`. CI runs lint, formatting, type 
 ### 6. (Optional) Generate social media announcement
 
 Once your PR is open, a team member can comment `/social:announcement` on the PR. This triggers AI-generated social media posts that appear in the PR description for review. See [How Social Media Automation Works](#how-social-media-automation-works) below.
+
+## Creating the Meetup.com Draft Automatically
+
+If you don't want to create the Meetup event by hand, open the PR with `event_url` and `event_id` left as the template placeholders (`<Meetup.com Event URL>` / `<Meetup.com Event ID>`), then apply the `meetup-event` label to the PR. A workflow will:
+
+1. Read the event markdown,
+2. Call the Meetup GraphQL API to create a **Draft** event (visible only to organizers),
+3. If `imageUrl` is already in frontmatter, upload the banner as the Meetup featured photo,
+4. Commit `event_url` and `event_id` back to the PR branch,
+5. Post a comment with the Meetup draft link.
+
+The draft is not published — an organizer still has to review and publish it from the Meetup dashboard. Re-applying the label on a PR that already has `event_id` is a no-op (idempotent).
+
+Prerequisites (one-time, admin-only): the Meetup OAuth client must have the `event_management` scope, and new venues must be mapped in `scripts/meetup/venues.ts`. Full setup and troubleshooting: [`scripts/meetup/README.md`](scripts/meetup/README.md).
+
+## Event Checklist
+
+A compact walkthrough of the sections above. Skim, then jump back up for detail where needed.
+
+**Before the PR**
+
+- [ ] Branch off `main`: `git checkout -b event/<slug>`
+- [ ] Copy the template: `cp events/_template-event.md events/YYYY-MM-DD-<Slug>.md`
+- [ ] Fill in frontmatter. Use `status: DRAFT` while authoring.
+- [ ] Confirm the venue string in `venues:` matches an entry in [`scripts/meetup/venues.ts`](scripts/meetup/venues.ts). If it doesn't, add it — see [`scripts/meetup/README.md`](scripts/meetup/README.md#finding-a-venue-id).
+- [ ] Leave `event_url` and `event_id` as the template placeholders (the Meetup automation fills them in). Leave `imageUrl` unset (the banner automation fills it in).
+- [ ] (Social events without a single speaker) optionally add `banner_author:` to frontmatter — appears as the top line on the generated banner. Example: `banner_author: "@ Docker Brewery"`.
+- [ ] Write the body — see [Writing the description](#writing-the-description) below.
+- [ ] `pnpm dev` → open `/events/<slug>` locally and verify the page renders.
+
+**In the PR**
+
+- [ ] Push the branch and open a PR targeting `main`.
+- [ ] CI passes (`lint`, `format:check`, `typecheck`, `spell`, `test`).
+- [ ] Banner workflow auto-runs → bot generates 3 banners, uploads to R2, commits `imageUrl` back. Preview links land in a PR comment; eyeball the horizontal one.
+- [ ] (Optional, for talks with a specific speaker) drag the speaker's photo into a PR comment, type `/banner-avatar`, send. Bot crops it to 750×750, uploads to R2, commits `speaker_avatar` back, banner workflow regenerates with the real portrait.
+- [ ] Apply the `meetup-event` label → bot creates the Meetup draft (with the just-uploaded banner attached as featured photo) and commits `event_url` + `event_id` back to your branch.
+- [ ] Open the Meetup draft link from the bot comment and spot-check title, date, venue, description.
+- [ ] (Optional) Comment `/social:announcement` → AI draft lands in the PR description for review.
+- [ ] Flip `status: DRAFT` → `status: ACTIVE` in the event file (this is what makes it visible on the production site).
+
+**Merge & go live**
+
+- [ ] Merge the PR — Vercel deploys the site automatically.
+- [ ] Publish the Meetup draft from the Meetup organizer dashboard.
+- [ ] If `/social:announcement` ran, the merge also triggers the social media webhook.
+
+**After the event**
+
+- [ ] Add `youtube:` to the event's frontmatter, flip `status` to `PAST`.
+- [ ] Open a PR → comment `/social:new-yt` → merge when the recording post looks good.
+
+## Writing the description
+
+Before typing, classify the event. Each type has a different content shape.
+
+```
+What kind of event is it?
+│
+├─ Talk (one speaker, presenting material)              → Talk template
+├─ Panel / code review (multiple voices, interactive)    → Panel template
+├─ Workshop / hackathon (attendees build something)      → Workshop template
+└─ Social (beer, picnic, celebration — no agenda)        → Social template
+```
+
+Then decide the delivery mode (`event_type` in frontmatter):
+
+```
+Where does it happen?
+│
+├─ In-person only                          → PHYSICAL: Location + Address rows
+├─ Remote only (stream / call)              → ONLINE: Platform link, no Address
+└─ Both                                    → HYBRID: Location + Address + Online
+```
+
+### Talk template
+
+- **Hook paragraph** — what problem or idea will the talk explore? One or two sentences that make a scroller stop.
+- **About the speaker** — bold name, link to LinkedIn / GitHub / personal site, one sentence on their background.
+- **What you'll learn** — 2–3 short paragraphs on the content: the angle the speaker takes, what's new or non-obvious, who it's for (beginner / intermediate / advanced).
+- **Optional code snippet** — a small excerpt that showcases the topic. The `_template-event.md` includes an example.
+- **Event Details table** — Speaker, Date & Time, Location, Address, Online (if HYBRID).
+
+### Panel template
+
+- **The question** — what are the panelists there to answer? Frame it as a question the audience brings.
+- **Panelists** — a brief line per panelist (name, role, why they're on this panel).
+- **Anchor topics** — 3–5 bullets of what will come up.
+- **Event Details table** — replace the Speaker row with a Panelists row; keep everything else.
+
+### Workshop template
+
+- **Outcome** — what will attendees walk away with? ("By the end you'll have built X", "You'll understand Y", …)
+- **Prerequisites** — concrete list: laptop, compiler version, a repo to clone, prior knowledge.
+- **Agenda** — rough time blocks.
+- **Event Details table** — add a Bring row above Location.
+
+### Social template
+
+- **Occasion / vibe** — why are we meeting? (Founding celebration, end-of-year, Beer Wednesday.)
+- **What to expect** — no talks, casual hangout, food / drink situation.
+- **Logistics** (if useful) — transport, parking, RSVP hint so headcount stocks are sensible.
+- **Event Details table** — skip the Speaker and Online rows; keep Date, Location, Address.
+
+### Rules of thumb (any type)
+
+- Keep paragraphs short — 3–4 lines each. Meetup descriptions render in a narrow column.
+- Serbian, English, or a mix are all fine. Match the audience: beginner-friendly events tend Serbian, advanced/guest-speaker events tend English. Look at recent events in `events/` for tone.
+- Close with a warm sign-off (`See you there!`, `Vidimo se u <venue>!`, `🍻`, …).
+- **Don't duplicate frontmatter inside the body.** Meetup shows title / date / venue separately from the description — if you repeat them as a table, it's just clutter in the Meetup UI. The website uses the table, so keep it — just know it's site-only polish, not description content.
+- Reference example bodies in `events/` by type: talk → `2024-09-18-World-of-Bitcoin-open-sourced-Cpp-project.md`, panel → `2025-01-29-Cpp-Serbia-does-code-review.md`, social → `2024-08-30-Cpp-Serbia-Picnic.md` or `2023-06-07-Cpp-Serbia-Beer-Wednesday.md`.
 
 ## After the Event: Adding the YouTube Recording
 

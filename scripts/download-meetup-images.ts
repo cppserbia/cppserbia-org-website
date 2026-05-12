@@ -1,128 +1,36 @@
 import fs from "fs";
 import matter from "gray-matter";
-import jwt from "jsonwebtoken";
 import path from "path";
 
+import { createMeetupClient, MeetupApiError, type MeetupClient } from "./meetup/client";
 import type { EventFrontmatter } from "./types";
 
-const MEETUP_GQL_URL = "https://api.meetup.com/gql-ext";
-const MEETUP_TOKEN_URL = "https://secure.meetup.com/oauth2/access";
 const EVENTS_DIR = path.join(process.cwd(), "events");
 const IMAGES_DIR = path.join(process.cwd(), "images", "events");
 
-// --- Environment variables ---
-
-import { loadEnvFile } from "./load-env";
-
-let MEETUP_CLIENT_KEY: string | undefined;
-let MEETUP_MEMBER_ID: string | undefined;
-let MEETUP_PRIVATE_KEY_PATH: string | undefined;
-let MEETUP_SIGNING_KEY_ID: string | undefined;
-
-// --- JWT Bearer OAuth2 flow ---
-
-let accessToken: string | null = null;
-let tokenExpiresAt = 0;
-
-async function authenticate(): Promise<string> {
-  const privateKey = fs.readFileSync(MEETUP_PRIVATE_KEY_PATH!, "utf8");
-
-  const now = Math.floor(Date.now() / 1000);
-  const payload = {
-    sub: MEETUP_MEMBER_ID,
-    iss: MEETUP_CLIENT_KEY,
-    aud: "api.meetup.com",
-    exp: now + 120,
-  };
-
-  const signedJwt = jwt.sign(payload, privateKey, {
-    algorithm: "RS256",
-    header: {
-      alg: "RS256",
-      typ: "JWT",
-      kid: MEETUP_SIGNING_KEY_ID!,
-    },
-  });
-
-  const body = new URLSearchParams({
-    grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-    assertion: signedJwt,
-  });
-
-  const response = await fetch(MEETUP_TOKEN_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body.toString(),
-  });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(
-      `OAuth2 token exchange failed: ${response.status} ${response.statusText}\n${text}`
-    );
-  }
-
-  const data = await response.json();
-  accessToken = data.access_token;
-  // Token is valid for 1 hour; refresh a bit early
-  tokenExpiresAt = Date.now() + (data.expires_in ?? 3600) * 1000 - 60_000;
-
-  console.log("Authenticated with Meetup API.\n");
-  return accessToken!;
-}
-
-async function getAccessToken(): Promise<string> {
-  if (!accessToken || Date.now() >= tokenExpiresAt) {
-    return authenticate();
-  }
-  return accessToken;
-}
-
-// --- Meetup GraphQL ---
-
-async function fetchMeetupImage(eventId: string): Promise<string | null> {
-  const token = await getAccessToken();
-
-  const query = `
-    query ($eventId: ID!) {
-      event(id: $eventId) {
-        featuredEventPhoto {
-          id
-          baseUrl
+async function fetchMeetupImage(client: MeetupClient, eventId: string): Promise<string | null> {
+  try {
+    const data = await client.graphql<{
+      event: { featuredEventPhoto: { id: string; baseUrl: string } | null } | null;
+    }>(
+      `query ($eventId: ID!) {
+        event(id: $eventId) {
+          featuredEventPhoto { id baseUrl }
         }
-      }
+      }`,
+      { eventId }
+    );
+
+    const photo = data.event?.featuredEventPhoto;
+    if (!photo?.baseUrl || !photo?.id) return null;
+    return `${photo.baseUrl}${photo.id}/highres.webp`;
+  } catch (err) {
+    if (err instanceof MeetupApiError) {
+      console.error(`  API error for event ${eventId}: ${err.message}`);
+      return null;
     }
-  `;
-
-  const response = await fetch(MEETUP_GQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      query,
-      variables: { eventId },
-    }),
-  });
-
-  if (!response.ok) {
-    console.error(`  API error for event ${eventId}: ${response.status} ${response.statusText}`);
-    return null;
+    throw err;
   }
-
-  const data = await response.json();
-  const event = data?.data?.event;
-  if (!event) {
-    console.error(`  No event data returned for ${eventId}`);
-    return null;
-  }
-
-  const photo = event.featuredEventPhoto;
-  if (!photo?.baseUrl || !photo?.id) return null;
-
-  // Construct high-res image URL from baseUrl and photo id
-  return `${photo.baseUrl}${photo.id}/highres.webp`;
 }
 
 async function downloadImage(url: string, dest: string): Promise<boolean> {
@@ -138,28 +46,7 @@ async function downloadImage(url: string, dest: string): Promise<boolean> {
 }
 
 async function main() {
-  loadEnvFile();
-
-  MEETUP_CLIENT_KEY = process.env.MEETUP_CLIENT_KEY;
-  MEETUP_MEMBER_ID = process.env.MEETUP_MEMBER_ID;
-  MEETUP_PRIVATE_KEY_PATH = process.env.MEETUP_PRIVATE_KEY_PATH;
-  MEETUP_SIGNING_KEY_ID = process.env.MEETUP_SIGNING_KEY_ID;
-
-  if (
-    !MEETUP_CLIENT_KEY ||
-    !MEETUP_MEMBER_ID ||
-    !MEETUP_PRIVATE_KEY_PATH ||
-    !MEETUP_SIGNING_KEY_ID
-  ) {
-    console.error("Missing required environment variables.");
-    console.error(
-      "Set MEETUP_CLIENT_KEY, MEETUP_MEMBER_ID, MEETUP_PRIVATE_KEY_PATH, and MEETUP_SIGNING_KEY_ID."
-    );
-    console.error("These can be set in the environment or in a .env file.");
-    process.exit(1);
-  }
-
-  await authenticate();
+  const client = createMeetupClient();
 
   fs.mkdirSync(IMAGES_DIR, { recursive: true });
 
@@ -175,7 +62,6 @@ async function main() {
     const slug = file.replace(/\.md$/, "");
     const imagePath = path.join(IMAGES_DIR, `${slug}.jpg`);
 
-    // Skip if image already exists locally
     if (fs.existsSync(imagePath)) {
       skipped++;
       continue;
@@ -194,7 +80,7 @@ async function main() {
     const eventId = String(frontmatter.event_id);
     console.log(`[fetch] ${slug} (event_id: ${eventId})`);
 
-    const imageUrl = await fetchMeetupImage(eventId);
+    const imageUrl = await fetchMeetupImage(client, eventId);
     if (!imageUrl) {
       console.log(`  No image found.`);
       failed++;
@@ -210,7 +96,6 @@ async function main() {
       failed++;
     }
 
-    // Small delay to avoid rate-limiting
     await new Promise((r) => setTimeout(r, 200));
   }
 
