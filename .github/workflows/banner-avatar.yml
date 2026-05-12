@@ -1,0 +1,188 @@
+name: Banner Avatar
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  upload:
+    if: |
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/banner-avatar') &&
+      (github.event.comment.author_association == 'OWNER' ||
+       github.event.comment.author_association == 'MEMBER' ||
+       github.event.comment.author_association == 'COLLABORATOR')
+    runs-on: ubuntu-latest
+    steps:
+      - name: React 👀 to the trigger comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Resolve PR head
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=${{ github.event.issue.number }}
+          DATA=$(gh pr view "$PR_NUMBER" --json headRefName,headRepository,headRepositoryOwner)
+          HEAD_REPO_OWNER=$(echo "$DATA" | jq -r '.headRepositoryOwner.login')
+          HEAD_REPO_NAME=$(echo "$DATA" | jq -r '.headRepository.name')
+          HEAD_REF=$(echo "$DATA" | jq -r '.headRefName')
+          HEAD_FULL="${HEAD_REPO_OWNER}/${HEAD_REPO_NAME}"
+          THIS_REPO="${{ github.repository }}"
+          if [ "$HEAD_FULL" != "$THIS_REPO" ]; then
+            echo "::error::PR head is on a fork ($HEAD_FULL); cannot push back. Aborting."
+            exit 1
+          fi
+          echo "head_ref=$HEAD_REF" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Find event file
+        id: find-event
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=${{ github.event.issue.number }}
+          EVENT_FILE=$(gh pr diff "$PR_NUMBER" --name-only \
+            | grep '^events/.*\.md$' | grep -v '^events/_' || true)
+          if [ -z "$EVENT_FILE" ]; then
+            echo "::error::No event file in this PR — /banner-avatar requires a PR that touches events/<slug>.md."
+            exit 1
+          fi
+          FILE_COUNT=$(echo "$EVENT_FILE" | wc -l | tr -d ' ')
+          if [ "$FILE_COUNT" -ne 1 ]; then
+            echo "::error::Expected exactly 1 event file in the PR, found $FILE_COUNT."
+            exit 1
+          fi
+          echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Save comment body to a file
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          printf '%s' "$COMMENT_BODY" > /tmp/comment-body.txt
+          wc -c /tmp/comment-body.txt
+
+      - name: Upload speaker avatar to R2 + patch frontmatter
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          npx tsx scripts/upload-speaker-avatar.ts \
+            --comment-body-file=/tmp/comment-body.txt \
+            "${{ steps.find-event.outputs.file }}"
+
+      - name: Commit speaker_avatar back to PR
+        id: commit
+        env:
+          FILE: ${{ steps.find-event.outputs.file }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- "$FILE"; then
+            echo "No frontmatter changes (speaker_avatar already up to date). Skipping commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "cppserbia-bot"
+          git config user.email "bot@cppserbia.org"
+          git add "$FILE"
+          git commit -m "chore(banner): set speaker_avatar for the event"
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      - name: React 🚀 + reply on success
+        if: steps.commit.outputs.committed == 'true'
+        uses: actions/github-script@v7
+        env:
+          FILE: ${{ steps.find-event.outputs.file }}
+        with:
+          script: |
+            const path = require('path');
+            const slug = path.basename(process.env.FILE, '.md');
+            const avatarUrl = `https://images.cppserbia.org/speaker-avatars/${slug}.png`;
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            });
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: [
+                `🖼️ Speaker avatar uploaded and committed.`,
+                ``,
+                `Preview: ${avatarUrl}`,
+                ``,
+                `<img src="${avatarUrl}" width="200" alt="speaker avatar"/>`,
+                ``,
+                `The banner workflow will pick up the new avatar on its next run (the commit just pushed should trigger it).`,
+              ].join('\n')
+            });
+
+      - name: React 👍 if no change was needed
+        if: steps.commit.outputs.committed == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: '+1'
+            });
+
+      - name: React 😕 + comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'confused'
+            });
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ /banner-avatar failed. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
+            });

@@ -157,6 +157,7 @@ A compact walkthrough of the sections above. Skim, then jump back up for detail 
 - [ ] Push the branch and open a PR targeting `main`.
 - [ ] CI passes (`lint`, `format:check`, `typecheck`, `spell`, `test`).
 - [ ] Banner workflow auto-runs → bot generates 3 banners, uploads to R2, commits `imageUrl` back. Preview links land in a PR comment; eyeball the horizontal one.
+- [ ] (Optional, for talks with a specific speaker) drag the speaker's photo into a PR comment, type `/banner-avatar`, send. Bot crops it to 750×750, uploads to R2, commits `speaker_avatar` back, banner workflow regenerates with the real portrait.
 - [ ] Apply the `meetup-event` label → bot creates the Meetup draft (with the just-uploaded banner attached as featured photo) and commits `event_url` + `event_id` back to your branch.
 - [ ] Open the Meetup draft link from the bot comment and spot-check title, date, venue, description.
 - [ ] (Optional) Comment `/social:announcement` → AI draft lands in the PR description for review.

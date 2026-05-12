@@ -5,6 +5,7 @@
 apikey
 citty
 hackathon
+headshot
 cmdk
 cppserbia
 highres

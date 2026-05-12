@@ -17,6 +17,14 @@ export interface BannerInput {
   dateText: string;
   /** Title broken into lines. Up to 3 (horizontal) or 5 (vertical). Excess is truncated. */
   titleLines: string[];
+  /**
+   * Optional URL that replaces the fixed placeholder avatar.png in every
+   * template. The image is downloaded once per format invocation and the
+   * SVG's `xlink:href="avatar.png"` reference is rewritten to point at the
+   * local copy. Populated by `upload-speaker-avatar.ts` via the
+   * `speaker_avatar` frontmatter field.
+   */
+  speakerAvatarUrl?: string;
 }
 
 export interface FormatSpec {
@@ -51,9 +59,20 @@ export const FORMAT_SPECS: Record<BannerFormat, FormatSpec> = {
  * Resolve relative `xlink:href` paths in the SVG to absolute paths under
  * `baseDir`, so the work-copy SVG can live in a different directory while
  * still finding `avatar.png` and the shared raster asset(s).
+ *
+ * `overrides` lets the caller swap a specific relative href for an absolute
+ * path before the templates-dir resolution kicks in — used to override the
+ * fixed `avatar.png` placeholder with a per-event speaker portrait.
  */
-function rewriteHrefsToAbsolute(svgText: string, baseDir: string): string {
+function rewriteHrefsToAbsolute(
+  svgText: string,
+  baseDir: string,
+  overrides: Record<string, string> = {}
+): string {
   return svgText.replace(/xlink:href="([^"]+)"/g, (match, href: string) => {
+    if (Object.prototype.hasOwnProperty.call(overrides, href)) {
+      return `xlink:href="${overrides[href]}"`;
+    }
     if (
       href.startsWith("#") ||
       href.startsWith("data:") ||
@@ -64,6 +83,17 @@ function rewriteHrefsToAbsolute(svgText: string, baseDir: string): string {
     }
     return `xlink:href="${path.resolve(baseDir, href)}"`;
   });
+}
+
+async function downloadAvatarToFile(url: string, destPath: string): Promise<void> {
+  const response = await fetch(url, {
+    headers: { "User-Agent": "cppserbia-banner-generator" },
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to download speaker avatar from ${url}: HTTP ${response.status}`);
+  }
+  const buf = Buffer.from(await response.arrayBuffer());
+  await fs.writeFile(destPath, buf);
 }
 
 /**
@@ -149,8 +179,22 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
   const templatesDir = await ensureTemplatesCache();
   const templatePath = path.join(templatesDir, templateFile);
 
+  await fs.mkdir(opts.outDir, { recursive: true });
+
+  // If a speaker avatar URL is provided, download it once per format and
+  // override the SVG's `avatar.png` href to point at the local copy.
+  let avatarOverridePath: string | undefined;
+  if (opts.input.speakerAvatarUrl) {
+    avatarOverridePath = path.join(opts.outDir, `${opts.outBaseName}-${opts.format}.avatar`);
+    await downloadAvatarToFile(opts.input.speakerAvatarUrl, avatarOverridePath);
+  }
+
   let svgText = await fs.readFile(templatePath, "utf8");
-  svgText = rewriteHrefsToAbsolute(svgText, templatesDir);
+  svgText = rewriteHrefsToAbsolute(
+    svgText,
+    templatesDir,
+    avatarOverridePath ? { "avatar.png": avatarOverridePath } : {}
+  );
 
   const template = loadSvg(svgText);
 
@@ -172,7 +216,6 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
     requireSetText(template, templateFile, `text_field_${i}`, titleLines[i - 1] ?? "");
   }
 
-  await fs.mkdir(opts.outDir, { recursive: true });
   // Work-copy SVG keeps the format suffix to avoid collisions when generating
   // multiple formats with the same output base name.
   const workSvgPath = path.join(opts.outDir, `${opts.outBaseName}-${opts.format}.work.svg`);
@@ -233,6 +276,9 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
   if (!opts.keepIntermediates) {
     await fs.rm(workSvgPath, { force: true });
     await fs.rm(pngPath, { force: true });
+    if (avatarOverridePath) {
+      await fs.rm(avatarOverridePath, { force: true });
+    }
   }
 
   return { jpgPath, pngPath };

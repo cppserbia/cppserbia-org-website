@@ -94,7 +94,10 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
 
   const raw = fs.readFileSync(eventFile, "utf8");
   const { data, content } = matter(raw);
-  const frontmatter = data as EventFrontmatter & { banner_author?: string };
+  const frontmatter = data as EventFrontmatter & {
+    banner_author?: string;
+    speaker_avatar?: string;
+  };
 
   if (!frontmatter.title) throw new Error("Event is missing frontmatter `title`.");
   if (!(frontmatter.date instanceof Date) || Number.isNaN(frontmatter.date.getTime())) {
@@ -104,11 +107,18 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   const speaker = resolveSpeakerForBanner(frontmatter, content);
   const dateText = formatBannerDate(frontmatter.date);
   const slug = path.basename(eventFile, ".md");
+  const speakerAvatarUrl =
+    typeof frontmatter.speaker_avatar === "string" && frontmatter.speaker_avatar.trim() !== ""
+      ? frontmatter.speaker_avatar.trim()
+      : undefined;
 
   console.error(`Generating banners for: ${frontmatter.title}`);
   console.error(`  speaker: ${speaker}`);
   console.error(`  date:    ${dateText}`);
   console.error(`  outDir:  ${opts.outDir}`);
+  if (speakerAvatarUrl) {
+    console.error(`  avatar:  ${speakerAvatarUrl}`);
+  }
 
   const generated: string[] = [];
   for (const format of formats) {
@@ -119,7 +129,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
     const { jpgPath } = await generateBanner({
       outDir: opts.outDir,
       format,
-      input: { speaker, dateText, titleLines },
+      input: { speaker, dateText, titleLines, speakerAvatarUrl },
       outBaseName,
     });
     console.error(`  → ${jpgPath}`);

@@ -132,6 +132,8 @@ Automatically generates the three banner formats (horizontal `1920×1080`, verti
 
 **Speaker for the banner**: defaults to `extractSpeakerName(body)` from the Event Details table, falling back to `"C++ Serbia"`. Override with `banner_author:` in frontmatter for community/social events that don't have a single speaker (e.g. `banner_author: "@ Docker Brewery"`).
 
+**Speaker avatar**: defaults to the fixed `avatar.png` placeholder in the templates bundle. To set a per-event speaker portrait, drop a `/banner-avatar` comment on the PR with an image attached — `.github/workflows/banner-avatar.yml` invokes `scripts/upload-speaker-avatar.ts`, which crops to 750×750 PNG, uploads to R2 at `speaker-avatars/{slug}.png`, and commits `speaker_avatar:` into the event frontmatter. The banner generator picks up `speaker_avatar` and rewrites the SVG's `xlink:href="avatar.png"` to point at the override before invoking Inkscape.
+
 ### Social media pipeline
 
 Automated bilingual (English + Serbian) social media post generation. Two caller workflows (`social-media-draft.yml` and `publish-social.yml`) each contain two jobs and delegate to two reusable workflows (`_generate-social-draft.yml` and `_publish-social.yml`). Both flows share the same script (`scripts/generate-social-draft.ts`) with a required `--type` flag. See `CONTRIBUTING.md` for the human-facing workflow.

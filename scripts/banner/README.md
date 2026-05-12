@@ -89,6 +89,12 @@ The CLI looks for the speaker in this order:
 2. The Event Details table in the body, via `extractSpeakerName` from `scripts/social/extract.ts`.
 3. Fallback: `"C++ Serbia"`.
 
+### Speaker avatar
+
+By default every banner shows the fixed `avatar.png` placeholder from the templates bundle. To use a real speaker portrait per event, set `speaker_avatar:` in the event frontmatter to an image URL. The generator downloads it once per format invocation and rewrites the SVG's `xlink:href="avatar.png"` reference to point at the downloaded file before invoking Inkscape.
+
+The easiest way to populate `speaker_avatar` is the `/banner-avatar` slash command — drag a photo into a PR comment, type `/banner-avatar`, and the bot crops it to a 750×750 PNG, uploads it to R2 at `speaker-avatars/{slug}.png`, and commits the URL back. See `scripts/upload-speaker-avatar.ts` and `.github/workflows/banner-avatar.yml`.
+
 ### Title line splitting
 
 The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result. If you want a specific break, simplest workaround is shortening the title.
