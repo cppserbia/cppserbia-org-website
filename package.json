@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1156.0",
+    "@coopkit/meetup": "^0.3.0",
     "@cspell/dict-cpp": "^7.2.0",
     "@cspell/dict-fullstack": "^3.2.9",
     "@cspell/dict-git": "^3.1.1",
@@ -72,7 +73,6 @@
     "@github/copilot": "^1.0.103",
     "@github/copilot-sdk": "^0.1.32",
     "@testing-library/react": "^16.3.3",
-    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -86,7 +86,6 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
-    "jsonwebtoken": "^9.0.3",
     "linkedom": "^0.18.14",
     "lint-staged": "^16.4.0",
     "postcss": "^8.5.31",
