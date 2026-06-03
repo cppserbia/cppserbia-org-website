@@ -3,13 +3,14 @@ title: "C++ for Combinatorial Optimization: From Exact Solvers to Metaheuristics
 date: 2026-05-27T18:00:00.000Z
 created: 2026-05-13T12:00:00.000Z
 event_type: PHYSICAL
-status: ACTIVE
+status: PAST
 duration: PT2H
 end_time: 2026-05-27T20:00:00.000Z
 event_url: "https://www.meetup.com/cpp-serbia/events/314765158/"
 event_id: "314765158"
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+youtube: "https://www.youtube.com/watch?v=E49Wi8cGv2E"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg
 speaker_avatar: >-
