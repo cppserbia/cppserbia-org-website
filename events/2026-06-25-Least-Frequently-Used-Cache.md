@@ -10,6 +10,7 @@ venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-06-25-Least-Frequently-Used-Cache.png
+imageUrl: "https://images.cppserbia.org/events/2026-06-25-Least-Frequently-Used-Cache.jpg"
 ---
 
 # Least Frequently Used Cache: The Annoying Little Brother of LRU
