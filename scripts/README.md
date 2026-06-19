@@ -183,7 +183,7 @@ When adding a new event, you have two options:
 
 ## Creating Meetup Draft Events
 
-Separate tool: `scripts/create-meetup-event.ts` creates Meetup.com **Draft** events from event markdown files. It shares the OAuth client with the image downloader but needs an additional scope and environment variable. See [`meetup/README.md`](./meetup/README.md) for setup, usage, and the CI workflow (`meetup-event` PR label).
+Meetup.com **Draft** event creation is handled by our published Marketplace action [`cppserbia/coopkit-meetup-action`](https://github.com/cppserbia/coopkit-meetup-action) (which wraps the [`@coopkit/meetup`](https://www.npmjs.com/package/@coopkit/meetup) package), driven by `.github/workflows/meetup-event-draft.yml` on the `meetup-event` PR label. Group + venue config lives in `coopkit.config.json`; the repo-specific frontmatter↔action glue (no Meetup API code) is `scripts/meetup-pr-event.ts`. Discover venue IDs with `bunx coopkit-meetup list-venues`. OAuth scopes, env vars, and troubleshooting: [`@coopkit/meetup` README](https://github.com/cppserbia/coopkit/blob/main/packages/meetup/README.md).
 
 ---
 

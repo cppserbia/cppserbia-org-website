@@ -135,7 +135,7 @@ If you don't want to create the Meetup event by hand, open the PR with `event_ur
 
 The draft is not published — an organizer still has to review and publish it from the Meetup dashboard. Re-applying the label on a PR that already has `event_id` is a no-op (idempotent).
 
-Prerequisites (one-time, admin-only): the Meetup OAuth client must have the `event_management` scope, and new venues must be mapped in `scripts/meetup/venues.ts`. Full setup and troubleshooting: [`scripts/meetup/README.md`](scripts/meetup/README.md).
+Prerequisites (one-time, admin-only): the Meetup OAuth client must have the `event_management` scope, and new venues must be mapped in `coopkit.config.json` (`meetup.venues`). Full setup and troubleshooting: [`@coopkit/meetup` README](https://github.com/cppserbia/coopkit/blob/main/packages/meetup/README.md).
 
 ## Event Checklist
 
@@ -146,7 +146,7 @@ A compact walkthrough of the sections above. Skim, then jump back up for detail 
 - [ ] Branch off `main`: `git checkout -b event/<slug>`
 - [ ] Copy the template: `cp events/_template-event.md events/YYYY-MM-DD-<Slug>.md`
 - [ ] Fill in frontmatter. Use `status: DRAFT` while authoring.
-- [ ] Confirm the venue string in `venues:` matches an entry in [`scripts/meetup/venues.ts`](scripts/meetup/venues.ts). If it doesn't, add it — see [`scripts/meetup/README.md`](scripts/meetup/README.md#finding-a-venue-id).
+- [ ] Confirm the venue string in `venues:` matches an entry in [`coopkit.config.json`](coopkit.config.json) (`meetup.venues`). If it doesn't, add it — discover the ID with `bunx coopkit-meetup list-venues`.
 - [ ] Leave `event_url` and `event_id` as the template placeholders (the Meetup automation fills them in). Leave `imageUrl` unset (the banner automation fills it in).
 - [ ] (Social events without a single speaker) optionally add `banner_author:` to frontmatter — appears as the top line on the generated banner. Example: `banner_author: "@ Docker Brewery"`.
 - [ ] Write the body — see [Writing the description](#writing-the-description) below.
