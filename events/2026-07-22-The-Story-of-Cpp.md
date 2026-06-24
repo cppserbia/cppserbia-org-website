@@ -7,10 +7,9 @@ status: DRAFT
 duration: PT3H
 end_time: 2026-07-22T21:00:00.000Z
 venues:
-  - "Inceptive office, Beograd, rs"
-banner_author: "C++ Serbia"
-speaker_avatar: >-
-  https://images.weserv.nl/?url=i.ytimg.com/vi/lI7tMxzSJ7w/hq720.jpg&w=750&h=750&fit=cover
+  - "Inceptive, Beograd, rs"
+banner_author: C++ Serbia
+speaker_avatar: "https://images.cppserbia.org/speaker-avatars/2026-07-22-The-Story-of-Cpp.png"
 youtube: "https://www.youtube.com/watch?v=lI7tMxzSJ7w"
 ---
 
@@ -31,7 +30,7 @@ This is a relaxed, in-person get-together. Come hang out with fellow C++ enthusi
 |                    |                                    |
 | ------------------ | ---------------------------------- |
 | 🕕 **Date & Time** | **22nd of July (Wednesday), 6 pm** |
-| 📍 **Location**    | **Inceptive office**               |
+| 📍 **Location**    | **Inceptive**                      |
 | 🏢 **Address**     | **Kneza Višeslava 88**             |
 
 See you there!
