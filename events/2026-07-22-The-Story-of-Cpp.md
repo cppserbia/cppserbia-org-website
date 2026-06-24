@@ -3,7 +3,7 @@ title: The Story of C++
 date: 2026-07-22T18:00:00.000Z
 created: 2026-06-24T12:00:00.000Z
 event_type: PHYSICAL
-status: DRAFT
+status: ACTIVE
 duration: PT3H
 end_time: 2026-07-22T21:00:00.000Z
 venues:
