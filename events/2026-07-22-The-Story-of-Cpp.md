@@ -11,6 +11,7 @@ venues:
 banner_author: C++ Serbia
 speaker_avatar: "https://images.cppserbia.org/speaker-avatars/2026-07-22-The-Story-of-Cpp.png"
 youtube: "https://www.youtube.com/watch?v=lI7tMxzSJ7w"
+imageUrl: "https://images.cppserbia.org/events/2026-07-22-The-Story-of-Cpp.jpg"
 ---
 
 # The Story of C++
