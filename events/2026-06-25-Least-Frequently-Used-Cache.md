@@ -3,7 +3,7 @@ title: "Least Frequently Used Cache: The Annoying Little Brother of LRU"
 date: 2026-06-25T18:00:00.000Z
 created: 2026-06-16T12:00:00.000Z
 event_type: PHYSICAL
-status: ACTIVE
+status: PAST
 duration: PT2H
 end_time: 2026-06-25T20:00:00.000Z
 event_url: "https://www.meetup.com/cpp-serbia/events/315300900/"
@@ -13,6 +13,7 @@ venues:
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-06-25-Least-Frequently-Used-Cache.png
 imageUrl: "https://images.cppserbia.org/events/2026-06-25-Least-Frequently-Used-Cache.jpg"
+youtube: https://youtu.be/bYal9fATBro
 ---
 
 # Least Frequently Used Cache: The Annoying Little Brother of LRU
