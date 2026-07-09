@@ -69,50 +69,39 @@ jobs:
           echo "found=true" >> "$GITHUB_OUTPUT"
           echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
 
-      - name: Write Meetup private key
-        id: key
-        env:
-          MEETUP_PRIVATE_KEY: ${{ secrets.MEETUP_PRIVATE_KEY }}
-        run: |
-          KEY_PATH="$RUNNER_TEMP/meetup-private-key.pem"
-          printf '%s' "$MEETUP_PRIVATE_KEY" > "$KEY_PATH"
-          chmod 600 "$KEY_PATH"
-          echo "path=$KEY_PATH" >> "$GITHUB_OUTPUT"
+      # Map the event file's frontmatter onto the composite action's inputs.
+      # The glue script also reports `already-created` so we can stay idempotent
+      # (the action's create-from-json is not).
+      - name: Extract Meetup inputs from frontmatter
+        id: meta
+        run: npx tsx scripts/meetup-pr-event.ts inputs "${{ steps.find-event.outputs.file }}"
 
       - name: Create Meetup draft event
         id: create
-        env:
-          MEETUP_CLIENT_KEY: ${{ secrets.MEETUP_CLIENT_KEY }}
-          MEETUP_MEMBER_ID: ${{ secrets.MEETUP_MEMBER_ID }}
-          MEETUP_SIGNING_KEY_ID: ${{ secrets.MEETUP_SIGNING_KEY_ID }}
-          MEETUP_PRIVATE_KEY_PATH: ${{ steps.key.outputs.path }}
-          MEETUP_GROUP_URLNAME: ${{ vars.MEETUP_GROUP_URLNAME }}
-        run: |
-          set -euo pipefail
-          FILE="${{ steps.find-event.outputs.file }}"
+        if: steps.meta.outputs.already-created != 'true'
+        uses: cppserbia/coopkit-meetup-action@v1
+        with:
+          title: ${{ steps.meta.outputs.title }}
+          date: ${{ steps.meta.outputs.date }}
+          duration: ${{ steps.meta.outputs.duration }}
+          venue-key: ${{ steps.meta.outputs.venue-key }}
+          description: ${{ steps.meta.outputs.description }}
+          image-url: ${{ steps.meta.outputs.image-url }}
+          meetup-client-key: ${{ secrets.MEETUP_CLIENT_KEY }}
+          meetup-member-id: ${{ secrets.MEETUP_MEMBER_ID }}
+          meetup-signing-key-id: ${{ secrets.MEETUP_SIGNING_KEY_ID }}
+          meetup-private-key: ${{ secrets.MEETUP_PRIVATE_KEY }}
 
-          # Capture the pre-run event_url so we can detect idempotent skips.
-          BEFORE=$(grep -E '^event_url:' "$FILE" || true)
-
-          npx tsx scripts/create-meetup-event.ts "$FILE"
-
-          AFTER=$(grep -E '^event_url:' "$FILE" || true)
-
-          if [ "$BEFORE" = "$AFTER" ]; then
-            echo "No frontmatter changes (likely already had event_id). Skipping commit."
-            echo "committed=false" >> "$GITHUB_OUTPUT"
-          else
-            EVENT_URL=$(grep -E '^event_url:' "$FILE" | sed -E 's/^event_url:\s*//; s/^["'\'']//; s/["'\'']$//')
-            echo "event_url=$EVENT_URL" >> "$GITHUB_OUTPUT"
-            echo "committed=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Commit Meetup URL back to PR
-        if: steps.create.outputs.committed == 'true'
+      # The action doesn't touch the repo, so persist its outputs ourselves.
+      - name: Write event URL back to PR
+        if: steps.create.outputs.status == 'created'
         env:
           FILE: ${{ steps.find-event.outputs.file }}
         run: |
           set -euo pipefail
+          npx tsx scripts/meetup-pr-event.ts writeback "$FILE" \
+            --url "${{ steps.create.outputs.event-url }}" \
+            --id "${{ steps.create.outputs.event-id }}"
           git config user.name "cppserbia-bot"
           git config user.email "bot@cppserbia.org"
           git add "$FILE"
@@ -120,21 +109,17 @@ jobs:
           git push
 
       - name: Comment on PR
-        if: steps.create.outputs.committed == 'true'
+        if: steps.create.outputs.status == 'created'
         uses: actions/github-script@v7
         with:
           script: |
-            const eventUrl = '${{ steps.create.outputs.event_url }}';
+            const eventUrl = '${{ steps.create.outputs.event-url }}';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
               body: `✅ Created Meetup draft: ${eventUrl}\n\nThe draft is visible to group organizers only. Review and publish it from the Meetup dashboard when ready.`
             });
-
-      - name: Clean up private key
-        if: always() && steps.key.outputs.path != ''
-        run: rm -f "${{ steps.key.outputs.path }}"
 
       - name: Comment on failure
         if: failure()

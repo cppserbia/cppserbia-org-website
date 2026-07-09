@@ -108,16 +108,17 @@ Event banner images are hosted on Cloudflare R2 at `images.cppserbia.org`. Run s
 
 Requires `.env` with Meetup OAuth credentials + `meetup-private-key.pem`. See `scripts/README.md` for setup. These env vars are **not** needed for `pnpm dev` or `pnpm build`.
 
-The Meetup OAuth + GraphQL plumbing lives in `scripts/meetup/` (shared `client.ts`, venue map, `list-venues.ts` helper). See [`scripts/meetup/README.md`](scripts/meetup/README.md) for all Meetup-specific setup and usage.
+The Meetup OAuth + GraphQL plumbing now lives in the published [`@coopkit/meetup`](https://www.npmjs.com/package/@coopkit/meetup) package (a devDependency). `download-meetup-images.ts` imports `createMeetupClient` from it; group + venue config lives in `coopkit.config.json`. Discover venue IDs with `bunx coopkit-meetup list-venues`.
 
 ### Meetup event automation
 
-Automates creating a Meetup.com **Draft** event when a new event PR is labeled `meetup-event`. The workflow reads the markdown, calls `createEvent(publishStatus: "DRAFT")`, optionally uploads the banner as the featured photo (via `setAsMain: true` on `createGroupEventPhoto`), and commits `event_url` + `event_id` back to the PR. A comment with the draft link is posted on the PR.
+Creates a Meetup.com **Draft** event when a new event PR is labeled `meetup-event`, using our published Marketplace action [`cppserbia/coopkit-meetup-action`](https://github.com/cppserbia/coopkit-meetup-action) (which wraps `@coopkit/meetup`). The action creates the draft and — if `imageUrl` is set — attaches the banner as the featured photo; the workflow then writes `event_url` + `event_id` back to the PR and posts a comment with the draft link.
 
-- `.github/workflows/meetup-event-draft.yml` — `pull_request: [labeled]` trigger, gated by `label.name == 'meetup-event'` and author association.
-- `scripts/create-meetup-event.ts` — the script. Supports `--dry-run`. Idempotent: exits cleanly if `event_id` is already a real numeric ID.
+- `.github/workflows/meetup-event-draft.yml` — `pull_request: [labeled]` trigger, gated by `label.name == 'meetup-event'` and author association. Calls `cppserbia/coopkit-meetup-action@v1` and consumes its `status` / `event-id` / `event-url` outputs.
+- `scripts/meetup-pr-event.ts` — thin glue with **no Meetup API code**: `inputs <file>` maps frontmatter → action inputs (and flags `already-created` so re-labeling stays idempotent — the action itself is not); `writeback <file>` persists the action's outputs back into the event frontmatter.
+- `coopkit.config.json` — `meetup.groupUrlname` + the venue map (`venues[0]` string → Meetup venue ID), ported from the old `scripts/meetup/venues.ts`.
 
-**Prerequisite:** the Meetup OAuth client must have the `event_management` scope; `createEvent` 403s otherwise. Image-read clients don't have it by default. Full setup docs, env vars, and troubleshooting are in [`scripts/meetup/README.md`](scripts/meetup/README.md).
+**Prerequisite:** the Meetup OAuth client must have the `event_management` scope; `createEvent` 403s otherwise. The four `MEETUP_*` secrets are piped into the action. Full setup, env vars, and troubleshooting: [`@coopkit/meetup` README](https://github.com/cppserbia/coopkit/blob/main/packages/meetup/README.md).
 
 ### Event banner generation
 

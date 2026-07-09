@@ -1,8 +1,9 @@
+import { createMeetupClient, MeetupApiError, type MeetupClient } from "@coopkit/meetup";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-import { createMeetupClient, MeetupApiError, type MeetupClient } from "./meetup/client";
+import { loadEnvFile } from "./load-env";
 import type { EventFrontmatter } from "./types";
 
 const EVENTS_DIR = path.join(process.cwd(), "events");
@@ -46,6 +47,7 @@ async function downloadImage(url: string, dest: string): Promise<boolean> {
 }
 
 async function main() {
+  loadEnvFile();
   const client = createMeetupClient();
 
   fs.mkdirSync(IMAGES_DIR, { recursive: true });
