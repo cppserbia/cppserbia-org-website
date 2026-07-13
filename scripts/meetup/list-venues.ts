@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 import { loadEnvFile } from "../load-env";
 import { createMeetupClient, type MeetupClient } from "./client";
+import { formatVenueKey } from "./format-venue-key";
 
 interface Venue {
   id: string;
@@ -78,11 +79,6 @@ async function fetchAllVenues(client: MeetupClient, urlname: string): Promise<Ve
   }
 
   return venues;
-}
-
-function formatVenueKey(v: Venue): string {
-  const parts = [v.name, v.city, v.country].filter((p): p is string => !!p && p.length > 0);
-  return parts.join(", ");
 }
 
 const main = defineCommand({

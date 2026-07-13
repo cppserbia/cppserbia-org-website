@@ -8,6 +8,9 @@
  * { id name } }` GraphQL query.
  */
 export const VENUE_IDS: Record<string, number> = {
+  // Meetup stores this venue's city as "Belgrade"; the key matches the event
+  // frontmatter string ("Beograd"), which is what resolveVenueId looks up.
+  "Inceptive, Beograd, rs": 28277780,
   'Palata "Beograd" ("Beograđanka"), Beograd, rs': 27643714,
   "Docker Brewery & Beer Garden, Beograd, rs": 27548580,
   "ICT Hub Kralja Milana, Beograd, rs": 26122858,

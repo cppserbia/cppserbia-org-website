@@ -10,6 +10,7 @@
 # Proper nouns (venues, cities, org names)
 Beograd
 Centar
+Kneza
 Kosutnjak
 Kralja
 Ljubostinjska
