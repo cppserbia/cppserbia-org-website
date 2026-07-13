@@ -10,7 +10,9 @@ venues:
   - "Inceptive, Beograd, rs"
 banner_author: C++ Serbia
 speaker_avatar: "https://images.cppserbia.org/speaker-avatars/2026-07-22-The-Story-of-Cpp.png"
-youtube:
+youtube: null
+event_url: "https://www.meetup.com/cpp-serbia/events/315664357/"
+event_id: "315664357"
 ---
 
 # The Story of C++
