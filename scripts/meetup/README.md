@@ -79,6 +79,21 @@ npx tsx scripts/meetup/list-venues.ts --group cpp-serbia
 
 Prints raw venue details to stderr and a ready-to-paste `VENUE_IDS` record to stdout. Re-run whenever a new venue shows up on Meetup, then copy the new line into `venues.ts`.
 
+Note: the group `venues` connection only surfaces venues that have been **used in past events**. A freshly created venue (see `create-venue.ts`) won't appear here until an event references it — use the `VENUE_IDS` line that `create-venue.ts` prints instead.
+
+### `create-venue.ts` — register a new venue over the API
+
+```bash
+# Dry-run: print the CreateVenueInput payload, no API call
+npx tsx scripts/meetup/create-venue.ts --dry-run
+
+# Real run: create the venue and print a venues.ts entry
+npx tsx scripts/meetup/create-venue.ts \
+  --name "Inceptive" --address "Kneza Višeslava 88" --city "Beograd" --country rs
+```
+
+Calls the `createVenue` mutation and attaches the venue to the group (`groupId` from `MEETUP_GROUP_URLNAME`). Flags: `--name`, `--address`, `--city`, `--country`, `--state`, `--visibility` (`GROUP`|`PUBLIC`, default `PUBLIC`), `--group`; defaults describe the Inceptive Belgrade office. Meetup **geocodes** the coordinates from the address — there is no lat/lon input. On success it prints the numeric ID and a ready-to-paste `VENUE_IDS` line; copy it into `venues.ts` (keying it to the exact string your event frontmatter uses — Meetup may normalize `Beograd`→`Belgrade`).
+
 ### `create-meetup-event.ts` — create a Draft event
 
 ```bash
@@ -106,9 +121,13 @@ Part of the R2 image pipeline. See [`../README.md`](../README.md) for the full R
 
 ## Finding a venue ID
 
-There are two paths depending on whether Meetup already knows the venue.
+There are three paths depending on whether Meetup already knows the venue.
 
-### Path A — venue has been used on this group before
+### Path A — brand-new venue: create it over the API (preferred)
+
+Run `create-venue.ts` (see above). The `createVenue` mutation registers the venue against the group and returns its numeric ID, which you paste into `venues.ts`. No web UI needed. If the mutation ever 403s or your OAuth client lacks the scope, fall back to Path C.
+
+### Path B — venue has been used on this group before
 
 If the venue appears in any past event on the group's Meetup page, `list-venues.ts` can grab its ID directly:
 
@@ -118,9 +137,9 @@ npx tsx scripts/meetup/list-venues.ts
 
 Copy the relevant entry from stdout into `scripts/meetup/venues.ts`. Done.
 
-### Path B — brand-new venue, never attached to this group
+### Path C — register a new venue via the web UI (fallback)
 
-The Meetup API only exposes venues that are already linked to your group, and `createEvent` rejects venue IDs Meetup doesn't recognise. So you need to get Meetup to register the venue against your group first. The reliable way:
+Use this only if `create-venue.ts` (Path A) fails. The group `venues` connection only exposes venues already linked to your group, so you get Meetup to register the venue against your group through the event-creation UI:
 
 1. Sign in to Meetup as a **group organizer**.
 2. Start creating a new event via the Meetup UI (e.g. _Your Groups → Schedule → New event_).

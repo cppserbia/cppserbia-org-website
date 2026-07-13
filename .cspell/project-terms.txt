@@ -8,6 +8,8 @@ hackathon
 headshot
 cmdk
 cppserbia
+geocode
+geocodes
 highres
 ical
 inkscape
