@@ -10,6 +10,13 @@ event_url: "https://www.meetup.com/cpp-serbia/events/313725176/"
 event_id: 313725176
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  - key: marija-aleksic
+    worksFor: Nutanix
+  - key: dimitrije-dobrota
+    worksFor: Microsoft
+  - key: djordje-andjelkovic
+    worksFor: Inceptive
 imageUrl: >-
   https://images.cppserbia.org/events/2026-04-02-Github-Copilot-Dev-Days.jpg
 ---

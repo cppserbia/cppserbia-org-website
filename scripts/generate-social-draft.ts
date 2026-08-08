@@ -1,12 +1,14 @@
-import { fileURLToPath } from "url";
-import path from "path";
 import { defineCommand, runMain } from "citty";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { resolveSpeakers } from "../lib/speakers";
 import { loadEnvFile } from "./load-env";
-import { readEventFile } from "./social/read-event";
 import { extractSpeakerName, parseSocialText } from "./social/extract";
-import { generateWithFallback } from "./social/llm";
 import type { Provider } from "./social/llm";
+import { generateWithFallback } from "./social/llm";
 import { modes } from "./social/modes";
+import { readEventFile } from "./social/read-event";
 import type { Mode } from "./social/types";
 
 function printDryRun(
@@ -48,7 +50,11 @@ async function runGenerate(eventFile: string, mode: Mode, dryRun: boolean, provi
   console.error(`Processing (${mode}): ${frontmatter.title}`);
   config.logExtra(frontmatter);
 
-  const speakerName = extractSpeakerName(content);
+  // The `speaker` registry key is authoritative; the body table is the legacy fallback
+  const registryNames = resolveSpeakers(frontmatter.speaker, slug).map((speaker) => speaker.name);
+  const speakerName = registryNames.length
+    ? registryNames.join(" & ")
+    : extractSpeakerName(content);
   const description = config.extractDescription(content, frontmatter.description);
 
   if (speakerName) {

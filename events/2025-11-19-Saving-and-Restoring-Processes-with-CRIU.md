@@ -12,6 +12,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/311869777/"
 event_id: 311869777
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: igor-svilenkov-bozic
+  jobTitle: Software engineer
 youtube: "https://www.youtube.com/watch?v=sY20Il7_MYQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-11-19-Saving-and-Restoring-Processes-with-CRIU.jpg

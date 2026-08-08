@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/292892230/"
 event_id: 292892230
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=DlRmzJqCoB4"
 imageUrl: "https://images.cppserbia.org/events/2023-04-24-vcpkg-i-CMake-Pocetak.jpg"
 ---

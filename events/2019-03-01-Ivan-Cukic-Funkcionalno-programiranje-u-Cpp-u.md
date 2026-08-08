@@ -10,6 +10,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/259120701/"
 event_id: 259120701
 venues:
   - "Startit Centar, Belgrade, RS"
+speaker:
+  key: ivan-cukic
+  jobTitle: C++ developer, KDE contributor, author and university lecturer
 imageUrl: >-
   https://images.cppserbia.org/events/2019-03-01-Ivan-Cukic-Funkcionalno-programiranje-u-Cpp-u.jpg
 ---

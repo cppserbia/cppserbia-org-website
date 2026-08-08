@@ -18,6 +18,17 @@ Milana
 Palata
 Startit
 #
+# Speaker names live in lib/speakers.ts, which is in cspell's ignorePaths,
+# so entries are only needed for names that leak into other files (tests, docs).
+aleksandr
+andjelkovic
+Blinov
+bogosavljevic
+cukic
+ivica
+Petar
+timofeev
+trifunovic
 # Common Serbian words (diacritic-less Latin; the config's diacritic
 # regex catches anything with č/ć/ž/š/đ so those don't need to be here)
 duboko

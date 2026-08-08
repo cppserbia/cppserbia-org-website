@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/303412485/"
 event_id: 303412485
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: veljko-tekelerovic
 youtube: "https://www.youtube.com/watch?v=JP9DbXXyTO0"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-09-18-World-of-Bitcoin-open-sourced-Cpp-project.jpg

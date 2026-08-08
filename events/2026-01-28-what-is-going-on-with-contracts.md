@@ -10,6 +10,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/312635627/"
 event_id: 312635627
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: aleksandr-timofeev
+  jobTitle: C++ developer
 youtube: "https://www.youtube.com/watch?v=9iJ63VhQo5g"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-01-28-what-is-going-on-with-contracts.jpg

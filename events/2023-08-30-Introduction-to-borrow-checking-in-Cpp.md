@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/295585380/"
 event_id: 295585380
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=a1nOshA3hoQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-08-30-Introduction-to-borrow-checking-in-Cpp.jpg

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/287611882/"
 event_id: 287611882
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=IijPhghH5y0"
 imageUrl: "https://images.cppserbia.org/events/2022-08-24-Cpp20-Koncepti.jpg"
 ---

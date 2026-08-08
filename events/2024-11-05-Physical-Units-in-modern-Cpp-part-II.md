@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/304266487/"
 event_id: 304266487
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: nikola-jelic
 youtube: "https://www.youtube.com/watch?v=ImucbIYTnVA"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-11-05-Physical-Units-in-modern-Cpp-part-II.jpg

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/293219910/"
 event_id: 293219910
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: aleksandar-smigic
 youtube: "https://www.youtube.com/watch?v=tkpu9JLDj3c"
 imageUrl: "https://images.cppserbia.org/events/2023-05-17-Cpp-Customization-Points.jpg"
 ---

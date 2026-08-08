@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/306397103/"
 event_id: 306397103
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: dusan-jovanovic
 youtube: "https://www.youtube.com/watch?v=86IQ9YI4Nuw"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-02-26-Performance-and-where-to-find-it.jpg

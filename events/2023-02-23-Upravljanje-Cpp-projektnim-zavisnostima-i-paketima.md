@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/291533430/"
 event_id: 291533430
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: nebojsa-koturovic
 youtube: "https://www.youtube.com/watch?v=Y2Aq8pMsLz4&t=850s"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-02-23-Upravljanje-Cpp-projektnim-zavisnostima-i-paketima.jpg

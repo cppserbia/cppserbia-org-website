@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 
 import type { Event } from "@/lib/events-server";
+import { buildOffers, buildPerformer } from "@/lib/seo-utils";
 
 interface EventsListSeoProps {
   upcomingEvents: Event[];
@@ -56,22 +57,29 @@ export async function EventsListSeo({
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: totalEvents,
-      itemListElement: [...upcomingEvents, ...pastEvents].slice(0, 10).map((event, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "Event",
-          name: event.title,
-          startDate: event.startDateTime
-            ? event.startDateTime.toString({ timeZoneName: "never" })
-            : event.date.toString(),
-          location: {
-            "@type": event.isOnline ? "VirtualLocation" : "Place",
-            name: event.location,
+      itemListElement: [...upcomingEvents, ...pastEvents].slice(0, 10).map((event, index) => {
+        const startDate = event.startDateTime
+          ? event.startDateTime.toString({ timeZoneName: "never" })
+          : event.date.toString();
+        const offers = buildOffers(event, startDate);
+
+        return {
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Event",
+            name: event.title,
+            startDate,
+            location: {
+              "@type": event.isOnline ? "VirtualLocation" : "Place",
+              name: event.location,
+            },
+            url: `${baseUrl}/${locale}/events/${event.slug}`,
+            performer: buildPerformer(event, baseUrl),
+            ...(offers && { offers }),
           },
-          url: `${baseUrl}/${locale}/events/${event.slug}`,
-        },
-      })),
+        };
+      }),
     },
     about: {
       "@type": "Organization",

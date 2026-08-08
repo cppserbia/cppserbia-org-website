@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/301691637/"
 event_id: 301691637
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: mirko-arsenijevic
 youtube: "https://www.youtube.com/watch?v=B5uNxPe-MVQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-06-26-Lifting-the-Pipes-Beyond-SenderReceiver-and-Expected-Outcome.jpg

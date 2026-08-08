@@ -9,6 +9,13 @@ end_time: 2025-01-21T20:00:00
 event_url: <Meetup.com Event URL>
 event_id: <Meetup.com Event ID>
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
+# speaker:   # Key from lib/speakers.ts, e.g. `speaker: milos-andjelkovic`
+#            # Add worksFor/jobTitle here (not in the registry) — they record the
+#            # affiliation at THIS event, so old talks stay accurate:
+#            #   speaker:
+#            #     key: milos-andjelkovic
+#            #     worksFor: Some Company
+#            # For a panel, use a list of those entries. Omit for community events.
 # imageUrl:  # https://images.cppserbia.org/events/{slug}.jpg
 # youtube:   # Add after event
 ---

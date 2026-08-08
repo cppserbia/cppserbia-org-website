@@ -10,6 +10,10 @@ event_url: "https://www.meetup.com/cpp-serbia/events/315300900/"
 event_id: "315300900"
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: sergei-blinov
+  worksFor: web3mine
+  jobTitle: Forward Deployed Engineer
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-06-25-Least-Frequently-Used-Cache.png
 imageUrl: "https://images.cppserbia.org/events/2026-06-25-Least-Frequently-Used-Cache.jpg"

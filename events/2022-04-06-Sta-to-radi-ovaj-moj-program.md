@@ -9,6 +9,7 @@ end_time: 2022-04-06T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/284853148/
 event_id: 284853148
 venues: ["Ljubostinjska 2, Beograd, rs"]
+speaker: ivica-bogosavljevic
 ---
 
 # Šta to radi ovaj moj program?

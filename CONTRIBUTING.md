@@ -226,6 +226,44 @@ Where does it happen?
 - **Logistics** (if useful) — transport, parking, RSVP hint so headcount stocks are sensible.
 - **Event Details table** — skip the Speaker and Online rows; keep Date, Location, Address.
 
+### Speakers
+
+Set `speaker:` in the frontmatter to a key from the registry in `lib/speakers.ts`:
+
+```yaml
+speaker: milos-andjelkovic
+```
+
+Add where they worked **at the time of this event** — that belongs on the event, not in the
+registry, so a talk from 2019 keeps saying where the speaker worked in 2019 even after they
+move on:
+
+```yaml
+speaker:
+  key: sergei-blinov
+  worksFor: web3mine
+  jobTitle: Forward Deployed Engineer
+```
+
+Panels take a list, and the two forms mix freely:
+
+```yaml
+speaker:
+  - key: ivan-cukic
+    worksFor: KDAB
+  - petar-trifunovic
+```
+
+If the speaker isn't in the registry yet, add them first. The registry holds only durable
+identity — `name` (required), plus optional `url` (personal site) and `sameAs` (LinkedIn /
+GitHub / …). Deliberately **no employer or job title there**: those change over a career, and
+one entry is reused across every talk that person has ever given. The registry drives the
+`performer` field in the event's structured data and the name on the generated banner.
+
+Leave `speaker:` out for social events; they're attributed to the community automatically.
+The Speaker row in the Event Details table is still what readers see, so keep writing it — the
+frontmatter key is what machines read.
+
 ### Rules of thumb (any type)
 
 - Keep paragraphs short — 3–4 lines each. Meetup descriptions render in a narrow column.

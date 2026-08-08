@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/298649346/"
 event_id: 298649346
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: alexey-ozeritskiy
 youtube: "https://www.youtube.com/watch?v=xztv-zIDLxc"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-01-25-Simplifying-Raft-with-Cpp20-coroutines.jpg

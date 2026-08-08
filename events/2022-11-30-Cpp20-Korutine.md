@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/289789025/"
 event_id: 289789025
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: petar-trifunovic
 youtube: "https://www.youtube.com/watch?v=82a6m3XWZ4s"
 imageUrl: "https://images.cppserbia.org/events/2022-11-30-Cpp20-Korutine.jpg"
 ---

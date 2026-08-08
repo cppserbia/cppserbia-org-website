@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/296230317/"
 event_id: 296230317
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: ivica-bogosavljevic
 youtube: "https://www.youtube.com/watch?v=bYBMT-cftBo"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-09-27-The-hidden-performance-price-of-Cpp-virtual-functions.jpg

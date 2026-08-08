@@ -79,10 +79,35 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
 ## Adding Events
 
 1. Create `/events/YYYY-MM-DD-Event-Title.md` (copy `_template-event.md`)
-2. Required frontmatter: `title`, `date`, `event_type` (PHYSICAL/ONLINE/HYBRID), `status` (ACTIVE/PAST/DRAFT), `end_time`, `venues`
+2. Required frontmatter: `title`, `date`, `created`, `event_type` (PHYSICAL/ONLINE/HYBRID), `status` (ACTIVE/PAST/DRAFT), `end_time`, `venues`
 3. Events with `status: DRAFT` are only visible in dev (`pnpm dev`)
 4. Body convention: `# Title`, description, `# About Speaker`, `## Event Details` table
 5. After the event: add `youtube:` frontmatter field for the recording link
+
+Two frontmatter fields feed the Event JSON-LD and must not be dropped:
+
+- **`created`** — becomes `offers.validFrom` (when registration opened). Every event file has one.
+- **`speaker`** — a key (or list of keys) into the registry in `lib/speakers.ts`; becomes
+  `performer`. Omit it for community events (picnics, Beer Wednesdays) — they fall back to an
+  `Organization` performer automatically.
+
+`lib/event-validation.test.ts` fails the build if `created` is not a valid date or a `speaker`
+key doesn't resolve.
+
+**Where speaker data lives.** `lib/speakers.ts` holds only durable identity — `name`
+(required), `url`, `sameAs`. Employer and job title are **per-event**, written in the
+`speaker:` frontmatter, because they change over a career and one registry entry is reused
+across every talk that person gave:
+
+```yaml
+speaker:
+  key: sergei-blinov
+  worksFor: web3mine
+  jobTitle: Forward Deployed Engineer
+```
+
+A bare `speaker: some-key` still works when the affiliation isn't known. Panels take a list
+and can mix both forms. See `lib/speakers.ts` (`SpeakerRef`, `EventSpeaker`).
 
 ## Testing
 

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/307829937/"
 event_id: 307829937
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: aleksandar-nikolic
 youtube: "https://www.youtube.com/watch?v=XDgSY_vg1v4"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-05-21-Better-understanding-technical-interviews.jpg

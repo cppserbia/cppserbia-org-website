@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/251303329/"
 event_id: 251303329
 venues:
   - "United Cloud, Belgrade, rs"
+speaker: goran-arandjelovic
 imageUrl: >-
   https://images.cppserbia.org/events/2018-06-07-Policy-based-design-in-Cpp17.jpg
 ---

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/296736109/"
 event_id: 296736109
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: nikita-kashkin
 youtube: "https://www.youtube.com/watch?v=ffn-oLWQtTE"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-10-25-Almost-O-JPEG-level-compression.jpg

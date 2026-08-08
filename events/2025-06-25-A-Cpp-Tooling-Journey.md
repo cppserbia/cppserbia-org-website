@@ -10,6 +10,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/308526189/"
 event_id: 308526189
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: aleksandr-timofeev
+  jobTitle: C++ developer
 youtube: "https://www.youtube.com/watch?v=i2rGsdo-zJg"
 imageUrl: "https://images.cppserbia.org/events/2025-06-25-A-Cpp-Tooling-Journey.jpg"
 ---

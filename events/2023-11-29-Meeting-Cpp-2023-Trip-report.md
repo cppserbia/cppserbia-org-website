@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/297540747/"
 event_id: 297540747
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=SjZvT0wUrTY"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-11-29-Meeting-Cpp-2023-Trip-report.jpg

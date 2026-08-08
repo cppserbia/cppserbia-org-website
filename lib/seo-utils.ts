@@ -1,5 +1,56 @@
 import type { Event } from "@/lib/events-server";
 
+const ORGANIZATION_NAME = "C++ Serbia Community";
+
+/**
+ * Builds the `performer` node for an Event JSON-LD block.
+ *
+ * Talks resolve to one or more schema.org Person nodes. Community events (picnics,
+ * Beer Wednesdays, lightning celebrations) have no individual speaker — there the
+ * community itself is the performer, which keeps the field present on every page.
+ */
+export function buildPerformer(event: Event, baseUrl: string) {
+  const people = event.speakers.map((speaker) => ({
+    "@type": "Person" as const,
+    name: speaker.name,
+    ...(speaker.url && { url: speaker.url }),
+    ...(speaker.sameAs?.length && { sameAs: speaker.sameAs }),
+    ...(speaker.jobTitle && { jobTitle: speaker.jobTitle }),
+    ...(speaker.worksFor && {
+      worksFor: { "@type": "Organization" as const, name: speaker.worksFor },
+    }),
+  }));
+
+  if (people.length === 0) {
+    return { "@type": "Organization" as const, name: ORGANIZATION_NAME, url: baseUrl };
+  }
+
+  return people.length === 1 ? people[0] : people;
+}
+
+/**
+ * Builds the `offers` node for an Event JSON-LD block, or undefined when the event
+ * has no registration link. All events are free.
+ *
+ * `validFrom` is the `created` frontmatter timestamp — when the Meetup event was
+ * created, i.e. when registration opened. Falls back to the event start so the field
+ * is never omitted.
+ */
+export function buildOffers(event: Event, fallbackValidFrom: string) {
+  if (!event.registrationLink) {
+    return undefined;
+  }
+
+  return {
+    "@type": "Offer" as const,
+    price: "0",
+    priceCurrency: "EUR",
+    url: event.registrationLink,
+    availability: "https://schema.org/InStock",
+    validFrom: event.createdAt ?? fallbackValidFrom,
+  };
+}
+
 /**
  * Generates SEO-optimized keywords for an event based on its content
  */

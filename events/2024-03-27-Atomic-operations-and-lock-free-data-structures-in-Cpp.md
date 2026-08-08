@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/299915235/"
 event_id: 299915235
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: djordje-nedic
 youtube: "https://www.youtube.com/watch?v=8IxneSIda0E"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-03-27-Atomic-operations-and-lock-free-data-structures-in-Cpp.jpg

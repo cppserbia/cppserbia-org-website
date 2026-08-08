@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/293841868/"
 event_id: 293841868
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: nebojsa-sabovic
 youtube: "https://www.youtube.com/watch?v=T1H4mDUCmNs"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-06-13-Cpp-and-Rust-When-to-choose-which.jpg

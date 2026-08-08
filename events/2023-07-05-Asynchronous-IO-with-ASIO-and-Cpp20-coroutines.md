@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/294227718/"
 event_id: 294227718
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: aleksandar-dakic
 youtube: "https://www.youtube.com/watch?v=_G_3oOSCRx8"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-07-05-Asynchronous-IO-with-ASIO-and-Cpp20-coroutines.jpg

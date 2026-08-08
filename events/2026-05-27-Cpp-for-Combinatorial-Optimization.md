@@ -10,6 +10,10 @@ event_url: "https://www.meetup.com/cpp-serbia/events/314765158/"
 event_id: "314765158"
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: luka-matijevic
+  worksFor: Mathematical Institute of the Serbian Academy of Sciences and Arts
+  jobTitle: Researcher
 youtube: "https://www.youtube.com/watch?v=E49Wi8cGv2E"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg

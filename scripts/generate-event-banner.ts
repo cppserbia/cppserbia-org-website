@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { resolveSpeakers } from "../lib/speakers";
 import { type BannerFormat, generateBanner } from "./banner/generate";
 import { extractSpeakerName } from "./social/extract";
 import type { EventFrontmatter } from "./types";
@@ -73,6 +74,11 @@ export function resolveSpeakerForBanner(
   if (typeof frontmatter.banner_author === "string" && frontmatter.banner_author.trim() !== "") {
     return frontmatter.banner_author.trim();
   }
+  // The `speaker` registry key is authoritative; the body table is the legacy fallback
+  const fromRegistry = resolveSpeakers(frontmatter.speaker, frontmatter.title)
+    .map((speaker) => speaker.name)
+    .join(" & ");
+  if (fromRegistry) return fromRegistry;
   const fromBody = extractSpeakerName(content);
   if (fromBody) return fromBody;
   return fallback;
