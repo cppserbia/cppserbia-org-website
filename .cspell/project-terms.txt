@@ -17,6 +17,7 @@ geocodes
 highres
 ical
 inkscape
+johnnysswlab
 linkedom
 metaprogramming
 mozjpeg

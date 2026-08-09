@@ -15,6 +15,11 @@ venues:
 speaker:
   key: igor-svilenkov-bozic
   jobTitle: Software engineer
+  bio: >-
+    Igor Svilenkov Božić is a software engineer with experience across infrastructure,
+    automation, and software development. He's always been fascinated by operating system
+    internals, especially the Linux kernel, and enjoys exploring rabbit holes of operating
+    systems and their underlying hardware implementations.
 youtube: "https://www.youtube.com/watch?v=sY20Il7_MYQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-11-19-Saving-and-Restoring-Processes-with-CRIU.jpg
@@ -26,19 +31,13 @@ This talk introduces CRIU, the tool behind process checkpoint/restore and contai
 
 Igor shares his work extending CRIU to support the upcoming Arm64 Guarded Control Stack (GCS), explaining why it breaks existing restore logic, how he made it work, and what he learned by digging into process state, signal frames, and other OS mechanisms CRIU leverages.
 
-# About Speaker
-
-Igor Svilenkov Božić is a software engineer with experience across infrastructure, automation, and software development.
-He's always been fascinated by operating system internals, especially the Linux kernel, and enjoys exploring rabbit holes of operating systems and their underlying hardware implementations.
-
 ## 📅 Event Details
 
-|                    |                                                                    |
-| ------------------ | ------------------------------------------------------------------ |
-| 👤 **Speaker**     | **[Igor Svilenkov Božić](https://www.linkedin.com/in/svilenkov/)** |
-| 🕕 **Date & Time** | **19th of November (Wednesday), 6 pm**                             |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                             |
-| 🏢 **Address**     | **Masarikova 5**                                                   |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**           |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **19th of November (Wednesday), 6 pm**                   |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!

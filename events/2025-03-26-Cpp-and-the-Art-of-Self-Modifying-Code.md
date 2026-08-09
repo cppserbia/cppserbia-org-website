@@ -23,11 +23,10 @@ However, it is fun, a good exercise, and possibly an interesting meetup talk.
 
 ## 📅 Event Details
 
-|                    |                                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/)** |
-| 🕕 **Date & Time** | **26th of March (Wednesday), 6 pm**                                                            |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                         |
-| 🏢 **Address**     | **Masarikova 5**                                                                               |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **26th of March (Wednesday), 6 pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

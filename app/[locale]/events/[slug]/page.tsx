@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { CodeBlock } from "@/components/code-block";
+import { SpeakerBlock, SpeakerByline } from "@/components/event-speakers";
 import { EventSeo } from "@/components/seo/event-seo";
 import {
   Table,
@@ -166,6 +167,8 @@ export default async function EventPage({
               {event.title}
             </h1>
 
+            <SpeakerByline speakers={event.speakers} />
+
             <div className="flex flex-wrap gap-3">
               <span className="chip-glass">
                 <Calendar className="h-4 w-4 text-purple-300" />
@@ -313,6 +316,11 @@ export default async function EventPage({
                 <p className="leading-relaxed text-muted">{event.description}</p>
               </div>
             )}
+
+            <SpeakerBlock
+              speakers={event.speakers}
+              label={event.speakers.length > 1 ? t("speakers") : t("speaker")}
+            />
           </div>
 
           {/* Right sidebar */}

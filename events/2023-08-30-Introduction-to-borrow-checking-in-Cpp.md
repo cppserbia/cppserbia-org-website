@@ -32,12 +32,11 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-|                    |                                                                     |
-| ------------------ | ------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
-| 🕕 **Date & Time** | **30\. avgust \(sreda\)\, u 18h**                                   |
-| 📍 **Location**    | **Palata Beograda (Beograđanka), poslednji sprat**                  |
-| 🏢 **Address**     | **Masarikova 5**                                                    |
-| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)            |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **30\. avgust \(sreda\)\, u 18h**                        |
+| 📍 **Location**    | **Palata Beograda (Beograđanka), poslednji sprat**       |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!

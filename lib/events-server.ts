@@ -3,7 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-import { type EventSpeaker, resolveSpeakers, type SpeakerRef } from "./speakers";
+import { type EventSpeaker, resolveSpeakers, type SpeakerRef, withEventAvatar } from "./speakers";
 import {
   dateToPlainDate,
   dateToZonedDateTime,
@@ -48,6 +48,8 @@ interface EventHeader {
   // gray-matter parses unquoted ISO timestamps into Date objects
   created?: Date | string;
   speaker?: SpeakerRef | SpeakerRef[];
+  /** Per-event portrait uploaded for the banner; see `withEventAvatar`. */
+  speaker_avatar?: string;
   event_type?: string;
   status?: string;
   duration?: string;
@@ -168,7 +170,10 @@ function parseEventFile(fileName: string): Event | null {
     const featured = eventHeader.featured === true;
 
     // Resolve speaker key(s) against the registry; unknown keys warn and are dropped
-    const speakers = resolveSpeakers(eventHeader.speaker, slug);
+    const speakers = withEventAvatar(
+      resolveSpeakers(eventHeader.speaker, slug),
+      eventHeader.speaker_avatar
+    );
 
     // Normalize `created` to an ISO string — it feeds offers.validFrom in the JSON-LD
     let createdAt: string | undefined;

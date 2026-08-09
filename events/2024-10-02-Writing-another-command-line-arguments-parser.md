@@ -26,11 +26,10 @@ But, importantly, we will try to answer the main question: why would you even wr
 
 ## 📅 Event Details
 
-|                    |                                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a) |
-| 🕕 **Date & Time** | **2nd of October (Wednesday), 6pm**                                                       |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                    |
-| 🏢 **Address**     | **Masarikova 5**                                                                          |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **2nd of October (Wednesday), 6pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

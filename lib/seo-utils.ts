@@ -15,6 +15,8 @@ export function buildPerformer(event: Event, baseUrl: string) {
     name: speaker.name,
     ...(speaker.url && { url: speaker.url }),
     ...(speaker.sameAs?.length && { sameAs: speaker.sameAs }),
+    ...(speaker.image && { image: speaker.image }),
+    ...(speaker.bio && { description: speaker.bio }),
     ...(speaker.jobTitle && { jobTitle: speaker.jobTitle }),
     ...(speaker.worksFor && {
       worksFor: { "@type": "Organization" as const, name: speaker.worksFor },

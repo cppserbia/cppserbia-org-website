@@ -23,12 +23,11 @@ This talk shares a use case of C++ dependency management and build environment c
 
 ## 📅 Event Details
 
-|                    |                                                                                     |
-| ------------------ | ----------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Aleksandar Timofeev](https://www.linkedin.com/in/aleksandr-timofeev-982719180)** |
-| 🕕 **Date & Time** | **25th of June (Wednesday), 6 pm**                                                  |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                              |
-| 🏢 **Address**     | **Masarikova 5**                                                                    |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                            |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **25th of June (Wednesday), 6 pm**                       |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!

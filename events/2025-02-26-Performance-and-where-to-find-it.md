@@ -26,11 +26,10 @@ Dušan will talk about where we should look for the performance in our projects,
 
 ## 📅 Event Details
 
-|                    |                                                           |
-| ------------------ | --------------------------------------------------------- |
-| 👤 **Speaker**     | **[Dušan Jovanović](https://www.linkedin.com/in/duxi90)** |
-| 🕕 **Date & Time** | **26th of February (Wednesday), 6pm**                     |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                    |
-| 🏢 **Address**     | **Masarikova 5**                                          |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **26th of February (Wednesday), 6pm**  |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

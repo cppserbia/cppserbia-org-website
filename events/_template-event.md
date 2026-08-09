@@ -10,11 +10,15 @@ event_url: <Meetup.com Event URL>
 event_id: <Meetup.com Event ID>
 venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
 # speaker:   # Key from lib/speakers.ts, e.g. `speaker: milos-andjelkovic`
-#            # Add worksFor/jobTitle here (not in the registry) — they record the
-#            # affiliation at THIS event, so old talks stay accurate:
+#            # Add worksFor/jobTitle/bio here (not in the registry) — they record
+#            # THIS event, so old talks stay accurate:
 #            #   speaker:
 #            #     key: milos-andjelkovic
 #            #     worksFor: Some Company
+#            #     jobTitle: Senior Engineer
+#            #     bio: >-
+#            #       Two or three sentences introducing them. Shown on the event
+#            #       page; plain text, no markdown. Keep it under ~500 characters.
 #            # For a panel, use a list of those entries. Omit for community events.
 # imageUrl:  # https://images.cppserbia.org/events/{slug}.jpg
 # youtube:   # Add after event
@@ -56,12 +60,11 @@ ForwardIt lower_bound(ForwardIt first, ForwardIt last, const T& value, Compare c
 
 ## 📅 Event Details
 
-|                    |                                                              |
-| ------------------ | ------------------------------------------------------------ |
-| 👤 **Speaker**     | [Speaker Name](https://www.linkedin.com/in/speaker-linkedin) |
-| 🕕 **Date & Time** |                                                              |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                       |
-| 🏢 **Address**     | **Masarikova 5**                                             |
-| 💻 **Online**      | [https://twitch.tv/cppserbia](https://twitch.tv/cppserbia)   |
+|                    |                                                            |
+| ------------------ | ---------------------------------------------------------- |
+| 🕕 **Date & Time** |                                                            |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                     |
+| 🏢 **Address**     | **Masarikova 5**                                           |
+| 💻 **Online**      | [https://twitch.tv/cppserbia](https://twitch.tv/cppserbia) |
 
 Vidimo se!

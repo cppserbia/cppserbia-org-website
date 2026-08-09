@@ -28,12 +28,11 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-|                    |                                                          |
-| ------------------ | -------------------------------------------------------- |
-| 👤 **Speaker**     | [Nebojša Šabović](https://www.linkedin.com/in/nsabovic/) |
-| 🕕 **Date & Time** | **13\. jun \(utorak\)\, u 18h**                          |
-| 📍 **Location**    | **ICT Hub**                                              |
-| 🏢 **Address**     | **Kralja Milana 10**                                     |
-| 💻 **Online**      | https://cppserbia.com/meet                               |
+|                    |                                 |
+| ------------------ | ------------------------------- |
+| 🕕 **Date & Time** | **13\. jun \(utorak\)\, u 18h** |
+| 📍 **Location**    | **ICT Hub**                     |
+| 🏢 **Address**     | **Kralja Milana 10**            |
+| 💻 **Online**      | https://cppserbia.com/meet      |
 
 Vidimo se!

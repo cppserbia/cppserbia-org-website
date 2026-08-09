@@ -28,7 +28,6 @@ In this talk, we will walk through the basics of economy and software developmen
 
 |                    |                                                          |
 | ------------------ | -------------------------------------------------------- |
-| 👤 **Speaker**     | [Veljko Tekelerović](https://github.com/vexy)            |
 | 🕕 **Date & Time** | **18th of September (Wednesday), 6pm**                   |
 | 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
 | 🏢 **Address**     | **Masarikova 5**                                         |

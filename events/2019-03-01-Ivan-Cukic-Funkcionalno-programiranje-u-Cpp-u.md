@@ -12,7 +12,7 @@ venues:
   - "Startit Centar, Belgrade, RS"
 speaker:
   key: ivan-cukic
-  jobTitle: C++ developer, KDE contributor, author and university lecturer
+  jobTitle: C++ developer and author
 imageUrl: >-
   https://images.cppserbia.org/events/2019-03-01-Ivan-Cukic-Funkcionalno-programiranje-u-Cpp-u.jpg
 ---

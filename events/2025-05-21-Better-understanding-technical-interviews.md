@@ -24,12 +24,11 @@ If yes, this lecture/presentation is for you! We will explore the current state 
 
 ## 📅 Event Details
 
-|                    |                                                                                         |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Aleksandar Nikolić](https://www.linkedin.com/in/aleksandar-nikoli%C4%87-61b38779/)** |
-| 🕕 **Date & Time** | **21st of May (Wednesday), 6 pm**                                                       |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                  |
-| 🏢 **Address**     | **Masarikova 5**                                                                        |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                                |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **21st of May (Wednesday), 6 pm**                        |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!

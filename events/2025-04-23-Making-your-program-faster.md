@@ -27,11 +27,10 @@ The main focus of this part are vectorization inhibitors: parts of your C++ code
 
 ## 📅 Event Details
 
-|                    |                                                      |
-| ------------------ | ---------------------------------------------------- |
-| 👤 **Speaker**     | **[Ivica Bogosavljević](https://johnnysswlab.com/)** |
-| 🕕 **Date & Time** | **23rd of April (Wednesday), 6 pm**                  |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**               |
-| 🏢 **Address**     | **Masarikova 5**                                     |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **23rd of April (Wednesday), 6 pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

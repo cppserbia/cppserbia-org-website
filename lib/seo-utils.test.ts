@@ -40,7 +40,7 @@ describe("buildPerformer", () => {
     expect(performer).toMatchObject({
       "@type": "Person",
       name: "Sergei Blinov",
-      sameAs: ["https://www.linkedin.com/in/awnion/"],
+      sameAs: speaker!.sameAs,
       worksFor: { "@type": "Organization", name: "web3mine" },
     });
   });
@@ -63,6 +63,28 @@ describe("buildPerformer", () => {
     expect(performer).not.toHaveProperty("url");
     expect(performer).not.toHaveProperty("jobTitle");
     expect(performer).not.toHaveProperty("worksFor");
+    expect(performer).not.toHaveProperty("image");
+    expect(performer).not.toHaveProperty("description");
+  });
+
+  it("carries the portrait and bio through to image and description", () => {
+    const performer = buildPerformer(
+      makeEvent({
+        speakers: [
+          {
+            ...getSpeaker("sergei-blinov")!,
+            image: "https://images.cppserbia.org/speaker-avatars/lfu.png",
+            bio: "Sergei Blinov is an FDE @ web3mine and a math enthusiast.",
+          },
+        ],
+      }),
+      BASE_URL
+    );
+
+    expect(performer).toMatchObject({
+      image: "https://images.cppserbia.org/speaker-avatars/lfu.png",
+      description: "Sergei Blinov is an FDE @ web3mine and a math enthusiast.",
+    });
   });
 
   it("returns an array for a panel of speakers", () => {

@@ -43,12 +43,11 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 ## 📅 Event Details
 
-|                    |                                                           |
-| ------------------ | --------------------------------------------------------- |
-| 👤 **Speaker**     | [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287) |
-| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h**                            |
-| 📍 **Location**    | **ICT Hub**                                               |
-| 🏢 **Address**     | **Kralja Milana 10**                                      |
-| 💻 **Online**      | https://cppserbia.com/meet                                |
+|                    |                                |
+| ------------------ | ------------------------------ |
+| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h** |
+| 📍 **Location**    | **ICT Hub**                    |
+| 🏢 **Address**     | **Kralja Milana 10**           |
+| 💻 **Online**      | https://cppserbia.com/meet     |
 
 Vidimo se!

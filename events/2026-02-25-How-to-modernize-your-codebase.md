@@ -13,7 +13,7 @@ venues:
 speaker:
   - key: ivan-cukic
     worksFor: KDAB
-    jobTitle: C++ developer, KDE contributor, author and university lecturer
+    jobTitle: C++ developer and author
   - key: nikola-jelic
     worksFor: Zühlke
   - key: petar-trifunovic

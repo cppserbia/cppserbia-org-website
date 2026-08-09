@@ -85,7 +85,7 @@ describe("Event frontmatter validation", () => {
       const { data } = matter(raw);
       if (!data.speaker) return [];
       const refs = Array.isArray(data.speaker) ? data.speaker : [data.speaker];
-      // A ref is either a bare key or { key, worksFor?, jobTitle? }
+      // A ref is either a bare key or { key, worksFor?, jobTitle?, bio? }
       return refs.map((ref) => ({ file, key: typeof ref === "string" ? ref : ref.key }));
     });
 
@@ -95,6 +95,49 @@ describe("Event frontmatter validation", () => {
         `${file}: unknown speaker key "${key}".\n  Hint: add an entry to lib/speakers.ts`
       ).not.toBeNull();
     });
+  });
+
+  // The bio renders verbatim in the speaker block; an essay there swallows the page.
+  describe("speaker bios are plain text of a readable length", () => {
+    const cases = eventFiles.flatMap((file) => {
+      const raw = fs.readFileSync(path.join(EVENTS_DIR, file), "utf-8");
+      const { data } = matter(raw);
+      if (!data.speaker) return [];
+      const refs = Array.isArray(data.speaker) ? data.speaker : [data.speaker];
+      return refs
+        .filter((ref) => typeof ref !== "string" && ref.bio)
+        .map((ref) => ({ file, key: ref.key, bio: String(ref.bio) }));
+    });
+
+    it.each(cases)("$file — $key bio is within 500 characters", ({ file, key, bio }) => {
+      expect(bio.trim(), `${file}: empty bio for "${key}" — omit the field instead`).not.toBe("");
+      expect(
+        bio.length,
+        `${file}: bio for "${key}" is ${bio.length} characters.\n  Trim it to 500 or fewer — the block sits under the article, not in place of it.`
+      ).toBeLessThanOrEqual(500);
+    });
+
+    it.each(cases)("$file — $key bio has no markdown emphasis", ({ file, key, bio }) => {
+      expect(
+        bio,
+        `${file}: bio for "${key}" contains markdown. It renders as plain text, so the markers would show literally.`
+      ).not.toMatch(/[*_]{1,2}\S|\[[^\]]+\]\(/);
+    });
+  });
+});
+
+// The byline and the speaker block render this from frontmatter now. A hand-written row
+// in the Details table would state the same name a third time on the same page.
+describe("Event bodies must not restate the speaker", () => {
+  const offenders = eventFiles.filter((file) =>
+    /^\|[^|]*👤[^|]*\*\*Speaker\*\*/m.test(fs.readFileSync(path.join(EVENTS_DIR, file), "utf-8"))
+  );
+
+  it("no event body contains a Speaker row in the Details table", () => {
+    expect(
+      offenders,
+      `These files restate the speaker in the Details table:\n  ${offenders.join("\n  ")}\n  Put the speaker in the \`speaker:\` frontmatter instead — see CONTRIBUTING.md.`
+    ).toEqual([]);
   });
 });
 
@@ -110,6 +153,7 @@ describe("Speaker registry", () => {
   const links = entries.flatMap(([key, speaker]) => [
     ...(speaker.url ? [{ key, url: speaker.url }] : []),
     ...(speaker.sameAs ?? []).map((url) => ({ key, url })),
+    ...(speaker.image ? [{ key, url: speaker.image }] : []),
   ]);
 
   it.each(links)("$key — $url starts with http(s)://", ({ url }) => {

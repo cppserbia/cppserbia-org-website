@@ -27,12 +27,11 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 ## 📅 Event Details
 
-|                    |                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------ |
-| 👤 **Speaker**     | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/) |
-| 🕕 **Date & Time** | **24\. april \(ponedeljak\)\, u 18h**                                                      |
-| 📍 **Location**    | **ICT Hub**                                                                                |
-| 🏢 **Address**     | **Kralja Milana 10**                                                                       |
-| 💻 **Online**      | https://cppserbia.com/meet                                                                 |
+|                    |                                       |
+| ------------------ | ------------------------------------- |
+| 🕕 **Date & Time** | **24\. april \(ponedeljak\)\, u 18h** |
+| 📍 **Location**    | **ICT Hub**                           |
+| 🏢 **Address**     | **Kralja Milana 10**                  |
+| 💻 **Online**      | https://cppserbia.com/meet            |
 
 Vidimo se!

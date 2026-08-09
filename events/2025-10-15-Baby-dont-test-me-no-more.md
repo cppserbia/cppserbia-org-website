@@ -23,12 +23,11 @@ Although this is a beginner-to-intermediate-level lecture, the problems he will 
 
 ## 📅 Event Details
 
-|                    |                                                                                         |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Aleksandar Nikolić](https://www.linkedin.com/in/aleksandar-nikoli%C4%87-61b38779/)** |
-| 🕕 **Date & Time** | **15th of October (Wednesday), 6 pm**                                                   |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                  |
-| 🏢 **Address**     | **Masarikova 5**                                                                        |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                                |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **15th of October (Wednesday), 6 pm**                    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!
