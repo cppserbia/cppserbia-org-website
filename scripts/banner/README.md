@@ -2,7 +2,7 @@
 
 TypeScript port of the SVG-based event-banner pipeline that lived in `cppserbia-org/branding/event_banners/`. Produces three formats per event — horizontal `1920×1080` (Meetup featured photo + site hero), vertical 3:4 `1440×1920` (IG post), and vertical 9:16 `1080×1920` (IG/TikTok story).
 
-The pipeline is invoked automatically by [`.github/workflows/generate-event-image.yml`](../../.github/workflows/generate-event-image.yml) when an event file changes inside a PR. The workflow generates the banners, uploads them to R2, patches `imageUrl` into the event frontmatter, and commits the change back to the PR branch.
+The pipeline is invoked automatically by [`.github/workflows/generate-event-image.yml`](../../.github/workflows/generate-event-image.yml) when a PR **adds** an event file. The workflow generates the banners, uploads them to R2, patches `imageUrl` into the event frontmatter, and commits the change back to the PR branch. PRs that only edit existing events, or that add more than one at a time, are skipped — run the CLI locally for those.
 
 ## What's here
 
