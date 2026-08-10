@@ -54,6 +54,7 @@ export async function EventSeo({ event, baseUrl = "https://cppserbia.org" }: Eve
     : "OfflineEventAttendanceMode";
 
   const offers = buildOffers(event, startDate);
+  const performer = buildPerformer(event);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -74,10 +75,10 @@ export async function EventSeo({ event, baseUrl = "https://cppserbia.org" }: Eve
       name: "C++ Serbia Community",
       url: baseUrl,
     },
-    performer: buildPerformer(event, baseUrl),
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: `https://schema.org/${eventAttendanceMode}`,
     inLanguage: locale === "sr" ? "sr" : "en",
+    ...(performer && { performer }),
     ...(offers && { offers }),
   };
 

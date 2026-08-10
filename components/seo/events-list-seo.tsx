@@ -62,6 +62,7 @@ export async function EventsListSeo({
           ? event.startDateTime.toString({ timeZoneName: "never" })
           : event.date.toString();
         const offers = buildOffers(event, startDate);
+        const performer = buildPerformer(event);
 
         return {
           "@type": "ListItem",
@@ -75,7 +76,7 @@ export async function EventsListSeo({
               name: event.location,
             },
             url: `${baseUrl}/${locale}/events/${event.slug}`,
-            performer: buildPerformer(event, baseUrl),
+            ...(performer && { performer }),
             ...(offers && { offers }),
           },
         };

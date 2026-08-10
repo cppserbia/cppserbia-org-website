@@ -18,6 +18,12 @@ describe("resolveSpeakers", () => {
     });
   });
 
+  it("carries the registry key through, so a panel has stable React keys", () => {
+    const panel = resolveSpeakers(["ivan-cukic", { key: "petar-trifunovic" }], "some-event");
+
+    expect(panel.map((speaker) => speaker.key)).toEqual(["ivan-cukic", "petar-trifunovic"]);
+  });
+
   it("leaves bio unset for a bare key", () => {
     const [speaker] = resolveSpeakers("sergei-blinov", "some-event");
 

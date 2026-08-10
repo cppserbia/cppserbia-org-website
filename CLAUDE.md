@@ -89,8 +89,14 @@ Two frontmatter fields feed the Event JSON-LD and must not be dropped:
 
 - **`created`** — becomes `offers.validFrom` (when registration opened). Every event file has one.
 - **`speaker`** — a key (or list of keys) into the registry in `lib/speakers.ts`; becomes
-  `performer`. Omit it for community events (picnics, Beer Wednesdays) — they fall back to an
-  `Organization` performer automatically.
+  `performer`. Omit it for community events (picnics, Beer Wednesdays) — those emit **no**
+  `performer`, since Google accepts only `Person`/`PerformingGroup` there and naming the
+  community as an `Organization` would be both ignored and untrue.
+
+`buildOffers`/`buildPerformer` in `lib/seo-utils.ts` build both nodes, and both are omitted
+rather than faked: a past event emits no `offers` at all (`availability` only has `InStock`,
+`SoldOut` and `PreOrder`, none of which describe a finished meetup), and a speaker-less event
+emits no `performer`. Both fields are _recommended_, not required, so omitting is safe.
 
 `lib/event-validation.test.ts` fails the build if `created` is not a valid date or a `speaker`
 key doesn't resolve.

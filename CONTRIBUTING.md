@@ -270,7 +270,9 @@ those change over a career, and one entry is reused across every talk that perso
 given. The registry drives the `performer` field in the event's structured data and the name
 on the generated banner.
 
-Leave `speaker:` out for social events; they're attributed to the community automatically.
+Leave `speaker:` out for social events. The banner falls back to the community name, and the
+structured data simply omits `performer` — a picnic has no performer, and Google only accepts a
+`Person`/`PerformingGroup` there anyway.
 
 **Never write the speaker into the body.** The frontmatter is the only source: a byline under
 the event title, and a block with portrait, affiliation, bio and links at the end of the

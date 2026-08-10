@@ -63,7 +63,7 @@ export function SpeakerByline({ speakers }: { speakers: EventSpeaker[] }) {
       {speakers.map((speaker, index) => {
         const href = primaryLink(speaker);
         return (
-          <Fragment key={speaker.name}>
+          <Fragment key={speaker.key ?? speaker.name}>
             {index > 0 && (
               <span className="text-gray-500" aria-hidden="true">
                 &middot;
@@ -124,7 +124,7 @@ export function SpeakerBlock({ speakers, label }: { speakers: EventSpeaker[]; la
           const links = speakerLinks(speaker);
 
           return (
-            <li key={speaker.name} className="flex gap-4">
+            <li key={speaker.key ?? speaker.name} className="flex gap-4">
               {showPortraits && (
                 <Image
                   // Square frame at the shared radius: the source crops are square, and a

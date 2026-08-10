@@ -29,6 +29,12 @@ export interface Speaker {
 
 /** A registry entry plus the point-in-time details recorded on one event. */
 export interface EventSpeaker extends Speaker {
+  /**
+   * The registry key this entry was resolved from — the one identifier guaranteed
+   * unique across a panel, so it is what the page uses as a React key. Optional
+   * because a `Speaker` can also be handed straight to a component in tests.
+   */
+  key?: string;
   /** Employer at the time of this event -> `performer.worksFor`. */
   worksFor?: string;
   /** Role at the time of this event -> `performer.jobTitle`. */
@@ -212,6 +218,7 @@ export function resolveSpeakers(
     return [
       {
         ...speaker,
+        key,
         ...(worksFor && { worksFor }),
         ...(jobTitle && { jobTitle }),
         ...(bio && { bio }),
