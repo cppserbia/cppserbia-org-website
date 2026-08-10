@@ -49,7 +49,9 @@ describe("withEventAvatar", () => {
   it("skips panels — an avatar keyed by event slug identifies nobody there", () => {
     const panel = [getSpeaker("ivan-cukic")!, getSpeaker("petar-trifunovic")!];
 
-    expect(withEventAvatar(panel, AVATAR).every((s) => !s.image)).toBe(true);
+    // Registry portraits may be present; what matters is that none of them picked up
+    // the event-slug avatar.
+    expect(withEventAvatar(panel, AVATAR).every((s) => s.image !== AVATAR)).toBe(true);
   });
 
   it("is a no-op when the event has no avatar", () => {

@@ -56,15 +56,18 @@ export const SPEAKERS = {
   "milos-andjelkovic": {
     name: "Miloš Anđelković",
     sameAs: ["https://www.linkedin.com/in/miloš-anđelković-79952118a/"],
+    image: "https://images.cppserbia.org/speakers/milos-andjelkovic.png",
   },
   "goran-arandjelovic": {
     name: "Goran Aranđelović",
     sameAs: ["https://www.linkedin.com/in/goranarandjelovic/", "https://github.com/bsdgox"],
+    image: "https://images.cppserbia.org/speakers/goran-arandjelovic.png",
   },
   "ivica-bogosavljevic": {
     name: "Ivica Bogosavljević",
     url: "https://johnnysswlab.com/",
     sameAs: ["https://www.linkedin.com/in/ibogi/", "https://github.com/ibogosavljevic"],
+    image: "https://images.cppserbia.org/speakers/ivica-bogosavljevic.png",
   },
   "dusan-jovanovic": {
     name: "Dušan Jovanović",
@@ -74,6 +77,7 @@ export const SPEAKERS = {
     name: "Ivan Čukić",
     url: "https://cukic.co/",
     sameAs: ["https://rs.linkedin.com/in/ivancukic", "https://github.com/ivan-cukic"],
+    image: "https://images.cppserbia.org/speakers/ivan-cukic.png",
   },
   "petar-trifunovic": {
     name: "Petar Trifunović",
@@ -81,6 +85,7 @@ export const SPEAKERS = {
       "https://www.linkedin.com/in/petar-trifunovic-4453a48a/",
       "https://github.com/petart95",
     ],
+    image: "https://images.cppserbia.org/speakers/petar-trifunovic.png",
   },
   "aleksandar-nikolic": {
     name: "Aleksandar Nikolić",
@@ -88,6 +93,7 @@ export const SPEAKERS = {
       "https://www.linkedin.com/in/aleksandar-nikolić-61b38779/",
       "https://github.com/Gillgalard",
     ],
+    image: "https://images.cppserbia.org/speakers/aleksandar-nikolic.png",
   },
   "aleksandr-timofeev": {
     name: "Aleksandr Timofeev",
@@ -96,6 +102,7 @@ export const SPEAKERS = {
       "https://www.linkedin.com/in/aleksandr-timofeev-982719180/",
       "https://github.com/Minimonium",
     ],
+    image: "https://images.cppserbia.org/speakers/aleksandr-timofeev.png",
   },
   "aleksandar-smigic": {
     name: "Aleksandar Šmigić",
@@ -136,6 +143,7 @@ export const SPEAKERS = {
       "https://www.linkedin.com/in/mirko-arsenijevic-5497b2172/",
       "https://github.com/mirko-ars",
     ],
+    image: "https://images.cppserbia.org/speakers/mirko-arsenijevic.png",
   },
   "veljko-tekelerovic": {
     name: "Veljko Tekelerović",

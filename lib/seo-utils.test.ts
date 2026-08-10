@@ -57,7 +57,10 @@ describe("buildPerformer", () => {
   });
 
   it("omits optional keys the speaker does not have", () => {
-    const performer = buildPerformer(makeEvent({ speakers: [getSpeaker("milos-andjelkovic")!] }));
+    // Inline rather than a registry key: this is about which fields buildPerformer
+    // emits, and back-filling a portrait onto whichever entry we picked would
+    // otherwise break the test.
+    const performer = buildPerformer(makeEvent({ speakers: [{ name: "Nameless Speaker" }] }));
 
     expect(performer).not.toHaveProperty("url");
     expect(performer).not.toHaveProperty("jobTitle");
