@@ -17,6 +17,8 @@ export const VENUE_IDS: Record<string, number> = {
   "Ljubostinjska 2, Beograd, rs": 27293040,
   "Startit Centar, Belgrade, RS": 24183073,
   "United Cloud, Belgrade, rs": 25807437,
+  "Kosutnjak, Beograd, rs": 28294416,
+  // Old venue with `yu` country code
   "Kosutnjak, Beograd, yu": 10666282,
 };
 
