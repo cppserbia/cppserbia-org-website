@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/307829937/"
 event_id: 307829937
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: aleksandar-nikolic
 youtube: "https://www.youtube.com/watch?v=XDgSY_vg1v4"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-05-21-Better-understanding-technical-interviews.jpg
@@ -23,12 +24,11 @@ If yes, this lecture/presentation is for you! We will explore the current state 
 
 ## 📅 Event Details
 
-|                    |                                                                                         |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Aleksandar Nikolić](https://www.linkedin.com/in/aleksandar-nikoli%C4%87-61b38779/)** |
-| 🕕 **Date & Time** | **21st of May (Wednesday), 6 pm**                                                       |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                  |
-| 🏢 **Address**     | **Masarikova 5**                                                                        |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                                |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **21st of May (Wednesday), 6 pm**                        |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!

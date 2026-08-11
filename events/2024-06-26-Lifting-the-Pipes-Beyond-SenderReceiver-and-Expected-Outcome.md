@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/301691637/"
 event_id: 301691637
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: mirko-arsenijevic
 youtube: "https://www.youtube.com/watch?v=B5uNxPe-MVQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-06-26-Lifting-the-Pipes-Beyond-SenderReceiver-and-Expected-Outcome.jpg
@@ -24,12 +25,11 @@ Furthermore, we will compare this library to Expected Outcome pipelines, a progr
 
 ## 📅 Event Details
 
-|                    |                                                                               |
-| ------------------ | ----------------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Mirko Arsenijević](https://www.linkedin.com/in/mirko-arsenijevic-5497b2172/) |
-| 🕕 **Date & Time** | **26th of June (Wednesday), 6pm**                                             |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                        |
-| 🏢 **Address**     | **Masarikova 5**                                                              |
-| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)                      |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **26th of June (Wednesday), 6pm**                        |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!

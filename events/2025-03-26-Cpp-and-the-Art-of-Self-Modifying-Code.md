@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/306805498/"
 event_id: 306805498
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=cweTfX9Leo4"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-03-26-Cpp-and-the-Art-of-Self-Modifying-Code.jpg
@@ -22,11 +23,10 @@ However, it is fun, a good exercise, and possibly an interesting meetup talk.
 
 ## 📅 Event Details
 
-|                    |                                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/)** |
-| 🕕 **Date & Time** | **26th of March (Wednesday), 6 pm**                                                            |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                         |
-| 🏢 **Address**     | **Masarikova 5**                                                                               |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **26th of March (Wednesday), 6 pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

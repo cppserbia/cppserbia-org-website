@@ -119,3 +119,25 @@ describe("Empty Value Check", () => {
     expect(value, `Key "${key}" has an empty value in sr.json`).not.toBe("");
   });
 });
+
+// The speaker block picks its heading by count, so a panel must not be labelled
+// with the singular. Both locales need two genuinely distinct forms.
+describe("Singular and plural forms are distinct", () => {
+  const PAIRS = [["eventDetail.speaker", "eventDetail.speakers"]] as const;
+
+  it.each(PAIRS)("%s differs from %s in both locales", (singular, plural) => {
+    for (const [locale, keys] of [
+      ["en", enKeys],
+      ["sr", srKeys],
+    ] as const) {
+      const one = keys.get(singular);
+      const many = keys.get(plural);
+      expect(one, `${locale}.json is missing "${singular}"`).toBeDefined();
+      expect(many, `${locale}.json is missing "${plural}"`).toBeDefined();
+      expect(
+        many,
+        `${locale}.json uses the same word for "${singular}" and "${plural}": "${one}".\n  A panel of speakers would be labelled with the singular.`
+      ).not.toBe(one);
+    }
+  });
+});

@@ -200,17 +200,21 @@ Where does it happen?
 ### Talk template
 
 - **Hook paragraph** — what problem or idea will the talk explore? One or two sentences that make a scroller stop.
-- **About the speaker** — bold name, link to LinkedIn / GitHub / personal site, one sentence on their background.
 - **What you'll learn** — 2–3 short paragraphs on the content: the angle the speaker takes, what's new or non-obvious, who it's for (beginner / intermediate / advanced).
 - **Optional code snippet** — a small excerpt that showcases the topic. The `_template-event.md` includes an example.
-- **Event Details table** — Speaker, Date & Time, Location, Address, Online (if HYBRID).
+- **Event Details table** — Date & Time, Location, Address, Online (if HYBRID).
+
+Don't write the speaker into the body. Name, links, photo and bio all come from the
+frontmatter and render themselves — see [Speakers](#speakers) below.
 
 ### Panel template
 
 - **The question** — what are the panelists there to answer? Frame it as a question the audience brings.
-- **Panelists** — a brief line per panelist (name, role, why they're on this panel).
 - **Anchor topics** — 3–5 bullets of what will come up.
-- **Event Details table** — replace the Speaker row with a Panelists row; keep everything else.
+- **Event Details table** — Date & Time, Location, Address, Online (if HYBRID).
+
+List the panelists in the frontmatter `speaker:` list, not the body — they render as a
+grid under the article.
 
 ### Workshop template
 
@@ -224,7 +228,61 @@ Where does it happen?
 - **Occasion / vibe** — why are we meeting? (Founding celebration, end-of-year, Beer Wednesday.)
 - **What to expect** — no talks, casual hangout, food / drink situation.
 - **Logistics** (if useful) — transport, parking, RSVP hint so headcount stocks are sensible.
-- **Event Details table** — skip the Speaker and Online rows; keep Date, Location, Address.
+- **Event Details table** — skip the Online row; keep Date, Location, Address.
+
+### Speakers
+
+Set `speaker:` in the frontmatter to a key from the registry in `lib/speakers.ts`:
+
+```yaml
+speaker: milos-andjelkovic
+```
+
+Add where they worked **at the time of this event**, and the blurb introducing them for
+**this talk** — both belong on the event, not in the registry, so a talk from 2019 keeps
+saying where the speaker worked in 2019 even after they move on:
+
+```yaml
+speaker:
+  key: sergei-blinov
+  worksFor: web3mine
+  jobTitle: Forward Deployed Engineer
+  bio: >-
+    Sergei Blinov is an FDE @ web3mine and a math enthusiast.
+```
+
+`bio` is plain text — no markdown, it renders as-is. Two or three sentences, under ~500
+characters (the build fails past that, to keep the block from swallowing the page).
+
+Panels take a list, and the two forms mix freely:
+
+```yaml
+speaker:
+  - key: ivan-cukic
+    worksFor: KDAB
+  - petar-trifunovic
+```
+
+If the speaker isn't in the registry yet, add them first. The registry holds only durable
+identity — `name` (required), plus optional `url` (personal site), `sameAs` (LinkedIn /
+GitHub / …) and `image` (portrait URL). Deliberately **no employer, job title or bio there**:
+those change over a career, and one entry is reused across every talk that person has ever
+given. The registry drives the `performer` field in the event's structured data and the name
+on the generated banner.
+
+Leave `speaker:` out for social events. The banner falls back to the community name, and the
+structured data simply omits `performer` — a picnic has no performer, and Google only accepts a
+`Person`/`PerformingGroup` there anyway.
+
+**Never write the speaker into the body.** The frontmatter is the only source: a byline under
+the event title, and a block with portrait, affiliation, bio and links at the end of the
+article, both rendered from `speaker:`. A `👤 **Speaker**` row in the Event Details table now
+fails the build — it used to be the only thing readers saw, and it duplicated what the page
+generates.
+
+Portraits: `image` in the registry is the real model. Events that only have the per-event
+`speaker_avatar` (uploaded for the banner via `/banner-avatar`) fall back to it, but only when
+the event has exactly one speaker — keyed by event slug, it can't identify anyone on a panel.
 
 ### Rules of thumb (any type)
 

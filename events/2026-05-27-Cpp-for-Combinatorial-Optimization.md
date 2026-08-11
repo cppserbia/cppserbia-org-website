@@ -10,6 +10,16 @@ event_url: "https://www.meetup.com/cpp-serbia/events/314765158/"
 event_id: "314765158"
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  key: luka-matijevic
+  worksFor: Mathematical Institute of the Serbian Academy of Sciences and Arts
+  jobTitle: Researcher
+  bio: >-
+    Luka Matijević is a researcher at the Mathematical Institute of the Serbian Academy of
+    Sciences and Arts, whose work bridges academic research and freelance engineering. He's
+    drawn to identifying the right algorithm for a given problem — and to the kind of careful
+    optimization captured by one of his favourite Futurama lines: "When you do things right,
+    people won't be sure you've done anything at all."
 youtube: "https://www.youtube.com/watch?v=E49Wi8cGv2E"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg
@@ -25,18 +35,13 @@ We begin with an exact solver, formulating the problem as a mixed-integer progra
 
 The goal is not to advocate for one approach over another, but to show how C++ supports the full spectrum of optimization techniques.
 
-# About Speaker
-
-Luka Matijević is a researcher at the Mathematical Institute of the Serbian Academy of Sciences and Arts, whose work bridges academic research and freelance engineering. He's drawn to identifying the right algorithm for a given problem — and to the kind of careful optimization captured by one of his favourite Futurama lines: _"When you do things right, people won't be sure you've done anything at all."_
-
 ## 📅 Event Details
 
-|                    |                                                                   |
-| ------------------ | ----------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Luka Matijević](https://www.linkedin.com/in/luka-matijevic/)** |
-| 🕕 **Date & Time** | **27th of May (Wednesday), 6 pm**                                 |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                            |
-| 🏢 **Address**     | **Masarikova 5**                                                  |
-| 💻 **Online**      | **[C++ Serbia YouTube](https://www.youtube.com/@cppserbia)**      |
+|                    |                                                              |
+| ------------------ | ------------------------------------------------------------ |
+| 🕕 **Date & Time** | **27th of May (Wednesday), 6 pm**                            |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                       |
+| 🏢 **Address**     | **Masarikova 5**                                             |
+| 💻 **Online**      | **[C++ Serbia YouTube](https://www.youtube.com/@cppserbia)** |
 
 See you!

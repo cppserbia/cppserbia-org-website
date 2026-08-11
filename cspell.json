@@ -55,6 +55,7 @@
     "infra/*.tfstate*",
     ".playwright-mcp/**",
     "lib/transliterate.test.ts",
+    "lib/speakers.ts",
     "scripts/social/prompts.ts",
     "scripts/generate-social-draft.test.ts"
   ],

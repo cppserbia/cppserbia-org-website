@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/293219910/"
 event_id: 293219910
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker: aleksandar-smigic
 youtube: "https://www.youtube.com/watch?v=tkpu9JLDj3c"
 imageUrl: "https://images.cppserbia.org/events/2023-05-17-Cpp-Customization-Points.jpg"
 ---
@@ -42,12 +43,11 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cppserbia.
 
 ## 📅 Event Details
 
-|                    |                                                           |
-| ------------------ | --------------------------------------------------------- |
-| 👤 **Speaker**     | [Aleksandar Šmigić](https://www.linkedin.com/in/smiga287) |
-| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h**                            |
-| 📍 **Location**    | **ICT Hub**                                               |
-| 🏢 **Address**     | **Kralja Milana 10**                                      |
-| 💻 **Online**      | https://cppserbia.com/meet                                |
+|                    |                                |
+| ------------------ | ------------------------------ |
+| 🕕 **Date & Time** | **17\. maj \(sreda\)\, u 18h** |
+| 📍 **Location**    | **ICT Hub**                    |
+| 🏢 **Address**     | **Kralja Milana 10**           |
+| 💻 **Online**      | https://cppserbia.com/meet     |
 
 Vidimo se!

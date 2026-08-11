@@ -40,37 +40,11 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install pnpm
-        if: steps.bot-check.outputs.skip != 'true'
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Setup Node.js
-        if: steps.bot-check.outputs.skip != 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        if: steps.bot-check.outputs.skip != 'true'
-        run: pnpm install --frozen-lockfile
-
-      - name: Install Inkscape
-        if: steps.bot-check.outputs.skip != 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends inkscape
-          inkscape --version
-
-      - name: Cache banner templates
-        if: steps.bot-check.outputs.skip != 'true'
-        uses: actions/cache@v4
-        with:
-          path: scripts/banner/.template-cache
-          key: banner-templates-${{ hashFiles('scripts/banner/templates.manifest.json') }}
-
+      # Decide whether there is anything to do BEFORE paying for the toolchain. The
+      # `paths:` filter above matches any PR touching events/**.md, including ones that
+      # only edit existing files, so most triggers end here — after ~10s, not after two
+      # minutes of Node, pnpm install and Inkscape. Needs only `gh`, preinstalled on the
+      # runner.
       - name: Find event file
         if: steps.bot-check.outputs.skip != 'true'
         id: find-event
@@ -105,12 +79,44 @@ jobs:
           echo "found=true" >> "$GITHUB_OUTPUT"
           echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"
 
+      # `found` is empty when the bot-check skipped find-event, so these stay skipped too.
+      - name: Install pnpm
+        if: steps.find-event.outputs.found == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        if: steps.find-event.outputs.found == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        if: steps.find-event.outputs.found == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Inkscape
+        if: steps.find-event.outputs.found == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends inkscape
+          inkscape --version
+
+      - name: Cache banner templates
+        if: steps.find-event.outputs.found == 'true'
+        uses: actions/cache@v4
+        with:
+          path: scripts/banner/.template-cache
+          key: banner-templates-${{ hashFiles('scripts/banner/templates.manifest.json') }}
+
       - name: Generate banners
-        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
+        if: steps.find-event.outputs.found == 'true'
         run: npx tsx scripts/generate-event-banner.ts "${{ steps.find-event.outputs.file }}"
 
       - name: Upload banners to R2 + patch frontmatter
-        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
+        if: steps.find-event.outputs.found == 'true'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -119,7 +125,7 @@ jobs:
 
       - name: Commit imageUrl back to PR
         id: commit
-        if: steps.bot-check.outputs.skip != 'true' && steps.find-event.outputs.found == 'true'
+        if: steps.find-event.outputs.found == 'true'
         env:
           FILE: ${{ steps.find-event.outputs.file }}
         run: |

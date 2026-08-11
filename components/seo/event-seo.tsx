@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 
 import type { Event } from "@/lib/events-server";
+import { buildOffers, buildPerformer } from "@/lib/seo-utils";
 
 interface EventSeoProps {
   event: Event;
@@ -52,6 +53,9 @@ export async function EventSeo({ event, baseUrl = "https://cppserbia.org" }: Eve
     ? "OnlineEventAttendanceMode"
     : "OfflineEventAttendanceMode";
 
+  const offers = buildOffers(event, startDate);
+  const performer = buildPerformer(event);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -74,15 +78,8 @@ export async function EventSeo({ event, baseUrl = "https://cppserbia.org" }: Eve
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: `https://schema.org/${eventAttendanceMode}`,
     inLanguage: locale === "sr" ? "sr" : "en",
-    ...(event.registrationLink && {
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "EUR",
-        url: event.registrationLink,
-        availability: "https://schema.org/InStock",
-      },
-    }),
+    ...(performer && { performer }),
+    ...(offers && { offers }),
   };
 
   return (

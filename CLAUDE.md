@@ -79,10 +79,55 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
 ## Adding Events
 
 1. Create `/events/YYYY-MM-DD-Event-Title.md` (copy `_template-event.md`)
-2. Required frontmatter: `title`, `date`, `event_type` (PHYSICAL/ONLINE/HYBRID), `status` (ACTIVE/PAST/DRAFT), `end_time`, `venues`
+2. Required frontmatter: `title`, `date`, `created`, `event_type` (PHYSICAL/ONLINE/HYBRID), `status` (ACTIVE/PAST/DRAFT), `end_time`, `venues`
 3. Events with `status: DRAFT` are only visible in dev (`pnpm dev`)
-4. Body convention: `# Title`, description, `# About Speaker`, `## Event Details` table
+4. Body convention: `# Title`, description, `## Event Details` table. **No speaker in the body** —
+   name, bio, photo and links all render from the `speaker:` frontmatter (see below)
 5. After the event: add `youtube:` frontmatter field for the recording link
+
+Two frontmatter fields feed the Event JSON-LD and must not be dropped:
+
+- **`created`** — becomes `offers.validFrom` (when registration opened). Every event file has one.
+- **`speaker`** — a key (or list of keys) into the registry in `lib/speakers.ts`; becomes
+  `performer`. Omit it for community events (picnics, Beer Wednesdays) — those emit **no**
+  `performer`, since Google accepts only `Person`/`PerformingGroup` there and naming the
+  community as an `Organization` would be both ignored and untrue.
+
+`buildOffers`/`buildPerformer` in `lib/seo-utils.ts` build both nodes, and both are omitted
+rather than faked: a past event emits no `offers` at all (`availability` only has `InStock`,
+`SoldOut` and `PreOrder`, none of which describe a finished meetup), and a speaker-less event
+emits no `performer`. Both fields are _recommended_, not required, so omitting is safe.
+
+`lib/event-validation.test.ts` fails the build if `created` is not a valid date or a `speaker`
+key doesn't resolve.
+
+**Where speaker data lives.** `lib/speakers.ts` holds only durable identity — `name`
+(required), `url`, `sameAs`, `image`. Employer, job title and bio are **per-event**, written in
+the `speaker:` frontmatter, because they change over a career and one registry entry is reused
+across every talk that person gave:
+
+```yaml
+speaker:
+  key: sergei-blinov
+  worksFor: web3mine
+  jobTitle: Forward Deployed Engineer
+  bio: >-
+    Sergei Blinov is an FDE @ web3mine and a math enthusiast.
+```
+
+A bare `speaker: some-key` still works when the affiliation isn't known. Panels take a list
+and can mix both forms. See `lib/speakers.ts` (`SpeakerRef`, `EventSpeaker`).
+
+**How it renders.** `components/event-speakers.tsx` exports `SpeakerByline` (one line under the
+event title) and `SpeakerBlock` (portrait, affiliation, bio and links closing the article), both
+used by `app/[locale]/events/[slug]/page.tsx`. Affiliation reads role first, then employer —
+`Forward Deployed Engineer, web3mine`. Portraits are all-or-nothing: the image column appears
+only when every speaker on the event has one. `withEventAvatar` in `lib/speakers.ts` falls back
+to the banner's `speaker_avatar` for single-speaker events, since that asset is keyed by event
+slug and can't identify anyone on a panel.
+
+`lib/event-validation.test.ts` fails the build if a `bio` exceeds 500 characters or if a
+`👤 **Speaker**` row reappears in an event body — that data now lives in the frontmatter.
 
 ## Testing
 

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/304266487/"
 event_id: 304266487
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: nikola-jelic
 youtube: "https://www.youtube.com/watch?v=ImucbIYTnVA"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-11-05-Physical-Units-in-modern-Cpp-part-II.jpg
@@ -25,11 +26,10 @@ Nikola will present both the original version of the library, which was develope
 
 ## 📅 Event Details
 
-|                    |                                                                              |
-| ------------------ | ---------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Nikola Jelić](https://www.linkedin.com/in/nikola-jeli%C4%87-46b89531b/)** |
-| 🕕 **Date & Time** | **5th of November (Tuesday), 6pm**                                           |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                       |
-| 🏢 **Address**     | **Masarikova 5**                                                             |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **5th of November (Tuesday), 6pm**     |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

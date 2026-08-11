@@ -9,6 +9,7 @@ end_time: 2022-05-11T21:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/285290933/
 event_id: 285290933
 venues: ["Ljubostinjska 2, Beograd, rs"]
+speaker: goran-arandjelovic
 ---
 
 # C++ decenija: Pregled razvoja od C++11 do C++20

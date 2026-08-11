@@ -68,7 +68,9 @@
     "calendar": "Календар",
     "addToCalendar": "Додајте у календар",
     "viewDetails": "Детаљи",
-    "watch": "Гледајте"
+    "watch": "Гледајте",
+    "speaker": "Предавач",
+    "speakers": "Предавачи"
   },
   "feeds": {
     "icalFeed": "iCal фид",
@@ -103,7 +105,7 @@
     "eventsCollectionName": "Догађаји C++ Србија заједнице",
     "eventsCollectionDescUpcoming": "Придружите се догађајима C++ Србија заједнице! {count} предстојећих догађаја укључујући {firstEvent}. Погледајте свих {total} C++ окупљања, радионица и конференција у Србији.",
     "eventsCollectionDescGeneral": "Истражите {total} догађаја C++ Србија заједнице. Придружите се нашој заједници C++ програмера у Србији кроз окупљања, радионице и конференције.",
-    "eventDescriptionJoin": "Придружите се C++ Србија заједници на догађају \u201E{title}\u201C — {eventType} догађај",
+    "eventDescriptionJoin": "Придружите се C++ Србија заједници на догађају „{title}“ — {eventType} догађај",
     "eventDescriptionAtVenue": " који се одржава у {venue}",
     "eventDescriptionOnline": " који се одржава онлајн",
     "eventDescriptionConnect": ". Повежите се са другим C++ програмерима, научите о модерним C++ техникама и проширите своје програмерско знање.",

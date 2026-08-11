@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/303416667/"
 event_id: 303416667
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=23BvNd4sd4Y"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-10-02-Writing-another-command-line-arguments-parser.jpg
@@ -25,11 +26,10 @@ But, importantly, we will try to answer the main question: why would you even wr
 
 ## 📅 Event Details
 
-|                    |                                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a) |
-| 🕕 **Date & Time** | **2nd of October (Wednesday), 6pm**                                                       |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                    |
-| 🏢 **Address**     | **Masarikova 5**                                                                          |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **2nd of October (Wednesday), 6pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

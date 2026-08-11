@@ -96,6 +96,42 @@ describe("resolveSpeakerForBanner", () => {
     );
   });
 
+  it("prefers the speaker registry key over the body table", () => {
+    expect(
+      resolveSpeakerForBanner(
+        { title: "x", date: new Date(), speaker: "sergei-blinov" },
+        eventDetailsTable
+      )
+    ).toBe("Sergei Blinov");
+  });
+
+  it("joins multiple registry keys for a panel", () => {
+    expect(
+      resolveSpeakerForBanner(
+        { title: "x", date: new Date(), speaker: ["ivan-cukic", "petar-trifunovic"] },
+        "no event details here"
+      )
+    ).toBe("Ivan Čukić & Petar Trifunović");
+  });
+
+  it("banner_author still wins over the registry key", () => {
+    expect(
+      resolveSpeakerForBanner(
+        { title: "x", date: new Date(), banner_author: "C++ Serbia", speaker: "sergei-blinov" },
+        eventDetailsTable
+      )
+    ).toBe("C++ Serbia");
+  });
+
+  it("falls through to the body table when the registry key is unknown", () => {
+    expect(
+      resolveSpeakerForBanner(
+        { title: "x", date: new Date(), speaker: "nobody-here" },
+        eventDetailsTable
+      )
+    ).toBe("Ivan Čukić");
+  });
+
   it("falls back to default when neither banner_author nor body has a speaker", () => {
     expect(resolveSpeakerForBanner({ title: "x", date: new Date() }, "no event details here")).toBe(
       "C++ Serbia"

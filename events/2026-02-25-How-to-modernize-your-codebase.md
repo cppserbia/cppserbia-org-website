@@ -10,6 +10,16 @@ event_url: "https://www.meetup.com/cpp-serbia/events/313413133/"
 event_id: 313413133
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker:
+  - key: ivan-cukic
+    worksFor: KDAB
+    jobTitle: C++ developer and author
+  - key: nikola-jelic
+    worksFor: Zühlke
+  - key: petar-trifunovic
+    worksFor: Inceptive
+  - key: djordje-savic
+    worksFor: Nutanix
 youtube: "https://www.youtube.com/watch?v=iULlWUyXzw0"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-02-25-How-to-modernize-your-codebase.jpg

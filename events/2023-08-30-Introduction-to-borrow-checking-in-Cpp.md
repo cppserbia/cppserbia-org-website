@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/295585380/"
 event_id: 295585380
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=a1nOshA3hoQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-08-30-Introduction-to-borrow-checking-in-Cpp.jpg
@@ -31,12 +32,11 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 ## 📅 Event Details
 
-|                    |                                                                     |
-| ------------------ | ------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
-| 🕕 **Date & Time** | **30\. avgust \(sreda\)\, u 18h**                                   |
-| 📍 **Location**    | **Palata Beograda (Beograđanka), poslednji sprat**                  |
-| 🏢 **Address**     | **Masarikova 5**                                                    |
-| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)            |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **30\. avgust \(sreda\)\, u 18h**                        |
+| 📍 **Location**    | **Palata Beograda (Beograđanka), poslednji sprat**       |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 Vidimo se!

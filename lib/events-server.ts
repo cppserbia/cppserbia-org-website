@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
+import { type EventSpeaker, resolveSpeakers, type SpeakerRef, withEventAvatar } from "./speakers";
 import {
   dateToPlainDate,
   dateToZonedDateTime,
@@ -35,12 +36,20 @@ export interface Event {
   youtube?: string;
   startDateTime?: Temporal.ZonedDateTime;
   endDateTime?: Temporal.ZonedDateTime;
+  /** Resolved from the `speaker` frontmatter key(s) via lib/speakers.ts. Empty for community events. */
+  speakers: EventSpeaker[];
+  /** ISO 8601 timestamp of the `created` frontmatter field — when registration opened. */
+  createdAt?: string;
 }
 
 interface EventHeader {
   title: string;
   date: Date;
-  created?: string;
+  // gray-matter parses unquoted ISO timestamps into Date objects
+  created?: Date | string;
+  speaker?: SpeakerRef | SpeakerRef[];
+  /** Per-event portrait uploaded for the banner; see `withEventAvatar`. */
+  speaker_avatar?: string;
   event_type?: string;
   status?: string;
   duration?: string;
@@ -160,6 +169,24 @@ function parseEventFile(fileName: string): Event | null {
     // Only use explicit featured flag from frontmatter
     const featured = eventHeader.featured === true;
 
+    // Resolve speaker key(s) against the registry; unknown keys warn and are dropped
+    const speakers = withEventAvatar(
+      resolveSpeakers(eventHeader.speaker, slug),
+      eventHeader.speaker_avatar
+    );
+
+    // Normalize `created` to an ISO string — it feeds offers.validFrom in the JSON-LD
+    let createdAt: string | undefined;
+    if (eventHeader.created) {
+      const created =
+        eventHeader.created instanceof Date ? eventHeader.created : new Date(eventHeader.created);
+      if (Number.isNaN(created.getTime())) {
+        console.warn(`Invalid created date in event ${slug}:`, eventHeader.created);
+      } else {
+        createdAt = created.toISOString();
+      }
+    }
+
     return {
       slug,
       title: eventHeader.title,
@@ -180,6 +207,8 @@ function parseEventFile(fileName: string): Event | null {
       youtube: eventHeader.youtube,
       startDateTime: eventStartDateTime,
       endDateTime,
+      speakers,
+      createdAt,
     };
   } catch (error) {
     console.error(`Error parsing event file ${fileName}:`, error);

@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/311510821/"
 event_id: 311510821
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: aleksandar-nikolic
 youtube: "https://www.youtube.com/watch?v=BHw6NCSsEd0"
 imageUrl: "https://images.cppserbia.org/events/2025-10-15-Baby-dont-test-me-no-more.jpg"
 ---
@@ -22,12 +23,11 @@ Although this is a beginner-to-intermediate-level lecture, the problems he will 
 
 ## 📅 Event Details
 
-|                    |                                                                                         |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | **[Aleksandar Nikolić](https://www.linkedin.com/in/aleksandar-nikoli%C4%87-61b38779/)** |
-| 🕕 **Date & Time** | **15th of October (Wednesday), 6 pm**                                                   |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                                                  |
-| 🏢 **Address**     | **Masarikova 5**                                                                        |
-| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)**                                |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **15th of October (Wednesday), 6 pm**                    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | **[C++ Serbia Twitch](https://www.twitch.tv/cppserbia)** |
 
 See you!

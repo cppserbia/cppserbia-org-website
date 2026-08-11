@@ -68,7 +68,9 @@
     "calendar": "Calendar",
     "addToCalendar": "Add to Calendar",
     "viewDetails": "View Details",
-    "watch": "Watch"
+    "watch": "Watch",
+    "speaker": "Speaker",
+    "speakers": "Speakers"
   },
   "feeds": {
     "icalFeed": "iCal Feed",

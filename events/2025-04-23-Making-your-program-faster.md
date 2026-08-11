@@ -12,6 +12,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/307420012/"
 event_id: 307420012
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: ivica-bogosavljevic
 youtube: "https://www.youtube.com/watch?v=PbRjbXBr29o"
 imageUrl: "https://images.cppserbia.org/events/2025-04-23-Making-your-program-faster.jpg"
 ---
@@ -26,11 +27,10 @@ The main focus of this part are vectorization inhibitors: parts of your C++ code
 
 ## 📅 Event Details
 
-|                    |                                                      |
-| ------------------ | ---------------------------------------------------- |
-| 👤 **Speaker**     | **[Ivica Bogosavljević](https://johnnysswlab.com/)** |
-| 🕕 **Date & Time** | **23rd of April (Wednesday), 6 pm**                  |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**               |
-| 🏢 **Address**     | **Masarikova 5**                                     |
+|                    |                                        |
+| ------------------ | -------------------------------------- |
+| 🕕 **Date & Time** | **23rd of April (Wednesday), 6 pm**    |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor** |
+| 🏢 **Address**     | **Masarikova 5**                       |
 
 See you!

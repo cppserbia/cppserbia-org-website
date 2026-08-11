@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/301214926/"
 event_id: 301214926
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=R-IxA5V9UC4"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-05-29-Brief-introduction-to-senders-and-receivers.jpg
@@ -25,12 +26,11 @@ In this talk, I'll present Sender/Receiver concepts, various examples from stdex
 
 ## 📅 Event Details
 
-|                    |                                                                     |
-| ------------------ | ------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Goran Aranđelović](https://www.linkedin.com/in/goranarandjelovic/) |
-| 🕕 **Date & Time** | **29th of May (Wednesday), 6pm**                                    |
-| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                              |
-| 🏢 **Address**     | **Masarikova 5**                                                    |
-| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet)            |
+|                    |                                                          |
+| ------------------ | -------------------------------------------------------- |
+| 🕕 **Date & Time** | **29th of May (Wednesday), 6pm**                         |
+| 📍 **Location**    | **Beograđanka, Vidikovac, 22nd floor**                   |
+| 🏢 **Address**     | **Masarikova 5**                                         |
+| 💻 **Online**      | [https://cppserbia.com/meet](https://cppserbia.com/meet) |
 
 See you!

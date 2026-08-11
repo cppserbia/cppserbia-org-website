@@ -11,6 +11,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/290935577/"
 event_id: 290935577
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker:
+  key: ivan-cukic
+  jobTitle: C++ developer and author
 youtube: "https://www.youtube.com/watch?v=twPlJbrgkc4"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-01-27-Niko-ne-ocekuje-spansku-inkviziciju.jpg

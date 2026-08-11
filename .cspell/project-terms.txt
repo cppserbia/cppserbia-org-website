@@ -4,6 +4,10 @@
 # in source (proper nouns, acronyms).
 apikey
 citty
+# Employers named in event frontmatter / tests
+KDAB
+Nutanix
+Zühlke
 hackathon
 headshot
 cmdk
@@ -13,6 +17,7 @@ geocodes
 highres
 ical
 inkscape
+johnnysswlab
 linkedom
 metaprogramming
 mozjpeg

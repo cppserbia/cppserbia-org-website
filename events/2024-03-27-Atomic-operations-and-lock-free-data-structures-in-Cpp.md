@@ -10,6 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/299915235/"
 event_id: 299915235
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
+speaker: djordje-nedic
 youtube: "https://www.youtube.com/watch?v=8IxneSIda0E"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-03-27-Atomic-operations-and-lock-free-data-structures-in-Cpp.jpg
@@ -27,7 +28,6 @@ Link za Slack workspace C++ user grupe i Google/iCal kalendar možete naći [ovd
 
 |                    |                                                          |
 | ------------------ | -------------------------------------------------------- |
-| 👤 **Speaker**     | [Đorđe Nedić](https://www.linkedin.com/in/djordje-nedic) |
 | 🕕 **Date & Time** | **27\. mart \(sreda\)\, u 18h**                          |
 | 📍 **Location**    | **Beograđanka, Vidikovac, 22. sprat**                    |
 | 🏢 **Address**     | **Masarikova 5**                                         |

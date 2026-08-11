@@ -10,6 +10,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/292193281/"
 event_id: 292193281
 venues:
   - "ICT Hub Kralja Milana, Beograd, rs"
+speaker:
+  key: slobodan-dmitrovic
+  jobTitle: Professional C++ trainer and author
 youtube: "https://www.youtube.com/watch?v=e82Q_MZkmYk"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-03-29-Ucenje-Cpp-a-Cesto-postavljana-pitanja-i-profesionalni-treninzi.jpg

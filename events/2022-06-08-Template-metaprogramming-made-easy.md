@@ -9,6 +9,7 @@ end_time: 2022-06-08T20:00:00
 event_url: https://www.meetup.com/cpp-serbia/events/285986603/
 event_id: 285986603
 venues: ["Ljubostinjska 2, Beograd, rs"]
+speaker: milos-andjelkovic
 ---
 
 # Template metaprogramming made easy
@@ -29,7 +30,6 @@ Link ka Slack workspace-u C++ user grupe možete naći [ovde](https://cpplang.co
 
 |                    |                                                                                                                                    |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| 👤 **Speaker**     | [Miloš Anđelković](https://www.linkedin.com/in/milo%C5%A1-an%C4%91elkovi%C4%87-79952118a/).                                        |
 | 🕕 **Date & Time** | **8\. jun \(sreda\)\, u 18h**                                                                                                      |
 | 📍 **Location**    | **Srednja škola "Arhimed"**                                                                                                        |
 | 🏢 **Address**     | **Ljubostinjska 2** (škola se nalazi blizu studentskog doma "Lola", najbliži javni parkinzi su "Vukov spomenik" i "Baba Višnjina") |

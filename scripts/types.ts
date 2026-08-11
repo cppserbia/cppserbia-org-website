@@ -1,3 +1,5 @@
+import type { SpeakerRef } from "../lib/speakers";
+
 export interface EventFrontmatter {
   title: string;
   date: Date;
@@ -9,4 +11,6 @@ export interface EventFrontmatter {
   event_url?: string;
   status?: "DRAFT" | "ACTIVE" | "PAST";
   event_id?: string | number;
+  /** Key(s) into the speaker registry in lib/speakers.ts, optionally with per-event affiliation */
+  speaker?: SpeakerRef | SpeakerRef[];
 }
