@@ -1,9 +1,13 @@
+// @vitest-environment node
+// (events-server imports bare `fs`, which the default jsdom environment can't resolve)
+
 import fs from "node:fs";
 import path from "node:path";
 
 import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
 
+import { getAllEventsServer } from "./events-server";
 import { getSpeaker, type Speaker, SPEAKERS } from "./speakers";
 
 const EVENTS_DIR = path.join(process.cwd(), "events");
@@ -159,4 +163,26 @@ describe("Speaker registry", () => {
   it.each(links)("$key — $url starts with http(s)://", ({ url }) => {
     expect(url).toMatch(/^https?:\/\//);
   });
+});
+
+// The extracted description renders as plain text everywhere it is consumed — event
+// cards, <meta> descriptions, OpenGraph, JSON-LD — so leftover markdown would show
+// literally ("**Beer Wednesday**" on a card). Guards the stripInlineMarkdown pass in
+// lib/events-server.ts against new markdown constructs appearing in event bodies.
+describe("Event descriptions are plain text", () => {
+  const events = getAllEventsServer();
+
+  it("extracts a description for every event", () => {
+    expect(events.length).toBeGreaterThan(0);
+  });
+
+  it.each(events.map((e) => ({ slug: e.slug, description: e.description })))(
+    "$slug — description carries no markdown markup",
+    ({ slug, description }) => {
+      expect(
+        description,
+        `${slug}: description still contains markdown markup.\n  Value: ${description}\n  Hint: extend stripInlineMarkdown in lib/strip-markdown.ts`
+      ).not.toMatch(/\*\*|__|\[[^\]]+\]\(|!\[|~~|<https?:/);
+    }
+  );
 });
