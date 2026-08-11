@@ -32,10 +32,13 @@ trifunovic
 # Common Serbian words (diacritic-less Latin; the config's diacritic
 # regex catches anything with č/ć/ž/š/đ so those don't need to be here)
 duboko
+generalizacija
 grupe
 koda
+metaprogramiranjem
 modernizaciju
 okupljanje
+podrutina
 poslednji
 Prebaci
 Propustili
@@ -45,3 +48,7 @@ srpski
 Srpski
 uranjanje
 Vidimo
+Pozivamo
+prvi
+susreli
+templejt

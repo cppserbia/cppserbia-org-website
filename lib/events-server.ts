@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import path from "path";
 
 import { type EventSpeaker, resolveSpeakers, type SpeakerRef, withEventAvatar } from "./speakers";
+import { stripInlineMarkdown } from "./strip-markdown";
 import {
   dateToPlainDate,
   dateToZonedDateTime,
@@ -145,8 +146,11 @@ function parseEventFile(fileName: string): Event | null {
       eventHeader.isOnline ||
       false;
 
-    // Extract description from content (first paragraph after title)
-    let description = eventHeader.description || "";
+    // Extract description from content (first paragraph after title). The description
+    // is consumed as plain text everywhere (cards, <meta>, OpenGraph, JSON-LD), so
+    // inline markdown comes off here — and before truncation, which could otherwise
+    // cut a link in half.
+    let description = stripInlineMarkdown(eventHeader.description || "");
     if (!description && content) {
       // Extract first meaningful paragraph from content
       const lines = content.split("\n");
@@ -159,7 +163,8 @@ function parseEventFile(fileName: string): Event | null {
           !trimmed.startsWith("-") &&
           trimmed.length > 50
         ) {
-          description = trimmed.substring(0, 200) + (trimmed.length > 200 ? "..." : "");
+          const plain = stripInlineMarkdown(trimmed);
+          description = plain.substring(0, 200) + (plain.length > 200 ? "..." : "");
           break;
         }
       }
