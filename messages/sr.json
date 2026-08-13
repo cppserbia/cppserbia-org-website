@@ -15,7 +15,9 @@
     "home": "Почетна",
     "events": "Догађаји",
     "joinUs": "Придружите се",
-    "upcomingEvents": "Предстојећи догађаји"
+    "upcomingEvents": "Предстојећи догађаји",
+    "openMenu": "Отвори мени",
+    "closeMenu": "Затвори мени"
   },
   "hero": {
     "title": "C++ Србија",

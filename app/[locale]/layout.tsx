@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Rubik } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import type React from "react";
 
 import Footer from "@/components/footer";
@@ -129,6 +129,10 @@ export default async function LocaleLayout({
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
+
+  // Opts this route tree into static rendering; without it next-intl renders
+  // every locale route dynamically.
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 

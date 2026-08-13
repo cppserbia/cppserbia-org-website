@@ -6,8 +6,13 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   transpilePackages: ["react-markdown"],
   images: {
-    domains: ["secure.meetupstatic.com", "images.cppserbia.org"],
-    unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "images.cppserbia.org" },
+      { protocol: "https", hostname: "secure.meetupstatic.com" },
+    ],
+    formats: ["image/avif", "image/webp"],
+    // wallpaper.png is 6144x3456 (~21 MP); keep transforms rare.
+    minimumCacheTTL: 2678400, // 31 days
   },
   eslint: {
     ignoreDuringBuilds: true,

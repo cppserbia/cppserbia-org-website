@@ -1,7 +1,7 @@
 import { ArrowRight, Calendar } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import FeaturedEvents from "@/components/featured-events";
 import { ICalFeedButton } from "@/components/ical-feed-button";
@@ -32,7 +32,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations();
 
   return (
@@ -41,9 +44,14 @@ export default async function Home() {
 
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden px-4 py-20">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/images/wallpaper.png')" }}
+        <Image
+          src="/images/wallpaper.png"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="z-0 object-cover object-center opacity-40"
         />
         <div className="relative z-10 mx-auto max-w-5xl text-center">
           <ScrollLogo src="/images/logo.png" alt="C++ Serbia Logo" width={162} height={180} />
@@ -54,8 +62,8 @@ export default async function Home() {
             {t("hero.subtitle")}
           </p>
           <div className="relative z-10 flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="gradient-brand-button text-white">
-              <Link href="/events" className="flex-start gap-2">
+            <Button size="lg" className="gradient-brand-button text-white" asChild>
+              <Link href="/events">
                 {t("hero.upcomingEvents")} <Calendar className="h-5 w-5" />
               </Link>
             </Button>
@@ -63,8 +71,9 @@ export default async function Home() {
               variant="outline"
               size="lg"
               className="border-purple-500 text-purple-400 hover:bg-purple-950 hover:text-purple-300"
+              asChild
             >
-              <Link href="#join" className="flex-start gap-2">
+              <Link href="#join">
                 {t("hero.joinCommunity")} <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
@@ -111,8 +120,8 @@ export default async function Home() {
           <FeaturedEvents limit={3} />
 
           <div className="mt-12 flex flex-col items-center gap-6">
-            <Button size="lg" className="gradient-brand-button text-white">
-              <Link href="/events" className="flex items-center gap-2">
+            <Button size="lg" className="gradient-brand-button text-white" asChild>
+              <Link href="/events">
                 {t("featuredEvents.viewAll")} <Calendar className="h-5 w-5" />
               </Link>
             </Button>
@@ -127,9 +136,12 @@ export default async function Home() {
 
       {/* Join Community Section */}
       <section id="join" className="section-spacing relative">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: "url('/images/wallpaper.png')" }}
+        <Image
+          src="/images/wallpaper.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="z-0 object-cover object-center opacity-10"
         />
         <div className="relative z-10 mx-auto max-w-5xl">
           <h2 className="mb-2 text-center text-3xl font-bold text-purple-300 md:text-4xl">

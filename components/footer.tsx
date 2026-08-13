@@ -61,7 +61,7 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-purple-900/40 pt-6 text-center text-sm text-gray-500">
+        <div className="mt-12 border-t border-purple-900/40 pt-6 text-center text-sm text-gray-400">
           <p>{t("copyright", { year: getCurrentYear() })}</p>
         </div>
       </div>
