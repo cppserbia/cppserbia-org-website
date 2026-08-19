@@ -2,7 +2,7 @@ import { ArrowLeft, Calendar, Clock, ExternalLink, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -105,7 +105,9 @@ export default async function EventPage({
 }: {
   params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("eventDetail");
   const event = getEventBySlug(slug);
 
@@ -123,16 +125,29 @@ export default async function EventPage({
       <section className="relative h-[60vh] max-h-[600px] min-h-[420px] w-full overflow-hidden">
         {event.imageUrl ? (
           <>
-            <Image src={event.imageUrl} alt="" fill className="object-cover" priority />
+            <Image
+              src={event.imageUrl}
+              alt=""
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="object-cover"
+            />
             <div
               className={`absolute inset-0 ${isEventPast ? "bg-gray-900/30" : "bg-purple-950/20"}`}
             />
           </>
         ) : (
           <>
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-20"
-              style={{ backgroundImage: "url('/images/wallpaper.png')" }}
+            <Image
+              src="/images/wallpaper.png"
+              alt=""
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="object-cover object-center opacity-20"
             />
             <div className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden">
               <span className="whitespace-nowrap text-[12rem] font-bold leading-none text-white/[0.04] md:text-[16rem]">

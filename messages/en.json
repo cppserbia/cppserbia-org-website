@@ -15,7 +15,9 @@
     "home": "Home",
     "events": "Events",
     "joinUs": "Join Us",
-    "upcomingEvents": "Upcoming Events"
+    "upcomingEvents": "Upcoming Events",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "title": "C++ Serbia",

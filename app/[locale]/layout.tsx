@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Rubik } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import type React from "react";
 
 import Footer from "@/components/footer";
@@ -117,6 +117,12 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// The static pages under this tree split events into upcoming/past with today's
+// date, so without revalidation that split freezes at build time — and deploys only
+// happen on merges, which can be weeks apart. Hourly ISR lets an event flip to past
+// (and its JSON-LD offer expire, see buildOffers) without waiting for the next deploy.
+export const revalidate = 3600;
+
 export default async function LocaleLayout({
   children,
   params,
@@ -129,6 +135,10 @@ export default async function LocaleLayout({
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
+
+  // Opts this route tree into static rendering; without it next-intl renders
+  // every locale route dynamically.
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 

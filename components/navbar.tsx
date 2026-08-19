@@ -46,7 +46,7 @@ export default function Navbar() {
             <LanguageSwitcher />
             <ScriptToggle />
           </div>
-          <Button size="sm" className="gradient-brand-button ml-2 text-white">
+          <Button size="sm" className="gradient-brand-button ml-2 text-white" asChild>
             <Link href="/events" className="nav-link">
               <Calendar className="h-4 w-4" /> {t("upcomingEvents")}
             </Link>
@@ -54,7 +54,13 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="p-2 text-white md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          className="p-2 text-white md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? t("closeMenu") : t("openMenu")}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-nav"
+        >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -63,7 +69,10 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="fixed inset-0 top-16 z-40 md:hidden">
           <div className="absolute inset-0 bg-[#0c0c1d]/95 backdrop-blur-lg backdrop-saturate-150" />
-          <nav className="relative z-10 flex flex-col items-center gap-6 bg-[#0c0c1d]/90 p-8 text-white backdrop-blur-lg backdrop-saturate-150">
+          <nav
+            id="mobile-nav"
+            className="relative z-10 flex flex-col items-center gap-6 bg-[#0c0c1d]/90 p-8 text-white backdrop-blur-lg backdrop-saturate-150"
+          >
             <Link
               href="/"
               className="text-lg font-medium text-white transition-colors hover:text-purple-300"
@@ -89,11 +98,12 @@ export default function Navbar() {
               <LanguageSwitcher />
               <ScriptToggle />
             </div>
-            <Button
-              className="gradient-brand-button mt-4 w-full text-white"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Link href="/events" className="flex-center w-full gap-2">
+            <Button className="gradient-brand-button mt-4 w-full text-white" asChild>
+              <Link
+                href="/events"
+                className="flex-center w-full gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Calendar className="h-5 w-5" /> {t("upcomingEvents")}
               </Link>
             </Button>

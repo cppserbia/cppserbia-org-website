@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { EventCard } from "@/components/event-card";
 import { ICalFeedButton } from "@/components/ical-feed-button";
@@ -34,7 +34,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function EventsPage() {
+export default async function EventsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("eventsPage");
   const { upcomingEvents, pastEvents } = getEventsByDate();
 
@@ -44,9 +47,14 @@ export default async function EventsPage() {
 
       {/* Header */}
       <section className="section-spacing relative w-full overflow-hidden sm:px-6 lg:px-8">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url('/images/wallpaper.png')" }}
+        <Image
+          src="/images/wallpaper.png"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="z-0 object-cover object-center opacity-20"
         />
         <div className="relative z-10 mx-auto max-w-5xl">
           <Link href="/" className="text-gray-hover mb-6 inline-flex items-center">
