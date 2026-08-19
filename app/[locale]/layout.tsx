@@ -117,6 +117,12 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// The static pages under this tree split events into upcoming/past with today's
+// date, so without revalidation that split freezes at build time — and deploys only
+// happen on merges, which can be weeks apart. Hourly ISR lets an event flip to past
+// (and its JSON-LD offer expire, see buildOffers) without waiting for the next deploy.
+export const revalidate = 3600;
+
 export default async function LocaleLayout({
   children,
   params,
