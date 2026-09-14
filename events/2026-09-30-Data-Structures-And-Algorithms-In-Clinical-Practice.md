@@ -6,8 +6,8 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT2H
 end_time: 2026-09-30T20:00:00.000Z
-event_url: <Meetup.com Event URL>
-event_id: <Meetup.com Event ID>
+event_url: "https://www.meetup.com/cpp-serbia/events/316549406/"
+event_id: "316549406"
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 speaker:
