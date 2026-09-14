@@ -1,5 +1,5 @@
 ---
-title: "Data Structures and Algorithms in Clinical Practice"
+title: Data Structures and Algorithms in Clinical Practice
 date: 2026-09-30T18:00:00.000Z
 created: 2026-09-14T12:00:00.000Z
 event_type: PHYSICAL
@@ -21,7 +21,10 @@ speaker:
     on a spectral CT post-processing application. Previously he built regulated
     radiotherapy QA software (IEC 62304) at PTW Benelux and led the physics team
     at the Gamma Knife center of the Clinical Center of Serbia.
-speaker_avatar: "https://images.cppserbia.org/speaker-avatars/2026-09-30-Data-Structures-And-Algorithms-In-Clinical-Practice.png"
+speaker_avatar: >-
+  https://images.cppserbia.org/speaker-avatars/2026-09-30-Data-Structures-And-Algorithms-In-Clinical-Practice.png
+imageUrl: >-
+  https://images.cppserbia.org/events/2026-09-30-Data-Structures-And-Algorithms-In-Clinical-Practice.jpg
 ---
 
 # Data Structures and Algorithms in Clinical Practice
