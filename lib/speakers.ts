@@ -190,6 +190,15 @@ export const SPEAKERS = {
     name: "Sergei Blinov",
     sameAs: ["https://www.linkedin.com/in/awnion/", "https://github.com/awnion"],
   },
+  "ljubomir-kurij": {
+    name: "Ljubomir Kurij",
+    sameAs: [
+      "https://www.linkedin.com/in/kurijlj/",
+      "https://github.com/kurijlj",
+      "https://www.researchgate.net/profile/Ljubomir-Kurij",
+    ],
+    image: "https://images.cppserbia.org/speakers/ljubomir-kurij.png",
+  },
 } as const satisfies Record<string, Speaker>;
 
 export type SpeakerKey = keyof typeof SPEAKERS;
