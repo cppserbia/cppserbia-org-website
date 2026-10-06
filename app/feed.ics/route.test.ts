@@ -2,24 +2,21 @@ import { describe, expect, it, vi } from "vitest";
 
 import { GET } from "./route";
 
-vi.mock("@/lib/events-server", () => ({
-  getAllEventsServer: vi.fn(() => [
-    {
-      slug: "test-event",
-      title: "Test Event",
-      description: "Test Description",
-      location: "Test Location",
-      startDateTime: {
-        year: 2023,
-        month: 1,
-        day: 1,
-        hour: 10,
-        minute: 0,
-        add: () => ({ year: 2023, month: 1, day: 1, hour: 12, minute: 0 }),
+vi.mock("@/lib/events-server", async () => {
+  const { Temporal } = await import("@js-temporal/polyfill");
+  return {
+    getAllEventsServer: vi.fn(() => [
+      {
+        slug: "test-event",
+        title: "Test Event",
+        description: "Test Description",
+        location: "Test Location",
+        // 1 Jan is CET (UTC+1); no endDateTime, so the route defaults to +2 hours
+        startDateTime: Temporal.ZonedDateTime.from("2023-01-01T10:00[Europe/Belgrade]"),
       },
-    },
-  ]),
-}));
+    ]),
+  };
+});
 
 describe("ICS Feed", () => {
   it("generates valid ICS file", async () => {
@@ -33,5 +30,7 @@ describe("ICS Feed", () => {
     expect(text).toContain("SUMMARY:Test Event");
     expect(text).toContain("DESCRIPTION:Test Description");
     expect(text).toContain("LOCATION:Test Location");
+    expect(text).toContain("DTSTART:20230101T090000Z");
+    expect(text).toContain("DTEND:20230101T110000Z");
   });
 });

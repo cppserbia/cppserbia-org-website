@@ -2,6 +2,7 @@ import { createEvents, DateArray, EventAttributes } from "ics";
 import { NextRequest } from "next/server";
 
 import { getEventBySlug } from "@/lib/events-server";
+import { toUtcDateArray } from "@/lib/temporal";
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -18,16 +19,14 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   try {
     if (event.startDateTime) {
-      const { year, month, day, hour, minute } = event.startDateTime;
-      start = [year, month, day, hour, minute];
+      start = toUtcDateArray(event.startDateTime);
 
       if (event.endDateTime) {
-        const { year, month, day, hour, minute } = event.endDateTime;
-        end = [year, month, day, hour, minute];
+        end = toUtcDateArray(event.endDateTime);
       } else {
         // Default to 2 hours if no end time
         const endDate = event.startDateTime.add({ hours: 2 });
-        end = [endDate.year, endDate.month, endDate.day, endDate.hour, endDate.minute];
+        end = toUtcDateArray(endDate);
       }
     } else {
       const { year, month, day } = event.date;
@@ -38,24 +37,28 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     console.warn(`Error creating date for event ${event.slug}:`, error);
     const now = new Date();
     start = [
-      now.getFullYear(),
-      now.getMonth() + 1,
-      now.getDate(),
-      now.getHours(),
-      now.getMinutes(),
+      now.getUTCFullYear(),
+      now.getUTCMonth() + 1,
+      now.getUTCDate(),
+      now.getUTCHours(),
+      now.getUTCMinutes(),
     ];
     end = [
-      now.getFullYear(),
-      now.getMonth() + 1,
-      now.getDate(),
-      now.getHours() + 1,
-      now.getMinutes(),
+      now.getUTCFullYear(),
+      now.getUTCMonth() + 1,
+      now.getUTCDate(),
+      now.getUTCHours() + 1,
+      now.getUTCMinutes(),
     ];
   }
 
   const icsEvent: EventAttributes = {
     start,
     end,
+    startInputType: "utc",
+    startOutputType: "utc",
+    endInputType: "utc",
+    endOutputType: "utc",
     title: event.title,
     description: event.description,
     location: event.location,

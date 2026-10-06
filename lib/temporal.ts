@@ -123,6 +123,19 @@ export function formatEventTime(
 }
 
 /**
+ * Convert a ZonedDateTime to a UTC `[year, month, day, hour, minute]` array for the `ics`
+ * library. Pair it with `startInputType: "utc"` / `endInputType: "utc"`: by default `ics`
+ * reads date arrays in the server's local timezone, which is UTC on Vercel, so Belgrade
+ * wall-clock components would be shifted by 1–2 hours.
+ */
+export function toUtcDateArray(
+  dateTime: Temporal.ZonedDateTime
+): [number, number, number, number, number] {
+  const utc = dateTime.withTimeZone("UTC");
+  return [utc.year, utc.month, utc.day, utc.hour, utc.minute];
+}
+
+/**
  * Sort events by date using Temporal
  */
 export function sortEventsByDate<T extends { date: Temporal.PlainDate }>(
