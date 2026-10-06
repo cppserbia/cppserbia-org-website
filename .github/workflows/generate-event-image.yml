@@ -75,6 +75,14 @@ jobs:
             exit 0
           fi
 
+          # A hand-made banner (e.g. a partner's poster for a collab event) was uploaded to
+          # R2 under the same keys; regenerating would overwrite it on the next push.
+          if grep -Eq '^custom_banner:[[:space:]]*true[[:space:]]*$' "$EVENT_FILE"; then
+            echo "$EVENT_FILE sets custom_banner: true; leaving its banners alone."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           echo "Found event file: $EVENT_FILE"
           echo "found=true" >> "$GITHUB_OUTPUT"
           echo "file=$EVENT_FILE" >> "$GITHUB_OUTPUT"

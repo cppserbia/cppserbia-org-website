@@ -11,6 +11,8 @@ registrationLink: >-
 venues:
   - "Microsoft Dev Center Serbia, Beograd, rs"
 banner_author: "@ Microsoft Dev Center Serbia"
+# Banner is the Bit About IT poster, re-framed and uploaded by hand.
+custom_banner: true
 speaker:
   - key: ivan-cukic
     worksFor: KDAB

@@ -95,6 +95,10 @@ By default every banner shows the fixed `avatar.png` placeholder from the templa
 
 The easiest way to populate `speaker_avatar` is the `/banner-avatar` slash command — drag a photo into a PR comment, type `/banner-avatar`, and the bot crops it to a 750×750 PNG, uploads it to R2 at `speaker-avatars/{slug}.png`, and commits the URL back. See `scripts/upload-speaker-avatar.ts` and `.github/workflows/banner-avatar.yml`.
 
+### Custom banners
+
+Some events ship with a banner made elsewhere, e.g. a partner's poster for a joint event. Upload the three formats to R2 under the usual keys (`events/{slug}.jpg`, `events/{slug}-3-4.jpg`, `events/{slug}-9-16.jpg`, `image/jpeg`), point `imageUrl` at the horizontal one, and set `custom_banner: true` in the frontmatter. The workflow then skips the event, so a later push to the PR does not regenerate the banners over the custom ones.
+
 ### Title line splitting
 
 The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result. If you want a specific break, simplest workaround is shortening the title.
