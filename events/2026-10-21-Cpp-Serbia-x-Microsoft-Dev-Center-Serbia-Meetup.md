@@ -20,6 +20,8 @@ speaker:
   - key: maksim-vlasov
     worksFor: Microsoft
     jobTitle: Software Engineer II
+imageUrl: >-
+  https://images.cppserbia.org/events/2026-10-21-Cpp-Serbia-x-Microsoft-Dev-Center-Serbia-Meetup.jpg
 ---
 
 # C++ Serbia && Microsoft Dev Center Serbia: Bit About IT Meetup
