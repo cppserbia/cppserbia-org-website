@@ -199,6 +199,14 @@ export const SPEAKERS = {
     ],
     image: "https://images.cppserbia.org/speakers/ljubomir-kurij.png",
   },
+  "bojan-janjic": {
+    name: "Bojan Janjić",
+    sameAs: ["https://www.linkedin.com/in/bojan-janjic-baab364/"],
+  },
+  "maksim-vlasov": {
+    name: "Maksim Vlasov",
+    sameAs: ["https://www.linkedin.com/in/max-vlasov-00abb41ab/"],
+  },
 } as const satisfies Record<string, Speaker>;
 
 export type SpeakerKey = keyof typeof SPEAKERS;
