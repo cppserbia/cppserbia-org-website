@@ -372,6 +372,18 @@ describe("buildAnnouncementPayload", () => {
     expect(payload.image_url).toBe("");
   });
 
+  it("prefers registrationLink over event_url for registration_url", () => {
+    const frontmatter = {
+      title: "Partner Event",
+      date: new Date("2025-07-20T18:00:00Z"),
+      event_url: "https://meetup.com/event/123",
+      registrationLink: "https://forms.example.com/register",
+    };
+
+    const payload = buildAnnouncementPayload(frontmatter, "slug", "en", "sr");
+    expect(payload.registration_url).toBe("https://forms.example.com/register");
+  });
+
   it("handles non-zero milliseconds in date correctly", () => {
     const frontmatter = {
       title: "Test",
