@@ -9,6 +9,7 @@ export interface EventFrontmatter {
   event_type?: "PHYSICAL" | "ONLINE" | "HYBRID";
   venues?: string[];
   event_url?: string;
+  registrationLink?: string;
   status?: "DRAFT" | "ACTIVE" | "PAST";
   event_id?: string | number;
   /** Key(s) into the speaker registry in lib/speakers.ts, optionally with per-event affiliation */

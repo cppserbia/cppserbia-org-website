@@ -17,7 +17,7 @@ export function buildAnnouncementMetadata(frontmatter: EventFrontmatter, slug: s
     event_date: eventDate,
     event_type: frontmatter.event_type || "",
     venue: frontmatter.venues?.[0] || "",
-    registration_url: frontmatter.event_url || "",
+    registration_url: frontmatter.registrationLink || frontmatter.event_url || "",
     image_url: frontmatter.imageUrl || "",
   };
 }
