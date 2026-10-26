@@ -20,9 +20,9 @@ speaker_avatar: >-
 
 Hi everyone!
 
-This Wednesday we are inviting you to a **casual beer meetup** at **Dogma Brewery & Tap Room**: no talk, no slides, just C++ folks in a warm taproom with a week's worth of votes to talk about.
+Join us this Wednesday for a **casual beer meetup** at **Dogma Brewery & Tap Room**. There is no talk this time, and by the second round we will all be experts on ISO balloting rules.
 
-It has been a week of ballots. On Sunday, Serbia went to the polls in record numbers. A few days earlier, the ISO ballot on the C++26 draft closed and came back **Disapproved**. So this Wednesday we are doing what every committee does after a vote: meeting over a drink to argue about it. 🍺
+It has been a week of ballots. On Sunday, Serbia went to the polls in record numbers. A few days earlier, the ISO ballot on the C++26 draft closed and came back **Disapproved**. So we are doing what every committee does after a vote: meeting over a drink to argue about it. 🍺
 
 ## 🗳️ On the Table
 
