@@ -5,6 +5,8 @@ export interface EventFrontmatter {
   date: Date;
   youtube?: string;
   imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   description?: string;
   event_type?: "PHYSICAL" | "ONLINE" | "HYBRID";
   venues?: string[];

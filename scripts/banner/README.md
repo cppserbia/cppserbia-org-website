@@ -34,6 +34,13 @@ Required to render SVG → PNG and to measure text widths during font-fitting.
 
 If installed somewhere unusual, set `INKSCAPE_BIN` in the environment.
 
+### IBM Plex Sans
+
+Every text field in the templates is set in IBM Plex Sans. Without it Inkscape silently falls back to DejaVu Sans, both when measuring and when rendering, so the banners come out in the wrong font. CI installs `fonts-ibm-plex` and fails the run if the font is missing.
+
+- macOS: `brew install --cask font-ibm-plex-sans`
+- Linux: `sudo apt-get install fonts-ibm-plex`
+
 ### R2 credentials (only needed for upload)
 
 Add to `.env` (the file is gitignored):
@@ -85,9 +92,16 @@ The CI workflow runs the same two scripts in sequence on every PR push that touc
 
 The CLI looks for the speaker in this order:
 
-1. `frontmatter.banner_author` (if set in the event file's frontmatter; useful for community events without a single speaker, e.g. `banner_author: "@ Docker Brewery"`).
-2. The Event Details table in the body, via `extractSpeakerName` from `scripts/social/extract.ts`.
-3. Fallback: `"C++ Serbia"`.
+1. `frontmatter.banner_author`, if set in the event file's frontmatter.
+2. The `speaker` registry key(s), resolved via `lib/speakers.ts`. A panel is joined with `&`.
+3. The Event Details table in the body, via `extractSpeakerName` from `scripts/social/extract.ts`.
+4. None: community events without a speaker leave the author line blank, so the title stands on its own. The templates already print "C++ Serbia" under the date, so there is no need to repeat it.
+
+### Venue on the date line
+
+For community events held somewhere other than the usual venues, set `banner_venue:` to put the place next to the date: `banner_venue: Dogma Brewery` renders `Wednesday, 28. 10. 2026. @ Dogma Brewery`. Prefer this over writing the venue into `banner_author`. In the author slot it reads like a speaker or a sponsor.
+
+The date line keeps the template's font size unless it would be wider than the title column (the `text_field_1_hint` box), which can happen with a long venue in the narrow vertical formats. In that case it is shrunk to fit.
 
 ### Speaker avatar
 
@@ -97,11 +111,21 @@ The easiest way to populate `speaker_avatar` is the `/banner-avatar` slash comma
 
 ### Custom banners
 
-Some events ship with a banner made elsewhere, e.g. a partner's poster for a joint event. Upload the three formats to R2 under the usual keys (`events/{slug}.jpg`, `events/{slug}-3-4.jpg`, `events/{slug}-9-16.jpg`, `image/jpeg`), point `imageUrl` at the horizontal one, and set `custom_banner: true` in the frontmatter. The workflow then skips the event, so a later push to the PR does not regenerate the banners over the custom ones.
+Some events ship with a banner made elsewhere, e.g. a partner's poster for a joint event. Upload the three formats to R2 under the usual keys (`events/{slug}.jpg`, `events/{slug}-3-4.jpg`, `events/{slug}-9-16.jpg`, `image/jpeg`), point `imageUrl` at the horizontal one, set `imageWidth`/`imageHeight` to its real size in pixels, and set `custom_banner: true` in the frontmatter. The workflow then skips the event, so a later push to the PR does not regenerate the banners over the custom ones.
 
 ### Title line splitting
 
-The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result. If you want a specific break, simplest workaround is shortening the title.
+The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result.
+
+To set the banner's lines yourself without changing the page title, use `banner_title`. A list gives explicit lines. Each one still wraps if it is longer than the format's budget, so a 25-character line stays whole on the horizontal banner and splits in two on the vertical ones:
+
+```yaml
+banner_title:
+  - C++ Serbia Beer Wednesday
+  - The Votes Are In
+```
+
+A plain string is split like the title.
 
 ---
 

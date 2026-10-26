@@ -13,6 +13,8 @@ venues:
 speaker: goran-arandjelovic
 imageUrl: >-
   https://images.cppserbia.org/events/2018-06-07-Policy-based-design-in-Cpp17.jpg
+imageWidth: 960
+imageHeight: 540
 ---
 
 # Policy-based design in C++17

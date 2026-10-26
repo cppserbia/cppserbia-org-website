@@ -75,6 +75,8 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
 - Two RSS feeds exist: `/events/feed.xml` (hand-rolled XML, 20 items, 24h CDN cache) and `/feed.xml` (`feed` library, all items). Only the former is advertised in `<head>`.
 - Event `status` field: code only checks `!== 'DRAFT'`. Any non-DRAFT value (ACTIVE, PAST, etc.) makes the event visible.
 - `getFeaturedEvents()` returns the N most recent events, not events with `featured: true`.
+- The OG image route (`app/[locale]/events/[slug]/opengraph-image.tsx`) reads Rubik Bold from `assets/fonts/` (OFL, license alongside) and the logo from `public/images/`. File tracing doesn't follow its `process.cwd()` paths, so both are listed in `outputFileTracingIncludes` in `next.config.mjs`; add any new file it reads there too, or it will be missing on Vercel. Don't go back to fetching the font from fonts.gstatic.com: those versioned URLs get retired, which broke every render.
+- `htmlLimitedBots` in `next.config.mjs` is Next's default crawler list plus `TelegramBot`, so Telegram's link-preview scraper gets metadata in `<head>`. Setting the option _replaces_ the default list, so keep extending `HTML_LIMITED_BOT_UA_RE_STRING` rather than writing a list from scratch.
 
 ## Adding Events
 
@@ -84,6 +86,12 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
 4. Body convention: `# Title`, description, `## Event Details` table. **No speaker in the body** —
    name, bio, photo and links all render from the `speaker:` frontmatter (see below)
 5. After the event: add `youtube:` frontmatter field for the recording link
+
+`imageUrl` always comes with `imageWidth`/`imageHeight`, the image's real size in pixels. The
+event page declares them as `og:image:width`/`og:image:height`, which Facebook uses to lay out a
+first share. Banners vary: the pipeline makes 1920×1080, and the Meetup-era ones come in a dozen
+sizes. The banner workflow and `update-event-images.ts` write them; for a hand-set `imageUrl`,
+measure the image. `lib/event-validation.test.ts` fails if they are missing.
 
 Two frontmatter fields feed the Event JSON-LD and must not be dropped:
 
@@ -175,7 +183,7 @@ Automatically generates the three banner formats (horizontal `1920×1080`, verti
 
 **Prerequisites:** Inkscape installed on the runner (CI does `apt-get install inkscape`); R2 secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`. Full setup, troubleshooting, template-refresh procedure: [`scripts/banner/README.md`](scripts/banner/README.md).
 
-**Speaker for the banner**: defaults to `extractSpeakerName(body)` from the Event Details table, falling back to `"C++ Serbia"`. Override with `banner_author:` in frontmatter for community/social events that don't have a single speaker (e.g. `banner_author: "@ Docker Brewery"`).
+**Speaker for the banner**: `banner_author:` if set, else the `speaker:` registry name(s), else `extractSpeakerName(body)` from the Event Details table. Community events with none of these leave the author line blank. For a social event at a pub or brewery, set `banner_venue:` (e.g. `banner_venue: Dogma Brewery`) to show `… 2026. @ Dogma Brewery` on the date line. Don't put the venue in `banner_author`: in that slot it reads like a sponsor. `banner_title:` (a list of lines) sets the banner's title lines without changing the page title. The templates are set in IBM Plex Sans, so CI installs `fonts-ibm-plex`.
 
 **Speaker avatar**: defaults to the fixed `avatar.png` placeholder in the templates bundle. To set a per-event speaker portrait, drop a `/banner-avatar` comment on the PR with an image attached — `.github/workflows/banner-avatar.yml` invokes `scripts/upload-speaker-avatar.ts`, which crops to 750×750 PNG, uploads to R2 at `speaker-avatars/{slug}.png`, and commits `speaker_avatar:` into the event frontmatter. The banner generator picks up `speaker_avatar` and rewrites the SVG's `xlink:href="avatar.png"` to point at the override before invoking Inkscape.
 
@@ -200,7 +208,7 @@ PR adds new event file → team comments `/social:announcement` → AI generates
 **Reusable workflows:**
 
 - `_generate-social-draft.yml` — Accepts only `type_flag` (`"recording"` or `"announcement"`). Derives marker names, section titles, and find logic internally from the type. Single script invocation outputs full payload JSON. PR description shows the payload in a fenced code block for human editing.
-- `_publish-social.yml` — Accepts `type` (`"recording"` or `"announcement"`), `pr_number`, and `dry_run`. Extracts payload JSON from PR body between markers, feeds it to `publish-payload.ts` which POSTs to Make.com.
+- `_publish-social.yml` — Accepts `type` (`"recording"` or `"announcement"`), `pr_number`, and `dry_run`. Extracts payload JSON from PR body between markers, then runs `wait-for-live-page.ts` before `publish-payload.ts` POSTs to Make.com. The job starts the moment the PR merges, before Vercel has deployed. Facebook and Telegram scrape the event page for their link preview, so the wait step polls the live page until its `og:title` and `og:image` are this event's (up to 15 minutes). Without it, a new event's URL serves the generic site preview, which the platforms then cache.
 
 **Shared script:** `scripts/generate-social-draft.ts`
 

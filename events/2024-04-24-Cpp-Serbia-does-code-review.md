@@ -12,6 +12,8 @@ venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 youtube: "https://www.youtube.com/watch?v=rvt8KxMvLdY"
 imageUrl: "https://images.cppserbia.org/events/2024-04-24-Cpp-Serbia-does-code-review.jpg"
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # C++ Serbia does code review

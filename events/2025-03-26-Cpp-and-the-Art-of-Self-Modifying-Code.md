@@ -14,6 +14,8 @@ speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=cweTfX9Leo4"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-03-26-Cpp-and-the-Art-of-Self-Modifying-Code.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # C++ and the Art of Self-Modifying Code (Don't Try This at Home!)

@@ -14,6 +14,8 @@ speaker: nikola-jelic
 youtube: "https://www.youtube.com/watch?v=ImucbIYTnVA"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-11-05-Physical-Units-in-modern-Cpp-part-II.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Physical Units in modern C++, part II

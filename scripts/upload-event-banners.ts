@@ -3,6 +3,7 @@ import { defineCommand, runMain } from "citty";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import sharp from "sharp";
 import { fileURLToPath } from "url";
 
 import { loadEnvFile } from "./load-env";
@@ -154,24 +155,33 @@ export async function runUpload(opts: RunUploadOptions): Promise<{
     console.error("Upload complete.");
   }
 
-  // Patch frontmatter: imageUrl (horizontal only — others stay at predictable URLs).
+  // Patch frontmatter: imageUrl (horizontal only — others stay at predictable URLs) and its
+  // real size, which the event page declares as og:image:width/height.
   const horizontal = variants[0];
+  const { width, height } = await sharp(horizontal.jpgPath).metadata();
   const raw = fs.readFileSync(eventFile, "utf8");
   const parsed = matter(raw);
-  const previousImageUrl = (parsed.data as EventFrontmatter).imageUrl;
+  const previous = parsed.data as EventFrontmatter;
+  const wanted = `${horizontal.publicUrl} (${width}×${height})`;
   let frontmatterChanged = false;
 
-  if (previousImageUrl !== horizontal.publicUrl) {
+  if (
+    previous.imageUrl !== horizontal.publicUrl ||
+    previous.imageWidth !== width ||
+    previous.imageHeight !== height
+  ) {
     parsed.data.imageUrl = horizontal.publicUrl;
+    parsed.data.imageWidth = width;
+    parsed.data.imageHeight = height;
     if (!dryRun) {
       fs.writeFileSync(eventFile, matter.stringify(parsed.content, parsed.data));
-      console.error(`[updated] ${eventFile} imageUrl → ${horizontal.publicUrl}`);
+      console.error(`[updated] ${eventFile} imageUrl → ${wanted}`);
     } else {
-      console.error(`[dry-run] would set imageUrl → ${horizontal.publicUrl}`);
+      console.error(`[dry-run] would set imageUrl → ${wanted}`);
     }
     frontmatterChanged = true;
   } else {
-    console.error(`imageUrl already up to date: ${horizontal.publicUrl}`);
+    console.error(`imageUrl already up to date: ${wanted}`);
   }
 
   return {

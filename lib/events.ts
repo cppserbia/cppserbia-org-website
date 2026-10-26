@@ -14,6 +14,8 @@ export interface Event {
   year: string;
   isOnline?: boolean;
   imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   content?: string;
   featured?: boolean;
   youtube?: string;

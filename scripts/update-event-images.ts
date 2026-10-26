@@ -1,12 +1,13 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import path from "path";
+import sharp from "sharp";
 
 const EVENTS_DIR = path.join(process.cwd(), "events");
 const IMAGES_DIR = path.join(process.cwd(), "images", "events");
 const IMAGE_BASE_URL = "https://images.cppserbia.org/events";
 
-function main() {
+async function main() {
   if (!fs.existsSync(IMAGES_DIR)) {
     console.error(`Images directory not found: ${IMAGES_DIR}`);
     console.error("Run the download script first: npx tsx scripts/download-meetup-images.ts");
@@ -48,6 +49,10 @@ function main() {
     }
 
     data.imageUrl = `${IMAGE_BASE_URL}/${imageFile}`;
+    // The event page declares this as og:image:width/height.
+    const { width, height } = await sharp(path.join(IMAGES_DIR, imageFile)).metadata();
+    data.imageWidth = width;
+    data.imageHeight = height;
 
     const updatedContent = matter.stringify(content, data);
     fs.writeFileSync(filePath, updatedContent);
@@ -59,4 +64,7 @@ function main() {
   console.log(`\nDone: ${updated} updated, ${skipped} already had imageUrl.`);
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

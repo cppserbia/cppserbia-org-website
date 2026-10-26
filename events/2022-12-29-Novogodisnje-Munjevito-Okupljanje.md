@@ -13,6 +13,8 @@ venues:
 youtube: "https://www.youtube.com/watch?v=FldZhhpaaX8"
 imageUrl: >-
   https://images.cppserbia.org/events/2022-12-29-Novogodisnje-Munjevito-Okupljanje.jpg
+imageWidth: 1800
+imageHeight: 1013
 ---
 
 # Novogodišnje Munjevito Okupljanje

@@ -35,3 +35,5 @@ youtu
 intraword
 DTSTART
 DTEND
+facebookexternalhit
+gstatic

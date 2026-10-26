@@ -14,6 +14,8 @@ speaker: nebojsa-sabovic
 youtube: "https://www.youtube.com/watch?v=T1H4mDUCmNs"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-06-13-Cpp-and-Rust-When-to-choose-which.jpg
+imageWidth: 1600
+imageHeight: 900
 ---
 
 # C++ and Rust — When to choose which?

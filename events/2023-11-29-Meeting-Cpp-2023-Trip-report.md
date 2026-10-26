@@ -14,6 +14,8 @@ speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=SjZvT0wUrTY"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-11-29-Meeting-Cpp-2023-Trip-report.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # Meeting C++ 2023 — Trip report

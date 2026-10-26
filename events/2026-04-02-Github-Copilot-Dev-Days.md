@@ -19,6 +19,8 @@ speaker:
     worksFor: Inceptive
 imageUrl: >-
   https://images.cppserbia.org/events/2026-04-02-Github-Copilot-Dev-Days.jpg
+imageWidth: 960
+imageHeight: 540
 ---
 
 # GitHub Copilot Dev Days | Belgrade

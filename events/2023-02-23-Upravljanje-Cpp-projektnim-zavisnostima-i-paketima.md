@@ -14,6 +14,8 @@ speaker: nebojsa-koturovic
 youtube: "https://www.youtube.com/watch?v=Y2Aq8pMsLz4&t=850s"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-02-23-Upravljanje-Cpp-projektnim-zavisnostima-i-paketima.jpg
+imageWidth: 1600
+imageHeight: 900
 ---
 
 # Upravljanje C++ projektnim zavisnostima i paketima

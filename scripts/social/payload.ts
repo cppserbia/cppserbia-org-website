@@ -3,6 +3,16 @@ import type { EventFrontmatter } from "./types";
 
 const SITE_URL = "https://cppserbia.org";
 
+/** The event page Make.com links to (it builds the same URL from `event_slug`). */
+export function eventPageUrl(slug: string): string {
+  return `${SITE_URL}/events/${slug}`;
+}
+
+/** Parse a payload as stored in the PR body: JSON, possibly inside a ``` code fence. */
+export function parsePayloadText(raw: string): Record<string, unknown> {
+  return JSON.parse(raw.replace(/```\w*\n?/g, "").trim());
+}
+
 export function buildAnnouncementMetadata(frontmatter: EventFrontmatter, slug: string) {
   const eventDate =
     frontmatter.date instanceof Date
@@ -13,7 +23,7 @@ export function buildAnnouncementMetadata(frontmatter: EventFrontmatter, slug: s
     type: "announcement",
     event_title: frontmatter.title,
     event_slug: slug,
-    event_url: `${SITE_URL}/events/${slug}`,
+    event_url: eventPageUrl(slug),
     event_date: eventDate,
     event_type: frontmatter.event_type || "",
     venue: frontmatter.venues?.[0] || "",

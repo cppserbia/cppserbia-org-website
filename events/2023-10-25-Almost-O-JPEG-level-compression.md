@@ -14,6 +14,8 @@ speaker: nikita-kashkin
 youtube: "https://www.youtube.com/watch?v=ffn-oLWQtTE"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-10-25-Almost-O-JPEG-level-compression.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # Almost O(n) JPEG level compression

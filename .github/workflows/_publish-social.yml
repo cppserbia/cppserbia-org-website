@@ -79,6 +79,14 @@ jobs:
           echo "found=true" >> "$GITHUB_OUTPUT"
           echo "$PAYLOAD" > /tmp/stored-payload.txt
 
+      # Facebook and Telegram scrape the event page for the link preview. This job starts the
+      # moment the PR merges, usually before Vercel has deployed it, so posting right away
+      # caches the generic site preview. Wait until the page serves this event's metadata.
+      - name: Wait for the event page to go live
+        if: steps.extract.outputs.found == 'true'
+        timeout-minutes: 20
+        run: npx tsx scripts/social/wait-for-live-page.ts /tmp/stored-payload.txt
+
       - name: Publish to Make.com
         if: steps.extract.outputs.found == 'true'
         env:

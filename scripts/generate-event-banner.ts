@@ -22,6 +22,14 @@ export function formatBannerDate(date: Date): string {
   return `${day}, ${d}. ${m}. ${y}.`;
 }
 
+// "Wednesday, 28. 10. 2026. @ Dogma Brewery" — `banner_venue` puts the venue next to
+// the date, where it reads as event info rather than as a speaker or sponsor.
+export function formatBannerDateLine(date: Date, venue?: string): string {
+  const dateText = formatBannerDate(date);
+  const trimmed = typeof venue === "string" ? venue.trim() : "";
+  return trimmed === "" ? dateText : `${dateText} @ ${trimmed}`;
+}
+
 interface SplitOptions {
   targetChars: number;
   maxLines: number;
@@ -44,14 +52,36 @@ export function splitTitleLines(title: string, opts: SplitOptions): string[] {
     }
   }
   if (current) lines.push(current);
+  return collapseOverflow(lines, opts.maxLines);
+}
 
-  // Collapse overflow into the last line — binary-search font fitting will
-  // shrink whatever we end up with.
-  while (lines.length > opts.maxLines) {
+// Collapse overflow into the last line — binary-search font fitting will
+// shrink whatever we end up with.
+function collapseOverflow(lines: string[], maxLines: number): string[] {
+  while (lines.length > maxLines) {
     const tail = lines.pop()!;
     lines[lines.length - 1] += " " + tail;
   }
   return lines;
+}
+
+// `banner_title` changes the banner's title lines without touching the page title. A list
+// sets explicit lines, each still wrapped if it is too long for the format; a string is
+// split like the title.
+export function resolveBannerTitleLines(
+  frontmatter: { title: string; banner_title?: unknown },
+  opts: SplitOptions
+): string[] {
+  const override = frontmatter.banner_title;
+  if (Array.isArray(override)) {
+    const lines = override.flatMap((line) =>
+      splitTitleLines(String(line), { ...opts, maxLines: Infinity })
+    );
+    if (lines.length > 0) return collapseOverflow(lines, opts.maxLines);
+  } else if (typeof override === "string" && override.trim() !== "") {
+    return splitTitleLines(override, opts);
+  }
+  return splitTitleLines(frontmatter.title, opts);
 }
 
 const FORMAT_TARGETS: Record<BannerFormat, SplitOptions> = {
@@ -66,10 +96,12 @@ const FORMAT_BASENAME_SUFFIX: Record<BannerFormat, string> = {
   vertical_9_16: "-9-16",
 };
 
+// An empty result means "no speaker": the banner leaves the author line blank rather
+// than repeating "C++ Serbia", which the templates already print under the date.
 export function resolveSpeakerForBanner(
   frontmatter: EventFrontmatter & { banner_author?: string },
   content: string,
-  fallback = "C++ Serbia"
+  fallback = ""
 ): string {
   if (typeof frontmatter.banner_author === "string" && frontmatter.banner_author.trim() !== "") {
     return frontmatter.banner_author.trim();
@@ -102,6 +134,8 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   const { data, content } = matter(raw);
   const frontmatter = data as EventFrontmatter & {
     banner_author?: string;
+    banner_title?: string | string[];
+    banner_venue?: string;
     speaker_avatar?: string;
   };
 
@@ -111,7 +145,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   }
 
   const speaker = resolveSpeakerForBanner(frontmatter, content);
-  const dateText = formatBannerDate(frontmatter.date);
+  const dateText = formatBannerDateLine(frontmatter.date, frontmatter.banner_venue);
   const slug = path.basename(eventFile, ".md");
   const speakerAvatarUrl =
     typeof frontmatter.speaker_avatar === "string" && frontmatter.speaker_avatar.trim() !== ""
@@ -119,7 +153,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
       : undefined;
 
   console.error(`Generating banners for: ${frontmatter.title}`);
-  console.error(`  speaker: ${speaker}`);
+  console.error(`  speaker: ${speaker || "(none, author line left blank)"}`);
   console.error(`  date:    ${dateText}`);
   console.error(`  outDir:  ${opts.outDir}`);
   if (speakerAvatarUrl) {
@@ -129,7 +163,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   const generated: string[] = [];
   for (const format of formats) {
     const target = FORMAT_TARGETS[format];
-    const titleLines = splitTitleLines(frontmatter.title, target);
+    const titleLines = resolveBannerTitleLines(frontmatter, target);
     const outBaseName = slug + FORMAT_BASENAME_SUFFIX[format];
     console.error(`\n[${format}] outBase=${outBaseName} lines=${JSON.stringify(titleLines)}`);
     const { jpgPath } = await generateBanner({

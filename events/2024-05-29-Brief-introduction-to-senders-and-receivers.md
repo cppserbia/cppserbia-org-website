@@ -14,6 +14,8 @@ speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=R-IxA5V9UC4"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-05-29-Brief-introduction-to-senders-and-receivers.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Brief introduction to senders and receivers (P2300)

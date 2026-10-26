@@ -14,6 +14,8 @@ speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=23BvNd4sd4Y"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-10-02-Writing-another-command-line-arguments-parser.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Writing another command line arguments parser
