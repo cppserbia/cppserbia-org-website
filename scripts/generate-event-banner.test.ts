@@ -4,9 +4,50 @@ import { describe, expect, it } from "vitest";
 import {
   formatBannerDate,
   formatBannerDateLine,
+  resolveBannerTitleLines,
   resolveSpeakerForBanner,
   splitTitleLines,
 } from "./generate-event-banner";
+
+describe("resolveBannerTitleLines", () => {
+  const horizontal = { targetChars: 28, maxLines: 3 };
+  const vertical = { targetChars: 18, maxLines: 5 };
+  const title = "C++ Serbia: The Votes Are In";
+  const lines = ["C++ Serbia Beer Wednesday", "The Votes Are In"];
+
+  it("splits the page title when there is no banner_title", () => {
+    expect(resolveBannerTitleLines({ title }, horizontal)).toEqual([title]);
+  });
+
+  it("uses a banner_title list as explicit lines", () => {
+    expect(resolveBannerTitleLines({ title, banner_title: lines }, horizontal)).toEqual(lines);
+  });
+
+  it("still wraps an explicit line that is too long for the format", () => {
+    expect(resolveBannerTitleLines({ title, banner_title: lines }, vertical)).toEqual([
+      "C++ Serbia Beer",
+      "Wednesday",
+      "The Votes Are In",
+    ]);
+  });
+
+  it("collapses explicit lines beyond maxLines into the last one", () => {
+    expect(
+      resolveBannerTitleLines({ title, banner_title: ["a", "b", "c", "d"] }, horizontal)
+    ).toEqual(["a", "b", "c d"]);
+  });
+
+  it("splits a banner_title string like a title", () => {
+    expect(
+      resolveBannerTitleLines({ title, banner_title: "C++ Serbia Beer Wednesday" }, vertical)
+    ).toEqual(["C++ Serbia Beer", "Wednesday"]);
+  });
+
+  it("falls back to the title for an empty or blank banner_title", () => {
+    expect(resolveBannerTitleLines({ title, banner_title: [] }, horizontal)).toEqual([title]);
+    expect(resolveBannerTitleLines({ title, banner_title: "  " }, horizontal)).toEqual([title]);
+  });
+});
 
 describe("formatBannerDateLine", () => {
   const date = new Date("2026-10-28T18:00:00.000Z");

@@ -115,7 +115,17 @@ Some events ship with a banner made elsewhere, e.g. a partner's poster for a joi
 
 ### Title line splitting
 
-The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result. If you want a specific break, simplest workaround is shortening the title.
+The frontmatter `title` is a single string. The CLI greedy-packs words into lines using a target characters-per-line budget that depends on format (28 horizontal, 18 vertical), capped at the format's max line count. Overflow words collapse into the last line and the binary-search font fitter shrinks the result.
+
+To set the banner's lines yourself without changing the page title, use `banner_title`. A list gives explicit lines. Each one still wraps if it is longer than the format's budget, so a 25-character line stays whole on the horizontal banner and splits in two on the vertical ones:
+
+```yaml
+banner_title:
+  - C++ Serbia Beer Wednesday
+  - The Votes Are In
+```
+
+A plain string is split like the title.
 
 ---
 

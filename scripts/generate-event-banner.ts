@@ -52,14 +52,36 @@ export function splitTitleLines(title: string, opts: SplitOptions): string[] {
     }
   }
   if (current) lines.push(current);
+  return collapseOverflow(lines, opts.maxLines);
+}
 
-  // Collapse overflow into the last line — binary-search font fitting will
-  // shrink whatever we end up with.
-  while (lines.length > opts.maxLines) {
+// Collapse overflow into the last line — binary-search font fitting will
+// shrink whatever we end up with.
+function collapseOverflow(lines: string[], maxLines: number): string[] {
+  while (lines.length > maxLines) {
     const tail = lines.pop()!;
     lines[lines.length - 1] += " " + tail;
   }
   return lines;
+}
+
+// `banner_title` changes the banner's title lines without touching the page title. A list
+// sets explicit lines, each still wrapped if it is too long for the format; a string is
+// split like the title.
+export function resolveBannerTitleLines(
+  frontmatter: { title: string; banner_title?: unknown },
+  opts: SplitOptions
+): string[] {
+  const override = frontmatter.banner_title;
+  if (Array.isArray(override)) {
+    const lines = override.flatMap((line) =>
+      splitTitleLines(String(line), { ...opts, maxLines: Infinity })
+    );
+    if (lines.length > 0) return collapseOverflow(lines, opts.maxLines);
+  } else if (typeof override === "string" && override.trim() !== "") {
+    return splitTitleLines(override, opts);
+  }
+  return splitTitleLines(frontmatter.title, opts);
 }
 
 const FORMAT_TARGETS: Record<BannerFormat, SplitOptions> = {
@@ -112,6 +134,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   const { data, content } = matter(raw);
   const frontmatter = data as EventFrontmatter & {
     banner_author?: string;
+    banner_title?: string | string[];
     banner_venue?: string;
     speaker_avatar?: string;
   };
@@ -140,7 +163,7 @@ export async function runGenerate(opts: RunGenerateOptions): Promise<string[]> {
   const generated: string[] = [];
   for (const format of formats) {
     const target = FORMAT_TARGETS[format];
-    const titleLines = splitTitleLines(frontmatter.title, target);
+    const titleLines = resolveBannerTitleLines(frontmatter, target);
     const outBaseName = slug + FORMAT_BASENAME_SUFFIX[format];
     console.error(`\n[${format}] outBase=${outBaseName} lines=${JSON.stringify(titleLines)}`);
     const { jpgPath } = await generateBanner({
