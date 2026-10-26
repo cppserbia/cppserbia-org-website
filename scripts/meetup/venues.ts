@@ -13,6 +13,9 @@ export const VENUE_IDS: Record<string, number> = {
   "Inceptive, Beograd, rs": 28277780,
   'Palata "Beograd" ("Beograđanka"), Beograd, rs': 27643714,
   "Docker Brewery & Beer Garden, Beograd, rs": 27548580,
+  // Venue record created by other Belgrade groups; reused rather than
+  // registering a duplicate.
+  "Dogma Brewery & Tap Room, Beograd, rs": 26401726,
   "ICT Hub Kralja Milana, Beograd, rs": 26122858,
   "Ljubostinjska 2, Beograd, rs": 27293040,
   "Startit Centar, Belgrade, RS": 24183073,
