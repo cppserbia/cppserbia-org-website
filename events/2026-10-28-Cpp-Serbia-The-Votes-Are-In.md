@@ -12,6 +12,8 @@ venues:
   - "Dogma Brewery & Tap Room, Beograd, rs"
 banner_author: "@ Dogma Brewery"
 imageUrl: "https://images.cppserbia.org/events/2026-10-28-Cpp-Serbia-The-Votes-Are-In.jpg"
+speaker_avatar: >-
+  https://images.cppserbia.org/speaker-avatars/2026-10-28-Cpp-Serbia-The-Votes-Are-In.png
 ---
 
 # C++ Serbia: The Votes Are In
