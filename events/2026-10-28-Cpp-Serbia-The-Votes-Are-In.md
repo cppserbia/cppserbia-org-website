@@ -10,6 +10,9 @@ event_url: "https://www.meetup.com/cpp-serbia/events/317144860/"
 event_id: "317144860"
 venues:
   - "Dogma Brewery & Tap Room, Beograd, rs"
+banner_title:
+  - C++ Serbia Beer Wednesday
+  - The Votes Are In
 banner_venue: Dogma Brewery
 imageUrl: "https://images.cppserbia.org/events/2026-10-28-Cpp-Serbia-The-Votes-Are-In.jpg"
 speaker_avatar: >-
