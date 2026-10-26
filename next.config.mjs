@@ -1,5 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
+import isBot from "next/dist/shared/lib/router/utils/is-bot.js";
 import createNextIntlPlugin from "next-intl/plugin";
 import path from "path";
 
@@ -21,6 +22,10 @@ const nextConfig = {
   env: {
     PUBLISHED_EVENT_SLUGS: publishedEventSlugs().join(","),
   },
+  // Crawlers that get metadata rendered into <head> rather than streamed into <body>.
+  // Setting this replaces Next's default list, so extend it: Telegram builds its link
+  // previews from the event page and is not on the default list.
+  htmlLimitedBots: new RegExp(`${isBot.HTML_LIMITED_BOT_UA_RE_STRING}|TelegramBot`),
   transpilePackages: ["react-markdown"],
   images: {
     remotePatterns: [
