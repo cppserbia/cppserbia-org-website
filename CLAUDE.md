@@ -75,6 +75,7 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
 - Two RSS feeds exist: `/events/feed.xml` (hand-rolled XML, 20 items, 24h CDN cache) and `/feed.xml` (`feed` library, all items). Only the former is advertised in `<head>`.
 - Event `status` field: code only checks `!== 'DRAFT'`. Any non-DRAFT value (ACTIVE, PAST, etc.) makes the event visible.
 - `getFeaturedEvents()` returns the N most recent events, not events with `featured: true`.
+- The OG image route (`app/[locale]/events/[slug]/opengraph-image.tsx`) reads Rubik Bold from `assets/fonts/` (OFL, license alongside) and the logo from `public/images/`. File tracing doesn't follow its `process.cwd()` paths, so both are listed in `outputFileTracingIncludes` in `next.config.mjs`; add any new file it reads there too, or it will be missing on Vercel. Don't go back to fetching the font from fonts.gstatic.com: those versioned URLs get retired, which broke every render.
 - `htmlLimitedBots` in `next.config.mjs` is Next's default crawler list plus `TelegramBot`, so Telegram's link-preview scraper gets metadata in `<head>`. Setting the option _replaces_ the default list, so keep extending `HTML_LIMITED_BOT_UA_RE_STRING` rather than writing a list from scratch.
 
 ## Adding Events

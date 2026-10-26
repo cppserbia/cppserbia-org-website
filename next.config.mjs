@@ -26,6 +26,14 @@ const nextConfig = {
   // Setting this replaces Next's default list, so extend it: Telegram builds its link
   // previews from the event page and is not on the default list.
   htmlLimitedBots: new RegExp(`${isBot.HTML_LIMITED_BOT_UA_RE_STRING}|TelegramBot`),
+  // The OG image route reads these from disk; file tracing doesn't follow its
+  // path.join(process.cwd(), …), so without this they are missing from the deployed function.
+  outputFileTracingIncludes: {
+    "/[locale]/events/[slug]/opengraph-image": [
+      "./assets/fonts/Rubik-Bold.ttf",
+      "./public/images/logo.png",
+    ],
+  },
   transpilePackages: ["react-markdown"],
   images: {
     remotePatterns: [

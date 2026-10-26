@@ -5,6 +5,15 @@ import path from "path";
 
 import { getEventBySlug } from "@/lib/events-server";
 
+// Rubik Bold (static, with Latin Extended and Cyrillic), bundled under assets/fonts (OFL).
+// It used to be fetched from a versioned fonts.gstatic.com URL, which Google retired: the
+// URL started returning HTML and every render failed with "Unsupported OpenType signature".
+let rubikBoldCache: Buffer | undefined;
+function loadRubikBold(): Buffer {
+  rubikBoldCache ??= fs.readFileSync(path.join(process.cwd(), "assets", "fonts", "Rubik-Bold.ttf"));
+  return rubikBoldCache;
+}
+
 export const alt = "C++ Serbia Community Event";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -38,10 +47,7 @@ export default async function OgImage({
     );
   }
 
-  // Load Rubik Bold font (includes Cyrillic subset)
-  const rubikBold = await fetch(
-    "https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4iFWkU1Z4Y.ttf"
-  ).then((res) => res.arrayBuffer());
+  const rubikBold = loadRubikBold();
 
   // Load logo as base64 data URL
   const logoPath = path.join(process.cwd(), "public", "images", "logo.png");
