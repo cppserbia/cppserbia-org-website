@@ -111,7 +111,7 @@ The easiest way to populate `speaker_avatar` is the `/banner-avatar` slash comma
 
 ### Custom banners
 
-Some events ship with a banner made elsewhere, e.g. a partner's poster for a joint event. Upload the three formats to R2 under the usual keys (`events/{slug}.jpg`, `events/{slug}-3-4.jpg`, `events/{slug}-9-16.jpg`, `image/jpeg`), point `imageUrl` at the horizontal one, and set `custom_banner: true` in the frontmatter. The workflow then skips the event, so a later push to the PR does not regenerate the banners over the custom ones.
+Some events ship with a banner made elsewhere, e.g. a partner's poster for a joint event. Upload the three formats to R2 under the usual keys (`events/{slug}.jpg`, `events/{slug}-3-4.jpg`, `events/{slug}-9-16.jpg`, `image/jpeg`), point `imageUrl` at the horizontal one, set `imageWidth`/`imageHeight` to its real size in pixels, and set `custom_banner: true` in the frontmatter. The workflow then skips the event, so a later push to the PR does not regenerate the banners over the custom ones.
 
 ### Title line splitting
 

@@ -85,6 +85,12 @@ Tailwind CSS v3 + shadcn/ui design tokens. Custom utility classes defined in `ap
    name, bio, photo and links all render from the `speaker:` frontmatter (see below)
 5. After the event: add `youtube:` frontmatter field for the recording link
 
+`imageUrl` always comes with `imageWidth`/`imageHeight`, the image's real size in pixels. The
+event page declares them as `og:image:width`/`og:image:height`, which Facebook uses to lay out a
+first share. Banners vary: the pipeline makes 1920×1080, and the Meetup-era ones come in a dozen
+sizes. The banner workflow and `update-event-images.ts` write them; for a hand-set `imageUrl`,
+measure the image. `lib/event-validation.test.ts` fails if they are missing.
+
 Two frontmatter fields feed the Event JSON-LD and must not be dropped:
 
 - **`created`** — becomes `offers.validFrom` (when registration opened). Every event file has one.

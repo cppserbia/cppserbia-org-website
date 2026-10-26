@@ -31,6 +31,8 @@ export interface Event {
   year: string;
   isOnline?: boolean;
   imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   content?: string;
   featured?: boolean;
   status?: string;
@@ -62,6 +64,8 @@ interface EventHeader {
   description?: string;
   registrationLink?: string;
   imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   isOnline?: boolean;
   featured?: boolean;
   youtube?: string;
@@ -206,6 +210,8 @@ function parseEventFile(fileName: string): Event | null {
       year,
       isOnline,
       imageUrl: eventHeader.imageUrl,
+      imageWidth: eventHeader.imageWidth,
+      imageHeight: eventHeader.imageHeight,
       content, // Include the full markdown content
       featured,
       status: eventHeader.status,

@@ -40,7 +40,11 @@ export async function generateMetadata({
 
   const baseUrl = "https://cppserbia.org";
   const eventUrl = `${baseUrl}/${locale}/events/${event.slug}`;
-  const imageUrl = event.imageUrl || `${baseUrl}/images/cpp-serbia-preview.png`;
+  // Banners come in many sizes (1920×1080 from the banner pipeline, a dozen others from the
+  // Meetup era), so declare each one's real size. Facebook lays out a first share from it.
+  const image = event.imageUrl
+    ? { url: event.imageUrl, width: event.imageWidth, height: event.imageHeight }
+    : { url: `${baseUrl}/images/cpp-serbia-preview.png`, width: 1200, height: 630 };
   const titleWithSuffix = `${event.title} - ${mt("communitySuffix")}`;
 
   return {
@@ -62,9 +66,7 @@ export async function generateMetadata({
       type: "article",
       images: [
         {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
+          ...image,
           alt: event.title,
         },
       ],
@@ -75,7 +77,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: titleWithSuffix,
       description: event.description,
-      images: [imageUrl],
+      images: [image.url],
       creator: "@cppserbia",
       site: "@cppserbia",
     },

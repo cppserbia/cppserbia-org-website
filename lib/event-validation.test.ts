@@ -64,6 +64,30 @@ describe("Event frontmatter validation", () => {
     });
   });
 
+  // The event page declares these as og:image:width/height; banners come in many sizes.
+  describe("imageUrl comes with the image's real size", () => {
+    const cases = eventFiles.flatMap((file) => {
+      const raw = fs.readFileSync(path.join(EVENTS_DIR, file), "utf-8");
+      const { data } = matter(raw);
+      return data.imageUrl && !isPlaceholder(String(data.imageUrl))
+        ? [{ file, width: data.imageWidth, height: data.imageHeight }]
+        : [];
+    });
+
+    it.each(cases)("$file — imageWidth/imageHeight are set", ({ file, width, height }) => {
+      for (const [field, value] of [
+        ["imageWidth", width],
+        ["imageHeight", height],
+      ] as const) {
+        expect(
+          Number.isInteger(value) && value > 0,
+          `${file}: "${field}" must be the banner's size in pixels (got ${String(value)}).\n` +
+            `  Hint: the banner workflow writes it; for a hand-set imageUrl, measure the image.`
+        ).toBe(true);
+      }
+    });
+  });
+
   // `created` feeds offers.validFrom in the Event JSON-LD — see lib/seo-utils.ts
   describe("created must be a valid date", () => {
     const cases = eventFiles.map((file) => {
