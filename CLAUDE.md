@@ -200,7 +200,7 @@ PR adds new event file → team comments `/social:announcement` → AI generates
 **Reusable workflows:**
 
 - `_generate-social-draft.yml` — Accepts only `type_flag` (`"recording"` or `"announcement"`). Derives marker names, section titles, and find logic internally from the type. Single script invocation outputs full payload JSON. PR description shows the payload in a fenced code block for human editing.
-- `_publish-social.yml` — Accepts `type` (`"recording"` or `"announcement"`), `pr_number`, and `dry_run`. Extracts payload JSON from PR body between markers, feeds it to `publish-payload.ts` which POSTs to Make.com.
+- `_publish-social.yml` — Accepts `type` (`"recording"` or `"announcement"`), `pr_number`, and `dry_run`. Extracts payload JSON from PR body between markers, then runs `wait-for-live-page.ts` before `publish-payload.ts` POSTs to Make.com. The job starts the moment the PR merges, before Vercel has deployed. Facebook and Telegram scrape the event page for their link preview, so the wait step polls the live page until its `og:title` and `og:image` are this event's (up to 15 minutes). Without it, a new event's URL serves the generic site preview, which the platforms then cache.
 
 **Shared script:** `scripts/generate-social-draft.ts`
 

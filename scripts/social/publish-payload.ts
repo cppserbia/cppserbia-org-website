@@ -1,3 +1,5 @@
+import { parsePayloadText } from "./payload";
+
 const USAGE = `Usage:
   npx tsx scripts/social/publish-payload.ts payload.json          # read from file
   cat payload.json | npx tsx scripts/social/publish-payload.ts    # read from stdin
@@ -15,10 +17,6 @@ async function readStdin(): Promise<string> {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-function stripCodeFences(input: string): string {
-  return input.replace(/```\w*\n?/g, "").trim();
-}
-
 async function main() {
   const filePath = process.argv[2];
 
@@ -30,8 +28,7 @@ async function main() {
     raw = await readStdin();
   }
 
-  const cleaned = stripCodeFences(raw);
-  const payload = JSON.parse(cleaned);
+  const payload = parsePayloadText(raw);
 
   const dryRun = process.env.DRY_RUN === "true";
 
