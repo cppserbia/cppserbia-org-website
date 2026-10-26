@@ -10,7 +10,7 @@ event_url: "https://www.meetup.com/cpp-serbia/events/317144860/"
 event_id: "317144860"
 venues:
   - "Dogma Brewery & Tap Room, Beograd, rs"
-banner_author: "@ Dogma Brewery"
+banner_venue: Dogma Brewery
 imageUrl: "https://images.cppserbia.org/events/2026-10-28-Cpp-Serbia-The-Votes-Are-In.jpg"
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-10-28-Cpp-Serbia-The-Votes-Are-In.png
@@ -20,7 +20,7 @@ speaker_avatar: >-
 
 Hi everyone!
 
-This Wednesday we are inviting you to a **casual beer meetup** at **Dogma Brewery & Tap Room**: no talk, no slides, just C++ folks, cold beer and a week's worth of votes to talk about.
+This Wednesday we are inviting you to a **casual beer meetup** at **Dogma Brewery & Tap Room**: no talk, no slides, just C++ folks in a warm taproom with a week's worth of votes to talk about.
 
 It has been a week of ballots. On Sunday, Serbia went to the polls in record numbers. A few days earlier, the ISO ballot on the C++26 draft closed and came back **Disapproved**. So this Wednesday we are doing what every committee does after a vote: meeting over a drink to argue about it. 🍺
 
