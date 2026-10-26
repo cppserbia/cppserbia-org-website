@@ -6,8 +6,8 @@ event_type: PHYSICAL
 status: ACTIVE
 duration: PT3H
 end_time: 2026-10-28T21:00:00.000Z
-event_url: <Meetup.com Event URL>
-event_id: <Meetup.com Event ID>
+event_url: "https://www.meetup.com/cpp-serbia/events/317144860/"
+event_id: "317144860"
 venues:
   - "Dogma Brewery & Tap Room, Beograd, rs"
 banner_author: "@ Dogma Brewery"
