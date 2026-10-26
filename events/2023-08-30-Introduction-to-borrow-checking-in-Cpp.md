@@ -14,6 +14,8 @@ speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=a1nOshA3hoQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-08-30-Introduction-to-borrow-checking-in-Cpp.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # Introduction to borrow checking in C++

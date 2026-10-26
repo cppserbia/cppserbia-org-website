@@ -13,6 +13,8 @@ venues:
 speaker: aleksandar-nikolic
 youtube: "https://www.youtube.com/watch?v=BHw6NCSsEd0"
 imageUrl: "https://images.cppserbia.org/events/2025-10-15-Baby-dont-test-me-no-more.jpg"
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # Baby, don't test me, no more

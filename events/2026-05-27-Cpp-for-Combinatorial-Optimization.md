@@ -23,6 +23,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=E49Wi8cGv2E"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-05-27-Cpp-for-Combinatorial-Optimization.jpg
+imageWidth: 1920
+imageHeight: 1080
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-05-27-Cpp-for-Combinatorial-Optimization.png
 ---

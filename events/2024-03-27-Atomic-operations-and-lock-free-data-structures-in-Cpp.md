@@ -14,6 +14,8 @@ speaker: djordje-nedic
 youtube: "https://www.youtube.com/watch?v=8IxneSIda0E"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-03-27-Atomic-operations-and-lock-free-data-structures-in-Cpp.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Atomic operations and lock-free data structures in C++

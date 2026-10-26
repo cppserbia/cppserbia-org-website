@@ -14,6 +14,8 @@ speaker: aleksandar-dakic
 youtube: "https://www.youtube.com/watch?v=_G_3oOSCRx8"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-07-05-Asynchronous-IO-with-ASIO-and-Cpp20-coroutines.jpg
+imageWidth: 1120
+imageHeight: 630
 ---
 
 # Asynchronous IO with ASIO and C++20 coroutines

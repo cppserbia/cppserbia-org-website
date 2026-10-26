@@ -15,6 +15,8 @@ speaker:
   jobTitle: C++ developer and author
 imageUrl: >-
   https://images.cppserbia.org/events/2019-03-01-Ivan-Cukic-Funkcionalno-programiranje-u-Cpp-u.jpg
+imageWidth: 654
+imageHeight: 368
 ---
 
 # Ivan Čukić - Funkcionalno programiranje u C++-u

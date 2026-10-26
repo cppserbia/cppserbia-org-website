@@ -13,6 +13,8 @@ venues:
 speaker: milos-andjelkovic
 youtube: "https://www.youtube.com/watch?v=DlRmzJqCoB4"
 imageUrl: "https://images.cppserbia.org/events/2023-04-24-vcpkg-i-CMake-Pocetak.jpg"
+imageWidth: 1600
+imageHeight: 900
 ---
 
 # vcpkg i CMake: Početak

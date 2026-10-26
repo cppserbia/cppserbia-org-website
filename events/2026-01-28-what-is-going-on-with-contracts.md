@@ -21,6 +21,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=9iJ63VhQo5g"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-01-28-what-is-going-on-with-contracts.jpg
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # What's going on with Contracts?

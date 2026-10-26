@@ -15,6 +15,8 @@ speaker:
   jobTitle: C++ developer
 youtube: "https://www.youtube.com/watch?v=i2rGsdo-zJg"
 imageUrl: "https://images.cppserbia.org/events/2025-06-25-A-Cpp-Tooling-Journey.jpg"
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # A C++ Tooling Journey: From Manual Dependencies to Cross-Compilation

@@ -13,6 +13,8 @@ venues:
 youtube: "https://www.youtube.com/watch?v=KZYYSruaL5o"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-12-27-End-of-the-year-Lightning-celebration.jpg
+imageWidth: 1202
+imageHeight: 676
 ---
 
 # End of the year — Lightning celebration

@@ -20,7 +20,8 @@ venues: ['Palata "Beograd" ("Beograđanka"), Beograd, rs']
 #            #       Two or three sentences introducing them. Shown on the event
 #            #       page; plain text, no markdown. Keep it under ~500 characters.
 #            # For a panel, use a list of those entries. Omit for community events.
-# imageUrl:  # https://images.cppserbia.org/events/{slug}.jpg
+# imageUrl:  # https://images.cppserbia.org/events/{slug}.jpg (the banner workflow sets it,
+#            # together with imageWidth/imageHeight, the image's real size in pixels)
 # youtube:   # Add after event
 ---
 

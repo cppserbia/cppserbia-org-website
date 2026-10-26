@@ -23,6 +23,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=iULlWUyXzw0"
 imageUrl: >-
   https://images.cppserbia.org/events/2026-02-25-How-to-modernize-your-codebase.jpg
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # How to modernize your codebase?

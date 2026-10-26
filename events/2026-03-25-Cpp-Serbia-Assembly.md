@@ -11,6 +11,8 @@ event_id: 313858896
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 imageUrl: "https://images.cppserbia.org/events/2026-03-25-Cpp-Serbia-Assembly.jpg"
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # C++ Serbia Assembly

@@ -11,6 +11,8 @@ event_id: 312364687
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 imageUrl: "https://images.cppserbia.org/events/2025-12-17-The-New-Years-Cpp-Quiz.jpg"
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # The New Year's C++ Quiz

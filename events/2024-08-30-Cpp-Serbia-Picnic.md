@@ -11,6 +11,8 @@ event_id: 302869584
 venues:
   - "Kosutnjak, Beograd, yu"
 imageUrl: "https://images.cppserbia.org/events/2024-08-30-Cpp-Serbia-Picnic.jpg"
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # C++ Serbia Picnic

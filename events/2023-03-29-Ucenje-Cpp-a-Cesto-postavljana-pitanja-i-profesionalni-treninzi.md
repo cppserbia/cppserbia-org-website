@@ -16,6 +16,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=e82Q_MZkmYk"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-03-29-Ucenje-Cpp-a-Cesto-postavljana-pitanja-i-profesionalni-treninzi.jpg
+imageWidth: 1200
+imageHeight: 628
 ---
 
 # Učenje C++-a - Često postavljana pitanja i profesionalni treninzi

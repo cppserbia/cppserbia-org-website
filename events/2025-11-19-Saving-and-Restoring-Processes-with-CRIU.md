@@ -23,6 +23,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=sY20Il7_MYQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-11-19-Saving-and-Restoring-Processes-with-CRIU.jpg
+imageWidth: 1280
+imageHeight: 720
 ---
 
 # Saving and Restoring Processes with CRIU: The Challenge of Shadow Stacks on ARM64

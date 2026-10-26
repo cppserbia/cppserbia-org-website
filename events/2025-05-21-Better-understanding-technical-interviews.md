@@ -14,6 +14,8 @@ speaker: aleksandar-nikolic
 youtube: "https://www.youtube.com/watch?v=XDgSY_vg1v4"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-05-21-Better-understanding-technical-interviews.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Better understanding technical interviews

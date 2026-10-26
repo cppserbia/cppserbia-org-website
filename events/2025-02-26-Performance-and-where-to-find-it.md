@@ -14,6 +14,8 @@ speaker: dusan-jovanovic
 youtube: "https://www.youtube.com/watch?v=86IQ9YI4Nuw"
 imageUrl: >-
   https://images.cppserbia.org/events/2025-02-26-Performance-and-where-to-find-it.jpg
+imageWidth: 668
+imageHeight: 376
 ---
 
 # Performance and where to find it

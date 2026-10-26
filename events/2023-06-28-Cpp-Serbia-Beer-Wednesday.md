@@ -11,6 +11,8 @@ event_id: 294311612
 venues:
   - "Docker Brewery & Beer Garden, Beograd, rs"
 imageUrl: "https://images.cppserbia.org/events/2023-06-28-Cpp-Serbia-Beer-Wednesday.jpg"
+imageWidth: 1120
+imageHeight: 630
 ---
 
 # C++ Serbia Beer Wednesday

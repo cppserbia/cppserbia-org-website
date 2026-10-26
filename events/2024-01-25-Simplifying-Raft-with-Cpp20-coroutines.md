@@ -14,6 +14,8 @@ speaker: alexey-ozeritskiy
 youtube: "https://www.youtube.com/watch?v=xztv-zIDLxc"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-01-25-Simplifying-Raft-with-Cpp20-coroutines.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # Simplifying Raft with C++20 coroutines

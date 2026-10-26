@@ -14,6 +14,8 @@ speaker: mirko-arsenijevic
 youtube: "https://www.youtube.com/watch?v=B5uNxPe-MVQ"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-06-26-Lifting-the-Pipes-Beyond-SenderReceiver-and-Expected-Outcome.jpg
+imageWidth: 3344
+imageHeight: 1881
 ---
 
 # Lifting the Pipes - Beyond Sender/Receiver and Expected Outcome

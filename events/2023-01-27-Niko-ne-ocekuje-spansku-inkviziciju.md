@@ -17,6 +17,8 @@ speaker:
 youtube: "https://www.youtube.com/watch?v=twPlJbrgkc4"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-01-27-Niko-ne-ocekuje-spansku-inkviziciju.jpg
+imageWidth: 1600
+imageHeight: 900
 ---
 
 # "Niko ne očekuje špansku inkviziciju"? :)

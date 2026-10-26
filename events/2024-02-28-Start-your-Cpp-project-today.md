@@ -14,6 +14,8 @@ speaker: dusan-jovanovic
 youtube: "https://www.youtube.com/watch?v=kmst4j7CB9M"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-02-28-Start-your-Cpp-project-today.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # Start your C++ project today

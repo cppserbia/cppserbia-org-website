@@ -14,6 +14,8 @@ speaker: ivica-bogosavljevic
 youtube: "https://www.youtube.com/watch?v=bYBMT-cftBo"
 imageUrl: >-
   https://images.cppserbia.org/events/2023-09-27-The-hidden-performance-price-of-Cpp-virtual-functions.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # The hidden performance price of C++ virtual functions

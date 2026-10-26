@@ -15,6 +15,8 @@ venues:
 speaker: ivica-bogosavljevic
 youtube: "https://www.youtube.com/watch?v=PbRjbXBr29o"
 imageUrl: "https://images.cppserbia.org/events/2025-04-23-Making-your-program-faster.jpg"
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # Making your program faster - multithreading and automatic compiler vectorization

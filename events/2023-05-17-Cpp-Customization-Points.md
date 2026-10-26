@@ -13,6 +13,8 @@ venues:
 speaker: aleksandar-smigic
 youtube: "https://www.youtube.com/watch?v=tkpu9JLDj3c"
 imageUrl: "https://images.cppserbia.org/events/2023-05-17-Cpp-Customization-Points.jpg"
+imageWidth: 1600
+imageHeight: 900
 ---
 
 # C++ Customization Points

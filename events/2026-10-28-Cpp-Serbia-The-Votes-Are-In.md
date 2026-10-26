@@ -15,6 +15,8 @@ banner_title:
   - The Votes Are In
 banner_venue: Dogma Brewery
 imageUrl: "https://images.cppserbia.org/events/2026-10-28-Cpp-Serbia-The-Votes-Are-In.jpg"
+imageWidth: 1920
+imageHeight: 1080
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-10-28-Cpp-Serbia-The-Votes-Are-In.png
 ---

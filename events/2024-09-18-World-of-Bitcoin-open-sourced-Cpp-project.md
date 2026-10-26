@@ -14,6 +14,8 @@ speaker: veljko-tekelerovic
 youtube: "https://www.youtube.com/watch?v=JP9DbXXyTO0"
 imageUrl: >-
   https://images.cppserbia.org/events/2024-09-18-World-of-Bitcoin-open-sourced-Cpp-project.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # World of Bitcoin - open-sourced C++ project

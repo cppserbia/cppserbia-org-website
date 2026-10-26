@@ -13,6 +13,8 @@ venues:
 speaker: goran-arandjelovic
 youtube: "https://www.youtube.com/watch?v=IijPhghH5y0"
 imageUrl: "https://images.cppserbia.org/events/2022-08-24-Cpp20-Koncepti.jpg"
+imageWidth: 647
+imageHeight: 364
 ---
 
 # C++20 — Koncepti

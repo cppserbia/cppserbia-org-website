@@ -12,6 +12,8 @@ venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 imageUrl: >-
   https://images.cppserbia.org/events/2024-07-24-Cpp-Serbia-mid-summer-Hangout.jpg
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # C++ Serbia mid-summer Hangout

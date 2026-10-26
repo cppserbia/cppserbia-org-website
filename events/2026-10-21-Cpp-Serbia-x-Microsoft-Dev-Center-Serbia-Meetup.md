@@ -24,6 +24,8 @@ speaker:
     jobTitle: Software Engineer II
 imageUrl: >-
   https://images.cppserbia.org/events/2026-10-21-Cpp-Serbia-x-Microsoft-Dev-Center-Serbia-Meetup.jpg
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # C++ Serbia && Microsoft Dev Center Serbia: Bit About IT Meetup

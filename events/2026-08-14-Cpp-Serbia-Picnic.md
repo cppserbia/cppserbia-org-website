@@ -10,6 +10,8 @@ venues:
   - "Kosutnjak, Beograd, rs"
 banner_author: C++ Serbia
 imageUrl: "https://images.cppserbia.org/events/2026-08-14-Cpp-Serbia-Picnic.jpg"
+imageWidth: 1920
+imageHeight: 1080
 event_url: "https://www.meetup.com/cpp-serbia/events/316058455/"
 event_id: "316058455"
 ---

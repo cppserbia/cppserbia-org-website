@@ -11,6 +11,8 @@ event_id: 305754159
 venues:
   - 'Palata "Beograd" ("Beograđanka"), Beograd, rs'
 imageUrl: "https://images.cppserbia.org/events/2025-01-29-Cpp-Serbia-does-code-review.jpg"
+imageWidth: 1115
+imageHeight: 627
 ---
 
 # C++ Serbia does code review
