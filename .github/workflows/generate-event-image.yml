@@ -105,12 +105,15 @@ jobs:
         if: steps.find-event.outputs.found == 'true'
         run: pnpm install --frozen-lockfile
 
-      - name: Install Inkscape
+      # The templates set IBM Plex Sans; without it Inkscape silently falls back to
+      # DejaVu Sans, so fail loudly instead of rendering in the wrong font.
+      - name: Install Inkscape and fonts
         if: steps.find-event.outputs.found == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends inkscape
+          sudo apt-get install -y --no-install-recommends inkscape fonts-ibm-plex
           inkscape --version
+          fc-list | grep -q "IBM Plex Sans" || { echo "::error::IBM Plex Sans is not installed"; exit 1; }
 
       - name: Cache banner templates
         if: steps.find-event.outputs.found == 'true'

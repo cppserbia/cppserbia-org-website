@@ -3,9 +3,31 @@ import { describe, expect, it } from "vitest";
 
 import {
   formatBannerDate,
+  formatBannerDateLine,
   resolveSpeakerForBanner,
   splitTitleLines,
 } from "./generate-event-banner";
+
+describe("formatBannerDateLine", () => {
+  const date = new Date("2026-10-28T18:00:00.000Z");
+
+  it("is the plain date when there is no venue", () => {
+    expect(formatBannerDateLine(date)).toBe("Wednesday, 28. 10. 2026.");
+  });
+
+  it("appends banner_venue after an @", () => {
+    expect(formatBannerDateLine(date, "Dogma Brewery")).toBe(
+      "Wednesday, 28. 10. 2026. @ Dogma Brewery"
+    );
+  });
+
+  it("trims the venue and ignores a blank one", () => {
+    expect(formatBannerDateLine(date, "  Dogma Brewery  ")).toBe(
+      "Wednesday, 28. 10. 2026. @ Dogma Brewery"
+    );
+    expect(formatBannerDateLine(date, "   ")).toBe("Wednesday, 28. 10. 2026.");
+  });
+});
 
 describe("formatBannerDate", () => {
   it("renders the wednesday in the canonical pipeline format", () => {
@@ -132,9 +154,9 @@ describe("resolveSpeakerForBanner", () => {
     ).toBe("Ivan Čukić");
   });
 
-  it("falls back to default when neither banner_author nor body has a speaker", () => {
+  it("returns empty (no author line) when neither banner_author nor body has a speaker", () => {
     expect(resolveSpeakerForBanner({ title: "x", date: new Date() }, "no event details here")).toBe(
-      "C++ Serbia"
+      ""
     );
   });
 

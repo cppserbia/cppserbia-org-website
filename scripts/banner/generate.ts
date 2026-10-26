@@ -11,9 +11,15 @@ import { fitFontSize } from "./text-fit";
 export type BannerFormat = "horizontal" | "vertical_3_4" | "vertical_9_16";
 
 export interface BannerInput {
-  /** Full speaker name. Split into first/last on the last whitespace for vertical templates. */
+  /**
+   * Full speaker name. Split into first/last on the last whitespace for vertical templates.
+   * Empty for events without a speaker: the author line is left blank.
+   */
   speaker: string;
-  /** Pre-formatted date text shown in the date field. */
+  /**
+   * Pre-formatted date text shown in the date field, optionally followed by the venue.
+   * Keeps the template's font size unless it is wider than the title column.
+   */
   dateText: string;
   /** Title broken into lines. Up to 3 (horizontal) or 5 (vertical). Excess is truncated. */
   titleLines: string[];
@@ -221,7 +227,9 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
   const workSvgPath = path.join(opts.outDir, `${opts.outBaseName}-${opts.format}.work.svg`);
   await fs.writeFile(workSvgPath, template.serialize());
 
-  if (useSingleAuthorField) {
+  // Events without a speaker keep the author field(s) empty; there is nothing to fit.
+  const hasSpeaker = opts.input.speaker.trim() !== "";
+  if (hasSpeaker && useSingleAuthorField) {
     const hintW = await queryWidth(workSvgPath, "text_field_author_hint");
     const sizeStar = await fitFieldFontSize(
       template,
@@ -231,7 +239,7 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
       hintW
     );
     requireSetFontSize(template, templateFile, "text_field_author", sizeStar);
-  } else {
+  } else if (hasSpeaker) {
     const sizes: number[] = [];
     const hint1 = await queryWidth(workSvgPath, "text_field_author_1_hint");
     sizes.push(
@@ -261,6 +269,22 @@ export async function generateBanner(opts: GenerateOptions): Promise<GenerateRes
     for (let i = 1; i <= titleLines.length; i++) {
       requireSetFontSize(template, templateFile, `text_field_${i}`, minSize);
     }
+  }
+
+  // The date field has no hint of its own. A plain date always fits; a date plus
+  // `banner_venue` can outgrow the narrow vertical formats, so cap it at the title
+  // column width. Width grows with size, so the fitted size is below the template's.
+  const dateWidth = await queryWidth(workSvgPath, "text_field_date");
+  const titleColumnWidth = await queryWidth(workSvgPath, "text_field_1_hint");
+  if (dateWidth > titleColumnWidth) {
+    const size = await fitFieldFontSize(
+      template,
+      templateFile,
+      workSvgPath,
+      "text_field_date",
+      titleColumnWidth
+    );
+    requireSetFontSize(template, templateFile, "text_field_date", size);
   }
 
   await fs.writeFile(workSvgPath, template.serialize());
