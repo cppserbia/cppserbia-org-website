@@ -49,8 +49,7 @@ export interface EventSpeaker extends Speaker {
  * introducing them for that talk.
  */
 export type SpeakerRef =
-  | string
-  | { key: string; worksFor?: string; jobTitle?: string; bio?: string };
+  string | { key: string; worksFor?: string; jobTitle?: string; bio?: string };
 
 export const SPEAKERS = {
   "milos-andjelkovic": {
