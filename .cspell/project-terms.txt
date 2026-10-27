@@ -5,6 +5,7 @@
 apikey
 autolinks
 citty
+coopkit
 # Employers named in event frontmatter / tests
 KDAB
 Nutanix
@@ -13,8 +14,6 @@ hackathon
 headshot
 cmdk
 cppserbia
-geocode
-geocodes
 highres
 ical
 inkscape
@@ -31,6 +30,7 @@ VCALENDAR
 VEVENT
 webcal
 winget
+writeback
 youtu
 intraword
 DTSTART
