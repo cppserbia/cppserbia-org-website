@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Add eyes reaction to trigger comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -35,7 +35,7 @@ jobs:
             });
 
       - name: Checkout PR branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -47,23 +47,25 @@ jobs:
       - name: Derive markers from type
         id: markers
         run: |
-          if [ "${{ inputs.type_flag }}" = "recording" ]; then
-            echo "start=<!-- SOCIAL_MEDIA_START -->" >> "$GITHUB_OUTPUT"
-            echo "end=<!-- SOCIAL_MEDIA_END -->" >> "$GITHUB_OUTPUT"
-            echo "title=Social Media Posts" >> "$GITHUB_OUTPUT"
-          else
-            echo "start=<!-- EVENT_ANNOUNCEMENT_START -->" >> "$GITHUB_OUTPUT"
-            echo "end=<!-- EVENT_ANNOUNCEMENT_END -->" >> "$GITHUB_OUTPUT"
-            echo "title=Event Announcement Posts" >> "$GITHUB_OUTPUT"
-          fi
+          {
+            if [ "${{ inputs.type_flag }}" = "recording" ]; then
+              echo "start=<!-- SOCIAL_MEDIA_START -->"
+              echo "end=<!-- SOCIAL_MEDIA_END -->"
+              echo "title=Social Media Posts"
+            else
+              echo "start=<!-- EVENT_ANNOUNCEMENT_START -->"
+              echo "end=<!-- EVENT_ANNOUNCEMENT_END -->"
+              echo "title=Event Announcement Posts"
+            fi
+          } >> "$GITHUB_OUTPUT"
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 9
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24"
           cache: "pnpm"
@@ -162,7 +164,7 @@ jobs:
 
       - name: Update PR description
         if: steps.generate.outputs.generated == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -205,7 +207,7 @@ jobs:
 
       - name: Add rocket reaction on success
         if: steps.generate.outputs.generated == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -217,7 +219,7 @@ jobs:
 
       - name: Comment if no event files found
         if: steps.find-events.outputs.found != 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const messages = {
@@ -233,7 +235,7 @@ jobs:
 
       - name: React with error on failure
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
