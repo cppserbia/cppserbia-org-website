@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: React 👀 to the trigger comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -51,19 +51,19 @@ jobs:
           echo "head_ref=$HEAD_REF" >> "$GITHUB_OUTPUT"
 
       - name: Checkout PR branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ steps.pr.outputs.head_ref }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 9
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24"
           cache: "pnpm"
@@ -129,7 +129,7 @@ jobs:
 
       - name: React 🚀 + reply on success
         if: steps.commit.outputs.committed == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           FILE: ${{ steps.find-event.outputs.file }}
         with:
@@ -160,7 +160,7 @@ jobs:
 
       - name: React 👍 if no change was needed
         if: steps.commit.outputs.committed == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -172,7 +172,7 @@ jobs:
 
       - name: React 😕 + comment on failure
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
