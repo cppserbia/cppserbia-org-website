@@ -8,7 +8,10 @@ duration: PT3H
 end_time: 2026-11-24T21:00:00.000Z
 venues:
   - "Startit AI Hub, Novi Sad, rs"
-banner_venue: Startit AI Hub, Novi Sad
+banner_venue: "Startit AI Hub, Novi Sad"
+imageUrl: "https://images.cppserbia.org/events/2026-11-24-Cpp-Serbia-in-Novi-Sad.jpg"
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 # C++ Serbia in Novi Sad
