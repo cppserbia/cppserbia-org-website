@@ -71,6 +71,7 @@ export const SPEAKERS = {
   "dusan-jovanovic": {
     name: "Dušan Jovanović",
     sameAs: ["https://www.linkedin.com/in/duxi90/", "https://github.com/duxi90"],
+    image: "https://images.cppserbia.org/speakers/dusan-jovanovic.png",
   },
   "ivan-cukic": {
     name: "Ivan Čukić",
