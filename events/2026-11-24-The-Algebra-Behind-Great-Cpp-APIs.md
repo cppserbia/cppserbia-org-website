@@ -29,6 +29,8 @@ imageWidth: 1920
 imageHeight: 1080
 speaker_avatar: >-
   https://images.cppserbia.org/speaker-avatars/2026-11-24-The-Algebra-Behind-Great-Cpp-APIs.png
+event_url: "https://www.meetup.com/cpp-serbia/events/317471620/"
+event_id: "317471620"
 ---
 
 # The Algebra Behind Great C++ APIs
