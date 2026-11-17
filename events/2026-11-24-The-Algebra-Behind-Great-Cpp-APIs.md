@@ -1,5 +1,5 @@
 ---
-title: C++ Serbia in Novi Sad
+title: The Algebra Behind Great C++ APIs
 date: 2026-11-24T18:00:00.000Z
 created: 2026-11-10T12:00:00.000Z
 event_type: PHYSICAL
@@ -18,7 +18,7 @@ speaker:
     ultra-low-latency exchange technology. He has more than a decade of professional experience
     in C++, with a background in high-performance systems, device drivers, and low-level
     engineering. Dušan is also a co-founder and the president of C++ Serbia.
-# The city is already on the date line (banner_venue), so the banner title is the talk.
+# Explicit lines for the banner; the city is on the date line (banner_venue).
 banner_title:
   - The Algebra Behind
   - Great C++ APIs
@@ -28,7 +28,7 @@ imageWidth: 1920
 imageHeight: 1080
 ---
 
-# C++ Serbia in Novi Sad
+# The Algebra Behind Great C++ APIs
 
 Hi everyone!
 
