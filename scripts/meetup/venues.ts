@@ -19,6 +19,10 @@ export const VENUE_IDS: Record<string, number> = {
   "ICT Hub Kralja Milana, Beograd, rs": 26122858,
   "Ljubostinjska 2, Beograd, rs": 27293040,
   "Startit Centar, Belgrade, RS": 24183073,
+  // Startit Center Novi Sad (Miroslava Antića 2), which Startit now calls the AI Hub.
+  // Meetup's record is named "Startit Centar"; it was created by AI Serbia Meetup and
+  // is reused rather than registering a duplicate.
+  "Startit AI Hub, Novi Sad, rs": 24871899,
   "United Cloud, Belgrade, rs": 25807437,
   "Kosutnjak, Beograd, rs": 28294416,
   // Old venue with `yu` country code
