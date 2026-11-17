@@ -11,10 +11,10 @@ venues:
 speaker:
   key: dusan-jovanovic
   worksFor: Inceptive
-  jobTitle: Co-founder & VP of Engineering (co-CTO)
+  jobTitle: Co-founder & VP of Engineering
   bio: >-
     Dušan Jovanović is a C++ engineer and systems architect, building tech, teams and community.
-    He is a co-founder of Inceptive, where as VP of Engineering and co-CTO he builds
+    He is a co-founder of Inceptive, where as VP of Engineering he builds
     ultra-low-latency exchange technology. He has more than a decade of professional experience
     in C++, with a background in high-performance systems, device drivers, and low-level
     engineering. Dušan is also a co-founder and the president of C++ Serbia.
