@@ -27,6 +27,8 @@ imageUrl: >-
   https://images.cppserbia.org/events/2026-11-24-The-Algebra-Behind-Great-Cpp-APIs.jpg
 imageWidth: 1920
 imageHeight: 1080
+speaker_avatar: >-
+  https://images.cppserbia.org/speaker-avatars/2026-11-24-The-Algebra-Behind-Great-Cpp-APIs.png
 ---
 
 # The Algebra Behind Great C++ APIs
