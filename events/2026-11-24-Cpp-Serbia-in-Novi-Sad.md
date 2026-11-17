@@ -11,13 +11,13 @@ venues:
 speaker:
   key: dusan-jovanovic
   worksFor: Inceptive
-  jobTitle: Co-founder
+  jobTitle: Co-founder & VP of Engineering (co-CTO)
   bio: >-
-    Dušan Jovanović is a C++ engineer, systems architect, and co-founder of Inceptive, where he
-    builds ultra-low-latency exchange technology. He has more than a decade of professional
-    experience in C++, with a background in high-performance systems, device drivers, and
-    low-level engineering. Dušan is also a co-founder of C++ Serbia, where he contributes to the
-    community through meetups, mentoring, and talks.
+    Dušan Jovanović is a C++ engineer and systems architect, building tech, teams and community.
+    He is a co-founder of Inceptive, where as VP of Engineering and co-CTO he builds
+    ultra-low-latency exchange technology. He has more than a decade of professional experience
+    in C++, with a background in high-performance systems, device drivers, and low-level
+    engineering. Dušan is also a co-founder and the president of C++ Serbia.
 # The city is already on the date line (banner_venue), so the banner title is the talk.
 banner_title:
   - The Algebra Behind
