@@ -50,7 +50,7 @@ This is a pre-conference preview of the [Meeting C++ 2026 talk](https://meetingc
 
 ## 📍 In Person Only
 
-This one is **in-person only**, with **no live stream**. The talk **will be recorded**, and we will publish the video on our YouTube channel **after Meeting C++ 2026**, so the conference gets the premiere. Until then, the room in Novi Sad is the only place to see it, and the questions, the discussion and the chat after the talk happen only in the room. Come to Novi Sad!
+This one is **in-person only**, with **no live stream**. The talk **will be recorded**, and we will publish the video on our YouTube channel **after Meeting C++ 2026**, so the conference gets the premiere. Until then, Novi Sad is the only place to see it, and the questions, the discussion and the chat after the talk stay in the room. Come to Novi Sad!
 
 ## Who Should Attend
 
