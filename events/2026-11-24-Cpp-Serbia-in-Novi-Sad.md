@@ -50,7 +50,7 @@ This is a pre-conference preview of the [Meeting C++ 2026 talk](https://meetingc
 
 ## 📍 In Person Only
 
-This one is **in-person only**, with **no live stream**. The talk **will be recorded** and published on our YouTube channel afterwards, but the questions, the discussion and the chat after the talk happen only in the room. Come to Novi Sad!
+This one is **in-person only**, with **no live stream**. The talk **will be recorded**, and we will publish the video on our YouTube channel **after Meeting C++ 2026**, so the conference gets the premiere. Until then, the room in Novi Sad is the only place to see it, and the questions, the discussion and the chat after the talk happen only in the room. Come to Novi Sad!
 
 ## Who Should Attend
 
@@ -65,11 +65,11 @@ Whether you write C++ for a living, are just starting out, or are simply curious
 
 ## 📅 Event Details
 
-|                    |                                              |
-| ------------------ | -------------------------------------------- |
-| 🕕 **Date & Time** | **24th of November (Tuesday), 6 pm**         |
-| 📍 **Location**    | **Startit AI Hub (Startit Center Novi Sad)** |
-| 🏢 **Address**     | **Miroslava Antića 2, Novi Sad**             |
-| 🎥 **Recording**   | **Yes, in-person only (no live stream)**     |
+|                    |                                                           |
+| ------------------ | --------------------------------------------------------- |
+| 🕕 **Date & Time** | **24th of November (Tuesday), 6 pm**                      |
+| 📍 **Location**    | **Startit AI Hub (Startit Center Novi Sad)**              |
+| 🏢 **Address**     | **Miroslava Antića 2, Novi Sad**                          |
+| 🎥 **Recording**   | **Yes, released after Meeting C++ 2026 (no live stream)** |
 
 See you in Novi Sad!
